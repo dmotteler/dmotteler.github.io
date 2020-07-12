@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!-- $Id: picksongs.tpl,v 1.1 2020/07/10 17:07:36 dfm Exp dfm $
+     $Log: picksongs.tpl,v $
+     Revision 1.1  2020/07/10 17:07:36  dfm
+     Initial revision
+
+
+-->
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Pick songs</title>
+<style>
+table {
+    font-family:Arial; font-size: 20px;
+    border-width:5px; border-collapse: collapse;
+    padding: 4px;
+    min-width: 400px;
+}
+tr { page-break-inside: avoid; }
+th { background-color:lightgreen; font-weight: bold; vertical-align: text-top; text-align: center; }
+td { padding: 4px; text-align: center; }
+.chosen { background-color: lightblue; }
+.hidden { display: none; }
+body{ -webkit-print-color-adjust:exact; }
+</style>
+<script type="text/javascript">
+
+var songorder = 0;
+var songlist = [];
+
+function selme(el) {
+    // order cell is first child of the row
+    let ordel = el.childNodes[0];
+
+    // nbsp; is char code a0 hex. don't allow song to be 
+    // selected more than once.
+    if (ordel.textContent == "\xa0") {
+        songorder += 1;
+        ordel.textContent = songorder.toString();
+        el.classList.add("chosen");
+    } else {
+        // if this song was already chosen, un-choose it and
+        // blank out the order. choosing it again will put it 
+        // at the current end.
+        // alert("stop that! <" + ordel.textContent + ">");
+        el.classList.remove("chosen");
+        ordel.textContent = "\xa0";
+    }
+}
+
+function togcat(el) {
+    // one of the "show category" checkboxes has changed.
+    // set the hidden value as appropriate for each row.
+    // only set hidden if all categories for the song are un-checked.
+
+    let songrows = document.getElementsByTagName("tr");
+    let catsels = document.querySelectorAll("input[type='checkbox']");
+
+    var showcats = [];
+
+    for (let catel of catsels) {
+        // category name follows the checkbox, and has unwanted
+        // whitespace after it.
+        let cat = catel.nextSibling.textContent.replace(/(\s+$)/,'');
+        showcats[cat] = catel.checked;
+    }
+
+    for (let songrowel of songrows) {
+        let songcats = songrowel.classList;
+        if (songcats.length == 0) {
+            // this row has no classes - skip it. 
+            // (this will skip the header rows).
+            continue;
+        }
+
+        // if any of a song's cats (except hidden) is
+        // checked, show the song.
+        let showit = false;
+        let ishidden = false;
+        for (let scat of songcats) {
+            if (scat == "hidden") {
+                ishidden = true;
+            } else if (showcats[scat]) {
+                showit = true;
+            }
+        }
+
+        if (showit) {
+            if (ishidden) {
+                // currently hidden, but should be showed.
+                songrowel.classList.remove("hidden");
+            } else {
+                // not currently hidden, nothing to do.
+            }
+        } else {
+            // don't showit - is it hidden?
+            if (! ishidden) {
+                // no, hide it
+                songrowel.classList.add("hidden");
+            }
+        }
+    }
+}
+
+function alldone() {
+    var songs = [];
+    for (let element of document.getElementsByClassName("chosen")) {
+        let ord = Number(element.childNodes[0].textContent) - 1;
+        let song = element.childNodes[1].textContent;
+        songs[ord] = song;
+    }
+    let songcell = document.getElementById("songcell");
+    let jlist = JSON.stringify(songs);
+    saveTextAsFile(jlist);
+    songcell.value = jlist;
+    console.log(jlist);
+    return true;
+}
+
+// from https://stackoverflow.com/questions/21012580/is-it-possible-to-write-data-to-file-using-only-javascript
+function saveTextAsFile(txt) {
+    
+    var textFileAsBlob = new Blob([txt], {type:'text/plain'});
+    
+    var fileNameToSaveAs = "songlist.json";
+      var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Download File";
+    if (window.webkitURL != null)
+    {
+        // Chrome allows the link to be clicked
+        // without actually adding it to the DOM.
+        downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+    }
+    else
+    {
+        // Firefox requires the link to be added to the DOM
+        // before it can be clicked.
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.onclick = destroyClickedElement;
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+    }
+
+    downloadLink.click();
+}
+</script>
+</head>
+<body>
+<!-- <FORM ACTION="/dfm_ws/cgi/cheatsheet.py" METHOD="POST" onsubmit="return alldone()"> -->
+<table border="1">
+<tr><th colspan='2' class="hdrcell">Pick Songs</th></tr>
+<tr>
+<th class="hdrcell"><input type="submit" value="Done" onclick="alldone()"/></th>
+<th class="hdrcell">Song Title</th>
+</tr>
+ <tr class="Current PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>After You've Gone</td></tr>
+ <tr class="Show" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Bad, Bad Leroy Brown</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Breaking Up Is Hard To Do</td></tr>
+ <tr class="PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Bright Was The Night</td></tr>
+ <tr class="PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Caroline</td></tr>
+ <tr class="Current PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Coney Island Baby</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Consider Yourself</td></tr>
+ <tr class="PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Darkness On The Delta</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Daydream</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Dona Nobis Pacem</td></tr>
+ <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Down By The Old Mill Stream</td></tr>
+ <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Down Our Way</td></tr>
+ <tr class="PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Drivin' Me Crazy</td></tr>
+ <tr class="Show" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Edelweiss</td></tr>
+ <tr class="PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>From The First Hello To The Last Goodbye</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>God Bless America</td></tr>
+ <tr class="Show" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Happy Together</td></tr>
+ <tr class="Current PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Hello Mary Lou</td></tr>
+ <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Honey/Little 'Lize - Medley</td></tr>
+ <tr class="Show" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Hooked On a Feeling</td></tr>
+ <tr class="Current PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>I Don't Know Why</td></tr>
+ <tr class="PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>I've Been Working On The Railroad</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>In My Room</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Irish Blessing</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Keep The Whole World Singing</td></tr>
+ <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Let Me Call You Sweetheart</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Let's Get Together Again</td></tr>
+ <tr class="PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Lida Rose/Will I Ever Tell You</td></tr>
+ <tr class="Show" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Longest Time, The</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Muskrat Ramble</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>My Girl</td></tr>
+ <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>My Wild Irish Rose</td></tr>
+ <tr class="Show" onclick="selme(this)"><td class="ord">&nbsp;</td><td>O Danny Boy</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Old Songs, The</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>On The Sunny Side of the Street</td></tr>
+ <tr class="Current PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Over The Rainbow</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Riders In The Sky</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Sentimental Journey</td></tr>
+ <tr class="Show" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Seven Bridges Road</td></tr>
+ <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Shine On Me</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Shut De Do</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Sixteen Tons</td></tr>
+ <tr class="Show" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Stand By Me</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Star-Spangled Banner, The</td></tr>
+ <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Story Of The Rose</td></tr>
+ <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Sweet And Lovely</td></tr>
+ <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Sweet, Sweet Roses of Morn</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Turn Your Radio On!</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Under The Boardwalk</td></tr>
+ <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Wait Till The Sun Shines, Nellie</td></tr>
+ <tr class="Show" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Who Put the Bomp</td></tr>
+ <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Yesterday</td></tr>
+ <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>You Tell Me Your Dream</td></tr>
+ <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>You're The Flower Of My Heart, Sweet Adeline</td></tr>
+<tr><td colspan='2'>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Current</input>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCat</input>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCatII</input>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Show</input>
+</td></tr>
+</table>
+<input type='hidden' id='songcell' name='songs' value='' />
+<!-- </FORM> -->
+</body>
+</html>
