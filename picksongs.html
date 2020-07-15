@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<!-- $Id: picksongs.tpl,v 1.1 2020/07/10 17:07:36 dfm Exp dfm $
+<!-- $Id: picksongs.tpl,v 1.2 2020/07/13 03:48:19 dfm Exp dfm $
      $Log: picksongs.tpl,v $
+     Revision 1.2  2020/07/13 03:48:19  dfm
+     minimize the style info and include it in the template, get rid of .css file
+
      Revision 1.1  2020/07/10 17:07:36  dfm
      Initial revision
 
@@ -33,8 +36,8 @@ function selme(el) {
     // order cell is first child of the row
     let ordel = el.childNodes[0];
 
-    // nbsp; is char code a0 hex. don't allow song to be 
-    // selected more than once.
+    // nbsp; is char code a0 hex. cell will have
+    // that value until it has been selected.
     if (ordel.textContent == "\xa0") {
         songorder += 1;
         ordel.textContent = songorder.toString();
@@ -43,7 +46,6 @@ function selme(el) {
         // if this song was already chosen, un-choose it and
         // blank out the order. choosing it again will put it 
         // at the current end.
-        // alert("stop that! <" + ordel.textContent + ">");
         el.classList.remove("chosen");
         ordel.textContent = "\xa0";
     }
@@ -110,50 +112,27 @@ function alldone() {
         let song = element.childNodes[1].textContent;
         songs[ord] = song;
     }
-    let songcell = document.getElementById("songcell");
+    if (songs.length < 1) {
+        alert("No songs selected?");
+        return;
+    }
     let jlist = JSON.stringify(songs);
-    saveTextAsFile(jlist);
-    songcell.value = jlist;
+
+    let mthref = "mailto:dmotteler@aol.com?subject=songlist&body=" + jlist;
+    let mtel = document.getElementById("mtcell");
+    mtel.href = mthref;
+    mtel.click();
+
     console.log(jlist);
-    return true;
-}
-
-// from https://stackoverflow.com/questions/21012580/is-it-possible-to-write-data-to-file-using-only-javascript
-function saveTextAsFile(txt) {
-    
-    var textFileAsBlob = new Blob([txt], {type:'text/plain'});
-    
-    var fileNameToSaveAs = "songlist.json";
-      var downloadLink = document.createElement("a");
-    downloadLink.download = fileNameToSaveAs;
-    downloadLink.innerHTML = "Download File";
-    if (window.webkitURL != null)
-    {
-        // Chrome allows the link to be clicked
-        // without actually adding it to the DOM.
-        downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
-    }
-    else
-    {
-        // Firefox requires the link to be added to the DOM
-        // before it can be clicked.
-        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-        downloadLink.onclick = destroyClickedElement;
-        downloadLink.style.display = "none";
-        document.body.appendChild(downloadLink);
-    }
-
-    downloadLink.click();
 }
 </script>
 </head>
 <body>
-<!-- <FORM ACTION="/dfm_ws/cgi/cheatsheet.py" METHOD="POST" onsubmit="return alldone()"> -->
 <table border="1">
-<tr><th colspan='2' class="hdrcell">Pick Songs</th></tr>
+<tr><th colspan='2'>Pick Songs</th></tr>
 <tr>
-<th class="hdrcell"><input type="submit" value="Done" onclick="alldone()"/></th>
-<th class="hdrcell">Song Title</th>
+<th class="donebutt"><input type="button" value="Done" onclick="alldone()"/></th>
+<th>Song Title</th>
 </tr>
  <tr class="Current PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>After You've Gone</td></tr>
  <tr class="Show" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Bad, Bad Leroy Brown</td></tr>
@@ -216,7 +195,6 @@ function saveTextAsFile(txt) {
  <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Show</input>
 </td></tr>
 </table>
-<input type='hidden' id='songcell' name='songs' value='' />
-<!-- </FORM> -->
+<a class="hidden" id="mtcell" href=""</a>
 </body>
 </html>
