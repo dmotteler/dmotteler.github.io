@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<!-- $Id: picksongs.tpl,v 1.2 2020/07/13 03:48:19 dfm Exp dfm $
+<!-- $Id: picksongs.tpl,v 1.3 2020/07/19 19:16:20 dfm Exp $
      $Log: picksongs.tpl,v $
+     Revision 1.3  2020/07/19 19:16:20  dfm
+     sytle the Done button, relabel as Send
+     send the song list via email, remove the download functionality
+
      Revision 1.2  2020/07/13 03:48:19  dfm
      minimize the style info and include it in the template, get rid of .css file
 
@@ -25,6 +29,7 @@ th { background-color:lightgreen; font-weight: bold; vertical-align: text-top; t
 td { padding: 4px; text-align: center; }
 .chosen { background-color: lightblue; }
 .hidden { display: none; }
+.donebutt { font-weight: bold; background-color: yellow; font-size: 20px; }
 body{ -webkit-print-color-adjust:exact; }
 </style>
 <script type="text/javascript">
@@ -92,13 +97,10 @@ function togcat(el) {
             if (ishidden) {
                 // currently hidden, but should be showed.
                 songrowel.classList.remove("hidden");
-            } else {
-                // not currently hidden, nothing to do.
             }
         } else {
-            // don't showit - is it hidden?
             if (! ishidden) {
-                // no, hide it
+                // not hidden, but don't showit
                 songrowel.classList.add("hidden");
             }
         }
@@ -116,7 +118,17 @@ function alldone() {
         alert("No songs selected?");
         return;
     }
-    let jlist = JSON.stringify(songs);
+
+    // songs array may be sparse if any song was de-selected.
+    // json will put 'null' for any empty cell. this gets rid of that.
+    var seq = [];
+    for (let song of songs) {
+        if (song) {
+            seq.push(song);
+        }
+    }
+
+    let jlist = JSON.stringify(seq);
 
     let mthref = "mailto:dmotteler@aol.com?subject=songlist&body=" + jlist;
     let mtel = document.getElementById("mtcell");
@@ -131,7 +143,7 @@ function alldone() {
 <table border="1">
 <tr><th colspan='2'>Pick Songs</th></tr>
 <tr>
-<th class="donebutt"><input type="button" value="Done" onclick="alldone()"/></th>
+<th><input type="button" class="donebutt" value="Send" onclick="alldone()"/></th>
 <th>Song Title</th>
 </tr>
  <tr class="Current PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>After You've Gone</td></tr>
