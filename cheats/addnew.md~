@@ -1,0 +1,9 @@
+  cd songlist
+  ./songlist.py -r 2020-06-16
+  cd ~/trygitpages
+  cp ~/src/devel/songlist/2020-06-16.html .
+  git add --all
+  git commit -m "June 16"
+  git push -u origin master
+  dmotteler
+  yemuE5gwxNNkKnQ
