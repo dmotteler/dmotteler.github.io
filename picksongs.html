@@ -182,13 +182,24 @@ function alldone() {
     
     let jlist = JSON.stringify(rv);
 
-    let mthref = "mailto:dmotteler@aol.com?subject=songlist&body=" + jlist;
-    let mtel = document.getElementById("mtcell");
-    mtel.href = mthref;
-    mtel.click();
-
+    let mailit = false;
+    if (mailit) {
+        let mthref = "mailto:dmotteler@aol.com?subject=songlist&body=" + jlist;
+        let mtel = document.getElementById("mtcell");
+        mtel.href = mthref;
+        mtel.click();
+    } else {
+        let pom = document.createElement('a');
+        pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(jlist));
+        pom.setAttribute('download', "songlist.json");
+        pom.style.display = 'none';
+        document.body.appendChild(pom);
+        pom.click();
+        document.body.removeChild(pom);
+    }
     console.log(jlist);
 }
+
 </script>
 </head>
 <body>
@@ -204,7 +215,7 @@ function alldone() {
 <option value="Vintage">Vintage</option>
 <option value="Woodland Village">Woodland Village</option>
 </select>
-&nbsp;on&nbsp;<input type="date" class="select-css" value="2020-07-28" id="eventdate">
+&nbsp;on&nbsp;<input type="date" class="select-css" value="2020-08-11" id="eventdate">
 </th></tr>
 <tr>
 <th><input type="button" class="donebutt" value="Send" onclick="alldone()"/></th>
@@ -214,6 +225,8 @@ function alldone() {
  <tr class="Show" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Bad, Bad Leroy Brown</td></tr>
  <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Breaking Up Is Hard To Do</td></tr>
  <tr class="PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Bright Was The Night</td></tr>
+ <tr class="ComingSoon" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Bye Bye, Love</td></tr>
+ <tr class="ComingSoon" onclick="selme(this)"><td class="ord">&nbsp;</td><td>California Dreamin'</td></tr>
  <tr class="PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Caroline</td></tr>
  <tr class="Current PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Coney Island Baby</td></tr>
  <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Consider Yourself</td></tr>
@@ -243,12 +256,14 @@ function alldone() {
  <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>My Girl</td></tr>
  <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>My Wild Irish Rose</td></tr>
  <tr class="Show" onclick="selme(this)"><td class="ord">&nbsp;</td><td>O Danny Boy</td></tr>
+ <tr class="ComingSoon" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Old Devil Moon</td></tr>
  <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Old Songs, The</td></tr>
  <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>On The Sunny Side of the Street</td></tr>
  <tr class="Current PoleCatII" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Over The Rainbow</td></tr>
  <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Riders In The Sky</td></tr>
  <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Sentimental Journey</td></tr>
  <tr class="Show" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Seven Bridges Road</td></tr>
+ <tr class="ComingSoon" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Seventy-Six Trombones</td></tr>
  <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Shine On Me</td></tr>
  <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Shut De Do</td></tr>
  <tr class="Current" onclick="selme(this)"><td class="ord">&nbsp;</td><td>Sixteen Tons</td></tr>
@@ -265,6 +280,7 @@ function alldone() {
  <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>You Tell Me Your Dream</td></tr>
  <tr class="PoleCat" onclick="selme(this)"><td class="ord">&nbsp;</td><td>You're The Flower Of My Heart, Sweet Adeline</td></tr>
 <tr><td colspan='2'>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">ComingSoon</input>
  <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Current</input>
  <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCat</input>
  <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCatII</input>
