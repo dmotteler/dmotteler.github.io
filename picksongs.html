@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<!-- $Id: picksongs.tpl,v 1.3 2020/07/19 19:16:20 dfm Exp dfm $
+<!-- $Id: picksongs.tpl,v 1.4 2020/08/25 23:22:48 dfm Exp dfm $
      $Log: picksongs.tpl,v $
+     Revision 1.4  2020/08/25 23:22:48  dfm
+     add a bunch of css
+     made code blocks to send mail or download result
+     added select block for venue
+
      Revision 1.3  2020/07/19 19:16:20  dfm
      sytle the Done button, relabel as Send
      send the song list via email, remove the download functionality
@@ -39,8 +44,8 @@
 	-webkit-appearance: none;
 	appearance: none;
 	background-color: #fff;
-	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
-	  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+	# background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+	  # linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
 	background-repeat: no-repeat, repeat;
 	background-position: right .7em top 50%, 0 0;
 	background-size: .65em auto, 100%;
@@ -172,7 +177,7 @@ function alldone() {
     }
 
     let venel = document.getElementById("eventvenue");
-    let venue = venel.options[venel.selectedIndex].value;
+    let venue = venel.value;
 
     let datel = document.getElementById("eventdate");
     let evdate = datel.value;
@@ -200,22 +205,46 @@ function alldone() {
     console.log(jlist);
 }
 
+function init() {
+    // init date picker to next Tuesday (today if it's Tuesday)
+    let d = new Date();
+    d.setDate(d.getDate() + (7 - d.getDay() + 2) % 7);
+    let datel = document.getElementById("eventdate");
+
+    let day = d.getDate();
+    let dstr = "" + day;
+    if (day < 10) {
+        dstr = "0" + day;
+    }
+
+    let mo = d.getMonth() + 1;
+    let mstr = "" + mo;
+    if (mo < 10) {
+        mstr = "0" + mo;
+    }
+
+    datel.value = d.getFullYear() + "-" + mstr + "-" + dstr + "T19:00";
+}
 </script>
 </head>
-<body>
+<body onLoad="init()">
 <table border="1">
-<tr><th colspan='2'>Pick Songs for 
-<select class="select-css" id="eventvenue">
-<option selected="SELECTED" value="Zoom">Zoom</option>
-<option value="Rehearsal">Rehearsal</option>
-<option value="Chehalis West">Chehalis West</option>
-<option value="Colonial">Colonial</option>
-<option value="Prestige Care">Prestige Care</option>
-<option value="Sharon Care">Sharon Care</option>
-<option value="Vintage">Vintage</option>
-<option value="Woodland Village">Woodland Village</option>
+<tr><th colspan='2'>Songs for 
+<input type="text" list="venues" id="eventvenue" class="select-css" />
+<datalist id="venues">
+<option>Rehearsal</option>
+<option>Chehalis West</option>
+<option>Colonial</option>
+<option>Prestige Care</option>
+<option>Sharon Care</option>
+<option>Vintage</option>
+<option>Woodland Village</option>
+<option>Zoom</option>
+</datalist>
+<!-- <select class="select-css" id="eventvenue">
 </select>
-&nbsp;on&nbsp;<input type="date" class="select-css" value="2020-08-11" id="eventdate">
+-->
+&nbsp;on&nbsp;<input type="datetime-local" class="select-css" value="" id="eventdate" step="900">
 </th></tr>
 <tr>
 <th><input type="button" class="donebutt" value="Send" onclick="alldone()"/></th>
