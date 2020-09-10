@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!-- $Id:$
+     $Log:$
+-->
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Pick songs</title>
+<!-- select-css from https://www.filamentgroup.com/lab/select-css.html -->
+<style>
+.select-css {
+	display: inline-block; width: auto;
+    text-align: center;
+	font-size: 20px;
+	font-family: sans-serif;
+	font-weight: 700;
+	color: #444;
+	line-height: 1.1;
+	padding: .6em 1.4em .5em .8em;
+	# width: 100%;
+	# max-width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	border: 1px solid #aaa;
+	box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+	border-radius: .5em;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: #fff;
+	# background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+	  # linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+	background-repeat: no-repeat, repeat;
+	background-position: right .7em top 50%, 0 0;
+	background-size: .65em auto, 100%;
+}
+.select-css::-ms-expand {
+	display: none;
+}
+.select-css:hover {
+	border-color: #888;
+}
+.select-css:focus {
+	border-color: #aaa;
+	box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+	box-shadow: 0 0 0 3px -moz-mac-focusring;
+	color: #222;
+	outline: none;
+}
+.select-css option {
+	font-weight:normal;
+}
+table {
+    font-family:Arial; font-size: 20px;
+    border-width:5px; border-collapse: collapse;
+    padding: 4px;
+    min-width: 400px;
+}
+tr { page-break-inside: avoid; }
+th { background-color:lightgreen; font-weight: bold; vertical-align: text-top; text-align: center; }
+td { padding: 4px; text-align: center; }
+.chosen { background-color: lightblue; }
+.hidden { display: none; }
+.donebutt { font-weight: bold; background-color: yellow; font-size: 20px; }
+body{ -webkit-print-color-adjust:exact; }
+</style>
+<script type="text/javascript">
+
+var songorder = 0;
+var songlist = [];
+
+function selme(el) {
+    // order cell is first child of the row
+    let ordel = el.childNodes[0];
+
+    // nbsp; is char code a0 hex. cell will have
+    // that value until it has been selected.
+    if (ordel.textContent == "\xa0") {
+        songorder += 1;
+        ordel.textContent = songorder.toString();
+        el.classList.add("chosen");
+    } else {
+        // if this song was already chosen, un-choose it and
+        // blank out the order. choosing it again will put it 
+        // at the current end.
+        el.classList.remove("chosen");
+        ordel.textContent = "\xa0";
+    }
+}
+
+function togcat(el) {
+    // one of the "show category" checkboxes has changed.
+    // set the hidden value as appropriate for each row.
+    // only set hidden if all categories for the song are un-checked.
+
+    let songrows = document.getElementsByTagName("tr");
+    let catsels = document.querySelectorAll("input[type='checkbox']");
+
+    var showcats = [];
+
+    for (let catel of catsels) {
+        // category name follows the checkbox, and has unwanted
+        // whitespace after it.
+        let cat = catel.nextSibling.textContent.replace(/(\s+$)/,'');
+        showcats[cat] = catel.checked;
+    }
+
+    for (let songrowel of songrows) {
+        let songcats = songrowel.classList;
+        if (songcats.length == 0) {
+            // this row has no classes - skip it. 
+            // (this will skip the header rows).
+            continue;
+        }
+
+        // if any of a song's cats (except hidden) is
+        // checked, show the song.
+        let showit = false;
+        let ishidden = false;
+        for (let scat of songcats) {
+            if (scat == "hidden") {
+                ishidden = true;
+            } else if (showcats[scat]) {
+                showit = true;
+            }
+        }
+
+        if (showit) {
+            if (ishidden) {
+                // currently hidden, but should be showed.
+                songrowel.classList.remove("hidden");
+            }
+        } else {
+            if (! ishidden) {
+                // not hidden, but don't showit
+                songrowel.classList.add("hidden");
+            }
+        }
+    }
+}
+
+function alldone() {
+    var songs = [];
+    for (let element of document.getElementsByClassName("chosen")) {
+        let ord = Number(element.childNodes[0].textContent) - 1;
+        let song = element.childNodes[1].textContent;
+        songs[ord] = song;
+    }
+    if (songs.length < 1) {
+        alert("No songs selected?");
+        return;
+    }
+
+    // songs array may be sparse if any song was de-selected.
+    // json will put 'null' for any empty cell. this gets rid of that.
+    var seq = [];
+    for (let song of songs) {
+        if (song) {
+            seq.push(song);
+        }
+    }
+
+    let venel = document.getElementById("eventvenue");
+    let venue = venel.value;
+
+    let datel = document.getElementById("eventdate");
+    let evdate = datel.value;
+
+    let cheat = {'venue': venue, 'date':evdate, 'songs':seq}
+    let slist = JSON.stringify(cheat);
+
+    let params = {'songlist': slist}
+    let url = "cheat.html";
+
+    post_to_url(url, params, 'get');
+}
+
+function post_to_url(path, params, method) {
+    method = method || "post"; // Set method to post by default, if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    var addField = function( key, value ){
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", key);
+        hiddenField.setAttribute("value", value );
+
+        form.appendChild(hiddenField);
+    };
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            if( params[key] instanceof Array ){
+                for(var i = 0; i < params[key].length; i++){
+                    addField( key, params[key][i] )
+                }
+            }
+            else{
+                addField( key, params[key] );
+            }
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+function init() {
+    // init date picker to next Tuesday (today if it's Tuesday)
+    let d = new Date();
+    d.setDate(d.getDate() + (7 - d.getDay() + 2) % 7);
+    let datel = document.getElementById("eventdate");
+
+    let day = d.getDate();
+    let dstr = "" + day;
+    if (day < 10) {
+        dstr = "0" + day;
+    }
+
+    let mo = d.getMonth() + 1;
+    let mstr = "" + mo;
+    if (mo < 10) {
+        mstr = "0" + mo;
+    }
+
+    datel.value = d.getFullYear() + "-" + mstr + "-" + dstr + "T19:00";
+}
+
+function loadDoc(doc) {
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    docReady(this);
+    }
+  };
+  xhr.open("GET", doc, true);
+  xhr.send();
+}
+
+function docReady(json) {
+    let jsontxt = json.responseText;
+    let cheats = JSON.parse(jsontxt);
+
+    let voices = ['mix', 'bass', 'bari', 'lead', 'tenor'];
+    let others = ['key', 'cat', 'firstwords', 'title'];
+    var songs = [];
+    for (let song in cheats) {
+        songs[song] = [];
+        for (let voice in cheats[song]) {
+            if (voices.includes(voice)) {
+                songs[song][voice] = [];
+                for (let mod in cheats[song][voice]) {
+                    songs[song][voice][mod] = cheats[song][voice][mod];
+                }
+            } else {
+                if (others.includes(voice)) {
+                    songs[song][voice] = cheats[song][voice];
+                } else {
+                    alert("voice is " + voice);
+                }
+            }
+        }
+    }
+
+    var sorted = [];
+    for (let song in songs) {
+        sorted.push(song);
+    }
+    sorted.sort();
+
+    let h = ""
+    for (let song of sorted) {
+        let cats = songs[song]['cat'];
+        let row = `<tr class="${cats}" onclick="selme(this)"><td class="ord">&nbsp;</td><td>${song}</td></tr>`;
+        h += row;
+    }
+    document.getElementById("songtable").outerHTML = h;
+
+    init();
+}
+</script>
+</head>
+<body onload="loadDoc('songlib.json')">
+    <form method='POST' action='cheat.html'>
+<table border="1">
+<tr><th colspan='2'>Songs for 
+<input type="text" list="venues" id="eventvenue" class="select-css" required="required" />
+<datalist id="venues">
+<option>Rehearsal</option>
+<option>Chehalis West</option>
+<option>Colonial</option>
+<option>Prestige Care</option>
+<option>Sharon Care</option>
+<option>Vintage</option>
+<option>Woodland Village</option>
+<option>Zoom</option>
+</datalist>
+<!-- <select class="select-css" id="eventvenue">
+</select>
+-->
+&nbsp;on&nbsp;<input type="datetime-local" class="select-css" value="" id="eventdate" step="900">
+</th></tr>
+<tr>
+<th><input type="button" class="donebutt" value="Cheat" onclick="alldone()"/></th>
+<th>Song Title</th>
+</tr>
+<tr id="songtable"></tr>
+<tr><td colspan='2'>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">ComingSoon</input>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Current</input>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCat</input>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCatII</input>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Show</input>
+</td></tr>
+</table>
+<a class="hidden" id="mtcell" href=""</a>
+    </form>
+</body>
+</html>
