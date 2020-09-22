@@ -1,6 +1,13 @@
 <!DOCTYPE html>
-<!-- $Id:$
-     $Log:$
+<!-- $Id: picksongs.html,v 1.1 2020/09/10 19:42:47 dfm Exp dfm $
+     Log: picksongs.html,v $
+     Revision 1.1  2020/09/10 19:42:47  dfm
+     Initial revision
+
+
+     provide song list for cheat-sheet song selection
+
+     save the song list to local storage and invoke cheat.html
 -->
 <html>
 <head>
@@ -17,8 +24,6 @@
 	color: #444;
 	line-height: 1.1;
 	padding: .6em 1.4em .5em .8em;
-	# width: 100%;
-	# max-width: 100%;
 	box-sizing: border-box;
 	margin: 0;
 	border: 1px solid #aaa;
@@ -28,8 +33,6 @@
 	-webkit-appearance: none;
 	appearance: none;
 	background-color: #fff;
-	# background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
-	  # linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
 	background-repeat: no-repeat, repeat;
 	background-position: right .7em top 50%, 0 0;
 	background-size: .65em auto, 100%;
@@ -68,6 +71,54 @@ body{ -webkit-print-color-adjust:exact; }
 
 var songorder = 0;
 var songlist = [];
+
+function fmtDate(dstr) {
+    // expecting dstr like "2028-02-29T23:04", but anything Date 
+    // will accept should do. 
+    let monam = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+
+    let d = new Date(dstr);
+    let longmon = monam[d.getMonth()];
+    let day = d.getDate();
+    let yr = d.getFullYear();
+    let hr = d.getHours();
+
+    let dmon = d.getMonth() + 1;
+    let mons = "" + dmon;
+    if (dmon < 10) {
+      mons = "0" + dmon;
+    }
+
+    let days = "" + day;
+    if (day < 10) {
+        days = "0" + day;
+    }
+
+    let ampm = "AM";
+    if (hr > 11) {
+        ampm = "PM";
+    }
+    if (hr > 12) {
+        hr -= 12;
+    }
+
+    let hrs = "" + hr;
+    if (hr < 10) {
+        hrs = "0" + hr;
+    }
+
+    let dmin = d.getMinutes();
+    let mins = "" + dmin;
+    if (dmin < 10) {
+      mins = "0" + dmin;
+    }
+
+    // e.g., September 9, 2020 12:29PM
+    let datstr = longmon + " " + day + ", " + yr + " " + hrs + ":" + mins + ampm;
+    let datndx = yr + mons + days + hrs + mins;
+    return([datstr,datndx]);
+}
 
 function selme(el) {
     // order cell is first child of the row
@@ -166,51 +217,89 @@ function alldone() {
     let datel = document.getElementById("eventdate");
     let evdate = datel.value;
 
-    let cheat = {'venue': venue, 'date':evdate, 'songs':seq}
-    let slist = JSON.stringify(cheat);
+    let [fulldate, datndx] = fmtDate(evdate);
 
-    let params = {'songlist': slist}
-    let url = "cheat.html";
+    let newevent = JSON.stringify({'when': fulldate, 'where': venue, 'songlist': seq });
 
-    post_to_url(url, params, 'get');
+    // get the event-list json from local storage
+    let eljson = localStorage.getItem('TunersEvents');
+
+    // if we got a list, convert to a dict (Object, really)
+    let eventlist = {};
+    if (eljson) {
+        eventlist = JSON.parse(eljson);
+    }
+
+    // add the JSONified new event to the event list. 
+    // Note: if there was already an event on this date and time,
+    //  it is replaced.
+    eventlist[datndx] = newevent;
+
+    // put it back into local storage.
+    localStorage.setItem('TunersEvents', JSON.stringify(eventlist));
+
+    if (confirm(newevent)) {
+        window.location.href = "cheat.html";
+    } else {
+        alert("ok, try again!");
+    }
+}
+function loadDoc(doc) {
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    docReady(this);
+    }
+  };
+  xhr.open("GET", doc, true);
+  xhr.send();
 }
 
-function post_to_url(path, params, method) {
-    method = method || "post"; // Set method to post by default, if not specified.
+var songlib = [];
+function docReady(json) {
+    let jsontxt = json.responseText;
+    let sljson = JSON.parse(jsontxt);
 
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
+    let voices = ['mix', 'bass', 'bari', 'lead', 'tenor'];
+    let others = ['key', 'cat', 'firstwords', 'title'];
 
-    var addField = function( key, value ){
-        var hiddenField = document.createElement("input");
-        hiddenField.setAttribute("type", "hidden");
-        hiddenField.setAttribute("name", key);
-        hiddenField.setAttribute("value", value );
-
-        form.appendChild(hiddenField);
-    };
-
-    for(var key in params) {
-        if(params.hasOwnProperty(key)) {
-            if( params[key] instanceof Array ){
-                for(var i = 0; i < params[key].length; i++){
-                    addField( key, params[key][i] )
+    for (let song in sljson) {
+        songlib[song] = [];
+        for (let voice in sljson[song]) {
+            if (voices.includes(voice)) {
+                songlib[song][voice] = [];
+                for (let mod in sljson[song][voice]) {
+                    songlib[song][voice][mod] = sljson[song][voice][mod];
                 }
-            }
-            else{
-                addField( key, params[key] );
+            } else {
+                if (others.includes(voice)) {
+                    songlib[song][voice] = sljson[song][voice];
+                } else {
+                    alert("voice is " + voice);
+                }
             }
         }
     }
 
-    document.body.appendChild(form);
-    form.submit();
+    var sorted = [];
+    for (let song in songlib) {
+        sorted.push(song);
+    }
+    sorted.sort();
+
+    let songtable = ""
+    for (let song of sorted) {
+        let cats = songlib[song]['cat'];
+        let row = `<tr class="${cats}" onclick="selme(this)"><td class="ord">&nbsp;</td><td>${song}</td></tr>`;
+        songtable += row;
+    }
+    var stel = document.getElementById("songtable")
+    stel.outerHTML = songtable;
 }
 function init() {
     // init date picker to next Tuesday (today if it's Tuesday)
+    loadDoc('songlib.json');
+
     let d = new Date();
     d.setDate(d.getDate() + (7 - d.getDay() + 2) % 7);
     let datel = document.getElementById("eventdate");
@@ -230,64 +319,12 @@ function init() {
     datel.value = d.getFullYear() + "-" + mstr + "-" + dstr + "T19:00";
 }
 
-function loadDoc(doc) {
-  let xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-    docReady(this);
-    }
-  };
-  xhr.open("GET", doc, true);
-  xhr.send();
-}
-
-function docReady(json) {
-    let jsontxt = json.responseText;
-    let cheats = JSON.parse(jsontxt);
-
-    let voices = ['mix', 'bass', 'bari', 'lead', 'tenor'];
-    let others = ['key', 'cat', 'firstwords', 'title'];
-    var songs = [];
-    for (let song in cheats) {
-        songs[song] = [];
-        for (let voice in cheats[song]) {
-            if (voices.includes(voice)) {
-                songs[song][voice] = [];
-                for (let mod in cheats[song][voice]) {
-                    songs[song][voice][mod] = cheats[song][voice][mod];
-                }
-            } else {
-                if (others.includes(voice)) {
-                    songs[song][voice] = cheats[song][voice];
-                } else {
-                    alert("voice is " + voice);
-                }
-            }
-        }
-    }
-
-    var sorted = [];
-    for (let song in songs) {
-        sorted.push(song);
-    }
-    sorted.sort();
-
-    let h = ""
-    for (let song of sorted) {
-        let cats = songs[song]['cat'];
-        let row = `<tr class="${cats}" onclick="selme(this)"><td class="ord">&nbsp;</td><td>${song}</td></tr>`;
-        h += row;
-    }
-    document.getElementById("songtable").outerHTML = h;
-
-    init();
-}
 </script>
 </head>
-<body onload="loadDoc('songlib.json')">
-    <form method='POST' action='cheat.html'>
-<table border="1">
-<tr><th colspan='2'>Songs for 
+<body onload="init()">
+<table border="1" id="tabid">
+<tr><th colspan='2'>
+<label for="eventvenue">Songs for</label>
 <input type="text" list="venues" id="eventvenue" class="select-css" required="required" />
 <datalist id="venues">
 <option>Rehearsal</option>
@@ -299,13 +336,11 @@ function docReady(json) {
 <option>Woodland Village</option>
 <option>Zoom</option>
 </datalist>
-<!-- <select class="select-css" id="eventvenue">
-</select>
--->
-&nbsp;on&nbsp;<input type="datetime-local" class="select-css" value="" id="eventdate" step="900">
+<label for="eventdate">on</label>
+<input type="datetime-local" class="select-css" value="" id="eventdate" step="900">
 </th></tr>
 <tr>
-<th><input type="button" class="donebutt" value="Cheat" onclick="alldone()"/></th>
+<th><input type="button" class="donebutt" value="Save" onclick="alldone()"/></th>
 <th>Song Title</th>
 </tr>
 <tr id="songtable"></tr>
@@ -317,7 +352,5 @@ function docReady(json) {
  <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Show</input>
 </td></tr>
 </table>
-<a class="hidden" id="mtcell" href=""</a>
-    </form>
 </body>
 </html>
