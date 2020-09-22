@@ -20,11 +20,6 @@ function clickmix() {
     let butt = document.getElementById(buttonId);
     butt.click();
 }
-
-function vsel(e) {
-    setvoice(e.value);
-}
-
 function setvoice(sel) {
     let voice = sel.value;
     // show the class we were called with (i.e., remove "hidden")
@@ -68,7 +63,6 @@ function makeCheat(slsongs) {
     }
     return (songtable);
 }
-
 function loadDoc(doc) {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
@@ -149,10 +143,16 @@ function docReady(json) {
 
     let pl = document.getElementById("playlist");
     pl.outerHTML = body;
+
+}
+
+function init() {
+    loadDoc('songlib.json');
+
 }
 </script>
 </head>
-<body onload="loadDoc('songlib.json')">
+<body onload="init()">
 <table border='1'>
 <tr><td id='evtitl' colspan='3' class='tabletitle'>Zoom - 2020-08-11</td><tr>
 <tr id='playlist'><td>table goes here</td></tr>

@@ -238,7 +238,7 @@ function alldone() {
     // put it back into local storage.
     localStorage.setItem('TunersEvents', JSON.stringify(eventlist));
 
-    if (confirm("Done picking songs?")) {
+    if (confirm(newevent)) {
         window.location.href = "cheat.html";
     } else {
         alert("ok, try again!");
