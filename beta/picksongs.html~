@@ -231,6 +231,7 @@ function alldone() {
     eventlist[datndx] = newevent;
 
     // put it back into local storage.
+    localStorage.setItem('TunersEvents', JSON.stringify(eventlist));
     localStorage.setItem('showEvent', newevent);
 
     window.location.href = "cheat.html";
