@@ -81,10 +81,19 @@ function fmtDate(dstr) {
     let d = new Date(dstr);
     let longmon = monam[d.getMonth()];
     let day = d.getDate();
-    let dmon = d.getMonth() + 1;
     let yr = d.getFullYear();
     let hr = d.getHours();
-    let dmin = d.getMinutes();
+
+    let dmon = d.getMonth() + 1;
+    let mons = "" + dmon;
+    if (dmon < 10) {
+      mons = "0" + dmon;
+    }
+
+    let days = "" + day;
+    if (day < 10) {
+        days = "0" + day;
+    }
 
     let ampm = "AM";
     if (hr > 11) {
@@ -94,10 +103,16 @@ function fmtDate(dstr) {
         hr -= 12;
     }
 
-    let mons = dmon.toString().padStart(2, 0);
-    let days = day.toString().padStart(2, 0);
-    let hrs = hr.toString().padStart(2, 0);
-    let mins = dmin.toString().padStart(2, 0);
+    let hrs = "" + hr;
+    if (hr < 10) {
+        hrs = "0" + hr;
+    }
+
+    let dmin = d.getMinutes();
+    let mins = "" + dmin;
+    if (dmin < 10) {
+      mins = "0" + dmin;
+    }
 
     // e.g., September 9, 2020 12:29PM
     let datstr = longmon + " " + day + ", " + yr + " " + hrs + ":" + mins + ampm;
@@ -196,6 +211,16 @@ function alldone() {
         }
     }
 
+    let venel = document.getElementById("eventvenue");
+    let venue = venel.value;
+
+    let datel = document.getElementById("eventdate");
+    let evdate = datel.value;
+
+    let [fulldate, datndx] = fmtDate(evdate);
+
+    let newevent = JSON.stringify({'when': fulldate, 'where': venue, 'songlist': seq });
+
     // get the event-list json from local storage
     let eljson = localStorage.getItem('TunersEvents');
 
@@ -205,26 +230,6 @@ function alldone() {
         eventlist = JSON.parse(eljson);
     }
 
-    let sel = document.getElementById("vensel");
-    let ndx = sel.selectedIndex;
-    var venue;
-    let evndx = sel.options[ndx].value;
-
-    if (evndx == "") {
-        venue = sel.options[ndx].textContent;
-    } else {
-        // let ev = JSON.parse(eventlist[evndx]);
-        let ev = eventlist[evndx];
-        venue = ev['where'];
-    }
-
-    let datel = document.getElementById("eventdate");
-    let evdate = datel.value;
-
-    let [fulldate, datndx] = fmtDate(evdate);
-
-    let newevent = JSON.stringify({'when': fulldate, 'where': venue, 'songlist': seq });
-
     // add the JSONified new event to the event list. 
     // Note: if there was already an event on this date and time,
     //  it is replaced.
@@ -232,9 +237,12 @@ function alldone() {
 
     // put it back into local storage.
     localStorage.setItem('TunersEvents', JSON.stringify(eventlist));
-    localStorage.setItem('showEvent', newevent);
 
-    window.location.href = "cheat.html";
+    if (confirm("Done picking songs?")) {
+        window.location.href = "cheat.html";
+    } else {
+        alert("ok, try again!");
+    }
 }
 function loadDoc(doc) {
   let xhr = new XMLHttpRequest();
@@ -247,7 +255,6 @@ function loadDoc(doc) {
   xhr.send();
 }
 
-var songtableel;
 var songlib = [];
 function docReady(json) {
     let jsontxt = json.responseText;
@@ -286,51 +293,9 @@ function docReady(json) {
         let row = `<tr class="${cats}" onclick="selme(this)"><td class="ord">&nbsp;</td><td>${song}</td></tr>`;
         songtable += row;
     }
-    var songtableel = document.getElementById("songtable")
-    songtableel.outerHTML = songtable;
+    var stel = document.getElementById("songtable")
+    stel.outerHTML = songtable;
 }
-var eventlist = {};
-function evsel(el) {
-    let ndx = el.selectedIndex;
-    let opt = el.options[ndx];
-    var songlist;
-    if (opt.value != "") {
-        // let ev = JSON.parse(eventlist[opt.value]);
-        let ev = eventlist[opt.value];
-        songlist = ev['songlist'];
-    } else {
-        songlist = [];
-    }
-
-    // for each tr element...
-    for (let element of document.getElementsByTagName("tr")) {
-        // if the row is in the songtable...
-        if (element.childNodes[0].tagName == "TD" && element.childNodes.length > 1) {
-            // get the song name
-            let song = element.childNodes[1].textContent;
-            // see if it's in the list of songs we want
-            let neword = songlist.indexOf(song) + 1;
-            let ordel = element.childNodes[0];
-            if (neword < 1) {
-                // song is not one we want.
-                // if this song was already chosen, un-choose it and
-                // blank out the order. choosing it again will put it 
-                // at the current end.
-                element.classList.remove("chosen");
-                // order cell is first child of the row
-                ordel.textContent = "\xa0";
-            } else {
-                // song is one we want. set its ord based on
-                // position in songlist, and add it to chosen class.
-                ordel.textContent = neword.toString();
-                element.classList.add("chosen");
-            }
-        }
-    }
-    // set songorder global, so new selections will get the correct ord.
-    songorder = songlist.length;
-}
-
 function init() {
     // init date picker to next Tuesday (today if it's Tuesday)
     loadDoc('songlib.json');
@@ -340,58 +305,18 @@ function init() {
     let datel = document.getElementById("eventdate");
 
     let day = d.getDate();
-    let mo = d.getMonth() + 1;
+    let dstr = "" + day;
+    if (day < 10) {
+        dstr = "0" + day;
+    }
 
-    let dstr = day.toString().padStart(2, 0);
-    let mstr = mo.toString().padStart(2, 0);
+    let mo = d.getMonth() + 1;
+    let mstr = "" + mo;
+    if (mo < 10) {
+        mstr = "0" + mo;
+    }
 
     datel.value = d.getFullYear() + "-" + mstr + "-" + dstr + "T19:00";
-
-    // get the event-list json from local storage
-    let eljson = localStorage.getItem('TunersEvents');
-
-    // if we got a list, convert to a dict (Object, really)
-
-    if (eljson) {
-        eventlist = JSON.parse(eljson);
-    }
-
-    var sorted = [];
-    for (let evndx in eventlist) {
-        sorted.push(evndx);
-    }
-
-    // sort event list newest first
-    sorted.sort(function(a, b) {
-        if (a < b) { return 1;
-        } else if (a > b) { 
-            return -1;
-        } else {
-            return 0;
-        }
-    });
-
-    let venlist = ["Zoom", "Rehearsal", "Chehalis West", "Colonial", "Prestige Care",
-                         "Sharon Care", "Vintage", "Woodland Village"];
-
-    let sel = document.getElementById("vensel");
-
-    for (let ven of venlist) {
-        let opt = document.createElement("option");
-        opt.value = "";
-        opt.text = ven;
-        sel.add(opt);
-    }
-
-    for (let evndx of sorted) {
-        let ev = eventlist[evndx];
-        let songlist = ev['songlist'];
-
-        let opt = document.createElement("option");
-        opt.value = evndx;
-        opt.text = `${ev['where']} - ${ev['when']}`;
-        sel.add(opt);
-    }
 }
 
 </script>
@@ -399,8 +324,18 @@ function init() {
 <body onload="init()">
 <table border="1" id="tabid">
 <tr><th colspan='2'>
-<label for="vensel">Songs for</label>
-<select id="vensel" onChange='evsel(this)' class="select-css"></select>
+<label for="eventvenue">Songs for</label>
+<input type="text" list="venues" id="eventvenue" class="select-css" required="required" />
+<datalist id="venues">
+<option>Rehearsal</option>
+<option>Chehalis West</option>
+<option>Colonial</option>
+<option>Prestige Care</option>
+<option>Sharon Care</option>
+<option>Vintage</option>
+<option>Woodland Village</option>
+<option>Zoom</option>
+</datalist>
 <label for="eventdate">on</label>
 <input type="datetime-local" class="select-css" value="" id="eventdate" step="900">
 </th></tr>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id="doctitle">playlist for Tuners event</title>
+<style>
+.key { text-align: center; }
+td,th { padding: 6px; }
+th { background-color: lightgreen; border-bottom: solid 2px; font-size: 18px; }
+.tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
+.hidden { display: none; }
+tr:nth-child(even) { background: #CCC }
+tr:nth-child(odd) { background: #FFF }
+.partsel { text-align: center; background: #DDD }
+table { border-collapse: collapse; font-family: Arial; font-size: 18px; font-weight: bold; border-width: 5px; }
+</style>
+<script>
+function clickmix() {
+    let defaultVoice = localStorage.getItem("defaultVoice");
+    if (! defaultVoice) { defaultVoice = "mix"; }
+    let buttonId = "sel" + defaultVoice;
+    let butt = document.getElementById(buttonId);
+    butt.click();
+}
+
+function vsel(e) {
+    setvoice(e.value);
+}
+
+function setvoice(sel) {
+    let voice = sel.value;
+    // show the class we were called with (i.e., remove "hidden")
+    for (let element of document.getElementsByClassName(voice)) {
+       element.classList.remove("hidden");
+    }
+    let others = new Set(['bass', 'bari', 'lead', 'tenor', 'mix']);
+    others.delete(voice);
+    // don't show the rest of the classes
+    for (let v of others) {
+        for (let element of document.getElementsByClassName(v)) { element.classList.add("hidden"); }
+    }
+    localStorage.setItem("defaultVoice", voice);
+}
+
+function makeCheat(slsongs) {
+
+    let voices = ['bass', 'bari', 'lead', 'tenor', 'mix'];
+    let songtable = "";
+    for (let song of slsongs) {
+        let tit = songlib[song]['title'];
+        let wds = songlib[song]['firstwords'];
+        let key = songlib[song]['key'];
+        for (let voice of voices) {
+            let classes = voice;
+            if (voice != "mix") {
+                classes += " hidden";
+            }
+            if (voice in songlib[song]) {
+                songtable += `<tr class='${classes}'><td class='key'>${key}</td><td>`
+                for (let mods in songlib[song][voice]) {
+                    let fid = songlib[song][voice][mods][0];
+                    songtable += `<a href='https://drive.google.com/open?id=${fid}'>${tit} ${mods}</a><br/>`
+                }
+                songtable += `</td><td>${wds}</td></tr>`
+            } else {
+                // no track for voice for this song
+                songtable += `<tr class='${classes}'><td class='key'>${key}</td><td>${tit}</td><td>${wds}</td></tr>`
+            }
+        }
+    }
+    return (songtable);
+}
+
+function loadDoc(doc) {
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    docReady(this);
+    }
+  };
+  xhr.open("GET", doc, true);
+  xhr.send();
+}
+
+var songlib = [];
+function docReady(json) {
+    let jsontxt = json.responseText;
+    let sljson = JSON.parse(jsontxt);
+
+    let voices = ['mix', 'bass', 'bari', 'lead', 'tenor'];
+    let others = ['key', 'cat', 'firstwords', 'title'];
+
+    for (let song in sljson) {
+        songlib[song] = [];
+        for (let voice in sljson[song]) {
+            if (voices.includes(voice)) {
+                songlib[song][voice] = [];
+                for (let mod in sljson[song][voice]) {
+                    songlib[song][voice][mod] = sljson[song][voice][mod];
+                }
+            } else {
+                if (others.includes(voice)) {
+                    songlib[song][voice] = sljson[song][voice];
+                } else {
+                    alert("voice is " + voice);
+                }
+            }
+        }
+    }
+
+    // songlib is in. get the event list, the event date, 
+    // and the most recent event with songlist.
+    let eljson = localStorage.getItem('TunersEvents');
+
+    // if we got a list, convert to a dict (Object, really)
+    if (eljson) {
+        eventlist = JSON.parse(eljson);
+    } else {
+        alert("couldn't find event list in local storage.");
+    }
+
+    // eventlist is indexed by event date like 202009210700.
+
+    var sorted = [];
+    for (let evndx in eventlist) {
+        sorted.push(evndx);
+    }
+
+    // sort event list newest first
+    sorted.sort(function(a, b) {
+        if (a < b) { return 1;
+        } else if (a > b) { 
+            return -1;
+        } else {
+            return 0;
+        }
+    });
+
+    // get index of most recent event
+    let evndx = sorted[0];
+    let evjson = eventlist[evndx];
+
+    let d = JSON.parse(evjson);
+    let evdate = d['when'];
+    let venue = d['where'];
+    let evtitl = venue + " - " + evdate;
+    document.getElementById("evtitl").textContent = evtitl;
+
+    let songlist = d['songlist'];
+    let body = makeCheat(songlist);
+
+    let pl = document.getElementById("playlist");
+    pl.outerHTML = body;
+}
+</script>
+</head>
+<body onload="loadDoc('songlib.json')">
+<table border='1'>
+<tr><td id='evtitl' colspan='3' class='tabletitle'>Zoom - 2020-08-11</td><tr>
+<tr id='playlist'><td>table goes here</td></tr>
+<tr class='partsel'><td colspan='3'>Show
+ <input type="radio" id="seltenor" name="part" value="tenor" onclick="vsel(this)">tenor</input>
+ <input type="radio" id="sellead" name="part" value="lead" onclick="vsel(this)">lead</input>
+ <input type="radio" id="selbari" name="part" value="bari" onclick="vsel(this)">bari</input>
+ <input type="radio" id="selbass" name="part" value="bass" onclick="vsel(this)">bass</input>
+ <input type="radio" id="selmix" name="part" value="mix" onclick="vsel(this)">mix</input>
+ </td></tr>
+</table>
+</body>
+</html>
