@@ -9,9 +9,13 @@ th { background-color: lightgreen; border-bottom: solid 2px; font-size: 18px; }
 .hidden { display: none; }
 tr:nth-child(even) { background: #CCC }
 tr:nth-child(odd) { background: #FFF }
-.partsel { text-align: center; background: #DDD }
+.partsel { text-align: center; background: lightgreen; }
 table { border-collapse: collapse; font-family: Arial; font-size: 18px; font-weight: bold; border-width: 5px; }
 fieldset { width: 80%; }
+@media print {
+  @page { size: letter portrait; margin: .25in; }
+  html, body { width: 8.0in; height: 90%; }
+}
 </style>
 <script>
 function down() {
@@ -26,8 +30,12 @@ th { background-color: lightgreen; border-bottom: solid 2px; font-size: 18px; }
 .hidden { display: none; }
 tr:nth-child(even) { background: #CCC }
 tr:nth-child(odd) { background: #FFF }
-.partsel { text-align: center; background: #DDD }
+.partsel { text-align: center; background: lightgreen; }
 table { border-collapse: collapse; font-family: Arial; font-size: 18px; font-weight: bold; border-width: 5px; }
+@media print {
+  @page { size: letter portrait; margin: .25in; }
+  html, body { width: 8.0in; height: 90%; }
+}
 </style>
 <scr` + `ipt>
 function clickmix() {
@@ -56,9 +64,9 @@ function setvoice(el) {
 <body onload="clickmix()">
 <table border='1'>
 <tr><td id='evtitl' colspan='3' class='tabletitle'>${title}</td></tr>`;
-var playlistpartb = `<tr class='partsel'>
-<td colspan='3'>
-<fieldset>
+var playlistpartb = `<tr>
+<td colspan='3' class='partsel'>
+<fieldset class='partsel'>
 <legend>Show voice</legend>
  <input type="radio" id="seltenor" name="part" value="tenor" onclick="setvoice(this)">tenor</input>
  <input type="radio" id="sellead" name="part" value="lead" onclick="setvoice(this)">lead</input>
@@ -184,10 +192,10 @@ function init() {
 <table border='1'>
 <tr><td id='evtitl' colspan='3' class='tabletitle'>Zoom - 2020-08-11</td><tr>
 <tr id='playlist'><td>table goes here</td></tr>
-<tr class='partsel'>
-<td><input type="button" value="Download" onclick="down()"></input></td>
-<td colspan='2'>
-<fieldset>
+<tr>
+<td class='partsel'><input type="button" value="Download" onclick="down()"></input></td>
+<td colspan='2' class='partsel'>
+<fieldset class='partsel'>
 <legend>Show voice</legend>
  <input type="radio" id="seltenor" name="part" value="tenor" onclick="setvoice(this)">tenor</input>
  <input type="radio" id="sellead" name="part" value="lead" onclick="setvoice(this)">lead</input>

@@ -7,67 +7,71 @@ from tprogclass import TunersProgram
 
 voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'all']
 
-cdir = "C:/cygwin64/home/Del/php_ws/lastperf/progcache"
-
 evlist = {}
-_, _, files = next(os.walk(cdir))
-for fn in files:
-    if not fn.endswith(".html"):
-        continue
-    if fn.startswith("perf2019") or fn.startswith("perf2020"):
-        dts = fn[4:-5]
-    elif fn.startswith("reh2019") or fn.startswith("reh2020"):
-        dts = fn[3:-5]
-    else:
-        continue
 
-    path = "{}/{}".format(cdir, fn)
-    tp = TunersProgram(path)
-    if len(tp.rows) < 1:
-        continue
+if False: # set True to include progs from progcache
+    cdir = "C:/cygwin64/home/Del/php_ws/lastperf/progcache"
 
-    # title is <venue> - <date> | Two Town Tuners
-    if tp.title.endswith(" | Two Town Tuners"):
-        vendts = tp.title[:-18].split(" - ")
-        if len(vendts) != 2:
-            print(" >>> what's this? {}".format(vendts))
+    _, _, files = next(os.walk(cdir))
+    for fn in files:
+        if not fn.endswith(".html"):
             continue
+        if fn.startswith("perf2020"):
+            dts = fn[4:-5]
+        elif fn.startswith("reh2020"):
+            dts = fn[3:-5]
         else:
-            ven, dts = vendts
-            dt = datetime.strptime(dts, "%Y-%b-%d")
-    else:
-        print(" >>> {} doesn't end with Two Town Tuners?!".format(tp.title))
-        continue
-
-    songlist = []
-    for row in tp.rows:
-        song = row[1].replace("&#039;", "'")
-
-        if song in ["", "-- qtet choice --", "Break"]:
             continue
 
-        n1 = song.find("(")
-        n2 = song.find("[")
-        if n1 > 0:
-            if n2 > 0:
-                song = song[:min(n1, n2)]
+        path = "{}/{}".format(cdir, fn)
+        tp = TunersProgram(path)
+        if len(tp.rows) < 1:
+            continue
+
+        # title is <venue> - <date> | Two Town Tuners
+        if tp.title.endswith(" | Two Town Tuners"):
+            vendts = tp.title[:-18].split(" - ")
+            if len(vendts) != 2:
+                print(" >>> what's this? {}".format(vendts))
+                continue
             else:
-                song = song[:n1]
+                ven, dts = vendts
+                dt = datetime.strptime(dts, "%Y-%b-%d")
         else:
-            if n2 > 0:
-                song = song[:n2]
+            print(" >>> {} doesn't end with Two Town Tuners?!".format(tp.title))
+            continue
 
-        for v in voices:
-            n1 = song.lower().find(v)
+        if tp.progstart < datetime(2020, 6, 1):
+            continue
+        songlist = []
+        for row in tp.rows:
+            song = row[1].replace("&#039;", "'")
+
+            if song in ["", "-- qtet choice --", "Break"]:
+                continue
+
+            n1 = song.find("(")
+            n2 = song.find("[")
             if n1 > 0:
-                song = song[:n1]
+                if n2 > 0:
+                    song = song[:min(n1, n2)]
+                else:
+                    song = song[:n1]
+            else:
+                if n2 > 0:
+                    song = song[:n2]
 
-        song = song.strip()
-        if song not in songlist:
-            songlist.append(song)
+            for v in voices:
+                n1 = song.lower().find(v)
+                if n1 > 0:
+                    song = song[:n1]
 
-    ev = {'when': tp.progstart.strftime("%B %d, %Y %H%M%p"), 'where': ven, 'songlist': songlist}
-    evlist[tp.progstart.strftime("%Y%m%d%H%M")] = ev
+            song = song.strip()
+            if song not in songlist:
+                songlist.append(song)
+
+        ev = {'when': tp.progstart.strftime("%B %d, %Y %H%M%p"), 'where': ven, 'songlist': songlist}
+        evlist[tp.progstart.strftime("%Y%m%d")] = ev
 
 cdir = "C:/cygwin64/home/Del/trygitpages/dmotteler.github.io/cheats"
 
@@ -84,7 +88,7 @@ for fn in files:
     if not tim.endswith("PM"):
         tim += " 0700PM"
     dt = datetime.strptime(tim, "%B %d, %Y %H%M%p")
-    dtndx = dt.strftime("%Y%m%d%H%M")
+    dtndx = dt.strftime("%Y%m%d")
     when = dt.strftime("%B %d, %Y %H:%M")
     songlist = []
 

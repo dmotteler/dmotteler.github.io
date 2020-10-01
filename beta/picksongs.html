@@ -124,30 +124,33 @@ function selme(el) {
     }
 }
 
-function togcat(el) {
-    // one of the "show category" checkboxes has changed.
-    // set the hidden value as appropriate for each row.
-    // only set hidden if all categories for the song are un-checked.
+var cat_selected = [];
 
-    let songrows = document.getElementsByTagName("tr");
-    let catsels = document.querySelectorAll("input[type='checkbox']");
+function setcats() {
+    // make cat_selected array agree with cat select checklists.
 
-    var showcats = [];
+    let catsels = document.querySelectorAll("input[name='cats']");
 
     for (let catel of catsels) {
         // category name follows the checkbox, and has unwanted
         // whitespace after it.
         let cat = catel.nextSibling.textContent.replace(/(\s+$)/,'');
-        showcats[cat] = catel.checked;
+        cat_selected[cat] = catel.checked;
     }
+}
+
+function togcat() {
+    // one of the "show category" checkboxes has changed.
+    // set the hidden value as appropriate for each row.
+    // only set hidden if all categories for the song are un-checked.
+
+    // get current states for the category selections.
+    setcats();
+
+    let songrows = document.querySelectorAll(".song");
 
     for (let songrowel of songrows) {
         let songcats = songrowel.classList;
-        if (songcats.length == 0) {
-            // this row has no classes - skip it. 
-            // (this will skip the header rows).
-            continue;
-        }
 
         // if any of a song's cats (except hidden) is
         // checked, show the song.
@@ -156,7 +159,8 @@ function togcat(el) {
         for (let scat of songcats) {
             if (scat == "hidden") {
                 ishidden = true;
-            } else if (showcats[scat]) {
+            } else if (scat == "song") {
+            } else if (cat_selected[scat]) {
                 showit = true;
             }
         }
@@ -176,11 +180,25 @@ function togcat(el) {
 }
 
 function alldone() {
+    let sel = document.getElementById("vensel");
+    let ndx = sel.selectedIndex;
+    if (ndx == 0) {
+        alert("Please select a venue from the 'Songs for' menu!");
+        return;
+    }
+
     var songs = [];
     for (let element of document.getElementsByClassName("chosen")) {
-        let ord = Number(element.childNodes[0].textContent) - 1;
         let song = element.childNodes[1].textContent;
-        songs[ord] = song;
+        if (element.classList.contains("hidden")) {
+            if (confirm(`Include hidden song ${song}?`)) {
+                let ord = Number(element.childNodes[0].textContent) - 1;
+                songs[ord] = song;
+            }
+        } else {
+            let ord = Number(element.childNodes[0].textContent) - 1;
+            songs[ord] = song;
+        }
     }
     if (songs.length < 1) {
         alert("No songs selected?");
@@ -196,17 +214,11 @@ function alldone() {
         }
     }
 
-    // get the event-list json from local storage
-    let eljson = localStorage.getItem('TunersEvents');
+    let datel = document.getElementById("eventdate");
+    let evdate = datel.value;
 
-    // if we got a list, convert to a dict (Object, really)
-    let eventlist = {};
-    if (eljson) {
-        eventlist = JSON.parse(eljson);
-    }
+    let [fulldate, datndx] = fmtDate(evdate);
 
-    let sel = document.getElementById("vensel");
-    let ndx = sel.selectedIndex;
     var venue;
     let evndx = sel.options[ndx].value;
 
@@ -218,23 +230,14 @@ function alldone() {
         venue = ev['where'];
     }
 
-    let datel = document.getElementById("eventdate");
-    let evdate = datel.value;
+    let newevent = JSON.stringify({'datndx': datndx, 'when': fulldate, 'where': venue, 'songlist': seq });
 
-    let [fulldate, datndx] = fmtDate(evdate);
-
-    let newevent = JSON.stringify({'when': fulldate, 'where': venue, 'songlist': seq });
-
-    // add the JSONified new event to the event list. 
-    // Note: if there was already an event on this date and time,
-    //  it is replaced.
-    eventlist[datndx] = newevent;
-
-    // put it back into local storage.
+    // save the new event in local storage.
     localStorage.setItem('showEvent', newevent);
 
     window.location.href = "cheat.html";
 }
+
 function loadDoc(doc) {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
@@ -267,7 +270,7 @@ function docReady(json) {
                 if (others.includes(voice)) {
                     songlib[song][voice] = sljson[song][voice];
                 } else {
-                    alert("voice is " + voice);
+                    console.log("voice is " + voice);
                 }
             }
         }
@@ -282,24 +285,73 @@ function docReady(json) {
     let songtable = ""
     for (let song of sorted) {
         let cats = songlib[song]['cat'];
-        let row = `<tr class="${cats}" onclick="selme(this)"><td class="ord">&nbsp;</td><td>${song}</td></tr>`;
+        let row = `<tr class="song ${cats}" onclick="selme(this)"><td class="ord">&nbsp;</td><td>${song}</td></tr>`;
         songtable += row;
     }
     var songtableel = document.getElementById("songtable")
     songtableel.outerHTML = songtable;
+
+    togcat();
 }
 var eventlist = {};
 function evsel(el) {
     let ndx = el.selectedIndex;
     let opt = el.options[ndx];
     var songlist;
+
+    // get count of number of songs flagged as chosen.
+    let chosenels = document.querySelectorAll(".chosen");
+    let nchosen = chosenels.length;
+
+    // if the selected event value is not blank,
+    // it had better be an index into the event list.
+    // if it is blank, don't disturb the song selections.
     if (opt.value != "") {
-        // let ev = JSON.parse(eventlist[opt.value]);
-        let ev = eventlist[opt.value];
-        songlist = ev['songlist'];
+        if (nchosen > 0) {
+            if (confirm("replace song selections with those from selected event?")) {
+                let ev = eventlist[opt.value];
+                songlist = ev['songlist'];
+            } else {
+                // user cancelled - get out of here.
+                return;
+            }
+        } else {
+            // selected event has a songlist, and no songs yet chosen.
+            // start with the selection's list.
+            let ev = eventlist[opt.value];
+            songlist = ev['songlist'];
+        }
     } else {
-        songlist = [];
+        // no songlist for selected event. if songs had been
+        // selected, leave them. if not, reset the table.
+        if (songorder < 1) {
+            songlist = [];
+         } else {
+            return;
+         }
     }
+
+    // check the songlist for songs not in the current library, and for
+    // songs in the library but in un-selected categories. Think "Christmas".
+    for (let song of songlist) {
+        if (song in songlib) {
+            let cats = songlib[song].cat.split(" ");
+            let songactive = false;
+            for (cat of cats) {
+                if (cat in cat_selected && cat_selected[cat]) {
+                    songactive = true;
+                }
+            }
+            if (! songactive) {
+                console.log("no cat active for " + song + " " + cats.join());
+            }
+        } else {
+            console.log(song + " not in songlib!");
+        }
+     }
+
+    // event selected has no songlist, no songs had been selected, or
+    // user says replace selected ones from the old event. init the table.
 
     // for each tr element...
     for (let element of document.getElementsByTagName("tr")) {
@@ -355,6 +407,10 @@ function init() {
         eventlist = JSON.parse(eljson);
     }
 
+    let sev = localStorage.getItem('showEvent');
+    let sevdat = sev['datndx'];
+    eventlist[sevdat] = JSON.parse(sev);
+
     var sorted = [];
     for (let evndx in eventlist) {
         sorted.push(evndx);
@@ -370,7 +426,8 @@ function init() {
         }
     });
 
-    let venlist = ["Zoom", "Rehearsal", "Chehalis West", "Colonial", "Prestige Care",
+    // leave first venue "empty" so user knows that one still needs to be selected.
+    let venlist = ["", "Zoom", "Rehearsal", "Chehalis West", "Colonial", "Prestige Care",
                          "Sharon Care", "Vintage", "Woodland Village"];
 
     let sel = document.getElementById("vensel");
@@ -409,7 +466,7 @@ function init() {
 </tr>
 <tr id="songtable"></tr>
 <tr><td colspan='2'>
- <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">ComingSoon</input>
+ <input type='checkbox' name='cats' onchange="togcat(this)">Christmas</input>
  <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Current</input>
  <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCat</input>
  <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCatII</input>
