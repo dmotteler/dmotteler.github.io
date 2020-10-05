@@ -1,0 +1,23 @@
+<html><head><title>show ShowEvent localStorage</title>
+    <script>
+        function init() {
+            let sevj = localStorage.getItem("showEvent");
+            let html = "";
+            if (sevj) {
+                let sev = JSON.parse(localStorage.getItem("showEvent"));
+                html = `<h1>${sev['where']}</h1>`
+                html += `<h1>${sev['when']}</h1>`
+                html += `<h2>${sev['datndx']}</h2>`
+                for (song of sev['songlist']) {
+                    html += `<h3>${song}</h3>`
+                }
+            } else {
+                html += "<h1>showEvent localStorage not found.</h1>";
+            }
+            document.getElementById("place").outerHTML = html;
+        }
+    </script>
+    </head><body onLoad="init()">
+        <p id="place"></p>
+    </body>
+</html>
