@@ -411,14 +411,19 @@ function init() {
         sel.add(opt);
     }
 
-    let sev = localStorage.getItem('showEvent');
-    let sevndx = sev['datndx'];
-    let songlist = sev['songlist'];
+    let sevj = localStorage.getItem('showEvent');
+    let sev = {};
+    if (sevj) {
+        sev = JSON.parse(sevj);
+        
+        let sevndx = sev['datndx'];
+        let songlist = sev['songlist'];
 
-    let opt = document.createElement("option");
-    opt.value = sevndx;
-    opt.text = `${sev['where']} - ${sev['when']}`;
-    sel.add(opt);
+        let opt = document.createElement("option");
+        opt.value = sevndx;
+        opt.text = `${sev['where']} - ${sev['when']}`;
+        sel.add(opt);
+    }
 
 /*
     // get the event-list json from local storage

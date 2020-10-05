@@ -411,11 +411,16 @@ function init() {
         sel.add(opt);
     }
 
-/*
     let sev = localStorage.getItem('showEvent');
-    let sevdat = sev['datndx'];
-    eventlist[sevdat] = JSON.parse(sev);
+    let sevndx = sev['datndx'];
+    let songlist = sev['songlist'];
 
+    let opt = document.createElement("option");
+    opt.value = sevndx;
+    opt.text = `${sev['where']} - ${sev['when']}`;
+    sel.add(opt);
+
+/*
     // get the event-list json from local storage
     let eljson = localStorage.getItem('TunersEvents');
 
