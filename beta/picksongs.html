@@ -225,15 +225,18 @@ function alldone() {
     if (evndx == "") {
         venue = sel.options[ndx].textContent;
     } else {
-        // let ev = JSON.parse(eventlist[evndx]);
         let ev = eventlist[evndx];
         venue = ev['where'];
     }
 
-    let newevent = JSON.stringify({'datndx': datndx, 'when': fulldate, 'where': venue, 'songlist': seq });
+    let newevent = {'when': fulldate, 'where': venue, 'songlist': seq };
+    eventlist[datndx] = newevent;
 
-    // save the new event in local storage.
-    localStorage.setItem('showEvent', newevent);
+    // replace the updated event list in local storage.
+    localStorage.setItem('TunersEvents', JSON.stringify(eventlist));
+
+    // save the event index in showEvent.
+    localStorage.setItem('showEvent', JSON.stringify(datndx));
 
     window.location.href = "cheat.html";
 }
@@ -295,6 +298,8 @@ function docReady(json) {
 }
 
 var eventlist = {};
+var nevshow = 5; // number of events from eventlist to show in locations.
+
 function evsel(el) {
     let ndx = el.selectedIndex;
     let opt = el.options[ndx];
@@ -349,34 +354,32 @@ function evsel(el) {
         } else {
             console.log(song + " not in songlib!");
         }
-     }
+    }
 
     // event selected has no songlist, no songs had been selected, or
     // user says replace selected ones from the old event. init the table.
 
-    // for each tr element...
-    for (let element of document.getElementsByTagName("tr")) {
-        // if the row is in the songtable...
-        if (element.childNodes[0].tagName == "TD" && element.childNodes.length > 1) {
-            // get the song name
-            let song = element.childNodes[1].textContent;
-            // see if it's in the list of songs we want
-            let neword = songlist.indexOf(song) + 1;
-            let ordel = element.childNodes[0];
-            if (neword < 1) {
-                // song is not one we want.
-                // if this song was already chosen, un-choose it and
-                // blank out the order. choosing it again will put it 
-                // at the current end.
-                element.classList.remove("chosen");
-                // order cell is first child of the row
-                ordel.textContent = "\xa0";
-            } else {
-                // song is one we want. set its ord based on
-                // position in songlist, and add it to chosen class.
-                ordel.textContent = neword.toString();
-                element.classList.add("chosen");
-            }
+    // for each song row...
+    for (let element of document.getElementsByClassName("song")) {
+        // get the song name
+        let song = element.childNodes[1].textContent;
+        // see if it's in the list of songs we want
+        let neword = songlist.indexOf(song) + 1;
+        // ordel is the td for the song order
+        let ordel = element.childNodes[0];
+        if (neword < 1) {
+            // song is not one we want.
+            // if this song was already chosen, un-choose it and
+            // blank out the order. choosing it again will put it 
+            // at the current end.
+            element.classList.remove("chosen");
+            // set the song order to &nbsp;
+            ordel.textContent = "\xa0";
+        } else {
+            // song is one we want. set its ord based on
+            // position in songlist, and add it to chosen class.
+            ordel.textContent = neword.toString();
+            element.classList.add("chosen");
         }
     }
     // set songorder global, so new selections will get the correct ord.
@@ -412,57 +415,45 @@ function init() {
         sel.add(opt);
     }
 
-/*
     // get the event-list json from local storage
     let eljson = localStorage.getItem('TunersEvents');
 
     // if we got a list, convert to a dict (Object, really)
-    // and add the events to the location selector.
+    // and add the desired number of most-recent events to the location selector.
 
     if (eljson) {
         eventlist = JSON.parse(eljson);
 
-        var sorted = [];
-        for (let evndx in eventlist) {
-            sorted.push(evndx);
-        }
-
-        // sort event list newest first
-        sorted.sort(function(a, b) {
-            if (a < b) { return 1;
-            } else if (a > b) { 
-                return -1;
-            } else {
-                return 0;
+        if (nevshow > 0) {
+            // sort event list newest first
+            var sorted = [];
+            for (let evndx in eventlist) {
+                sorted.push(evndx);
             }
-        });
+            sorted.sort(function(a, b) {
+                if (a < b) { return 1;
+                } else if (a > b) { 
+                    return -1;
+                } else {
+                    return 0;
+                }
+            });
 
-        for (let evndx of sorted) {
-            let ev = eventlist[evndx];
-            let songlist = ev['songlist'];
+            let nadd = 0;
+            for (let evndx of sorted) {
+                let ev = eventlist[evndx];
+                let songlist = ev['songlist'];
 
-            let opt = document.createElement("option");
-            opt.value = evndx;
-            opt.text = `${ev['where']} - ${ev['when']}`;
-            sel.add(opt);
+                let opt = document.createElement("option");
+                opt.value = evndx;
+                opt.text = `${ev['where']} - ${ev['when']}`;
+                sel.add(opt);
+                nadd += 1;
+                if (nadd >= nevshow) {
+                    break;
+                }
+            }
         }
-    }
-*/
-
-    let sevj = localStorage.getItem('showEvent');
-    let sev = {};
-    if (sevj) {
-        sev = JSON.parse(sevj);
-        
-        let sevndx = sev['datndx'];
-        let songlist = sev['songlist'];
-
-        let opt = document.createElement("option");
-        opt.value = sevndx;
-        opt.text = `${sev['where']} - ${sev['when']}`;
-        sel.add(opt);
-
-        eventlist[sevndx] = sev;
     }
 }
 

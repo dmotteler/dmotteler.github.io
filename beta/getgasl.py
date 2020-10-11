@@ -110,7 +110,7 @@ for fn in files:
 
             song = flds.pop(0)
 
-            if song.startswith("`") or song.startswith("$"):
+            if song.startswith("`") or song.startswith("$") or song.startswith("</tr"):
                 continue
 
             if song.endswith("</a"):

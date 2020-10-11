@@ -161,14 +161,27 @@ function docReady(json) {
     // let sljson = JSON.parse(jsontxt);
     songlib = JSON.parse(jsontxt);
 
-    // showEvent is the last event selected by picksongs. 
+    // load and parse the event list
+    let eljson = localStorage.getItem('TunersEvents');
+
+    if (eljson) {
+        var eventlist = JSON.parse(eljson);
+    } else {
+        alert("couldn't load the event list from local storage.");
+        return;
+    }
+
+    // showEvent is the index of the last event selected by picksongs. 
     let evjson = localStorage.getItem('showEvent');
 
     if (evjson) {
-        var ev = JSON.parse(evjson);
+        var evndx = JSON.parse(evjson);
     } else {
-        alert("couldn't find event list in local storage.");
+        alert("couldn't find current event in local storage.");
+        return;
     }
+
+    let ev = eventlist[evndx];
 
     let evdate = ev['when'];
     let venue = ev['where'];
