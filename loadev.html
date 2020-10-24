@@ -1,0 +1,49 @@
+<html><head><title>load events list</title>
+    <script>
+var putithere;
+function loadEvents(doc, dispel) {
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    eventsReady(this);
+    }
+  };
+  xhr.open("GET", doc, true);
+  xhr.send();
+  putithere = dispel;
+}
+
+var evlist = {};
+function eventsReady(json) {
+    let jsontxt = json.responseText;
+    let eljson = JSON.parse(jsontxt);
+
+    for (let evndx in eljson) {
+        let d = eljson[evndx];
+        let ven = d['where'];
+        let evdate = d['when'];
+        let slist = d['songlist'];
+
+        evlist[evndx] = {'when': evdate, 'where': ven, 'songlist': slist};
+    }
+
+    localStorage.setItem("TunersEvents", JSON.stringify(evlist));
+    var html = "<table border='1'>\n";
+    for (let evndx in evlist) {
+        let d = evlist[evndx];
+        html += `<tr><td>${d['when']}</td><td>${d['where']}</td>`;
+        html += `<td>${d['songlist'].join()}</tr>\n`;
+    }
+    html += "</table></body</html>\n";
+
+    putithere.outerHTML = html;
+}
+function init() {
+    let dispel = document.getElementById("here");
+    loadEvents("evlist.json", dispel);
+}
+</script>
+    </head><body onload="init()">
+        <p id="here"></p>
+    </body>
+</html>
