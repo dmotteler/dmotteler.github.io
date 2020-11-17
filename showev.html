@@ -4,14 +4,13 @@
             let sevj = localStorage.getItem("showEvent");
             let html = "";
             if (sevj) {
-                let sev = JSON.parse(sevj);
+                let datndx = JSON.parse(sevj);
                 let tevj = localStorage.getItem("TunersEvents");
                 if (tevj) {
                     let tev = JSON.parse(tevj);
-                    html = `<h1>${tev[sev]['where']}</h1>`
-                    html += `<h1>${tev[sev]['when']}</h1>`
-                    html += `<h2>${tev[sev]['datndx']}</h2>`
-                    for (song of tev[sev]['songlist']) {
+                    html = `<h1>${tev[datndx]['where']}</h1>`
+                    html += `<h1>${tev[datndx]['when']}</h1>`
+                    for (song of tev[datndx]['songlist']) {
                         html += `<h3>${song}</h3>`
                     }
                 } else {

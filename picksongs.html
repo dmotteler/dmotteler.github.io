@@ -467,18 +467,19 @@ function init() {
 <label for="eventdate">on</label>
 <input type="datetime-local" class="select-css" value="" id="eventdate" step="900">
 </th></tr>
+<tr><td colspan='2'>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Current</input>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCat</input>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCatII</input>
+ <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Show</input>
+ <input type='checkbox' name='cats' onchange="togcat(this)">Christmas</input>
+ <input type='checkbox' name='cats' onchange="togcat(this)">Other</input>
+</td></tr>
 <tr>
 <th><input type="button" class="donebutt" value="Save" onclick="alldone()"/></th>
 <th>Song Title</th>
 </tr>
 <tr id="songtable"></tr>
-<tr><td colspan='2'>
- <input type='checkbox' name='cats' onchange="togcat(this)">Christmas</input>
- <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Current</input>
- <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCat</input>
- <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCatII</input>
- <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Show</input>
-</td></tr>
 </table>
 </body>
 </html>
