@@ -1,23 +1,51 @@
-<html><head><title>show ShowEvent localStorage</title>
+<html><head><title>show TunerEvents localStorage</title>
+<style>
+tr, td { padding: 6px; }
+</style>
     <script>
+        function srtcmp(a, b) {
+            // sort strings descending
+            let rv = 0;
+            if (a < b) {
+                rv = 1;
+            } else if (a > b) {
+                rv = -1;
+            }
+            return(rv);
+        }
         function init() {
             let sevj = localStorage.getItem("showEvent");
-            let html = "";
+            let html = "<table border='1'>";
+            let datndx = "";
             if (sevj) {
-                let datndx = JSON.parse(sevj);
-                let tevj = localStorage.getItem("TunersEvents");
-                if (tevj) {
-                    let tev = JSON.parse(tevj);
-                    html = `<h1>${tev[datndx]['where']}</h1>`
-                    html += `<h1>${tev[datndx]['when']}</h1>`
-                    for (song of tev[datndx]['songlist']) {
-                        html += `<h3>${song}</h3>`
+                datndx = JSON.parse(sevj);
+            } else {
+                html += "<tr><td>showEvent localStorage not found.</td></tr>";
+            }
+
+            let tevj = localStorage.getItem("TunersEvents");
+            if (tevj) {
+                let tev = JSON.parse(tevj);
+                let sorted = [];
+                for (let evndx in tev) {
+                    sorted.push(evndx);
+                }
+
+                sorted.sort(srtcmp);
+
+                for (let evndx of sorted) {
+                    let ev = tev[evndx];
+                    html += `<tr><td>${ev['where']}</td>`
+                    if (evndx == datndx) {
+                        html += `<td><strong>${ev['when']}</strong></td>`
+                    } else {
+                        html += `<td>${ev['when']}</td>`
                     }
-                } else {
-                    html += "<h1>TunersEvents localStorage not found.</h1>";
+                    let songs = ev['songlist'].join("<br>");
+                    html += `<td>${songs}</td></tr>`;
                 }
             } else {
-                html += "<h1>showEvent localStorage not found.</h1>";
+                html += "<tr><td>TunersEvents localStorage not found.</td></tr>";
             }
             document.getElementById("place").outerHTML = html;
         }

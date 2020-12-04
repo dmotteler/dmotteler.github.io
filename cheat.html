@@ -188,13 +188,17 @@ function docReady(json) {
     let evtitl = venue + " - " + evdate;
     document.getElementById("evtitl").textContent = evtitl;
 
-    let songlist = ev['songlist'];
+    songlist = ev['songlist'];
     body = makeCheat(songlist);
 
     plel = document.getElementById("playlist");
     plel.outerHTML = body;
 
     clickmix();
+}
+var songlist;
+function editlist() {
+    window.location.href = "editlist.html";
 }
 function init() {
     loadDoc('songlib.json');
@@ -206,7 +210,8 @@ function init() {
 <tr><td id='evtitl' colspan='3' class='tabletitle'>Zoom - 2020-08-11</td><tr>
 <tr id='playlist'><td>table goes here</td></tr>
 <tr>
-<td class='partsel'><input type="button" value="Download" onclick="down()"></input></td>
+<td class='partsel'><input type="button" value="Download" onclick="down()"></input><br/>
+<input type="button" value="Edit list" onclick="editlist()"></input></td>
 <td colspan='2' class='partsel'>
 <fieldset class='partsel'>
 <legend>Show voice</legend>
