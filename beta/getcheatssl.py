@@ -45,14 +45,17 @@ for fn in files:
                 tim += " 0700PM"
 
             try:
-                dt = datetime.strptime(tim, "%B %d, %Y %H%M%p")
+                # print("1 {}".format(tim))
+                dt = datetime.strptime(tim, "%B %d, %Y %I%M%p")
                 dtndx = dt.strftime("%Y%m%d%H%M")
-                when = dt.strftime("%B %d, %Y %H:%M")
+                when = dt.strftime("%B %d, %Y %I:%M%p")
+                # print("1 {} {}".format(dtndx, when))
             except Exception as e:
                 try:
-                    dt = datetime.strptime(tim, "%b %d, %Y %H%M%p")
+                    dt = datetime.strptime(tim, "%b %d, %Y %I%M%p")
                     dtndx = dt.strftime("%Y%m%d%H%M")
-                    when = dt.strftime("%B %d, %Y %H:%M")
+                    when = dt.strftime("%B %d, %Y %I:%M%p")
+                    # print("2 {} {}".format(dtndx, when))
                 except Exception as e:
                     print(e)
                     title = ""
@@ -64,9 +67,11 @@ for fn in files:
                 tim += " 0700PM"
 
             try:
-                dt = datetime.strptime(tim, "%B %d, %Y %H%M%p")
+                # print("2 {}".format(tim))
+                dt = datetime.strptime(tim, "%B %d, %Y %I%M%p")
                 dtndx = dt.strftime("%Y%m%d%H%M")
-                when = dt.strftime("%B %d, %Y %H:%M")
+                when = dt.strftime("%B %d, %Y %I:%M%p")
+                # print("3 {} {}".format(dtndx, when))
             except:
                 title = ""
 
