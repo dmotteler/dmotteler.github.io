@@ -1,4 +1,4 @@
-<html><head><title>list TunerEvents</title>
+<html><head><title>Pick Event</title>
 <style>
 .select-css {
 	display: inline-block; width: auto;
@@ -149,8 +149,9 @@ ${selops}
         for (let evndx of sorted) {
             let ev = eventlist[evndx];
             let evtitl = `${ev['where']} - ${ev['when']}`;
+            let songlist = ev['songlist'];
             html += `<tr onclick='selevent(${evndx})'><td>`;
-            html += makeCheat(evtitl, ev['songlist']);
+            html += makeCheat(evtitl, songlist);
             html += "</tr></td>";
         }
     } else {
@@ -172,15 +173,16 @@ function selevent(ndx) {
         return;
     }
 
-    // event has when, where, and songlist. make a copy of the
-    // selected event, but change the when and where.
-    let newevent = eventlist[ndx];
-    let evdate = document.getElementById("eventdate").value;
+    // event has when, where, and songlist. make a new event
+    // with new when and where, copy only the songlist.
 
+    // get the selected date, format as eventlist index and readable
+    let evdate = document.getElementById("eventdate").value;
     let [fulldate, datndx] = fmtDate(evdate);
 
-    newevent['when'] = fulldate;
-    newevent['where'] = venue;
+    let songlist = eventlist[ndx]['songlist'];
+
+    let newevent = {'when': fulldate, 'where': venue, 'songlist': songlist };
 
     eventlist[datndx] = newevent;
 
@@ -188,7 +190,9 @@ function selevent(ndx) {
     localStorage.setItem('TunersEvents', JSON.stringify(eventlist));
 
     // save the event index in showEvent.
-    localStorage.setItem('showEvent', JSON.stringify(ndx));
+    localStorage.setItem('showEvent', JSON.stringify(datndx));
+
+    console.log(`going to editlist with when ${fulldate}, where ${venue} datndx ${datndx}`);
 
     window.location.href = "editlist.html";
 }
