@@ -36,8 +36,6 @@ for fn in files:
     n += len(targ)
     n2 = data.find("</td>", n)
     titl = data[n:n2]
-    if titl == 'Tuners Rehearsal':
-        continue
 
     for m in range(12):
         n = titl.find(mname[m])
@@ -45,19 +43,18 @@ for fn in files:
             n2 = titl.find("202", n)
             dat = titl[n:n2+4]
             d = dt.strptime(dat, "%B %d, %Y").date()
-            reh[d] = fn
+            reh[d] = (fn, titl)
 
 fo = open("index.html", "w")
 fo.write(html)
 
 n = 0
 for d in sorted(reh, reverse = True):
-    fn = reh[d]
-    disp = fn[:-5]
-    lin = "<a href='{}'>{}</a><br/>\n".format(fn, disp)
+    fn, titl = reh[d]
+    lin = "<a href='{}'>{}</a><br/>\n".format(fn, titl)
     fo.write(lin)
     n += 1
-    if n > 12:
+    if n >= 12:
         break
 
 fo.close()
