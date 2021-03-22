@@ -29,3 +29,4 @@ with open(fn, "r") as fo:
                 print("    mod: {}".format(mod))
                 print("    fid: {}".format(wtf[0]))
                 print("    path: {}".format(wtf[1]))
+        sys.exit()
