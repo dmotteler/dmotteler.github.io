@@ -3,10 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <title>Draw a doily using HTML5 Canvas</title>
-<link rel="stylesheet" href="styles.css" />
 <!--[if IE]>
-<script src="http://html5shiv.googlecode.com/svn/trunk
-/html5.js"></script>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
+</script>
 <![endif]-->
 <STYLE TYPE="text/css">
 INPUT {text-align: right; font-family: Courier New }
@@ -38,7 +37,21 @@ function bs(a, value) {
 }
 
 window.onload = window.onresize = function() {
-    getnp();
+    var srch = location.search;
+    if (srch.substr(0, 4) == "?np=") {
+        let nps = srch.substr(4);
+        var np = parseInt(nps);
+        // find the text display element, and set its value.
+        var dis_el = document.getElementById('np_display');
+        dis_el.value = nps;
+        // find the slider element, and set its value.
+        var slid_el = document.getElementById('np_slider');
+        slid_el.value = np;
+        slid_el.focus();
+        doily(np);
+    } else {
+        getnp();
+    }
 }
 
 function getnp() {
