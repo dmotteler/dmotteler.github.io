@@ -9,58 +9,15 @@
 <![endif]-->
 <STYLE TYPE="text/css">
 INPUT {text-align: right; font-family: Courier New }
-.valset { color: green }
-.hints { color: red }
 #myCanvas { display: block; margin: 0 auto; }
 </STYLE>
 <script>
-var primes = Array(3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47,
-                    53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101);
 
-function bs(a, value) {
-    // from http://rosettacode.org/wiki/Binary_search#JavaScript
-    // a is assumed monotonic.
-    // modified to return index to the next lower value if no exact match.
-    lo = 0;
-    hi = a.length - 1;
-    while (lo <= hi) {
-        var mid = Math.floor((lo+hi)/2);
-        if (a[mid] > value)
-            hi = mid - 1;
-        else if (a[mid] < value)
-            lo = mid + 1;
-        else
-            return mid;
-    }
-    // return index of next lower value rather than null if no match
-    return hi;
-}
-
-window.onload = window.onresize = function() {
-    var srch = location.search;
-    if (srch.substr(0, 4) == "?np=") {
-        let nps = srch.substr(4);
-        var np = parseInt(nps);
-        // find the text display element, and set its value.
-        var dis_el = document.getElementById('np_display');
-        dis_el.value = nps;
-        // find the slider element, and set its value.
-        var slid_el = document.getElementById('np_slider');
-        slid_el.value = np;
-        slid_el.focus();
-        doily(np);
-    } else {
-        getnp();
-    }
-}
+var np;
 
 function getnp() {
     // get the number of points from the slider
-    var np = parseInt(document.getElementById('np_slider').value);
-    // if np is not prime, substitute next smaller prime from list.
-    var n = bs(primes, np);
-    if (n < 0) { n = 0 } 
-    np = primes[n];
+    np = parseInt(document.getElementById('np_slider').value);
 
     // find the text display element, and set its value.
     var dis_el = document.getElementById('np_display');
@@ -128,39 +85,82 @@ function doily(np) {
             points[n] = Array(xc + r * Math.sin(theta), yc - r * Math.cos(theta));
         }
 
-        // Now connect every point to every other point without lifting the pen.
+        // Now connect every point to every other point.
         // The outer loop sets m to the difference of indices for the connected points -
         // i.e., m = 1 connects point 0 to point 1 to point 2, etc, while m = 2 
-        // connects point 0 to point 2 to point 4.  For each setting of m, drawing np lines
-        // gets us back to point 0. (Only true if np is prime...)
+        // connects point 0 to point 2 to point 4.
 
-        // A simple example may help: for np = 5, m = 1 connects
-        // p0 to p1 to p2 to p3 to p4 to p0. Then m is set to 2, and we connect p0 to p2 to
-        // p4 to p1 to p3 to p0. For each value of m, we call stroke to actually output the line.
+        // each setting of m must cause exactly np lines to be drawn. If np is prime,
+        // we start at 0, increment by m, and arrive back at 0 when we're done. m is
+        // never a divisor of np, which is prime.
 
+        // when m is a divisor of np, starting at 0 incrementing by m until we get 
+        // back to 0 draws np / m lines. starting at 1 and incrementing by m until we
+        // get back to 1 draws another np / m lines. We continue adding 1 to the starting
+        // point (and ending point) until we've drawn np lines.
+        // 
 
-        var colors = Array('red', 'green', 'blue', 'black', 'orange', 'purple', 'darkgrey');
-        for (var m = 1; m <= Math.floor(np/2); m++) {
-            // start a path, move (with pen up) to top center
+        var colors = Array('red', 'green', 'blue', 'orange', 'black', 'purple', 'steelBlue');
+        var npo2 = Math.floor(np/2);
+
+        for (var m = 1; m <= npo2; m++) {
             ctx.beginPath();
-            ctx.moveTo(xc, yc - r);
             ctx.strokeStyle = colors[(m - 1) % colors.length];
 
-            var n;
-            for (var i = 0; i < m * np; i += m) {
-                n = (i + m - 1) % np;
-                ctx.lineTo(points[n][0], points[n][1]);
-            }
+            var nlins = 0;
+            var strt = 0;
 
-            ctx.stroke();
+            while (nlins < np) {
+                var j = strt;
+                // start a path, move (with pen up) to point strt.
+                ctx.moveTo(points[j][0], points[j][1]);
+                do {
+                    j += m;
+                    if (j >= np) {
+                        j -= np;
+                    }
+                    ctx.lineTo(points[j][0], points[j][1]);
+                    nlins += 1;
+
+                } while (j != strt);
+
+                ctx.stroke();
+                if (nlins < np) {
+                    strt += 1;
+                }
+            }
         }
     } else {
         document.getElementById('my_canvas').style.display = 'none';
     }
 }
+
+function reh() {
+    // this is the resize event handler
+    doily(np);
+}
+
+function init() {
+    var srch = location.search;
+    if (srch.substr(0, 4) == "?np=") {
+        let nps = srch.substr(4);
+        np = parseInt(nps);
+        // find the text display element, and set its value.
+        var dis_el = document.getElementById('np_display');
+        dis_el.value = nps;
+        doily(np);
+    } else {
+        getnp();
+    }
+    // find the slider element, and set its value.
+    var slid_el = document.getElementById('np_slider');
+    slid_el.value = np;
+    slid_el.focus();
+    window.onresize=reh;
+}
 </script>
 </head>
-<body>Number of vertices: <input id="np_display" type="text" size="3"/>
+<body onload="init()">Number of vertices: <input id="np_display" type="text" size="3"/>
 <input id="np_slider" type ="range" min ="3" max="101" value ="5" onChange="getnp()"/>
 <canvas id="my_canvas">No Canvas support?</canvas>
 </body>
