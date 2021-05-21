@@ -64,6 +64,7 @@ th { background-color:lightgreen; font-weight: bold; vertical-align: text-top; t
 td { padding: 4px; text-align: center; }
 .chosen { background-color: lightblue; }
 .hidden { display: none; }
+.key { text-align: center; }
 .donebutt { font-weight: bold; background-color: yellow; font-size: 20px; }
 body{ -webkit-print-color-adjust:exact; }
 </style>
@@ -100,7 +101,7 @@ function fmtDate(dstr) {
     let mins = dmin.toString().padStart(2, 0);
 
     // e.g., September 9, 2020 12:29PM
-    let datstr = longmon + " " + day + ", " + yr + " " + hrs + ":" + mins + ampm;
+    let datstr = `${longmon} ${day}, ${yr} ${hrs}:${mins}${ampm}`;
     let datndx = yr + mons + days + hrs + mins;
     return([datstr,datndx]);
 }
@@ -180,9 +181,7 @@ function togcat() {
 }
 
 function alldone() {
-    let sel = document.getElementById("vensel");
-    let ndx = sel.selectedIndex;
-    if (ndx == 0) {
+    if (venue == "") {
         alert("Please select a venue from the 'Songs for' menu!");
         return;
     }
@@ -218,16 +217,6 @@ function alldone() {
     let evdate = datel.value;
 
     let [fulldate, datndx] = fmtDate(evdate);
-
-    var venue;
-    let evndx = sel.options[ndx].value;
-
-    if (evndx == "") {
-        venue = sel.options[ndx].textContent;
-    } else {
-        let ev = eventlist[evndx];
-        venue = ev['where'];
-    }
 
     let newevent = {'when': fulldate, 'where': venue, 'songlist': seq };
     eventlist[datndx] = newevent;
@@ -285,7 +274,7 @@ function docReady(json) {
     }
     sorted.sort();
 
-    let songtable = ""
+    let songtable = "";
     for (let song of sorted) {
         let cats = songlib[song]['cat'];
         let row = `<tr class="song ${cats}" onclick="selme(this)"><td class="ord">&nbsp;</td><td>${song}</td></tr>`;
@@ -297,12 +286,38 @@ function docReady(json) {
     togcat();
 }
 
+var venue = "";
+var evndx = "";
 var eventlist = {};
 var nevshow = 5; // number of events from eventlist to show in locations.
 
 function evsel(el) {
-    let ndx = el.selectedIndex;
-    let opt = el.options[ndx];
+    var list = document.getElementById("vensel");
+    var opfound = false;
+    var opt;
+    for (opt of list.options) {
+        if (opt.value == el.value) {
+            opfound = true;
+            break;
+        }
+    }
+
+    if (opfound) {
+        venue = opt.value;
+        evndx = opt.data_value;
+        console.log("existing " + venue);
+    } else {
+        opt = document.createElement('option');
+        opt.value = el.value;
+        opt.data_value = "";
+
+        venue = opt.value;
+        evndx = "";
+
+        list.appendChild(opt);
+        console.log("added " + venue);
+    }
+
     var songlist;
 
     // get count of number of songs flagged as chosen.
@@ -312,10 +327,10 @@ function evsel(el) {
     // if the selected event value is not blank,
     // it had better be an index into the event list.
     // if it is blank, don't disturb the song selections.
-    if (opt.value != "") {
+    if (opt.data_value != "") {
         if (nchosen > 0) {
             if (confirm("replace song selections with those from selected event?")) {
-                let ev = eventlist[opt.value];
+                let ev = eventlist[opt.data_value];
                 songlist = ev['songlist'];
             } else {
                 // user cancelled - get out of here.
@@ -324,7 +339,7 @@ function evsel(el) {
         } else {
             // selected event has a songlist, and no songs yet chosen.
             // start with the selection's list.
-            let ev = eventlist[opt.value];
+            let ev = eventlist[opt.data_value];
             songlist = ev['songlist'];
         }
     } else {
@@ -387,9 +402,9 @@ function evsel(el) {
 }
 
 function init() {
-    // init date picker to next Tuesday (today if it's Tuesday)
     loadDoc('songlib.json');
 
+    // init date picker to next Tuesday (today if it's Tuesday)
     let d = new Date();
     d.setDate(d.getDate() + (7 - d.getDay() + 2) % 7);
     let datel = document.getElementById("eventdate");
@@ -397,6 +412,7 @@ function init() {
     let day = d.getDate();
     let mo = d.getMonth() + 1;
 
+    // make zero-left-padded strings of day and mo
     let dstr = day.toString().padStart(2, 0);
     let mstr = mo.toString().padStart(2, 0);
 
@@ -410,9 +426,9 @@ function init() {
 
     for (let ven of venlist) {
         let opt = document.createElement("option");
-        opt.value = "";
-        opt.text = ven;
-        sel.add(opt);
+        opt.value = ven;
+        opt.data_value = "";
+        sel.append(opt);
     }
 
     // get the event-list json from local storage
@@ -442,12 +458,11 @@ function init() {
             let nadd = 0;
             for (let evndx of sorted) {
                 let ev = eventlist[evndx];
-                let songlist = ev['songlist'];
 
                 let opt = document.createElement("option");
-                opt.value = evndx;
-                opt.text = `${ev['where']} - ${ev['when']}`;
-                sel.add(opt);
+                opt.data_value = evndx;
+                opt.value = `${ev['where']} - ${ev['when']}`;
+                sel.append(opt);
                 nadd += 1;
                 if (nadd >= nevshow) {
                     break;
@@ -462,8 +477,10 @@ function init() {
 <body onload="init()">
 <table border="1" id="tabid">
 <tr><th colspan='2'>
-<label for="vensel">Songs for</label>
-<select id="vensel" onChange='evsel(this)' class="select-css"></select>
+<label>Songs for:
+<input list="vensel" class="select-css" name="venue" onChange="evsel(this)"/></label>
+<datalist id="vensel">
+</datalist>
 <label for="eventdate">on</label>
 <input type="datetime-local" class="select-css" value="" id="eventdate" step="900">
 </th></tr>
