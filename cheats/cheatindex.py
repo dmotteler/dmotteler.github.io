@@ -5,7 +5,6 @@ from datetime import datetime as dt
 
 mname = [dt(2020, mo, 1).strftime("%B") for mo in range(1,13)]
 
-# cdir = "C:/cygwin64/home/Del/trygitpages/dmotteler.github.io/cheats"
 cdir = "."
 
 html = '''<html><head><title>Tuners Cheats</title>
@@ -37,13 +36,15 @@ for fn in files:
     n2 = data.find("</td>", n)
     titl = data[n:n2]
 
-    for m in range(12):
-        n = titl.find(mname[m])
-        if n > 0:
-            n2 = titl.find("202", n)
-            dat = titl[n:n2+4]
-            d = dt.strptime(dat, "%B %d, %Y").date()
+    n = titl.rfind(" - ")
+    if n > 0:
+        dats = titl[n+3:]
+        try:
+            d = dt.strptime(dats, "%B %d, %Y %I:%M%p")
             reh[d] = (fn, titl)
+        except Exception as e:
+            # print("didn't like {}".format(dats))
+            pass
 
 fo = open("index.html", "w")
 fo.write(html)
