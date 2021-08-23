@@ -13,7 +13,7 @@ table { border-collapse: collapse; font-family: Arial; font-size: 18px; font-wei
 fieldset { width: 80%; }
 @media print {
   @page { size: letter portrait; margin: .5in; }
-  html { width: 5.0in; }
+  html { width: 8.0in; }
 }
 </style>
 <script>
@@ -80,12 +80,21 @@ var playlistpartb = `<tr>
 </html>
 `;
 
+    // stuff a blank before PM so Date will accept it
+    let n = evdate.length - 2;
+    let ds = evdate.substring(0, n) + " " + evdate.substring(n)
+    let d = new Date(ds);
+    let day = d.getDate();
+    let dmon = d.getMonth() + 1;
+    let mons = dmon.toString().padStart(2, 0);
+    let days = day.toString().padStart(2, 0);
+    let dlfn = venue + mons + days + ".html";
     let pom = document.createElement('a');
     pom.style.display = 'none';
     var title = document.getElementById("evtitl").textContent;
     let pltext = playlistparta() + body + playlistpartb;
     pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(pltext));
-    pom.setAttribute('download', "playlist.html");
+    pom.setAttribute('download', dlfn);
     document.body.appendChild(pom);
     pom.click();
     document.body.removeChild(pom);
@@ -155,6 +164,8 @@ function loadDoc(doc) {
 
 var songlib = [];
 var body;
+var evdate;
+var venue;
 
 function docReady(json) {
     let jsontxt = json.responseText;
@@ -183,8 +194,8 @@ function docReady(json) {
 
     let ev = eventlist[evndx];
 
-    let evdate = ev['when'];
-    let venue = ev['where'];
+    evdate = ev['when'];
+    venue = ev['where'];
     let evtitl = venue + " - " + evdate;
     document.getElementById("evtitl").textContent = evtitl;
 

@@ -125,10 +125,13 @@ function selme(el) {
     }
 }
 
-var cat_selected = [];
+var catSelected = [];
+var allcats = [];
 
 function setcats() {
-    // make cat_selected array agree with cat select checklists.
+    // make catSelected array agree with cats checkboxes.
+
+    catSelected = [];
 
     let catsels = document.querySelectorAll("input[name='cats']");
 
@@ -136,7 +139,17 @@ function setcats() {
         // category name follows the checkbox, and has unwanted
         // whitespace after it.
         let cat = catel.nextSibling.textContent.replace(/(\s+$)/,'');
-        cat_selected[cat] = catel.checked;
+        catSelected[cat] = catel.checked;
+    }
+
+    let othersSel = catSelected['Others'];
+
+    // set catSelected for cats that don't have a button.
+    // allcats are all of the song categories from the lib.
+    for (let cat of allcats) {
+        if (! (cat in catSelected)) {
+            catSelected[cat] = othersSel;
+        }
     }
 }
 
@@ -146,6 +159,7 @@ function togcat() {
     // only set hidden if all categories for the song are un-checked.
 
     // get current states for the category selections.
+    // The Other selection means any of allcats for which there is no button.
     setcats();
 
     let songrows = document.querySelectorAll(".song");
@@ -161,7 +175,7 @@ function togcat() {
             if (scat == "hidden") {
                 ishidden = true;
             } else if (scat == "song") {
-            } else if (cat_selected[scat]) {
+            } else if (catSelected[scat]) {
                 showit = true;
             }
         }
@@ -243,12 +257,13 @@ function loadDoc(doc) {
 
 var songtableel;
 var songlib = [];
+
 function docReady(json) {
     let jsontxt = json.responseText;
     let sljson = JSON.parse(jsontxt);
 
     let voices = ['mix', 'bass', 'bari', 'lead', 'tenor'];
-    let others = ['key', 'cat', 'firstwords', 'title'];
+    let others = ['key', 'cat', 'firstwords', 'title', 'songid'];
 
     for (let song in sljson) {
         songlib[song] = [];
@@ -261,6 +276,14 @@ function docReady(json) {
             } else {
                 if (others.includes(voice)) {
                     songlib[song][voice] = sljson[song][voice];
+                    if (voice == 'cat') {
+                        let cats = sljson[song][voice].split(" ");
+                        for (let thiscat of cats) {
+                            if (!allcats.includes(thiscat)) {
+                                allcats.push(thiscat);
+                            }
+                        }
+                    }
                 } else {
                     console.log("voice is " + voice);
                 }
@@ -282,6 +305,8 @@ function docReady(json) {
     }
     var songtableel = document.getElementById("songtable")
     songtableel.outerHTML = songtable;
+
+    allcats.sort();
 
     togcat();
 }
@@ -359,7 +384,7 @@ function evsel(el) {
             let cats = songlib[song].cat.split(" ");
             let songactive = false;
             for (cat of cats) {
-                if (cat in cat_selected && cat_selected[cat]) {
+                if (cat in catSelected && catSelected[cat]) {
                     songactive = true;
                 }
             }
@@ -484,13 +509,13 @@ function init() {
 <label for="eventdate">on</label>
 <input type="datetime-local" class="select-css" value="" id="eventdate" step="900">
 </th></tr>
-<tr><td colspan='2'>
+<tr><td id='catboxes' colspan='2'>
  <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Current</input>
  <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCat</input>
  <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">PoleCatII</input>
  <input type='checkbox' name='cats' checked="1" onchange="togcat(this)">Show</input>
  <input type='checkbox' name='cats' onchange="togcat(this)">Christmas</input>
- <input type='checkbox' name='cats' onchange="togcat(this)">Other</input>
+ <input type='checkbox' name='cats' onchange="togcat(this)">Others</input>
 </td></tr>
 <tr>
 <th><input type="button" class="donebutt" value="Save" onclick="alldone()"/></th>
