@@ -1,0 +1,132 @@
+<html><head><title>try js xml</title>
+<script>
+// songlib is indexed by song name, values are
+//   lists of song ids with that name
+var songlib = [];
+// sortedSongs is a sorted list of the keys of songlib -
+//   that is, the song names
+// songobj is indexed by song id, values are
+//   details for the song
+var songobj = [];
+
+function byName(a, b) {
+    if (a.name < b.name) {
+        return -1;
+    } else if (a.name > b.name) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+function init() {
+    const xhr = new XMLHttpRequest();
+
+    xhr.onload = function() {
+        // alert("loaded!");
+        let musiclib = xhr.responseXML.documentElement;
+        // console.log(musiclib.nodeName);
+        for (let songNode of musiclib.children) {
+            let song = [];
+            let categories = [];
+            for (let att of songNode.attributes) {
+                song[att.name] = att.value;
+            }
+
+            let nam = song['name'];
+            let sid = song['id'];
+
+            for (let prop of songNode.children) {
+                if (prop.nodeName == "alias") {
+                    let aka = prop.textContent;
+                    if (! songlib.hasOwnProperty(aka)) {
+                        songlib[aka] = [];
+                    }
+                    songlib[aka].push(sid);
+                } else if (prop.nodeName == "category") {
+                    categories.push(prop.textContent);
+                } else if (prop.nodeName == "tracks") {
+                    let tracks = [];
+                    for (let subp of prop.children) {
+                        if (subp.nodeName == "voice") {
+                            let voice = [];
+                            let vname = 'phony';
+                            for (let att of subp.attributes) {
+                                if (att.name == 'voice') {
+                                    vname = att.value;
+                                } else {
+                                    voice[att.name] = att.value;
+                                }
+                            }
+                            tracks[vname] = Object.assign(voice);
+                        }
+                    }
+                    song[prop.nodeName] = Object.assign(tracks);
+                } else if (prop.nodeName == "sheet") {
+                    let sheet = [];
+                    for (let att of prop.attributes) {
+                        sheet[att.name] = att.value;
+                    }
+                    song[prop.nodeName] = Object.assign(sheet);
+                } else {
+                    song[prop.nodeName] = prop.textContent;
+                }
+            }
+            if (categories.length > 0) {
+                song['categories'] = Object.assign(categories);
+            }
+
+            if (! songlib.hasOwnProperty(nam)) {
+                songlib[nam] = [];
+            }
+            songlib[nam].push(sid);
+
+            // clone the song object and add to list
+            if (songobj.hasOwnProperty(sid)) {
+                throw "found multiple songs with sid " + sid;
+            }
+            songobj[sid] = Object.assign(song);
+        }
+        sortedSongs = Object.keys(songlib).sort();
+        makelist();
+    }
+
+    xhr.onerror = function() {
+      console.log("Error while getting XML.");
+    }
+
+    xhr.open("GET", "musiclib.xml");
+    // xhr.open("GET", "new.xml");
+    xhr.responseType = "document";
+    xhr.send();
+}
+function makelist() {
+    let html = `<html><head><title>Song Library</title>
+<style>table {border-style: solid}</style>
+<body><table><tr><th>Key</th><th>Title</th><th>Words</th></tr>
+`;
+
+    for (let nam of sortedSongs) {
+        for (sid of songlib[nam]) {
+            let key = songobj[sid]['key'];
+            let words = songobj[sid]['words'];
+            if (songobj[sid].hasOwnProperty("location")) {
+                nam += ` [${songobj[sid]['location']}]`;
+            }
+            if (songobj[sid].hasOwnProperty("tracks")) {
+                if (songobj[sid]['tracks'].hasOwnProperty("mix")) {
+                    let gdid = songobj[sid]['tracks']['mix']['gdid'];
+                    nam = `<a href='https://drive.google.com/open?id=${gdid}'>${nam}</a>`;
+                }
+            }
+            html += `<tr><td>${key}</td><td>${nam}</td><td>${words}</td></tr>\n`;
+        }
+    }
+    html += "</table></body></html>\n";
+    document.getElementById("putithere").outerHTML=html;
+}
+</script>
+</head><body onload='init()'>
+<div id="putithere"></div>
+</body>
+</html>
