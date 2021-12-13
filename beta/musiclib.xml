@@ -64,15 +64,6 @@
       <voice gdid="1ogLyBzziK4o1qOyFuxTkxCHRpvvYyugz" mods="all" path="mix/All I Do Is Dream Of You - all.mp3" voice="mix" />
     </tracks>
   </song>
-  <song id="1083" name="Angels We Have Heard On High">
-    <category>Christmas</category>
-    <arranger>SPEBSQSA</arranger>
-    <composer>Traditional French</composer>
-    <copyright>SPEBSQSA 1974</copyright>
-    <key>F</key>
-    <location>YF pg15</location>
-    <words>Angels we have heard on high</words>
-  </song>
   <song id="1199" name="Angels, From the Realms of Glory">
     <category>Christmas</category>
     <arranger>SPEBSQSA</arranger>
@@ -82,6 +73,7 @@
     <location>YF pg 5</location>
     <lyricist>James Montgomery</lyricist>
     <words>Angels, from the realms</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPbG5fX3g5bUViNVU" mods="mix" path="mix/Angels, From The Realms of Glory.mp3" voice="mix" /></tracks>
   </song>
   <song id="1064" name="Armed Forces Medley">
     <category>Old</category>
@@ -110,6 +102,7 @@
     <location>YF pg 9</location>
     <lyricist>William C Dix</lyricist>
     <words>As with gladness men of old</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPa3o2ZFJCeHpwTlk" mods="mix" path="mix/As With Gladness Men Of Old.mp3" voice="mix" /></tracks>
   </song>
   <song id="1126" name="Auld Lang Syne">
     <category>Christmas</category>
@@ -135,6 +128,7 @@
     <location>YF pg 13</location>
     <lyricist>Unknown</lyricist>
     <words>Away in a manger</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPTmRDMnY5REtlWnM" mods="mix" path="mix/Away In A Manger.mp3" voice="mix" /></tracks>
   </song>
   <song id="1069" name="Baby Face">
     <category>Old</category>
@@ -538,8 +532,14 @@
       <voice gdid="1tuYnpCAYKcB2A3AnmTm2kcWCwJC31KhQ" mods="Tenor" path="tenor/Dear Hearts - Tenor.mp3" voice="tenor" />
     </tracks>
   </song>
+  <song id="1219" name="Deck the Halls">
+    <category>Christmas</category>
+    <key>Eb</key>
+    <words>Deck the halls with boughs of holly</words>
+  </song>
   <song id="1129" name="Deck the Halls">
     <category>Christmas</category>
+    <category>Old</category>
     <arranger>Burt Szabo</arranger>
     <composer>Old Welsh Air</composer>
     <copies>3</copies>
@@ -552,11 +552,6 @@
     <source>BHS</source>
     <stockID>210494</stockID>
     <words>Deck the halls</words>
-  </song>
-  <song id="1173" name="Deck the Halls">
-    <category>Christmas</category>
-    <key>Eb</key>
-    <words>Deck the halls with boughs of holly</words>
   </song>
   <song id="1164" name="Do You Hear What I Hear">
     <category>Christmas</category>
@@ -798,15 +793,6 @@
     </tracks>
     <sheet gdid="110FaozNqA9GzpY1DQu9idtwI6EqeFVQo" sheet="Happy Together.pdf" />
   </song>
-  <song id="1077" name="Hark! The Herald Angels Sing">
-    <category>Christmas</category>
-    <arranger>SPEBSQSA</arranger>
-    <composer>Felix Mendelssohn</composer>
-    <copyright>SPEBSQSA 1974</copyright>
-    <key>G</key>
-    <location>YF pg4</location>
-    <words>Hark the herald angels sing</words>
-  </song>
   <song id="1159" name="Have A Little Talk With Myself">
     <category>TTS</category>
     <arranger>Gary Parker</arranger>
@@ -992,17 +978,6 @@
       <voice gdid="1hDKZ-fe2PnfkotGPIwtb3XjRr5005fGI" mods="tenor" path="tenor/I Don't Know Why.mp3" voice="tenor" />
     </tracks>
   </song>
-  <song id="1079" name="I Heard The Bells On Christmas Day">
-    <category>Christmas</category>
-    <arranger>SPEBSQSA</arranger>
-    <composer>J. Baptiste Calkin</composer>
-    <copyright>SPEBSQSA</copyright>
-    <crdate>1973-12-31</crdate>
-    <key>Eb</key>
-    <location>YF pg17</location>
-    <lyricist>Henry W. Longfellow</lyricist>
-    <words>I heard the bells</words>
-  </song>
   <song id="1018" name="I Love To Hear That Old Barbershop Style">
     <category>Old</category>
     <arranger>Val Hicks</arranger>
@@ -1028,6 +1003,7 @@
     <location>Coll p11</location>
     <lyricist>Gannon/Kent</lyricist>
     <words>My home's the place</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPSmozVDFjT25GTnM" mods="mix" path="mix/I'll Be Home For Christmas.mp3" voice="mix" /></tracks>
   </song>
   <song id="1160" name="I'm Gonna Live Till I Die">
     <alias>Gonna Live Till I Die</alias>
@@ -1166,15 +1142,6 @@
     </tracks>
     <sheet gdid="0Bxd7i2Hm5BiPdDZUeEE4Q1hqbFk" sheet="IrishBlessing.pdf" />
   </song>
-  <song id="1078" name="It Came Upon The Midnight Clear">
-    <category>Christmas</category>
-    <arranger>SPEBSQSA</arranger>
-    <composer>Edmund H Sears</composer>
-    <copyright>SPEBSQSA 1974</copyright>
-    <key>Bb</key>
-    <location>YF pg6</location>
-    <words>It came upon the midnight clear</words>
-  </song>
   <song id="1003" name="It Had To Be You">
     <category>Old</category>
     <arranger>Earl Moon, Ed Waesche</arranger>
@@ -1201,6 +1168,7 @@
     <location>Coll p14</location>
     <lyricist>Meredith Willson</lyricist>
     <words>It's beginning to look a lot like Christmas</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPODFYY3NYVFRjdzg" mods="mix" path="mix/It's Beginning To Look Like Christmas.mp3" voice="mix" /></tracks>
   </song>
   <song id="1197" name="It's the Music">
     <alias>It's the Music That Brings Us Together</alias>
@@ -1246,15 +1214,6 @@
     <lyricist>Joe Beal and Jim Boothe</lyricist>
     <stockID>7690</stockID>
     <words>Jingle Bell, Jingle Bell, Jingle Bell Rock</words>
-  </song>
-  <song id="1085" name="Jingle Bells">
-    <category>Christmas</category>
-    <arranger>SPEBSQSA</arranger>
-    <composer>J. Pierpont</composer>
-    <copyright>SPEBSQSA 1974</copyright>
-    <key>Ab</key>
-    <location>YF pg18</location>
-    <words>jingle, jingle, jingle, jingle</words>
   </song>
   <song id="1174" name="Joy to the World">
     <category>Christmas</category>
@@ -1354,13 +1313,6 @@
       <voice gdid="1NCt7rwOzOiUVUAOi7wfZTRAs-I7jUKYw" mods="mix" path="mix/Let Me Call You Sweetheart.mp3" voice="mix" />
     </tracks>
   </song>
-  <song id="1068" name="Let Me Call You Sweetheart">
-    <category>Old</category>
-    <arranger>Greg Lyne</arranger>
-    <key>Bb</key>
-    <learn_by>2013-03-21</learn_by>
-    <words>Let me call you sweetheart</words>
-  </song>
   <song id="1035" name="Let's Get Together Again">
     <category>Current</category>
     <key>Bb</key>
@@ -1425,6 +1377,7 @@
     <location>Coll p28</location>
     <lyricist>Wilson/Love</lyricist>
     <words>ba dm ba dm ba dm</words>
+    <tracks><voice gdid="10yTH6wR12RBAjoPfWrR5_5K1OaBRv7w-" mods="mix" path="mix/Little Saint Nick.mp3" voice="mix" /></tracks>
   </song>
   <song id="1066" name="Little Street Where Old Friends Meet, A">
     <category>Old</category>
@@ -1439,15 +1392,6 @@
       <voice gdid="1UJar1IooSAR89oM3BnimH2PtM-YcV3g-" mods="All" path="mix/Little Street Where Old Friends Meet - All.mp3" voice="mix" />
     </tracks>
     <sheet gdid="0Bxd7i2Hm5BiPMDBBUFJVeVRUbjA" sheet="LittleStreet.pdf" />
-  </song>
-  <song id="1087" name="Lo, How A Rose E'er Blooming">
-    <category>Christmas</category>
-    <arranger>SPEBSQSA</arranger>
-    <composer>Traditional German</composer>
-    <copyright>SPEBSQSA 1974</copyright>
-    <key>F</key>
-    <location>YF pg24</location>
-    <words>Lo, how a rose e'er blooming</words>
   </song>
   <song id="1179" name="Longest Time, The">
     <category>Show</category>
@@ -1690,15 +1634,6 @@
       <voice gdid="1SEewkHP-C7c0mU_3xKwZCGG4e-CwNn4b" mods="Mix" path="mix/O Canada - Mix.mp3" voice="mix" />
     </tracks>
   </song>
-  <song id="1082" name="O Come, All Ye Faithful">
-    <category>Christmas</category>
-    <arranger>SPEBSQSA</arranger>
-    <composer>J.F. Wade</composer>
-    <copyright>SPEBSQSA 1974</copyright>
-    <key>Ab</key>
-    <location>YF pg12</location>
-    <words>O come all ye faithful</words>
-  </song>
   <song id="1163" name="O Danny Boy">
     <category>Show</category>
     <key>Eb</key>
@@ -1711,14 +1646,6 @@
       <voice gdid="1WkIRXPSm4kU1-jsx-GCz3eSp2bPLEa_G" mods="mix" path="mix/O Danny Boy mix.mp3" voice="mix" />
     </tracks>
     <sheet gdid="1EtrZ__V_PwmAOKyn5W38Lqd60nrRZwJN" sheet="O Danny Boy.pdf" />
-  </song>
-  <song id="1081" name="O Holy Night">
-    <category>Christmas</category>
-    <arranger>SPEBSQSA</arranger>
-    <composer>Anonymous</composer>
-    <key>C</key>
-    <location>YF pg10</location>
-    <words>O, holy night</words>
   </song>
   <song id="1193" name="Oh, Pretty Woman">
     <alias>Pretty Woman</alias>
@@ -2039,23 +1966,6 @@
       <voice gdid="1HG5PWeB8JuMB5ZVCeUl61eDA9wJhObDh" mods="Tenor L Final" path="tenor/Shut De Do Tenor L Final.mp3" voice="tenor" />
     </tracks>
   </song>
-  <song id="1080" name="Silent Night">
-    <category>Christmas</category>
-    <arranger>SPEBSQSA</arranger>
-    <composer>Joseph Mohr</composer>
-    <copyright>SPEBSQSA 1974</copyright>
-    <key>C</key>
-    <location>YF pg7</location>
-    <words>Silent night, holy night</words>
-  </song>
-  <song id="1088" name="Silver Bells">
-    <category>Christmas</category>
-    <arranger>SPEBSQSA</arranger>
-    <composer>Jay Livingston/Ray Evans</composer>
-    <copyright>Paramount Music 1950</copyright>
-    <key>Bb</key>
-    <words>silver bells, silver bells</words>
-  </song>
   <song id="1095" name="Sixteen Tons">
     <category>Current</category>
     <arranger>John Hohl</arranger>
@@ -2357,12 +2267,6 @@
       <voice gdid="1Z1aFNYeH69Yuoesag9CqpSwwRHfhLTFX" mods="mix - faster" path="mix/Under the boardwalk mix-faster9.mp3" voice="mix" />
     </tracks>
   </song>
-  <song id="1172" name="Up On the Housetop">
-    <category>Christmas</category>
-    <key>Eb</key>
-    <location>YF p2</location>
-    <words>Up on the housetop</words>
-  </song>
   <song id="1054" name="Wait Till The Sun Shines, Nellie">
     <category>PoleCat</category>
     <arranger>Warren "Buzz" Haeger</arranger>
@@ -2387,6 +2291,7 @@
     <lyricist>Jerry Herman</lyricist>
     <pitch>G</pitch>
     <words>Oh, we need a little</words>
+    <tracks><voice gdid="10uINtALGay-h0HsqxPefNrcBLLu-N87F" mods="mix" path="mix/We Need a Little Christmas.mp3" voice="mix"/></tracks>
   </song>
   <song id="1138" name="We Three Kings of Orient Are">
     <category>Christmas</category>
@@ -2402,15 +2307,6 @@
     <source>BHS</source>
     <stockID>210494</stockID>
     <words>We three kings of Orient are</words>
-  </song>
-  <song id="1084" name="We Wish You A Merry Christmas">
-    <category>Christmas</category>
-    <arranger>SPEBSQSA</arranger>
-    <composer>Traditional English</composer>
-    <copyright>SPEBSQSA 1974</copyright>
-    <key>Bb</key>
-    <location>YF pg16</location>
-    <words>We wish you a merry Christmas</words>
   </song>
   <song id="1149" name="Wells Fargo Wagon">
     <category>Old</category>
@@ -2444,17 +2340,9 @@
     <stockID>210494</stockID>
     <words>What child is this</words>
   </song>
-  <song id="1086" name="While By My Sheep">
-    <category>Christmas</category>
-    <arranger>SPEBSQSA</arranger>
-    <composer>Traditional German</composer>
-    <copyright>SPEBSQSA 1974</copyright>
-    <key>C</key>
-    <location>YF pg23</location>
-    <words>While by my sheep</words>
-  </song>
   <song id="1099" name="White Christmas">
     <category>Christmas</category>
+    <category>Old</category>
     <arranger>Mac Huff</arranger>
     <composer>Irving Berlin</composer>
     <copies>20</copies>
@@ -2478,6 +2366,7 @@
     <location>Coll p24</location>
     <lyricist>Irving Berlin</lyricist>
     <words>Far away from home</words>
+    <tracks><voice gdid="10mQJfX0XlAj0wyQh908DJeOZxqLGwZpk" mods="mix" path="mix/WHite Christmas.mp3" voice="mix" /></tracks>
   </song>
   <song id="1184" name="Who Put the Bomp">
     <category>Show</category>
@@ -2557,7 +2446,8 @@
     <ordered>2017-10-30</ordered>
     <source>BHS</source>
     <stockID>7629</stockID>
-    <words>??</words>
+    <words>Over the ground lies a mantle of white</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPYUlCeU1oSDF0VlE" mods="mix" path="mix/Winter Wonderland.mp3" voice="mix" /></tracks>
   </song>
   <song id="1029" name="Yes Sir, That's My Baby">
     <category>Old</category>
@@ -2679,6 +2569,7 @@
     <location>YF pg 2</location>
     <lyricist>B. R. Hanby</lyricist>
     <words>Up on the house-top</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPcXA1ZVpDa21PRmM" mods="mix" path="mix/Children's Medley.mp3" voice="mix" /></tracks>
   </song>
   <song id="1203" name="Coventry Carol">
     <category>Christmas</category>
@@ -2689,6 +2580,7 @@
     <location>YF pg 21</location>
     <lyricist>Traditional</lyricist>
     <words>Lul-lay, thou little tiny child</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPU1BXdVZoMUNqQms" mods="mix" path="mix/Coventry Carol.mp3" voice="mix" /></tracks>
   </song>
   <song id="1204" name="God Rest Ye Merry, Gentlemen">
     <category>Christmas</category>
@@ -2699,6 +2591,7 @@
     <location>YF pg 8</location>
     <lyricist>Traditional</lyricist>
     <words>God rest ye merry, gentlemen</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPWUFMNVE4ZzBmZTQ" mods="mix" path="mix/God Rest Ye Merry, Gentlemen.mp3" voice="mix" /></tracks>
   </song>
   <song id="1205" name="O Christmas Tree">
     <category>Christmas</category>
@@ -2708,6 +2601,7 @@
     <key>G</key>
     <location>YF pg 22</location>
     <words>O Christmas tree</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPcElBU19CaFdpOHc" mods="mix" path="mix/O Christmas Tree.mp3" voice="mix" /></tracks>
   </song>
   <song id="1206" name="O Little Town of Bethlehem">
     <category>Christmas</category>
@@ -2718,11 +2612,12 @@
     <location>YF pg 14</location>
     <lyricist>Phillips Brooks</lyricist>
     <words>O little town of Bethlehem</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPU05PcHl3b0kxX1E" mods="mix" path="mix/O Little Town Of Bethlehem.mp3" voice="mix" /></tracks>
   </song>
   <song id="1207" name="Angels We Have Heard On High">
     <category>Christmas</category>
     <arranger>SPEBSQSA</arranger>
-    <composer>Traditional Frence</composer>
+    <composer>Traditional French</composer>
     <copyright>SPEBSQSA 1974</copyright>
     <key>F</key>
     <location>YF pg 15</location>
@@ -2768,7 +2663,8 @@
     <arranger>SPEBSQSA</arranger>
     <composer>James Pierpont</composer>
     <copyright>SPEBSQSA 1974</copyright>
-    <key>Eb</key>
+    <key>Ab</key>
+    <pitch>Eb</pitch>
     <location>YF pg 18</location>
     <lyricist>James Pierpont</lyricist>
     <words>Jingle, jingle, jingle, jingle</words>
@@ -2849,15 +2745,5 @@
     <lyricist>Traditional German</lyricist>
     <words>While By My Sheep</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPUnRTSkU4d2IzQVE" mods="mix" path="mix/While By My Sheep.mp3" voice="mix" /></tracks>
-  </song>
-  <song id="1219" name="Winter Wonderland">
-    <category>Christmas</category>
-    <arranger>J Edward Waesche</arranger>
-    <composer>Felix Bernard</composer>
-    <copyright>SPEBSQSA 1974</copyright>
-    <key>Eb</key>
-    <lyricist>Dick Smith</lyricist>
-    <words>Over the ground lies a mantle of white</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPYUlCeU1oSDF0VlE" mods="mix" path="mix/Winter Wonderland.mp3" voice="mix" /></tracks>
   </song>
 </musiclib>
