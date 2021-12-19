@@ -105,7 +105,7 @@
     <tracks><voice gdid="0Bxd7i2Hm5BiPa3o2ZFJCeHpwTlk" mods="mix" path="mix/As With Gladness Men Of Old.mp3" voice="mix" /></tracks>
   </song>
   <song id="1126" name="Auld Lang Syne">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <arranger>Don Gray</arranger>
     <composer>Traditional Scottish</composer>
     <copies>3</copies>
@@ -385,7 +385,7 @@
     </tracks>
   </song>
   <song id="1127" name="Chanukah, Chanukah">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <arranger>Greg Lyne</arranger>
     <composer>Traditional Jewish</composer>
     <copies>3</copies>
@@ -423,7 +423,7 @@
     <sheet gdid="1WCnbOBSCHOiu16T4C-D1AgtCS9ToTHYM" sheet="COL.pdf" />
   </song>
   <song id="1128" name="Come, Thou Long-Expected Jesus">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <arranger>Adam Scott</arranger>
     <composer>Rowland Prichard</composer>
     <copies>3</copies>
@@ -538,7 +538,7 @@
     <words>Deck the halls with boughs of holly</words>
   </song>
   <song id="1129" name="Deck the Halls">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <category>Old</category>
     <arranger>Burt Szabo</arranger>
     <composer>Old Welsh Air</composer>
@@ -730,7 +730,7 @@
     <sheet gdid="1-ZuKCouJsF1OQhB61ARDu4hSwiJNmv77" sheet="From the First Hello.pdf" />
   </song>
   <song id="1131" name="Go, Tell It on the Mountain">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <arranger>Joe Johnson</arranger>
     <composer>Traditional</composer>
     <copies>3</copies>
@@ -757,7 +757,7 @@
     <sheet gdid="1-3lnZit0jeoxUbEU4fwBiZ1DWbL9Y07V" sheet="God Bless America.pdf" />
   </song>
   <song id="1132" name="Good Christian Men, Rejoice">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <arranger>Joe Johnson</arranger>
     <composer>Traditional German</composer>
     <copies>3</copies>
@@ -834,7 +834,7 @@
     <sheet gdid="1-fvobnxXGe2__NpiQ7YZzSVTyxloWgna" sheet="Hello Mary Lou.pdf" />
   </song>
   <song id="1133" name="Here We Come A-Wassailing">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <arranger>Larry Triplett</arranger>
     <composer>Traditional English</composer>
     <copies>3</copies>
@@ -1097,7 +1097,7 @@
     </tracks>
   </song>
   <song id="1134" name="In the Bleak Midwinter">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <arranger>Burt Szabo</arranger>
     <composer>Gustav Holst</composer>
     <copies>3</copies>
@@ -1112,7 +1112,7 @@
     <words>In the bleak midwinter</words>
   </song>
   <song id="1135" name="Infant Holy, Infant Lowly">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <arranger>Burt Szabo</arranger>
     <composer>Traditional Polish</composer>
     <copies>3</copies>
@@ -1221,7 +1221,7 @@
     <words>Joy to the world, the Lord is come!</words>
   </song>
   <song id="1136" name="Joy to the World!">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <arranger>Joe Liles</arranger>
     <composer>George F. Handel</composer>
     <copies>3</copies>
@@ -1275,7 +1275,7 @@
     <sheet gdid="1KQgpa_XUY0JWy9kKnaQ05EHBWaH_gaP8" sheet="Kokomo.pdf" />
   </song>
   <song id="1137" name="Let All Mortal Flesh Keep Silence">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <arranger>Jeff Taylor</arranger>
     <composer>Traditional French</composer>
     <copies>3</copies>
@@ -2135,7 +2135,7 @@
     <words>Oh,  tee-idle dum dum</words>
   </song>
   <song id="1130" name="The First Noel">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <arranger>Wayne M Grimmer</arranger>
     <composer>Traditional English</composer>
     <copies>3</copies>
@@ -2294,7 +2294,7 @@
     <tracks><voice gdid="10uINtALGay-h0HsqxPefNrcBLLu-N87F" mods="mix" path="mix/We Need a Little Christmas.mp3" voice="mix"/></tracks>
   </song>
   <song id="1138" name="We Three Kings of Orient Are">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <arranger>Joe Johnson</arranger>
     <composer>Traditional German</composer>
     <copies>3</copies>
@@ -2326,7 +2326,7 @@
     <sheet gdid="1NlBDmM04BAal2sD5m4frftfNEvRfMvv9" sheet="Wells Fargo Wagon.pdf" />
   </song>
   <song id="1139" name="What Child is This?">
-    <category>Christmas</category>
+    <category>Yuletide Favorites 2</category>
     <arranger>Burt Szabo</arranger>
     <composer>Traditional English</composer>
     <copies>3</copies>

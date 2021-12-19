@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title class="doctitle">${title}</title>
+<style>
+table, p, option, select { border-collapse: collapse; font-family: Arial; font-size: 18px; font-weight: bold; border-width: 5px; }
+.footer { text-align: center; background: lightgreen; }
+.key { text-align: center; }
+td { padding: 6px; }
+.tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
+.hidden { display: none; }
+span.u { text-decoration: underline black; font-style: italic; }
+tr:nth-child(even) { background: #CCC }
+tr:nth-child(odd) { background: #FFF }
+.partsel { text-align: center; background: lightgreen; }
+.qtet { background-color: blue !important; color: white; }
+table { border-collapse: collapse; font-family: Arial; font-size: 18px; font-weight: bold; border-width: 5px; }
+@media print {
+  @page { size: letter portrait; margin: .5in; }
+  body { max-width: 5.5in; }
+  table { font-size: 12px; }
+  td { padding: 4px; }
+  .tabletitle { font-size: 18px; }
+}
+</style>
+<script>
+function sledit(el) {
+    // this function is called when the action menu item 
+    // is clicked. it displays the correspoding action message,
+    // and the action is performed when that message is responded to.
+    // 
+    // el is the pick from the function table
+    let func = el.value;
+
+    // turn the button off.
+    el.checked = false;
+
+    let songrow = document.querySelector(".slctd");
+    if (! songrow) {
+        document.getElementById("editmenu").innerHTML = "<p>Select a song first!</p>";
+        return;
+    }
+    let cursong = songrow.children[0].innerText;
+    let songndx = songrow.rowIndex - 1;
+    // let songndx = songlist.indexOf(cursong);
+    if (songndx < 0) {
+        throw `${cursong} not found in ${songlist}`;
+    }
+
+    // build select for current songlist. default option 0
+    // is hidden because it con't be selected.
+
+    let editmenu = "";
+    switch (func) {
+        case "mov":
+            let slsel = "<select id='slel'>";
+            slsel += `<option style="display:none">
+        <option>--top--</option>
+        `
+            for (let s of songlist) {
+                slsel += `<option>${s}</option>\n`;
+            }
+            slsel += "</select>\n";
+            editmenu = `<p onchange="slfunc('mov', this, ${songndx})">move <span class="u">${cursong}</span> after ${slsel}</p>`;
+            break;
+        case "del":
+            editmenu = `<p onclick="slfunc('del', this,  ${songndx})">click here to remove <span class="u">${cursong}</span></p>`;
+            break;
+        case "rep":
+            editmenu = `<p onchange="slfunc('rep', this, ${songndx})">replace <span class="u">${cursong}</span> with ${libsel}</p>`;
+            break;
+        case "add":
+            editmenu = `<p onchange="slfunc('add', this, ${songndx})">add ${libsel} after <span class="u">${cursong}</span></p>`;
+            break;
+        default:
+            alert("wtf is " + func);
+            exit();
+    }
+    document.getElementById("editmenu").innerHTML = editmenu;
+    console.log(`editmenu: ${editmenu}`);
+}
+
+function slfunc(func, el, ndx) {
+    let cursong = songlist[ndx];
+    console.log(`slfunc: ${func}, ${ndx}, ${cursong}`);
+    switch (func) {
+        case "mov":
+            // get the position in the songlist select, and the song name.
+            // the -2 adjusts for the hidden option at 0 and --top-- at 1,
+            // which aren't in songlist.
+            let aftndx = el.children[1].selectedIndex - 2;
+            let aftsong = songlist[aftndx];
+            if (aftndx == -1) {
+                aftsong = "--top--";
+            }
+            if (aftndx > ndx) {
+                // when we're moving "down", adjust aftndx to reflect
+                // that we remove the song first.
+                aftndx -= 1;
+            }
+            // splice returns a list of removed songs - get the first (only) one.
+            let moved = songlist.splice(ndx, 1)[0];
+            if (moved != cursong) {
+                throw `wanted ${cursong}, but splice gave ${moved}??`;
+            }
+            songlist.splice(aftndx + 1, 0, moved);
+            console.log(`moved ${cursong} after ${aftsong} - ${songlist}`);
+            break;
+        case "del":
+            let r = songlist.splice(ndx, 1);
+            console.log(`removed ${r} - ${songlist}`);
+            break;
+        case "rep":
+            let newsong = el.children[1].value;
+            songlist.splice(ndx, 1, newsong);
+            console.log(`replaced ${cursong} with ${newsong} - ${songlist}`);
+            break;
+        case "add":
+            let addndx = el.children[0].selectedIndex;
+            let addsong = el.children[0][addndx].value;
+            songlist.splice(ndx+1, 0, addsong);
+            console.log(`added ${addsong} after ${cursong} - ${songlist}`);
+            break;
+        case "qtet":
+            break;
+        default:
+            throw `what kind of function is ${func}`;
+    }
+    let songrow = document.querySelector(".slctd");
+    songrow.classList.remove("slctd")
+    document.getElementById("editmenu").innerHTML = "<p><strong>Select a song, then choose an action.</strong></p>";
+
+    makelist();
+}
+function makelist() {
+    // try just updating event songlist and reloading
+    let newevent = {'when': evdate, 'where': venue, 'songlist': songlist, 'qtetSongs': qtetSongs };
+    eventlist[datndx] = newevent;
+    console.log(`leaving with newevent ${newevent}`);
+
+    // replace the updated event list in local storage.
+    localStorage.setItem('TunersEvents', JSON.stringify(eventlist));
+
+    window.location.href = "el.html";
+}
+var datndx;
+var evdate;
+var eventlist = [];
+var libsel;
+var qtetSongs = [];
+var songlist = [];
+var title;
+var venue;
+function init() {
+    // load and parse the song name list (actually a <select>)
+    let lsjson = localStorage.getItem('songlibsel');
+
+    if (lsjson) {
+        libsel = JSON.parse(lsjson);
+    } else {
+        alert("couldn't load the lib song list from local storage.");
+        return;
+    }
+
+    // load and parse the event list
+    let eljson = localStorage.getItem('TunersEvents');
+
+    if (eljson) {
+        eventlist = JSON.parse(eljson);
+    } else {
+        alert("couldn't load the event list from local storage.");
+        return;
+    }
+
+    // showEvent is the index of the last event selected by picksongs. 
+    let evjson = localStorage.getItem('showEvent');
+
+    if (evjson) {
+        datndx = JSON.parse(evjson);
+    } else {
+        alert("couldn't find current event in local storage.");
+        return;
+    }
+
+    let ev = eventlist[datndx];
+
+    venue = ev['where'];
+    evdate = ev['when'];
+
+    title = `${venue} - ${evdate}`;
+    document.title = title;
+    document.getElementById("evtitl").innerText = title;
+
+    songlist = ev['songlist'];
+
+    qtetSongs = [];
+    if (ev.hasOwnProperty("qtetSongs")) {
+        qtetSongs = ev['qtetSongs'];
+    }
+
+    let html = "";
+    for (let song of songlist) {
+        if (qtetSongs.includes(song)) {
+            html += `<tr onclick="selsong(this)" class='qtet'><td colspan="3">${song}</td></tr>`;
+        } else {
+            html += `<tr onclick="selsong(this)"><td colspan="3">${song}</td></tr>`;
+        }
+    }
+    document.getElementById("putithere").outerHTML = html;
+}
+function selsong(el) {
+    // el is the row where the left-click was done, or
+    // the table where a right-click was done.
+    let cursong = "";
+    if (el.id == "playlist") {
+        // right-click will do the context menu when we leave
+        // if we don't prevent it.
+        event.preventDefault();
+
+        // get the row element from the parent of the
+        // td where the right-click was done.
+        el = event.target.parentNode;
+        cursong = el.innerText;
+
+        // toggle qtet class for the song
+        if (el.classList.contains("qtet")) {
+            el.classList.remove("qtet");
+            let index = qtetSongs.indexOf(cursong);
+            if (index > -1) {
+                qtetSongs.splice(index, 1);
+            }
+            console.log(`${cursong} not a quartet song.`);
+        } else {
+            el.classList.add("qtet");
+            qtetSongs.push(cursong);
+            console.log(`${cursong} is now a quartet song.`);
+        }
+        return;
+    }
+    cursong = el.innerText;
+    let cursels = document.querySelectorAll(".slctd");
+    if (cursels.length > 0) {
+        if (cursels[0] == el) {
+            // same song re-selected - just leave.
+            return;
+        }
+    }
+    for (let s of cursels) {
+        s.classList.remove("slctd");
+    }
+
+    el.classList.add("slctd");
+    document.getElementById("editmenu").innerHTML = `<p>Choose an action for <span class="u">${cursong}</span></p>`;
+}
+function done() {
+    // go back to caller after updating songlist in local storage.
+    let newevent = {'when': evdate, 'where': venue, 'songlist': songlist, 'qtetSongs': qtetSongs };
+    eventlist[datndx] = newevent;
+    console.log(`leaving with newevent ${newevent}`);
+
+    // replace the updated event list in local storage.
+    localStorage.setItem('TunersEvents', JSON.stringify(eventlist));
+
+    window.location.href = "ch.html";
+}
+function cancel() {
+    // go back to caller without updating songlist in local storage.
+    window.location.href = "ch.html";
+}
+</script>
+</head>
+<body onload="init()">
+<table id='playlist' oncontextmenu="selsong(this)" border='1'>
+    <tr><td id='evtitl' colspan='3' class='tabletitle'>${title}</td></tr>
+    <tr id="putithere"></tr>
+<tr>
+<td class="footer"><input type="button" value="Done" onclick="done()"><br>
+<input type="button" value="Cancel" onclick="cancel()"></td>
+<td class="footer">
+<fieldset class="footer">
+<legend>Choose action</legend>
+ <input type="radio" name="act" value="mov" onclick="sledit(this)">move
+ <input type="radio" name="act" value="del" onclick="sledit(this)">remove
+ <input type="radio" name="act" value="rep" onclick="sledit(this)">replace
+ <input type="radio" name="act" value="add" onclick="sledit(this)">add
+</fieldset>
+</td></tr>
+</table>
+<div id='editmenu'>
+    <p><strong>Select a song, then choose an action.</strong></p>
+</div>
+</body>
+</html>
