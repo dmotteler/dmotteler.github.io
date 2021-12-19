@@ -1,0 +1,55 @@
+.qtet { background-color: blue !important; color: white !important; }
+.qtet a { background-color: blue !important; color: white !important; }
+.select-css {
+	display: inline-block; width: auto;
+    text-align: center;
+	font-size: 20px;
+	font-family: sans-serif;
+	font-weight: 700;
+	color: #444;
+	line-height: 1.1;
+	padding: .6em 1.4em .5em .8em;
+	box-sizing: border-box;
+	margin: 0;
+	border: 1px solid #aaa;
+	box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+	border-radius: .5em;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: #fff;
+	background-repeat: no-repeat, repeat;
+	background-position: right .7em top 50%, 0 0;
+	background-size: .65em auto, 100%;
+}
+.select-css::-ms-expand {
+	display: none;
+}
+.select-css:hover {
+	border-color: #888;
+}
+.select-css:focus {
+	border-color: #aaa;
+	box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+	box-shadow: 0 0 0 3px -moz-mac-focusring;
+	color: #222;
+	outline: none;
+}
+.select-css option {
+	font-weight:normal;
+}
+table {
+    font-family:Arial; font-size: 20px;
+    border-width:5px; border-collapse: collapse;
+    padding: 4px;
+    min-width: 400px;
+}
+tr { page-break-inside: avoid; }
+th { background-color:lightgreen; font-weight: bold; vertical-align: text-top; text-align: center; }
+td { padding: 4px; text-align: center; }
+.chosen { background-color: lightblue; }
+.hidden { display: none; }
+.key { text-align: center; }
+.donebutt { font-weight: bold; background-color: yellow; font-size: 20px; }
+body{ -webkit-print-color-adjust:exact; }
+<!-- select-css from https://www.filamentgroup.com/lab/select-css.html -->
