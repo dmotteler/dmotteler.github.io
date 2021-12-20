@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="musiclib.xsl"?>
+<musiclib name="Tuners Music Library">
+<song id, name>
+  <alias>x</alias>
+  <arranger>x</arranger>
+  <category>x</category>
+  <composer>x</composer>
+  <copies>x</copies>
+  <copyright>x</copyright>
+  <crdate>x</crdate>
+  <key>x</key>
+  <learn_by>x</learn_by>
+  <location>x</location>
+  <lyricist>x</lyricist>
+  <notes>x</notes>
+  <ordered>x</ordered>
+  <pitch>x</pitch>
+  <source>x</source>
+  <stockID>x</stockID>
+  <words>x</words>
+  <tracks>
+    <voice gdid, mods, path, voice />
+  </tracks>
+  <sheet gdid, sheet />
+</song>
+</musiclib>

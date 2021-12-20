@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title class="doctitle">Song Matrix Generator</title>
+<link rel="stylesheet" href="xmlsm.css" />
+<script src="getqv.js"></script>
+<script type="text/javascript">
+function loadDoc(doc) {
+    // start loading doc. xhr will call docReady when loaded. 
+
+    const xhr = new XMLHttpRequest();
+    xhr.onerror = function() {
+      console.log("Error while getting XML.");
+    }
+
+    xhr.open("GET", doc);
+    xhr.responseType = "document";
+    xhr.send();
+
+    var wantCats = getQueryVariable("cat", 'Show');
+
+    xhr.onload = function () {
+        let musiclib = xhr.responseXML.documentElement;
+        // console.log(musiclib.nodeName);
+        let songlib = [];
+        let songobj = [];
+
+        for (let songNode of musiclib.children) {
+            let song = [];
+            let categories = [];
+            for (let att of songNode.attributes) {
+                song[att.name] = att.value;
+            }
+
+            let nam = song['name'];
+            let sid = song['id'];
+
+            for (let prop of songNode.children) {
+                if (prop.nodeName == "alias") {
+                    let aka = prop.textContent;
+                    if (! songlib.hasOwnProperty(aka)) {
+                        songlib[aka] = [];
+                    }
+                    songlib[aka].push(sid);
+                } else if (prop.nodeName == "category") {
+                    categories.push(prop.textContent);
+                } else if (prop.nodeName == "tracks") {
+                    let tracks = [];
+                    for (let subp of prop.children) {
+                        if (subp.nodeName == "voice") {
+                            let voice = [];
+                            let vname = 'phony';
+                            for (let att of subp.attributes) {
+                                if (att.name == 'voice') {
+                                    vname = att.value;
+                                } else {
+                                    voice[att.name] = att.value;
+                                }
+                            }
+                            if (!tracks.hasOwnProperty(vname)) {
+                                tracks[vname] = [];
+                            }
+                            tracks[vname].push(Object.assign(voice));
+                        } else {
+                            console.log(`track for ${song} has child ${subp.nodeName}??`);
+                        }
+                    }
+                    song[prop.nodeName] = Object.assign(tracks);
+                } else if (prop.nodeName == "sheet") {
+                    let sheet = [];
+                    for (let att of prop.attributes) {
+                        sheet[att.name] = att.value;
+                    }
+                    song[prop.nodeName] = Object.assign(sheet);
+                } else {
+                    song[prop.nodeName] = prop.textContent;
+                }
+            }
+            if (categories.length > 0) {
+                song['categories'] = Object.assign(categories);
+                if (categories.includes("Old")) {
+                    nam = nam + " (Old)";
+                }
+            }
+
+            if (! songlib.hasOwnProperty(nam)) {
+                songlib[nam] = [];
+            }
+            songlib[nam].push(sid);
+
+            // clone the song object and add to list
+            if (songobj.hasOwnProperty(sid)) {
+                throw "found multiple songs with sid " + sid;
+            }
+            songobj[sid] = Object.assign(song);
+        }
+        sortedSongs = Object.keys(songlib).sort();
+
+        let songtable = "";
+        let colnames = ['Song', 'mix', 'bass', 'bari', 'lead', 'tenor', 'Sheet'];
+        for (let song of sortedSongs) {
+            let songrow = [];
+            for (let sid of songlib[song]) {
+                let keep = false;
+                if (songobj[sid].hasOwnProperty("categories")) {
+                    for (let cat of songobj[sid]['categories']) {
+                        if (wantCats.includes(cat)) {
+                            keep = true;
+                            break;
+                        }
+                    }
+                } else {
+                    // song has no categories - ignore it.
+                    continue;
+                }
+
+                if (! keep) {
+                    continue;
+                }
+
+                songrow.push(song);
+                // console.log(song);
+                if (songobj[sid].hasOwnProperty('tracks')) {
+                    for (let voice of colnames.slice(1, -1)) {
+                        let anc = "";
+                        if (songobj[sid]['tracks'].hasOwnProperty(voice)) {
+                            for (let vtrk of songobj[sid]['tracks'][voice]) {
+                                let gdid = vtrk['gdid'];
+                                let mods = vtrk['mods'];
+                                // let path = vtrk['path'];
+                                if (anc == "") {
+                                    anc = `<a href='https://drive.google.com/open?id=${gdid}'>${mods}</a>`;
+                                } else {
+                                    anc += `<br/><a href='https://drive.google.com/open?id=${gdid}'>${mods}</a>`;
+                                }
+                            }
+                            songrow.push(anc);
+                            // console.log(`  ${voice}: ${anc}`);
+                        } else {
+                            songrow.push("&nbsp;");
+                            // console.log(`  no ${voice} track!`);
+                        }
+                    }
+                } else {
+                    for (let voice of colnames.slice(1, -1)) {
+                        songrow.push("&nbsp;");
+                    }
+                    // console.log(`  no tracks!`);
+                }
+                if (songobj[sid].hasOwnProperty('sheet')) {
+                    let gdid = songobj[sid]['sheet']['gdid'];
+                    let anc = `<a href='https://drive.google.com/open?id=${gdid}'>sheet</a><br/>`;
+                    songrow.push(anc);
+                } else {
+                    songrow.push("&nbsp;");
+                }
+                let sdata = songrow.join("</td><td>");
+                let row = `<tr><td>${sdata}</td></tr>`;
+                songtable += row;
+            }
+        }
+        var songtableel = document.getElementById("putithere")
+        songtableel.outerHTML = songtable;
+    }
+    let title = "Song Matrix";
+    if (wantCats.length > 0) {
+        if (wantCats.length > 1) {
+            title = "Songs in " + wantCats.join(" and ");
+        } else {
+            title = "Songs in " + wantCats[0];
+        }
+    }
+    document.getElementById("tabletitle").innerText = title;
+    document.title = title;
+}
+</script>
+</head>
+<body onload='loadDoc("musiclib.xml")'>
+<table id='playlist' border='1'>
+    <thead>
+    <tr><th id='tabletitle' colspan='99' class='tabletitle'>${title}</th></tr>
+    <tr><th>Song</th><th>mix</th><th>Bass</th><th>Bari</th><th>Lead</th><th>Tenor</th><th>Sheet</th></tr>
+    </thead>
+    <tbody>
+    <tr id="putithere"></tr>
+    </tbody>
+</table>
+</body>
+</html>
