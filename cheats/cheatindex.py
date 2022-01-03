@@ -27,10 +27,13 @@ for fn in files:
     with open(pat, "r") as fo:
         data = fo.read()
 
-    targ = "'tabletitle'>"
+    targ = '"tabletitle">'
     n = data.find(targ)
     if n < 0:
-        continue
+        targ = "'tabletitle'>"
+        n = data.find(targ)
+        if n < 0:
+            continue
 
     n += len(targ)
     n2 = data.find("</td>", n)
