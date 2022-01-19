@@ -4,11 +4,24 @@
 import os, sys
 from xml.etree import ElementTree as ET
 import json
+import urllib.request
+import urllib.parse
 
-mlib = "C:/cygwin64/home/Del/php_ws/musicxml/musiclib.xml"
-with open(mlib, "r") as fo:
-    lib_xml = fo.read()
-    print("read {} bytes from {}".format(len(lib_xml), mlib))
+# mlib = "C:/cygwin64/home/Del/php_ws/musicxml/musiclib.xml"
+# with open(mlib, "r") as fo:
+    # lib_xml = fo.read()
+    # print("read {} bytes from {}".format(len(lib_xml), mlib))
+
+url = "https://dmotteler.github.io/musiclib/musiclib.xml"
+
+# if we don't fake the browser type, git will reject us with a 405 error
+req = urllib.request.Request(url, data=None, headers={
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
+    }
+)
+
+with urllib.request.urlopen(req) as f:
+    lib_xml = f.read().decode('utf-8')
 
 libsongs = {}
 libtrax = set()
@@ -71,10 +84,13 @@ for fid in jsongs:
             trackstrax[pat] = (voice, ffid)
 
 traxset = set(trackstrax.keys())
+
 print("\n{} tracks appear in both musiclib.xml and Tracks.json!".format(len(libtrax & traxset)))
+
 print("\nmusiclib refers to these tracks that aren't on Google Drive??")
 for x in libtrax - traxset:
     print(x)
+
 print("\nadd these tracks to musiclib.xml")
 for pat in traxset - libtrax:
     voice, ffid = trackstrax[pat]

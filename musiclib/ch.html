@@ -232,7 +232,7 @@ function down() {
     // remove the functions not needed in downloaded file
     let clipstart = h.indexOf("// BEGIN CLIP");
     let clipend = h.lastIndexOf("// END CLIP") + "// END CLIP".length + 1;
-    let dlhtml = h.substr(0, clipstart) + h.substr(clipend);
+    let dlhtml = h.substr(0, clipstart) + h.substr(clipend).replace("init", "clickmix");
 
     let moda = evndx.substring(4, 8);
     let dlfn = `${venue}_${moda}.html`;
@@ -246,8 +246,8 @@ function down() {
 }
 // END CLIP
 </script>
-</head><body onload='init()'>
-<body onload="clickmix()">
+</head>
+<body onload='init()'>
 <table border='1'>
     <tr><td id='evtitl' colspan='3' class='tabletitle'></td></tr>
     <tr id="putithere"></tr>
