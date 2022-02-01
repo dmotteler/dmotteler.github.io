@@ -595,6 +595,7 @@
     <tracks><voice gdid="1gcVywK5XsOvJGBXRYLNjSdSHUW0VqS_O" mods="bari left" path="bari/Down By the Old Mill Stream - bari left.mp3" voice="bari" />
       <voice gdid="1d2fEwyOsQfG6FqLgwaccOKs2wwHDC-UL" mods="bass" path="bass/Down By the Old Mill Stream.mp3" voice="bass" />
       <voice gdid="1UbRuGZgUNh-tQleqfx9nIIMFG0hm7EHr" mods="mix" path="mix/Down By the Old Mill Stream.mp3" voice="mix" />
+      <voice gdid="115mpmgtvRVVGSZHsSHHJuHUaZ5FkESqS" mods="tenor" path="tenor/Down By the Old Mill Stream - Tenor Left.mp3" voice="tenor" />
     </tracks>
   </song>
   <song id="1055" name="Down Our Way">
@@ -608,6 +609,7 @@
     <tracks><voice gdid="1YuMJWikBp40mWA1DpASDm4_q8DnAp1lD" mods="bari left" path="bari/Down Our Way - bari left.mp3" voice="bari" />
       <voice gdid="1-4Bc1JG0gYtvP2VhqZ5NNS8zygBHfuUX" mods="bass" path="bass/Down Our Way.mp3" voice="bass" />
       <voice gdid="198g_jL0Z2BBYX-RBQ_DUAYsEhmEXkgNT" mods="mix" path="mix/Down Our Way.mp3" voice="mix" />
+      <voice gdid="11SA87C1syv-XTVlmysvT3gwYswyZPAYf" mods="tenor" path="tenor/Down Our Way - Tenor Left.mp3" voice="tenor" />
     </tracks>
   </song>
   <song id="1040" name="Dream">
@@ -898,6 +900,7 @@
     <tracks><voice gdid="1r6TkEHAALvm1XcqR04W2-hKBaMy0dm8p" mods="bari left" path="bari/Honey-Little Lize Medley - bari left.mp3" voice="bari" />
       <voice gdid="1bedt-9Wcd8X3pM6WcD8CxRr0skofuoYe" mods="bass" path="bass/Honey-Little Lize Medley.mp3" voice="bass" />
       <voice gdid="1TFiw0WaI32IO03k2jxMiAJ9QfDSO3dAA" mods="mix" path="mix/Honey-Little Lize Medley.mp3" voice="mix" />
+      <voice gdid="11Qxvsxx3P9ATkVRgtJ5PoVJx7nSxz00w" mods="tenor" path="tenor/Honey-Little Lize Medley - Tenor Left.mp3" voice="tenor" />
     </tracks>
   </song>
   <song id="1180" name="Hooked On a Feeling">
@@ -1311,6 +1314,7 @@
     <tracks><voice gdid="1alqddXUFKxNcbyWz-DARTS3dktQXDyO_" mods="bari left" path="bari/Let Me Call You Sweetheart - bari left.mp3" voice="bari" />
       <voice gdid="1fwt2MNlvHNj-7dtIGqh47BNkr1M2JiN4" mods="bass" path="bass/Let Me Call You Sweetheart.mp3" voice="bass" />
       <voice gdid="1NCt7rwOzOiUVUAOi7wfZTRAs-I7jUKYw" mods="mix" path="mix/Let Me Call You Sweetheart.mp3" voice="mix" />
+      <voice gdid="11QLZW4DhlzrWKQEwglG-Tcoh0uevJDq7" mods="tenor" path="tenor/Let Me Call You Sweetheart - Tenor Left.mp3" voice="tenor" />
     </tracks>
   </song>
   <song id="1035" name="Let's Get Together Again">
@@ -1580,6 +1584,7 @@
     <tracks><voice gdid="129DPd7ugQyPHW_bEnDs_HQpqgI44wzyV" mods="bari left" path="bari/My Wild Irish Rose - bari left.mp3" voice="bari" />
       <voice gdid="1tqK6C6vCzWsO20K9Dpa3O8XGkOVtQGtW" mods="bass" path="bass/My Wild Irish Rose.mp3" voice="bass" />
       <voice gdid="1xnXkOtLCzEWdadrR0w0i_7FuSUZdRlHl" mods="mix" path="mix/My Wild Irish Rose.mp3" voice="mix" />
+      <voice gdid="11Ovsck4h82qiM60gyq7jr89F6RSouPYN" mods="tenor" path="tenor/My Wild Irish Rose - Tenor Left.mp3" voice="tenor" />
     </tracks>
   </song>
   <song id="1048" name="Naughty Lady Of Shady Lane">
@@ -1945,6 +1950,7 @@
     <tracks><voice gdid="1yRN8_aXExIQ0-V04sNM-rzzc6p1smdtX" mods="bari left" path="bari/Shine On Me - bari left.mp3" voice="bari" />
       <voice gdid="12EhllFOl8_P7lyYDR79rzDsUsHNetX3R" mods="bass" path="bass/Shine On Me.mp3" voice="bass" />
       <voice gdid="1ctMqwjEte_cFiRd4P3yWakyTNkOkh8Mi" mods="mix" path="mix/Shine On Me.mp3" voice="mix" />
+      <voice gdid="11JzbLbitsrewuZCf8abQEJxfucdPmkWM" mods="tenor" path="tenor/Shine On Me - Tenor Left.mp3" voice="tenor" />
     </tracks>
   </song>
   <song id="1103" name="Shut De Do">
@@ -2078,6 +2084,7 @@
     <tracks><voice gdid="1_caBHv8T1KFsOeQP0gpBUbt0qXTHmUqT" mods="bari" path="bari/Heart of My Heart - bari left.mp3" voice="bari" />
       <voice gdid="1a3bJjfqYyBec6Bzf-NLndx2uBgOUKJwK" mods="bass" path="bass/Heart of My Heart.mp3" voice="bass" />
       <voice gdid="14U6sW_QDGQaNkZ36aXQ31Rr9uRQNjhaR" mods="mix" path="mix/Heart of My Heart.mp3" voice="mix" />
+      <voice gdid="11R9hdLafqGFd87sDmVYV3knfkV80NRnZ" mods="tenor" path="tenor/Heart of My Heart - Tenor Left.mp3" voice="tenor" />
     </tracks>
   </song>
   <song id="1153" name="Sunshine of Your Smile, The">
@@ -2101,6 +2108,7 @@
     <tracks><voice gdid="1mYSUc4uVc9dDLpYADSbTDRAbJgt--b-Z" mods="bari left" path="bari/Sweet and Lovely - bari left.mp3" voice="bari" />
       <voice gdid="1rwDtm0w_H37M6mOCOw0wTGCSlCsECPog" mods="bass" path="bass/Sweet and Lovely.mp3" voice="bass" />
       <voice gdid="1Fb2mYHMThDcg3WferghLP_TZNDHB1ltl" mods="mix" path="mix/Sweet and Lovely.mp3" voice="mix" />
+      <voice gdid="11I4n9T_LaYAUra7lfO7dmG2e8DYoeM-2" mods="tenor" path="tenor/Sweet and Lovely - Tenor Left.mp3" voice="tenor" />
     </tracks>
   </song>
   <song id="1057" name="Sweet, Sweet Roses of Morn">
@@ -2114,6 +2122,7 @@
     <tracks><voice gdid="1h0WqcAeLeVOjtpYyGkjbBAeHNHD_wZ2i" mods="bari left" path="bari/Sweet Sweet Roses of Morn - bari left.mp3" voice="bari" />
       <voice gdid="1L_AjV4yRVMz4cqbIo8Roy_r585Y9lFX4" mods="bass" path="bass/Sweet Sweet Roses of Morn.mp3" voice="bass" />
       <voice gdid="1p2cNzepJX-5Jbn0RMrN_ojsUyi5JFn2G" mods="mix" path="mix/Sweet Sweet Roses of Morn.mp3" voice="mix" />
+      <voice gdid="11DRRzwGh3cW6egerKrEiNnKb1ab2jGyE" mods="tenor" path="tenor/Sweet Sweet Roses of Morn - Tenor Left.mp3" voice="tenor" />
     </tracks>
   </song>
   <song id="1190" name="Teddy Bear">
@@ -2278,6 +2287,7 @@
     <tracks><voice gdid="19DLSxn_SdW1Tn4JmLPzklxYWOSUUX1ua" mods="bari left" path="bari/Wait Til The Sun Shines Nellie - bari left.mp3" voice="bari" />
       <voice gdid="13HMMiJrp_dX0uG91x-N_fr-JX7MT2P3y" mods="bass" path="bass/Wait Til The Sun Shines Nellie.mp3" voice="bass" />
       <voice gdid="1aaehICSdJdWKhQO6Vd9IqTtyUmfPHByl" mods="mix" path="mix/Wait Til The Sun Shines Nellie.mp3" voice="mix" />
+      <voice gdid="11CrCJdd35eUNCMqVWnHnh9zQVdRZWJdl" mods="tenor" path="tenor/Wait Til The Sun Shines Nellie - Tenor Left.mp3" voice="tenor" />
     </tracks>
   </song>
   <song id="1170" name="We Need a Little Christmas">
@@ -2510,6 +2520,7 @@
     <tracks><voice gdid="1sJ1_Q_5uN8NM_5_qnvuqkDfwCBqKCADT" mods="bari left" path="bari/You Tell Me Your Dream - bari left.mp3" voice="bari" />
       <voice gdid="1NN17yv_vyep2RQNzAIq7d7K8UkseoYZp" mods="bass" path="bass/You Tell Me Your Dream.mp3" voice="bass" />
       <voice gdid="1QisQkU5vXzulCmnQETnBIAlbMTmIZohK" mods="mix" path="mix/You Tell Me Your Dream.mp3" voice="mix" />
+      <voice gdid="11CJgVog1Df--Ok0wTkhUnyXBcRYBc7rf" mods="tenor" path="tenor/You Tell Me Your Dream - Tenor Left.mp3" voice="tenor" />
     </tracks>
   </song>
   <song id="1008" name="You're Just In Love">
@@ -2541,6 +2552,7 @@
     <tracks><voice gdid="1LQn_FfPbnOcPHLJ1X7qswFdS3O1qEFbA" mods="bari left" path="bari/Sweet Adeline - bari left.mp3" voice="bari" />
       <voice gdid="11gAEnW3wQt9GEfl8CMAMNFaANg-DjWFr" mods="bass" path="bass/Sweet Adeline.mp3" voice="bass" />
       <voice gdid="1GnG1puNKCpUs7NW8QD83sHY2Yn1Xo9c4" mods="mix" path="mix/Sweet Adeline.mp3" voice="mix" />
+      <voice gdid="11IYS7amZUqQrhXBFC2bLLnNdMzKg6KN8" mods="tenor" path="tenor/Sweet Adeline - Tenor Left.mp3" voice="tenor" />
     </tracks>
   </song>
   <song id="1004" name="Zip-a-Dee Doo-Dah">
