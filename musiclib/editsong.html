@@ -1,0 +1,565 @@
+<!-- $Id: editsong.html,v 1.2 2022/02/06 02:31:52 dfm Exp dfm $
+     Log:$
+
+     display/edit a song from musiclib.xml
+-->
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Edit musiclib</title>
+<style>
+.gdid { font-family: Courier; }
+.chgd { background: powderblue; }
+.newsong { background-color: yellow; }
+.reqd { background-color: lightgreen; }
+td,th { padding: 6px; }
+td,th { border-style: solid; border-color: black; border-width: 2px; }
+textarea { overflow-wrap: break-word; border: none; background-color: transparent; resize: none; outline: none; }
+textarea { font-family: Arial; font-size: 18px; height: 1.6em; }
+textarea:focus { border-style: solid; }
+th { background-color: lightgreen; border-bottom: solid 2px; font-family: Arial; font-size: 18px; }
+table { border-style: solid; border-collapse: collapse; border-width: 2px; border-color: black; }
+table.songrow { width: 100% }
+table.wrapper { width: 90% }
+@media print {
+  @page { size: letter portrait; margin: .25in; }
+  html, body { width: 8.0in; height: 90%; }
+}
+caption { background-color: lightgreen; font-family: Arial; font-weight: bold; font-size: larger; }
+#songtab { width: 100%; }
+#aliastab { width: 100%; }
+#sheettab { width: 100%; }
+#trackstab { width: 100%; }
+</style>
+<script src="getqv.js"></script>
+<script src="saveit.js"></script>
+<script type="text/javascript">
+// define globals here...
+var songlib = [];
+var songobj = [];
+var song = [];
+var allCats = [];
+
+var varnam; // var. name (from rowhdrs) when cell is selected
+var selval; // value when cell is selected
+
+function loadDoc(doc) {
+    // start loading doc. xhr will call the onload function when loaded. 
+
+    const xhr = new XMLHttpRequest();
+    xhr.onerror = function() {
+      console.log("Error while getting XML.");
+    }
+
+    xhr.open("GET", doc);
+    xhr.responseType = "document";
+    xhr.send();
+
+    xhr.onload = function () {
+        let musiclib = xhr.responseXML.documentElement;
+
+        // console.log(`in onload - musiclib has ${musiclib.children.length} songs.`);
+        for (let songNode of musiclib.children) {
+            song = [];
+            for (let att of songNode.attributes) {
+                song[att.name] = att.value;
+            }
+
+            let nam = song['name'];
+            let sid = song['id'];
+
+            let akas = [];
+            let cat = '';
+            let categories = [];
+
+            for (let prop of songNode.children) {
+                if (prop.nodeName == "alias") {
+                    akas.push(prop.textContent);
+                } else if (prop.nodeName == "category") {
+                    cat = prop.textContent;
+                    categories.push(cat);
+                    if (allCats.indexOf(cat) < 0) {
+                        allCats.push(cat);
+                    }
+                } else if (prop.nodeName == "tracks") {
+                    let tracks = [];
+                    for (let subp of prop.children) {
+                        if (subp.nodeName == "voice") {
+                            let voice = [];
+                            let vname = 'phony';
+                            for (let att of subp.attributes) {
+                                if (att.name == 'voice') {
+                                    vname = att.value;
+                                } else {
+                                    voice[att.name] = att.value;
+                                }
+                            }
+                            if (!tracks.hasOwnProperty(vname)) {
+                                tracks[vname] = [];
+                            }
+                            tracks[vname].push(Object.assign(voice));
+                        } else {
+                            console.log(`track for ${song} has child ${subp.nodeName}??`);
+                        }
+                    }
+                    song[prop.nodeName] = Object.assign(tracks);
+                } else if (prop.nodeName == "sheet") {
+                    let sheet = [];
+                    for (let att of prop.attributes) {
+                        sheet[att.name] = att.value;
+                    }
+                    song[prop.nodeName] = Object.assign(sheet);
+                } else {
+                    song[prop.nodeName] = prop.textContent;
+                }
+            }
+            if (categories.length > 0) {
+                song['categories'] = Object.assign(categories);
+            } else {
+                song['categories'] = ["None"];
+            }
+            if (akas.length > 0) {
+                song['aliases'] = akas.slice();
+            }
+
+            if (! songlib.hasOwnProperty(nam)) {
+                songlib[nam] = [];
+            }
+            // may be more than one music with a name. add song id to list.
+            songlib[nam].push(sid);
+
+            // clone the song object and add to list
+            if (songobj.hasOwnProperty(sid)) {
+                throw "found multiple songs with sid " + sid;
+            }
+            songobj[sid] = Object.assign(song);
+        }
+
+        console.log("done loading");
+
+        // music library done loading - get the sid of the song we want to edit
+        // from the url.
+        var wantsid = getQueryVariable("sid", '');
+
+        let eol = "<BR/>\n";
+
+        song = songobj[wantsid];
+        console.log(`song name is ${song.name}`);
+
+        displaySong();
+        displayAliases();
+        displaySheet();
+        displayTracks();
+
+        setTabindex();
+    };
+}
+function addAlias() {
+    // event target is the img of the add button.
+    let tgt = event.target;
+
+    let altab = tgt.closest("table");
+    let alrow = altab.insertRow(-1);
+    let aliasel = alrow.insertCell(0);
+
+    let ta = document.createElement("TEXTAREA");
+    ta.cols = "90";
+    ta.tabIndex = "0";
+    ta.addEventListener("focusout", left_field);
+    ta.addEventListener("focusin", enter_field);
+    ta.classList.add("reqd");
+
+    let tx = document.createTextNode("**");
+    ta.appendChild(tx);
+    aliasel.appendChild(ta);
+    song.aliases.push("**");
+
+    let delbuttel = document.createElement("th");
+    delbuttel.width = "4%";
+    delbuttel.onclick = delAlias;
+    alrow.appendChild(delbuttel);
+    let alimg = document.createElement('img');
+    alimg.src = 'minus2.png';
+    alimg.title = 'Delete one';
+    delbuttel.appendChild(alimg);
+}
+function delAlias() {
+    console.log("Deleting an alias!");
+    // event target is the img of the delete button.
+    let tgt = event.target;
+    let alrow = tgt.closest("tr");
+
+    let alias = alrow.children[0].children[0].value;
+    if (confirm(`remove alias ${alias}?`)) {
+        let anum = song.aliases.indexOf(alias);
+        if (anum < 0) {
+            alert("program error - alias not in song??");
+        } else {
+            let rownum = alrow.rowIndex;
+            let altab = alrow.closest("table");
+            altab.deleteRow(rownum);
+            console.log(`deleted row ${rownum}, alias ${alias}`);
+        }
+    }
+}
+function displayAliases() {
+    let altab = "<table><caption>Aliases</caption>\n";
+    altab += "<tr class='rowhdrs'><th>Alias</th>";
+    altab += "<th width='4%' onclick='addAlias()'><img src='plus2.png' title='Add one'></img></th></tr>\n";
+    if (song.hasOwnProperty('aliases')) {
+        song['aliases'].forEach(function(alias) {
+            altab += `<tr><td><textarea cols='90'>${alias}</textarea></td>`;
+            altab += "<th width='4%' onclick='delAlias()'><img src='minus2.png' title='Delete one'></img></th></tr>\n";
+        });
+    } else {
+        console.log("no aliases...");
+    }
+    altab += "</table>";
+    document.querySelector("#aliastab").innerHTML = altab;
+}
+function addSheet() {
+    console.log("Adding a sheet!");
+    // event target is the img of the add button.
+    let tgt = event.target;
+
+    let shtab = tgt.closest("table");
+    // add a row at the end of the table
+    let shrow = shtab.insertRow(-1);
+
+    for (let col of ['file', 'gdid']) {
+        let newel = shrow.insertCell(-1);
+        let ta = document.createElement("TEXTAREA");
+        ta.cols = "40";
+        ta.tabIndex = "0";
+        ta.addEventListener("focusout", left_field);
+        ta.addEventListener("focusin", enter_field);
+        ta.classList.add("reqd");
+
+        let tx = document.createTextNode("**");
+        ta.appendChild(tx);
+        newel.appendChild(ta);
+        song.sheet[col] = "**";
+    }
+
+    let delbuttel = document.createElement("th");
+    delbuttel.width = "4%";
+    delbuttel.onclick = delSheet;
+    shrow.appendChild(delbuttel);
+    let shimg = document.createElement('img');
+    shimg.src = 'minus2.png';
+    shimg.title = 'Delete one';
+    delbuttel.appendChild(shimg);
+}
+function delSheet() {
+    console.log("Deleting a sheet!");
+    let tgt = event.target;
+    let shrow = tgt.closest("tr");
+    let file = shrow.children[0].textContent;
+    let gdid = shrow.children[1].textContent;
+    let rownum = shrow.rowIndex;
+    let shtab = shrow.closest("table");
+    shtab.deleteRow(rownum);
+    console.log(`selected sheet ${file}, gdid ${gdid}`);
+}
+function displaySheet() {
+    let shtab = "<table><caption>Sheet Music</caption>\n";
+    let shhdrs = ['File', 'Google Drive ID'];
+    shtab += "<tr class='rowhdrs'><th>" + shhdrs.join("</th><th>") + "</th>";
+    shtab += "<th width='4%' onclick='addSheet()'><img src='plus2.png' title='Add one'></img></th></tr>\n";
+    if (song.hasOwnProperty('sheet')) {
+        let fil = song['sheet']['sheet'];
+        let gdid = song['sheet']['gdid'];
+        shtab += `<tr><td><textarea cols='40'>${fil}</textarea></td>`;
+        shtab += `<td><textarea class='gdid' cols='40'>${gdid}</textarea></td>`;
+        shtab += "<th width='4%' onclick='delSheet()'><img src='minus2.png' title='Delete one'></img></th></tr>\n";
+    } else {
+        console.log("no sheets...");
+    }
+    shtab += "</table>\n";
+    document.querySelector("#sheettab").innerHTML = shtab;
+}
+
+function displaySong() {
+    let rowHeaders = [
+        ['id', 'key', 'pitch', 'category', 'name', 'notes', 'location'],
+        ['arranger', 'composer', 'lyricist', 'learn_by', 'words'],
+        ['ordered', 'stockID', 'copies', 'source', 'copyright', 'crdate'],
+    ];
+
+    let colWidth = {id:4, name:32, notes:20, location:16, key:4, pitch:4, category:16, words:32,
+        arranger:16, composer:40, lyricist:40, learn_by:10, ordered:10, stockID:10, copies:4, source:8,
+        copyright:40, crdate:10};
+
+    let songhtml = "";
+
+    for (let row of rowHeaders) {
+        songhtml += "<tr><td>";
+        songhtml += `<table class='songrow'>`;
+        songhtml += "<tr class='rowhdrs'><th>" + row.join("</th><th>") + "</th></tr>\n";
+        songhtml += "<tr>";
+        for (let colnam of row) {
+            let val = "";
+            if (colnam == "category") {
+                val = song['categories'].join(", ");
+            } else if (song.hasOwnProperty(colnam)) {
+                val = song[colnam];
+            } else {
+                val = "&nbsp;";
+            }
+            songhtml += `<td><textarea cols='${colWidth[colnam]}'>${val}</textarea></td>`;
+        }
+        songhtml += "</tr>\n";
+        songhtml += "</td></tr></table>\n";
+        songhtml += "</td></tr>";
+    }
+
+    let st = document.querySelector("#songtab");
+    st.innerHTML = songhtml;
+    let caption = st.createCaption();
+    caption.textContent = song.name;
+}
+function addTrack() {
+    console.log("Adding a track!");
+    let tgt = event.target;
+    let trtab = tgt.closest("table");
+    // add a row at the end of the table
+    let trrow = trtab.insertRow(-1);
+    let trwid = {voice:5, mods:12, path:60, gdid:50}
+
+    for (let col of ['voice', 'mods', 'path', 'gdid']) {
+        let newel = trrow.insertCell(-1);
+        let ta = document.createElement("TEXTAREA");
+        ta.cols = trwid[col];
+        ta.tabIndex = "0";
+        ta.addEventListener("focusout", left_field);
+        ta.addEventListener("focusin", enter_field);
+        ta.classList.add("reqd");
+
+        let tx = document.createTextNode("**");
+        ta.appendChild(tx);
+        newel.appendChild(ta);
+        if (! song.tracks.hasOwnProperty(col)) {
+            song.tracks[col] = [];
+        }
+        if (col != 'voice') {
+            song.tracks.voice[col] = "**";
+        }
+    }
+
+    let delbuttel = document.createElement("th");
+    delbuttel.width = "4%";
+    delbuttel.onclick = delSheet;
+    trrow.appendChild(delbuttel);
+    let trimg = document.createElement('img');
+    trimg.src = 'minus2.png';
+    trimg.title = 'Delete one';
+    delbuttel.appendChild(trimg);
+}
+function delTrack() {
+    console.log("Deleting a track!");
+    // event target is the img of the delete button.
+    let tgt = event.target;
+    let trrow = tgt.closest("tr");
+    let rownum = trrow.rowIndex;
+    let trtab = trrow.closest("table");
+    trtab.deleteRow(rownum);
+    console.log(`deleted track ${rownum}`);
+}
+function displayTracks() {
+    let trhdrs = ['Voice', 'Mods', 'Path', 'Google Drive ID'];
+    let trwid = {voice:5, mods:12, path:60, gdid:50}
+
+    let trtab = "<table><caption>Training Tracks</caption>\n";
+    trtab += "<tr class='rowhdrs'><th>" + trhdrs.join("</th><th>") + "</th>";
+    trtab += "<th width='4%' onclick='addTrack()'><img src='plus2.png' title='Add one'></img></th></tr>\n";
+    if (song.hasOwnProperty('tracks')) {
+
+        for (let voice in song.tracks) {
+            for (let track of song.tracks[voice]) {
+                trtab += `<tr class='trackrow'><td><textarea cols='${trwid['voice']}'>${voice}</textarea></td>`;
+                trtab += `<td><textarea cols='${trwid['mods']}'>${track['mods']}</textarea></td>`;
+                trtab += `<td><textarea cols='${trwid['path']}'>${track['path']}</textarea></td>`;
+                trtab += `<td><textarea class='gdid' cols='${trwid['gdid']}'>${track['gdid']}</textarea></td>`;
+                trtab += "<th width='4%' onclick='delTrack()'><img src='minus2.png' title='Delete one'></img></th></tr>\n";
+                trtab += "</tr>\n";
+            }
+        }
+    } else {
+        console.log("no tracks...");
+    }
+    trtab += "</table>\n";
+    document.querySelector("#trackstab").innerHTML = trtab;
+}
+function setTabindex() {
+    let alltas = document.querySelectorAll("TEXTAREA");
+    let ti = 1;
+    for (let ta of alltas) {
+        ti = 0;
+        let td = ta.parentNode;
+        let tr = td.parentNode;
+        let rowindex = tr.rowIndex;
+
+        ta.tabIndex = ti;
+        ta.addEventListener("focusout", left_field);
+        ta.addEventListener("focusin", enter_field);
+    }
+}
+function enter_field() {
+    // onfocus event - 
+    let ta = event.target;
+    // console.log(`entering enter_field, ta.tag ${ta.tagName} ti ${ta.tabIndex}`);
+
+    if (ta.tagName != "TEXTAREA") {
+        console.log(`bad selection! tag is ${ta.tagName}`);
+        window.getSelection().empty();
+        return;
+    }
+
+    // select all the text in the textarea
+    ta.select();
+    selval = ta.value;
+
+    // get the var. name for the selected textarea from the header row,
+    // which is the first child of the tbody ancestor.
+    let hdrrow = ta.closest("tbody").children[0];
+    let col = ta.parentNode.cellIndex;
+    varnam = hdrrow.children[col].innerText;
+    console.log(`${varnam}: ${selval}`);
+}
+function left_field() {
+    // caught leaving a textarea. process new value.
+    let ta = event.target;
+    // console.log(`entering left_field, ta.tag ${ta.tagName} ti ${ta.tabIndex}`);
+
+    // reg. expression for all keys and pitches
+    let keypat = /[A-G][b#m]?[m]?/;
+
+    if (ta.tagName != "TEXTAREA") {
+        console.log(`bad selection in left_field! tag is ${ta.tagName}`);
+        window.getSelection().empty();
+        return;
+    }
+
+    let newval = ta.value;
+    if (! newval || newval == selval) {
+        // nothing changed - go away.
+        return;
+    }
+
+    // get the section (song, alias, sheet, or track) from the id of the ancestor
+    // table with an id.
+    let sect = ta.closest("table[id]").id;
+    console.log(`in left_field for section ${sect}, var ${varnam}`);
+
+    let td = ta.parentNode;
+    let tr = td.parentNode;
+
+    // get the cells (td) from the selected row
+    let tas = Array.from(tr.getElementsByTagName("TEXTAREA"));
+
+    // a value was entered, and it wasn't same as before...
+    if (sect  == 'songtab') {
+        // validate some songtab entries...
+        switch (varnam) {
+            case 'category':
+                newcats = newval.split(",");
+                for (tcat of newcats) {
+                    tcat = tcat.trim();
+                    if (! allCats.includes(tcat)) {
+                        alert("Sorry, " + tcat + " is not a valid category!");
+                        return;
+                   }
+                }
+                // song['categories'] gets the list. the TD gets the joined string
+                newvallist = newcats;
+                newval = newcats.join(", ");
+                break;
+
+            case 'key':
+            case 'pitch':
+                // make the first char uppercase
+                newval = newval.charAt(0).toUpperCase() + newval.slice(1);
+                if (! newval.match(keypat)) {
+                    alert("Sorry, " + newval + " is not a valid " + varnam + "!");
+                    return;
+                }
+                break;
+
+            case 'id':
+                if (allsids.indexOf(newval) >= 0) {
+                    alert("Sorry, song id " + newval + " is already in use.");
+                    return;
+                }
+                break;
+        }
+    }
+
+    ta.value = newval;
+
+    // if user just satisfied a required value, remove required
+    // but don't mark it changed - only new songs have required, for now.
+    if (ta.classList.contains("reqd")) {
+        ta.classList.remove("reqd");
+    } else {
+        ta.classList.add("chgd");
+    }
+    console.log(`you entered ${newval}!`);
+
+    // all remaining varnam refs are song object props, so category s/b categories.
+    if (varnam == "category") {
+        varnam = "categories";
+        newval = newvallist;
+    }
+
+    // update the song object. if I understand javascript, the song object
+    // in the songobj dict is updated in the process.
+    switch (sect) {
+        case 'aliastab':
+            // this has to be a replace...
+            let n = song.aliases.indexOf(selval);
+            song.aliases[n] = newval;
+            console.log(`replaced ${varnam} ${selval} with ${newval} for ${song.name}`);
+            break;
+        case 'sheettab':
+            // we only allow one sheet for a song - could be multiple songs with the
+            // same name and different sheets, but each would have a unique song id.
+            if (varnam == "File") {
+                song.sheet.sheet = newval;
+                console.log(`replaced File ${selval} with ${newval} for ${song.name}`);
+            } else if (varnam == "Google Drive ID") {
+                song.sheet.gdid = newval;
+                console.log(`replaced GD ID ${selval} with ${newval} for ${song.name}`);
+            } else {
+                alert(`sheet tab varnam ${varnam} unknown!`);
+            }
+            break;
+        case 'trackstab':
+        case 'songtab':
+            // here, we need to check if the variable was in song previously, add it if not.
+            if (song.hasOwnProperty(varnam)) {
+                let valfromobj = song[varnam];
+                if (valfromobj == selval) {
+                    song[varnam] = newval;
+                    console.log(`replaced ${varnam} with ${newval} for sid ${song.id}`);
+                } else {
+                    alert("ERROR: " + valfromobj + " != " + selval);
+                    return;
+                }
+            } else {
+                song[varnam] = newval;
+                console.log(`set new ${varnam} to ${newval} for sid ${song.sid}`);
+            }
+            break;
+    }
+}
+</script>
+</head>
+<body onload="loadDoc('musiclib.xml')" onunload="saveit()">
+<table class='wrapper'>
+     <tr><td><table id='songtab'></table></td></tr>
+     <tr><td><table id='aliastab'></table></td></tr>
+     <tr><td><table id='sheettab'></table></td></tr>
+     <tr><td><table id='trackstab'></table></td></tr>
+ </table>
+</body>
+</html>
