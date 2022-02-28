@@ -1,0 +1,325 @@
+<!-- $Id:$
+     $Log:$
+
+     utilities to keep local storage and musiclib.xml in sync
+-->
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Musiclib - ls maintenance</title>
+<style>
+</style>
+<script src="getqv.js"></script>
+<script src="fmtDate.js"></script>
+<script type="text/javascript">
+// define globals here...
+var allCats = [];
+var songobjects = [];
+
+var deleteCount = 0;
+var varnam; // var. name (from rowhdrs) when cell is selected
+var selval; // value when cell is selected
+function listls() {
+    /* list localStorage items */
+    let html = "<table><tr><th>Length</th><th>Item</th></tr>";
+    for (let key of Object.keys(localStorage).sort()) {
+        html += `<tr><td>${localStorage[key].length}</td><td>${key}</td></tr>`;
+    }
+    html += "</table>";
+    document.querySelector("#putithere").innerHTML = html;
+}
+function listsongs() {
+    /* list songs from localStorage */
+    let html = "<table><tr><th>SID</th><th>Name</th></tr>";
+    let songs = [];
+    for (let key of Object.keys(localStorage)) {
+        if (key.substring(0, 4) == "song") {
+            let song = loadSong(key);
+            songs.push(song);
+        }
+    }
+    function byname(a, b) {
+        let rv = a.name.localeCompare(b.name, 'en', {ignorePunctuation: true});
+        return rv;
+    }
+    for (song of songs.sort(byname)) {
+        html += `<tr><td>${song.id}</td><td>${song.name}</td></tr>`;
+    }
+    html += "</table>";
+    document.querySelector("#putithere").innerHTML = html;
+}
+function loadSong(lsname) {
+    songxml = localStorage.getItem(lsname);
+    // console.log(songxml);
+
+    parser = new DOMParser();
+    songNodes = parser.parseFromString(songxml,"text/xml").getElementsByTagName("song");
+
+    for (let songNode of songNodes) {
+        song = [];
+        for (let att of songNode.attributes) {
+            song[att.name] = att.value;
+        }
+
+        let nam = song['name'];
+        let sid = song['id'];
+
+        let akas = [];
+        let cat = '';
+        let categories = [];
+
+        for (let prop of songNode.children) {
+            if (prop.nodeName == "alias") {
+                akas.push(prop.textContent);
+            } else if (prop.nodeName == "category") {
+                cat = prop.textContent;
+                categories.push(cat);
+                if (allCats.indexOf(cat) < 0) {
+                    allCats.push(cat);
+                }
+            } else if (prop.nodeName == "tracks") {
+                let tracks = [];
+                for (let subp of prop.children) {
+                    if (subp.nodeName == "voice") {
+                        let voice = [];
+                        let vname = 'phony';
+                        for (let att of subp.attributes) {
+                            if (att.name == 'voice') {
+                                vname = att.value;
+                            } else {
+                                voice[att.name] = att.value;
+                            }
+                        }
+                        if (!tracks.hasOwnProperty(vname)) {
+                            tracks[vname] = [];
+                        }
+                        tracks[vname].push(Object.assign(voice));
+                    } else {
+                        console.log(`track for ${song} has child ${subp.nodeName}??`);
+                    }
+                }
+                song[prop.nodeName] = Object.assign(tracks);
+            } else if (prop.nodeName == "sheet") {
+                let sheet = [];
+                for (let att of prop.attributes) {
+                    sheet[att.name] = att.value;
+                }
+                song[prop.nodeName] = Object.assign(sheet);
+            } else {
+                song[prop.nodeName] = prop.textContent;
+            }
+        }
+        if (categories.length > 0) {
+            song['categories'] = Object.assign(categories);
+        } else {
+            song['categories'] = ["None"];
+        }
+        if (akas.length > 0) {
+            song['aliases'] = akas.slice();
+        }
+    }
+    return song;
+}
+function reload() {
+    window.location.reload();
+}
+function xmltols() {
+    // note that this assumes musiclib.xml has been loaded into songobjects.
+    for (let song of songobjects) {
+        let songxml = songtoxml(song);
+        let lsname = `song${song.id}`;
+        localStorage.setItem(lsname, songxml);
+    }
+}
+// from https://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-deep-clone-an-object-in-javascript
+function copy(o) {
+  let out, v, key;
+  out = Array.isArray(o) ? [] : {};
+  for (key in o) {
+    v = o[key];
+    out[key] = (typeof v === "object" && v !== null) ? copy(v) : v;
+  }
+  return out;
+}
+function loadDoc(doc) {
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        docReady(this);
+    }
+  };
+  xhr.open("GET", doc, true);
+  xhr.send();
+}
+function docReady(xhr) {
+    // called when lib xml is ready to process. load info into songobjects. 
+    let musiclib = xhr.responseXML.documentElement;
+
+    for (let songNode of musiclib.children) {
+        let song = [];
+        for (let att of songNode.attributes) {
+            song[att.name] = att.value;
+        }
+
+        let akas = [];
+        let cat = '';
+        let categories = [];
+
+        for (let prop of songNode.children) {
+            if (prop.nodeName == "alias") {
+                akas.push(prop.textContent);
+            } else if (prop.nodeName == "category") {
+                cat = prop.textContent;
+                categories.push(cat);
+            } else if (prop.nodeName == "tracks") {
+                let tracks = [];
+                for (let subp of prop.children) {
+                    if (subp.nodeName == "voice") {
+                        let voice = [];
+                        let vname = 'phony';
+                        for (let att of subp.attributes) {
+                            if (att.name == 'voice') {
+                                vname = att.value;
+                            } else {
+                                voice[att.name] = att.value;
+                            }
+                        }
+                        if (!tracks.hasOwnProperty(vname)) {
+                            tracks[vname] = [];
+                        }
+                        tracks[vname].push(Object.assign(voice));
+                    } else {
+                        console.log(`track for ${song} has child ${subp.nodeName}??`);
+                    }
+                }
+                song[prop.nodeName] = Object.assign(tracks);
+            } else if (prop.nodeName == "sheet") {
+                let sheet = [];
+                for (let att of prop.attributes) {
+                    sheet[att.name] = att.value;
+                }
+                song[prop.nodeName] = Object.assign(sheet);
+            } else {
+                song[prop.nodeName] = prop.textContent;
+            }
+        }
+        if (akas.length > 0) {
+            song['aliases'] = Object.assign(akas);
+        }
+        if (categories.length > 0) {
+            song['categories'] = Object.assign(categories);
+        }
+
+        // add the song object to list
+        songobjects.push(song);
+    }
+}
+function songtoxml(song) {
+    let attrs = ['id', 'name'];
+    /*
+    let props = [ 'notes', 'location', 'key', 'pitch', 'words', 'arranger', 'composer',
+        'lyricist', 'learn_by', 'ordered', 'stockID', 'copies', 'source', 'copyright', 'crdate'];
+    */
+    let props = [ 'arranger', 'composer', 'copies', 'copyright', 'crdate', 'key', 'learn_by',
+        'location', 'lyricist', 'notes', 'ordered', 'pitch', 'source', 'stockID', 'words' ];
+
+    if (!song || song.isAlias) {
+        return;
+    }
+    let sid = song['id'];
+    let nam = song['name'];
+    newxml = `  <song id="${sid}" name="${nam}">\n`;
+    if (song.hasOwnProperty('aliases')) {
+        for (let aka of song['aliases']) {
+            newxml += `  <alias>${aka}</alias>\n`;
+        }
+    }
+    for (let cat of song['categories']) {
+        newxml += `    <category>${cat}</category>\n`;
+    }
+    for (let prop of props) {
+        if (song.hasOwnProperty(prop)) {
+            let val = song[prop];
+            newxml += `    <${prop}>${val}</${prop}>\n`;
+        }
+    }
+    if (song.hasOwnProperty('tracks')) {
+        newxml += `    <tracks>\n`;
+        for (let voice in song.tracks) {
+            for (let trk of song.tracks[voice]) {
+                newxml += `      <voice gdid="${trk.gdid}" mods="${trk.mods}" path="${trk.path}" voice="${voice}" />\n`;
+            }
+        }
+        newxml += "    </tracks>\n";
+    }
+    if (song.hasOwnProperty('sheet')) {
+        newxml += `    <sheet gdid="${song.sheet.gdid}" sheet="${song.sheet.sheet}" />\n`;
+    }
+    newxml += "  </song>\n";
+
+    // expand special chars here - only & seems to be needed.
+    // let re = /&/g;
+    // newxml = newxml.replace(re, "&amp;");
+
+    return newxml;
+}
+function lstoxml() {
+    // local storage to xml - download song library xml. 
+    // songs are loaded from localStorage, converted to song objects
+    // and saved to the songs array, to allow sorting by name.
+
+    let rev = fmtDate()[2];
+    let libxml = `<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="musiclib.xsl"?>
+<musiclib name="Tuners Music Library" rev="${rev}">
+`;
+
+    let songs = [];
+    for (let key of Object.keys(localStorage)) {
+        if (key.substring(0, 4) == "song") {
+            let song = loadSong(key);
+            songs.push(song);
+        }
+    }
+    function byname(a, b) {
+        // let rv = a.name.localeCompare(b.name, 'en', {ignorePunctuation: true});
+        let rv = 0;
+        if (a.name < b.name) {
+            rv = -1;
+        } else if (a.name > b.name) {
+            rv = 1;
+        }
+        return rv;
+    }
+    for (song of songs.sort(byname)) {
+        if (! song.isAlias) {
+            let songxml = songtoxml(song);
+            libxml += songxml;
+        }
+    }
+    libxml += "</musiclib>\n";
+
+    // expand special chars here - only & seems to be needed.
+    let re = /&/g;
+    libxml = libxml.replace(re, "&amp;");
+
+    var dlname = 'musiclib.xml';
+
+    let pom = document.createElement('a');
+    pom.style.display = 'none';
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(libxml));
+    pom.setAttribute('download', dlname);
+    document.body.appendChild(pom);
+    pom.click();
+    document.body.removeChild(pom);
+}
+</script>
+<body onload="loadDoc('musiclib.xml')">
+    <button onclick="xmltols()">xml to ls</button>
+    <button onclick="lstoxml()">ls to xml</button>
+    <button onclick="listls()">list ls</button>
+    <button onclick="listsongs()">list ls songs</button>
+    <button onclick="reload()">start over</button>
+    <p id="putithere"></p>
+</body>
+</html>
