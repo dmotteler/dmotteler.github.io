@@ -2,7 +2,7 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title id="doctitle"></title>
 <style>
-.key { text-align: center; }
+.key, .pitch { text-align: center; }
 td { padding: 6px; }
 .tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
 .hidden { display: none; }
@@ -176,6 +176,14 @@ function makelist() {
         let songTitle = nam; // songTitle is nam (notes) [location]
         for (let sid of songlib[nam]) {
             let key = songobj[sid]['key'];
+            let keyclass = "key";
+            if (songobj[sid].hasOwnProperty('pitch')) {
+                let pit = songobj[sid]['pitch'];
+                if (pit != "") {
+                    key = 'blow ' + pit;
+                    keyclass = "pitch";
+                }
+            }
             let words = songobj[sid]['words'];
             if (songobj[sid].hasOwnProperty("notes")) {
                 songTitle += ` (${songobj[sid]['notes']})`;
@@ -210,9 +218,9 @@ function makelist() {
             }
 
             if (qtetSongs.includes(nam)) {
-                html += `<tr class='qtet'><td class='key'>${key}</td><td>${picks}</td><td>${words}</td></tr>\n`;
+                html += `<tr class='qtet'><td class='${keyclass}'>${key}</td><td>${picks}</td><td>${words}</td></tr>\n`;
             } else {
-                html += `<tr><td class='key'>${key}</td><td>${picks}</td><td>${words}</td></tr>\n`;
+                html += `<tr><td class='${keyclass}'>${key}</td><td>${picks}</td><td>${words}</td></tr>\n`;
             }
 
         }
