@@ -21,6 +21,7 @@ table { border-collapse: collapse; font-family: Arial; font-size: 18px; font-wei
 }
 </style>
 <script>
+var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none'];
 function clickmix() {
     let defaultVoice = localStorage.getItem("defaultVoice");
     if (! defaultVoice) { defaultVoice = "mix"; }
@@ -34,13 +35,15 @@ function setvoice(el) {
     for (let element of document.getElementsByClassName(voice)) {
        element.classList.remove("hidden");
     }
-    let others = new Set(['bass', 'bari', 'lead', 'tenor', 'mix']);
+    let others = new Set(voices);
     others.delete(voice);
     // don't show the rest of the classes
     for (let v of others) {
         for (let element of document.getElementsByClassName(v)) { element.classList.add("hidden"); }
     }
-    localStorage.setItem("defaultVoice", voice);
+    if (voice != "none") {
+        localStorage.setItem("defaultVoice", voice);
+    }
 }
 // BEGIN CLIP
 // songlib is indexed by song name, values are
@@ -95,7 +98,10 @@ function init() {
                                     voice[att.name] = att.value;
                                 }
                             }
-                            tracks[vname] = Object.assign(voice);
+                            if (!tracks.hasOwnProperty(vname)) {
+                                tracks[vname] = [];
+                            }
+                            tracks[vname].push(Object.assign(voice));
                         }
                     }
                     song[prop.nodeName] = Object.assign(tracks);
@@ -170,7 +176,6 @@ function init() {
     xhr.send();
 }
 function makelist() {
-    let voices = ['bass', 'bari', 'lead', 'tenor', 'mix'];
     let html = "";
     for (let nam of songlist) {
         let songTitle = nam; // songTitle is nam (notes) [location]
@@ -194,27 +199,32 @@ function makelist() {
             let picks = "";
             if (songobj[sid].hasOwnProperty("tracks")) {
                 for (let voice of voices) {
+                    let choices = [];
                     let ancclass = voice;
                     if (voice != "mix") {
                         ancclass += " hidden";
                     }
                     if (songobj[sid]['tracks'].hasOwnProperty(voice)) {
-                        let gdid = songobj[sid]['tracks'][voice]['gdid'];
-                        if (picks == "") {
-                            picks = `<a class='${ancclass}' href='https://drive.google.com/open?id=${gdid}'>${songTitle}</a>\n`;
-                        } else {
-                            picks += `<a class='${ancclass}' href='https://drive.google.com/open?id=${gdid}'>${songTitle}</a>\n`;
+                        for (let vtrk of songobj[sid]['tracks'][voice]) {
+                            let gdid = vtrk['gdid'];
+                            let mods = vtrk['mods'];
+                            choices.push(`<a href='https://drive.google.com/open?id=${gdid}'>${songTitle} : ${mods}</a>`);
                         }
+                    } else if (voice == "none") {
+                        // don't include location for voice none
+                        let short = nam;
+                        if (songobj[sid].hasOwnProperty("notes")) {
+                            short += ` (${songobj[sid]['notes']})`;
+                        }
+                        choices.push(short);
                     } else { 
-                        if (picks == "") {
-                            picks = `<div class='${ancclass}'>${nam}</div>\n`;
-                        } else {
-                            picks += `<div class='${ancclass}'>${nam}</div>\n`;
-                        }
+                        // no tracks for this voice
+                        choices.push(songTitle);
                     }
+                    picks += `<div class='${ancclass}'>` + choices.join("<br/>\n") + "\n</div>";
                 }
             } else {
-                picks = nam + "\n";
+                picks = songTitle + "\n";
             }
 
             if (qtetSongs.includes(nam)) {
@@ -270,6 +280,7 @@ function down() {
  <input type="radio" id="selbari" name="part" value="bari" onclick="setvoice(this)">bari</input>
  <input type="radio" id="selbass" name="part" value="bass" onclick="setvoice(this)">bass</input>
  <input type="radio" id="selmix" name="part" value="mix" onclick="setvoice(this)">mix</input>
+ <input type="radio" id="selnone" name="part" value="none" onclick="setvoice(this)">none</input>
 </fieldset>
  </td></tr>
 </table>
