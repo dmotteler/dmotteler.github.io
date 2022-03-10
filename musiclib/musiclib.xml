@@ -464,9 +464,9 @@
     <composer>Lionel Bart</composer>
     <copyright>Lakeview Music Co. Ltd</copyright>
     <crdate>1959-12-31</crdate>
-    <key>A</key>
+    <key>Bb</key>
     <lyricist>Lionel Bart</lyricist>
-    <pitch>A</pitch>
+    <pitch>Ab</pitch>
     <stockID>206615</stockID>
     <words>When you start in to frown</words>
     <tracks><voice gdid="11Td0y6d1oxykBMZvRF8A_sL1THbustyd" mods="Tenor" path="tenor/Consider Yourself - Tenor.mp3" voice="tenor" />
@@ -580,7 +580,7 @@
   </song>
   <song id="1175" name="Dona Nobis Pacem">
     <category>Current</category>
-    <key>D</key>
+    <key>F</key>
     <words>Do-na no-bis</words>
     <sheet gdid="1wVn9dDqhBZnR5u2hg5ofVASavIfdG9D3" sheet="Dona Nobis Pacem.pdf" />
   </song>
