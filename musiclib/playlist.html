@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id="doctitle">make rehearsal playlist</title>
+<style>
+.hidden { display: none; }
+.playing { background-color: lightgreen; }
+.paused { background-color: yellow; }
+#pltab { width: 500px; }
+td>a { font-family: Arial; }
+caption { background-color: lightgreen; font-family: Arial; font-weight: bold; font-size: larger; }
+label, legend, .bigger, .venue { font-family: Arial; font-size: larger; }
+img { width:40px; height:40px; }
+fieldset img { padding: 10px 50%; }
+img.left { padding: 0px 10%; }
+img.middle { padding: 0px 10%; }
+.blink { animation: blink 2s linear infinite; }
+@keyframes blink { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+img.right { padding: 0px 10%; }
+h3 { font-size: xx-large; }
+</style>
+<script>
+
+// encoded svg for the player control images
+// idea from https://codepen.io/tigt/post/optimizing-svgs-in-data-uris 
+var prevsvg = `data:image/svg+xml;utf8,
+%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='300' height='300'%3E
+%3Ccircle cx='150' cy='150' r='140' stroke='black' stroke-width='21' fill='lightblue'/%3E
+%3Cpolygon points='95.00 150.00, 207.50 85.05, 207.50 214.95' stroke='black' fill='black' stroke-width='1'/%3E
+%3Cline x1='85' x2='85' y1='210' y2='90' stroke='black' stroke-width='21' stroke-linecap='round'/%3E
+%3C/svg%3E`;
+
+var playsvg = `data:image/svg+xml;utf8,
+%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='300' height='300'%3E
+%3Ccircle cx='150' cy='150' r='140' stroke='black' stroke-width='21' fill='lightgreen'/%3E
+%3Cpolygon points='225.00 150.00, 112.50 214.95, 112.50 85.05' stroke='black' fill='black' stroke-width='1'/%3E
+%3C/svg%3E`;
+
+var nextsvg = `data:image/svg+xml;utf8,
+%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='300' height='300'%3E
+%3Ccircle cx='150' cy='150' r='140' stroke='black' stroke-width='21' fill='lightblue'/%3E
+%3Cpolygon points='205.00 150.00, 92.50 214.95, 92.50 85.05' stroke='black' fill='black' stroke-width='1'/%3E
+%3Cline x1='215' x2='215' y1='210' y2='90' stroke='black' stroke-width='21' stroke-linecap='round'/%3E
+%3C/svg%3E`;
+
+var pausesvg = `data:image/svg+xml;utf8,
+%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='300' height='300'%3E
+%3Ccircle cx='150' cy='150' r='140' stroke='black' stroke-width='21' fill='lightpink'/%3E
+%3Cline x1='120' x2='120' y1='210' y2='90' stroke='black' stroke-width='21' stroke-linecap='round'/%3E
+%3Cline x1='180' x2='180' y1='210' y2='90' stroke='black' stroke-width='21' stroke-linecap='round'/%3E
+%3C/svg%3E`;
+
+function nextsong(dir) {
+    let curtrks = [];
+    let activendx = -1;
+    let seltrks = document.querySelectorAll("tr[id^='vtrk']");
+    let ndx = 0;
+    for (let curtrk of seltrks) {
+        if (curtrk.classList.contains("playing")) {
+            curtrk.classList.remove("playing");
+            activendx = ndx;
+            if (playPromise != undefined) {
+                playPromise.then(_ => {
+                    // console.log("audio was playing, issuing pause and showing play icon");
+                    audel.pause();
+                });
+            }
+        }
+        chkd = curtrk.querySelector("input[type='checkbox']").checked;
+        if (chkd) {
+            curtrks.push(curtrk.id);
+            ndx++;
+        }
+    }
+    if (curtrks.length < 1) {
+        // no tracks are selected. avoid infinite loop!
+            alert("no tracks selected!");
+        return;
+    }
+
+    let songsrc = "";
+    activendx += dir;
+    if (activendx > curtrks.length - 1) {
+        activendx = 0;
+    } else if (activendx < 0) {
+        activendx = curtrks.length - 1;
+    }
+    vtrkid = curtrks[activendx];
+    let trktr = document.getElementById(vtrkid);
+    opensrc = trktr.querySelector("a").href
+    let gid = opensrc.substring("https://drive.google.com/open?id=".length);
+    songsrc = "https://docs.google.com/uc?export=download&id=" + gid;
+    if (! audel) {
+        audel = document.getElementById("audel");
+    }
+    console.log(`starting ${vtrkid}`);
+    audel.src = songsrc;
+    document.getElementById(vtrkid).classList.add("playing");
+    if (playPromise != undefined) {
+        playPromise.then(_ => {
+            // previous play promise has completed, start the new one.
+            playPromise = audel.play();
+        });
+    } else {
+        playPromise = audel.play();
+    }
+    ppimg.src = pausesvg;
+    ppimg.classList.remove("blink");
+    document.getElementById(vtrkid).classList.remove("paused");
+}
+var audel;
+var ppimg;
+var playPromise;
+function playpause() {
+    if (audel) {
+        if (audel.paused) {
+            // console.log("audio was paused, issuing play and showing pause icon");
+            if (playPromise != undefined) {
+                playPromise.then(_ => {
+                    // console.log("audio was playing, issuing pause and showing play icon");
+                    playPromise = audel.play();
+                });
+            }
+            ppimg.src = pausesvg;
+            ppimg.classList.remove("blink");
+            document.getElementById(vtrkid).classList.remove("paused");
+        } else {
+            if (playPromise != undefined) {
+                playPromise.then(_ => {
+                    // console.log("audio was playing, issuing pause and showing play icon");
+                    audel.pause();
+                    ppimg.src = playsvg;
+                    ppimg.classList.add("blink");
+                    document.getElementById(vtrkid).classList.add("paused");
+                })
+                .catch(error => {
+                    console.log("caught playPromise error, showing play icon");
+                    ppimg.src = playsvg;
+                    ppimg.classList.add("blink");
+                });
+            } else {
+                // console.log("playPromise undefined.");
+                playPromise = audel.play();
+                ppimg.src = pausesvg;
+                ppimg.classList.remove("blink");
+                document.getElementById(vtrkid).classList.remove("paused");
+            }
+        }
+    } else {
+        nextsong(1);
+    }
+}
+function prevsong() {
+    // if song has started, restart.
+    // otherwise, back up to previous song in list.
+    let cur = audel.currentTime;
+    let dur = audel.duration;
+    if (cur > 3.0) {
+        audel.currentTime = 0.0;
+        console.log(`restarted after ${cur} of ${dur}`);
+    } else {
+        console.log(`backing up after ${cur} of ${dur}`);
+        nextsong(-1);
+    }
+}
+
+var urls = [];
+function cheatindex(chndx) {
+    // create the list of events from the cheats index
+    // alert("loaded!");
+    let html = "";
+    let cheats = chndx.querySelectorAll("a");
+    for (let cheat of cheats) {
+        html += `<div class="venue">${cheat.textContent}</div>\n`;
+        urls[cheat.textContent] = cheat.href;
+    }
+    document.querySelector("#eventsdiv").innerHTML = html;
+    document.querySelector(".partsel").classList.remove("hidden");
+}
+function setclear(el) {
+    let sorc = el.checked;
+    let cbs = document.querySelectorAll("input[type='checkbox']");
+    for (let cb of cbs) {
+        cb.checked = sorc;
+    }
+}
+function playlist(cheathtml, voice) {
+    // the part has been selected and the event cheat sheet has been loaded.
+    //  create and display the playlist for it.
+
+    document.querySelector("#selevent").classList.add("hidden");
+    document.querySelector("#pltab").innerHTML = "";
+
+    let voicesel = "." + voice;
+    let songs = cheathtml.querySelectorAll(voicesel);
+    let html = `<tr><td><input type="checkbox" checked onclick="setclear(this)"></td><td class="bigger">Set/Clear All</td></tr>\n`;
+    let trkno = 0;
+    for (let song of songs) {
+        if (song.tagName == "A") {
+            // console.log(`type A: ${song.textContent}, ${song.href}`);
+            trkno++;
+            html += `<tr id="vtrk${trkno}"><td><input type="checkbox" checked></td><td><a href="${song.href}">${song.textContent}</a></td></tr>`;
+        } else if (song.tagName == "DIV") {
+            let trax = song.querySelectorAll("a");
+            for (let a of trax) {
+                // console.log(`type DIV: ${a.textContent}, ${a.href}`);
+                trkno++;
+                html += `<tr id="vtrk${trkno}"><td><input type="checkbox" checked></td><td>${a.outerHTML}</td></tr>`;
+            }
+        } else if (song.tagName == "TR") {
+            let trax = song.querySelectorAll("a");
+            if (trax) {
+                for (let a of trax) {
+                    // console.log(`type TR: ${a.textContent}, ${a.href}`);
+                    trkno++;
+                    html += `<tr id="vtrk${trkno}"><td><input type="checkbox" checked></td><td>${a.outerHTML}</td></tr>`;
+                }
+            }
+        } else {
+            console.log(`type ${song.tagName}??? WTF?`);
+        }
+    }
+    let titlel = cheathtml.querySelector(".tabletitle");
+    document.querySelector(".plctrl").classList.remove("hidden");
+    let pl = document.querySelector("#pltab");
+    pl.innerHTML = html;
+    let caption = pl.createCaption();
+    caption.innerHTML = `<a href='${cheathtml.baseURI}'>${titlel.textContent}</a>`;
+    caption.style.fontSize = "1.2em";
+}
+function init() {
+    document.querySelector("#previmg").src = prevsvg;
+    document.querySelector("#nextimg").src = nextsvg;
+
+    ppimg = document.querySelector("#ppimg");
+    ppimg.src = playsvg;
+    ppimg.classList.add("blink");
+
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        // index has loaded - go prepare the list
+        cheatindex(this.responseXML.documentElement);
+    }
+    xhr.onerror = function() {
+      console.log("Error while getting XML.");
+    }
+
+    xhr.open("GET", "https://dmotteler.github.io/cheats/index.html");
+    xhr.responseType = "document";
+    xhr.send();
+}
+function eventsel() {
+    // event has been selected from the list
+    // event target is the selected event div. get the 
+    // cheat sheet url from the div, and load the cheat sheet.
+    let tdiv = event.target;
+    let url = urls[tdiv.innerText];
+    console.log(`url: ${url}`);
+
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        // event html has been loaded/parsed. go make the playlist.
+        cheathtml = this.responseXML.documentElement;
+        playlist(cheathtml, voice);
+    }
+    xhr.onerror = function() {
+      console.log("Error while getting XML.");
+    }
+
+    xhr.open("GET", url);
+    xhr.responseType = "document";
+    xhr.send();
+}
+var cheathtml;
+var voice;
+function havepart(el) {
+    voice = el.value;
+    document.querySelector("#selevent").classList.remove("hidden");
+}
+</script>
+</head>
+<body onload='init()'>
+<fieldset class='partsel'>
+ <legend>Select voice</legend>
+  <input type="radio" id="bassp" name="voicepart" onclick="havepart(this)" value="bass">
+  <label for="bassp">bass</label>
+  <input type="radio" id="barip" name="voicepart" onclick="havepart(this)" value="bari">
+  <label for="barip">bari</label>
+  <input type="radio" id="leadp" name="voicepart" onclick="havepart(this)" value="lead">
+  <label for="leadp">lead</label>
+  <input type="radio" id="tenorp" name="voicepart" onclick="havepart(this)" value="tenor">
+  <label for="tenorp">tenor</label>
+  <input type="radio" id="mixp" name="voicepart" onclick="havepart(this)" value="mix">
+  <label for="mixp">mix</label>
+</fieldset>
+<fieldset id="selevent" class="hidden" onclick="eventsel()">
+<legend>Select an event</legend>
+<div id="eventsdiv"></div>
+</fieldset>
+<table id="pltab"></table>
+<br>
+<fieldset class='hidden plctrl'>
+<legend>Control Playback</legend>
+<img id="previmg" src="" class="left" title="restart/previous song" onclick="prevsong()">
+<img id="ppimg" src="" class="middle" title="play/pause" onclick="playpause()">
+<img id="nextimg" src="" class="right" title="next song" onclick="nextsong(1)">
+</fieldset>
+<audio id="audel" onended="nextsong(1)" src=""></audio>
+</body>
+</html>
