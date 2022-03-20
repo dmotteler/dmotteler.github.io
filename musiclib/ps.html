@@ -14,43 +14,13 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Pick songs</title>
 <link rel="stylesheet" href="xmlpick.css" />
+<script src="fmtDate.js"></script>
 <script type="text/javascript">
 
 var songorder = 0;
 var songlist = [];
+var qtetSongs = [];
 
-function fmtDate(dstr) {
-    // expecting dstr like "2028-02-29T23:04", but anything Date 
-    // will accept should do. 
-    let monam = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"];
-
-    let d = new Date(dstr);
-    let longmon = monam[d.getMonth()];
-    let day = d.getDate();
-    let dmon = d.getMonth() + 1;
-    let yr = d.getFullYear();
-    let hr = d.getHours();
-    let dmin = d.getMinutes();
-
-    let ampm = "AM";
-    if (hr > 11) {
-        ampm = "PM";
-    }
-    if (hr > 12) {
-        hr -= 12;
-    }
-
-    let mons = dmon.toString().padStart(2, 0);
-    let days = day.toString().padStart(2, 0);
-    let hrs = hr.toString().padStart(2, 0);
-    let mins = dmin.toString().padStart(2, 0);
-
-    // e.g., September 9, 2020 12:29PM
-    let datstr = `${longmon} ${day}, ${yr} ${hrs}:${mins}${ampm}`;
-    let datndx = yr + mons + days + hrs + mins;
-    return([datstr,datndx]);
-}
 function selme(el) {
     let right_click = false;
     if (el.id == "tabid") {
@@ -75,11 +45,7 @@ function selme(el) {
         //   on right-click, toggle qtet setting.
         //   on left-click, un-choose it and blank out the order.
         if (right_click) {
-            if (el.classList.contains("qtet")) {
-                el.classList.remove("qtet");
-            } else {
-                el.classList.add("qtet");
-            }
+            el.classList.toggle("qtet");
         } else {
             el.classList.remove("chosen");
             el.classList.remove("qtet");
@@ -164,7 +130,6 @@ function alldone() {
     }
 
     var songs = [];
-    var qtetsongs = [];
     for (let element of document.getElementsByClassName("chosen")) {
         let song = element.childNodes[1].textContent;
         if (element.classList.contains("hidden")) {
@@ -172,14 +137,14 @@ function alldone() {
                 let ord = Number(element.childNodes[0].textContent) - 1;
                 songs[ord] = song;
                 if (element.classList.contains("qtet")) {
-                    qtetsongs.push(song);
+                    qtetSongs.push(song);
                 }
             }
         } else {
             let ord = Number(element.childNodes[0].textContent) - 1;
             songs[ord] = song;
             if (element.classList.contains("qtet")) {
-                qtetsongs.push(song);
+                qtetSongs.push(song);
             }
         }
     }
@@ -202,7 +167,7 @@ function alldone() {
 
     let [fulldate, datndx] = fmtDate(evdate);
 
-    let newevent = {'when': fulldate, 'where': venue, 'songlist': seq, 'qtetSongs': qtetsongs };
+    let newevent = {'when': fulldate, 'where': venue, 'songlist': seq, 'qtetSongs': qtetSongs };
     eventlist[datndx] = newevent;
 
     // replace the updated event list in local storage.
@@ -372,8 +337,6 @@ function evsel(el) {
         console.log("added " + venue);
     }
 
-    var songlist;
-
     // get count of number of songs flagged as chosen.
     let chosenels = document.querySelectorAll(".chosen");
     let nchosen = chosenels.length;
@@ -395,6 +358,9 @@ function evsel(el) {
             // start with the selection's list.
             let ev = eventlist[opt.data_value];
             songlist = ev['songlist'];
+            if (ev.hasOwnProperty("qtetSongs")) {
+                qtetSongs = ev.qtetSongs;
+            }
         }
     } else {
         // no songlist for selected event. if songs had been
@@ -450,6 +416,9 @@ function evsel(el) {
             // position in songlist, and add it to chosen class.
             ordel.textContent = neword.toString();
             element.classList.add("chosen");
+            if (qtetSongs.includes(song)) {
+                element.classList.add("qtet");
+            }
         }
     }
     // set songorder global, so new selections will get the correct ord.

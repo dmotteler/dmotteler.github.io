@@ -17,6 +17,7 @@ function fmtDate(dstr) {
     let hr = d.getHours();
     let dmin = d.getMinutes();
 
+    let hr24 = hr;
     let ampm = "AM";
     if (hr > 11) {
         ampm = "PM";
@@ -28,6 +29,7 @@ function fmtDate(dstr) {
     let mons = dmon.toString().padStart(2, 0);
     let days = day.toString().padStart(2, 0);
     let hrs = hr.toString().padStart(2, 0);
+    let hrs24 = hr24.toString().padStart(2, 0);
     let mins = dmin.toString().padStart(2, 0);
 
     // e.g., September 9, 2020 12:29PM
@@ -35,7 +37,7 @@ function fmtDate(dstr) {
     let datstr = `${longmon} ${day}, ${yr} ${hrs}:${mins}${ampm}`;
     // 202009091229
     // let datndx = yr + mons + days + hrs + mins;
-    let datndx = `${yr}${mons}${days}${hrs}${mins}`;
+    let datndx = `${yr}${mons}${days}${hrs24}${mins}`;
     // 2020-09-09
     let ymd = `${yr}-${mons}-${days}`;
     return([datstr,datndx,ymd]);

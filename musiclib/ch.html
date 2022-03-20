@@ -52,6 +52,7 @@ var songlib = [];
 // songobj is indexed by song id, values are
 //   details for the song
 var songobj = [];
+var eventlist;
 var evdate;
 var evndx;
 var venue;
@@ -137,7 +138,7 @@ function init() {
         let eljson = localStorage.getItem('TunersEvents');
 
         if (eljson) {
-            var eventlist = JSON.parse(eljson);
+            eventlist = JSON.parse(eljson);
         } else {
             alert("couldn't load the event list from local storage.");
             return;
@@ -227,12 +228,8 @@ function makelist() {
                 picks = songTitle + "\n";
             }
 
-            if (qtetSongs.includes(nam)) {
-                html += `<tr class='qtet'><td class='${keyclass}'>${key}</td><td>${picks}</td><td>${words}</td></tr>\n`;
-            } else {
-                html += `<tr><td class='${keyclass}'>${key}</td><td>${picks}</td><td>${words}</td></tr>\n`;
-            }
-
+            let cl = qtetSongs.includes(nam) ? "class='song qtet'" : "class='song'";
+            html += `<tr ${cl}><td class='${keyclass}'>${key}</td><td>${picks}</td><td>${words}</td></tr>\n`;
         }
     }
     document.getElementById("putithere").outerHTML=html;
@@ -262,11 +259,47 @@ function down() {
     pom.click();
     document.body.removeChild(pom);
 }
+function togqtet() {
+    // right-click will do the context menu when we leave
+    // if we don't prevent it.
+    event.preventDefault();
+
+    // find the song row that was clicked
+    let tr = event.target.closest("tr");
+    // don't try to update non-song rows...
+    if (tr.classList.contains("song")) {
+        // get the row index, and the associated song name 
+        // (note: songlist does not change in this page)
+        let n = tr.rowIndex - 1;
+        let song = songlist[n];
+        if (tr.classList.contains("qtet")) {
+            // qtet song selected - remove it
+            let n2 = qtetSongs.indexOf(song);
+            if (n2 > -1) {
+                qtetSongs.splice(n2, 1);
+            }
+            tr.classList.remove("qtet");
+            console.log(`removed qtet song ${song}`);
+        } else {
+            // non-qtet song selected - add it
+            qtetSongs.push(song);
+            tr.classList.add("qtet");
+            console.log(`added qtet song ${song}`);
+        }
+        // update event's songlist and qtetSongs in local storage.
+        let newevent = {'when': evdate, 'where': venue, 'songlist': songlist, 'qtetSongs': qtetSongs };
+        eventlist[evndx] = newevent;
+        console.log(`updated newevent: when: ${evdate}, where: ${venue}, songlist: ${songlist}, qtetSongs: ${qtetSongs}`);
+
+        // replace the updated event list in local storage.
+        localStorage.setItem('TunersEvents', JSON.stringify(eventlist));
+    }
+}
 // END CLIP
 </script>
 </head>
 <body onload='init()'>
-<table border='1'>
+<table oncontextmenu="togqtet()" border='1'>
     <tr><td id='evtitl' colspan='3' class='tabletitle'></td></tr>
     <tr id="putithere"></tr>
 <tr>

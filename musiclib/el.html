@@ -8,11 +8,13 @@ table, p, option, select { border-collapse: collapse; font-family: Arial; font-s
 td { padding: 6px; }
 .tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
 .hidden { display: none; }
+.slctd:not(.qtet) { background-color: yellow; color: black; }
+.slctd.qtet { background-color: yellow; color: black; }
+.qtet { background-color: blue; color: white; }
+tr:not(.slctd):not(.qtet):nth-child(even) { background-color: #CCC }
+tr:not(.slctd):not(.qtet):nth-child(odd) { background-color: #FFF }
 span.u { text-decoration: underline black; font-style: italic; }
-tr:nth-child(even) { background: #CCC }
-tr:nth-child(odd) { background: #FFF }
 .partsel { text-align: center; background: lightgreen; }
-.qtet { background-color: blue !important; color: white; }
 table { border-collapse: collapse; font-family: Arial; font-size: 18px; font-weight: bold; border-width: 5px; }
 @media print {
   @page { size: letter portrait; margin: .5in; }
