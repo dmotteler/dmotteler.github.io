@@ -55,6 +55,7 @@ fo.write(html)
 n = 0
 for d in sorted(reh, reverse = True):
     fn, titl = reh[d]
+    fn = fn.replace("'", "%27")
     lin = "<a href='{}'>{}</a><br/>\n".format(fn, titl)
     fo.write(lin)
     n += 1
