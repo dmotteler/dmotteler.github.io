@@ -129,33 +129,48 @@ function slfunc(func, el, ndx) {
             throw `what kind of function is ${func}`;
     }
     let songrow = document.querySelector(".slctd");
-    songrow.querySelector("img").classList.add("hidden");
+    songrow.querySelector("img").src = checksvg;
     songrow.classList.remove("slctd")
     document.getElementById("editmenu").innerHTML = "<p><strong>Select a song, then choose an action.</strong></p>";
 
     makelist();
 }
 function makelist() {
-    // try just updating event songlist and reloading
-    let newevent = {'when': evdate, 'where': venue, 'songlist': songlist, 'qtetSongs': qtetSongs };
-    eventlist[datndx] = newevent;
-    console.log(`leaving with newevent ${newevent}`);
-
-    // replace the updated event list in local storage.
-    localStorage.setItem('TunersEvents', JSON.stringify(eventlist));
-
-    window.location.href = "el.html";
+    let html = "";
+    for (let song of songlist) {
+        let cl = qtetSongs.includes(song) ? "class='qtet song'" : "class='song'"
+        html += `<tr onclick="selsong(this)" ${cl}><td>${song}</td><td class="selimg"><img src=""/></td></tr>`;
+    }
+    document.getElementById("playlist").innerHTML = html;
+    let chkimgs = document.querySelectorAll("img");
+    for (let img of chkimgs) {
+        img.src = nochecksvg;
+    }
 }
 var datndx;
 var evdate;
 var eventlist = [];
-var origlist = [];
 var libsel;
 var qtetSongs = [];
 var songlist = [];
 var title;
 var venue;
+var checksvg; // svg for check mark to indicate selected row
+var nochecksvg; // svg to replace check for non-selected row
+
 function init() {
+    checksvg = `data:image/svg+xml;utf8,
+%3Csvg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128"%3E
+  %3Crect width="128" height="128" fill="none" /%3E
+  %3Ccircle cx="64" cy="64" r="59" fill="yellow" stroke="black" stroke-width="10"/%3E
+  %3Cpolyline points="32,64 53,83 95,42" fill="none" stroke="black" stroke-width="10" stroke-linecap="round" /%3E
+%3C/svg%3E`;
+
+    nochecksvg = `data:image/svg+xml;utf8,
+%3Csvg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128"%3E
+  %3Crect width="128" height="128" fill="none" /%3E
+%3C/svg%3E`;
+
     // load and parse the song name list (actually a <select>)
     let lsjson = localStorage.getItem('songlibsel');
 
@@ -171,7 +186,6 @@ function init() {
 
     if (eljson) {
         eventlist = JSON.parse(eljson);
-        origlist = JSON.parse(eljson);
     } else {
         alert("couldn't load the event list from local storage.");
         return;
@@ -202,13 +216,7 @@ function init() {
     if (ev.hasOwnProperty("qtetSongs")) {
         qtetSongs = ev['qtetSongs'];
     }
-
-    let html = "";
-    for (let song of songlist) {
-        let cl = qtetSongs.includes(song) ? "class='qtet song'" : "class='song'"
-        html += `<tr onclick="selsong(this)" ${cl}><td>${song}</td><td class="selimg"><img class="hidden" src="check.svg"/></td></tr>`;
-    }
-    document.getElementById("putithere").outerHTML = html;
+    makelist();
 }
 function selsong(el) {
     // el is the row where the left-click was done, or
@@ -238,9 +246,6 @@ function selsong(el) {
             qtetSongs.push(cursong);
             console.log(`${cursong} is now a quartet song.`);
         }
-        if (cursong.indexOf("\t") > -1) {
-            alert("gotcha!");
-        }
         return;
     }
     // get song name from td element
@@ -248,21 +253,19 @@ function selsong(el) {
     let cursels = document.querySelectorAll(".slctd");
     for (let s of cursels) {
         s.classList.remove("slctd");
-        s.querySelector("img").classList.add("hidden");
+        s.querySelector("img").src = nochecksvg;
     }
     if (cursels.length > 0) {
         if (cursels[0] == el) {
-            // same song re-selected - un-select it and leave.
+            // same song re-selected - reset the edit menu instruction and leave
+            document.getElementById("editmenu").innerHTML = "<p><strong>Select a song, then choose an action.</strong></p>";
             return;
         }
     }
 
     el.classList.add("slctd");
-    el.querySelector("img").classList.remove("hidden");
+    el.querySelector("img").src = checksvg;
     document.getElementById("editmenu").innerHTML = `<p>Choose an action for <span class="u">${cursong}</span></p>`;
-    if (cursong.indexOf("\t") > -1) {
-        alert("gotcha #2!");
-    }
 }
 function done() {
     // go back to caller after updating songlist in local storage.
@@ -276,8 +279,7 @@ function done() {
     window.location.href = "ch.html";
 }
 function cancel() {
-    console.log(`restoring event list to original value and returning to caller`);
-    localStorage.setItem('TunersEvents', JSON.stringify(origlist));
+    console.log(`leavging without updating eventlist (cancel)`);
     window.location.href = "ch.html";
 }
 </script>
