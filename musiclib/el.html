@@ -2,26 +2,28 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title class="doctitle">${title}</title>
 <style>
-table, p, option, select { border-collapse: collapse; font-family: Arial; font-size: 18px; font-weight: bold; border-width: 5px; }
+#wrapper { width: 500px; }
+#playlist { width: 100%;  }
 .footer { text-align: center; background: lightgreen; }
+table { border-collapse: collapse; font-family: Arial; font-size: 18px; font-weight: bold; border-width: 5px; }
+table, p, option, select { border-collapse: collapse; font-family: Arial; font-size: 18px; font-weight: bold; border-width: 5px; }
+td,th { border-style: solid; border-color: black; border-width: 2px; }
 .key { text-align: center; }
 td { padding: 6px; }
-.tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
+img { width: 50%; height: 50%; vertical-align: middle;
+    display: block; margin-left: auto; margin-right: auto; }
+caption { background-color: lightgreen; text-align: center;
+    font-size: 24px; border-bottom: solid 5px; padding: 5px; }
+.selimg { width: 40px; }
 .hidden { display: none; }
-.slctd:not(.qtet) { background-color: yellow; color: black; }
-.slctd.qtet { background-color: yellow; color: black; }
 .qtet { background-color: blue; color: white; }
-tr:not(.slctd):not(.qtet):nth-child(even) { background-color: #CCC }
-tr:not(.slctd):not(.qtet):nth-child(odd) { background-color: #FFF }
+.song:not(.slctd):not(.qtet):nth-child(even) { background-color: silver; }
+.song:not(.slctd):not(.qtet):nth-child(odd) { background-color: white; }
 span.u { text-decoration: underline black; font-style: italic; }
-.partsel { text-align: center; background: lightgreen; }
-table { border-collapse: collapse; font-family: Arial; font-size: 18px; font-weight: bold; border-width: 5px; }
 @media print {
   @page { size: letter portrait; margin: .5in; }
-  body { max-width: 5.5in; }
   table { font-size: 12px; }
   td { padding: 4px; }
-  .tabletitle { font-size: 18px; }
 }
 </style>
 <script>
@@ -42,8 +44,7 @@ function sledit(el) {
         return;
     }
     let cursong = songrow.children[0].innerText;
-    let songndx = songrow.rowIndex - 1;
-    // let songndx = songlist.indexOf(cursong);
+    let songndx = songrow.rowIndex;
     if (songndx < 0) {
         throw `${cursong} not found in ${songlist}`;
     }
@@ -128,6 +129,7 @@ function slfunc(func, el, ndx) {
             throw `what kind of function is ${func}`;
     }
     let songrow = document.querySelector(".slctd");
+    songrow.querySelector("img").classList.add("hidden");
     songrow.classList.remove("slctd")
     document.getElementById("editmenu").innerHTML = "<p><strong>Select a song, then choose an action.</strong></p>";
 
@@ -147,6 +149,7 @@ function makelist() {
 var datndx;
 var evdate;
 var eventlist = [];
+var origlist = [];
 var libsel;
 var qtetSongs = [];
 var songlist = [];
@@ -168,6 +171,7 @@ function init() {
 
     if (eljson) {
         eventlist = JSON.parse(eljson);
+        origlist = JSON.parse(eljson);
     } else {
         alert("couldn't load the event list from local storage.");
         return;
@@ -190,7 +194,7 @@ function init() {
 
     title = `${venue} - ${evdate}`;
     document.title = title;
-    document.getElementById("evtitl").innerText = title;
+    document.querySelector("#playlist").caption.textContent = title;
 
     songlist = ev['songlist'];
 
@@ -201,11 +205,8 @@ function init() {
 
     let html = "";
     for (let song of songlist) {
-        if (qtetSongs.includes(song)) {
-            html += `<tr onclick="selsong(this)" class='qtet'><td colspan="3">${song}</td></tr>`;
-        } else {
-            html += `<tr onclick="selsong(this)"><td colspan="3">${song}</td></tr>`;
-        }
+        let cl = qtetSongs.includes(song) ? "class='qtet song'" : "class='song'"
+        html += `<tr onclick="selsong(this)" ${cl}><td>${song}</td><td class="selimg"><img class="hidden" src="check.svg"/></td></tr>`;
     }
     document.getElementById("putithere").outerHTML = html;
 }
@@ -217,11 +218,12 @@ function selsong(el) {
         // right-click will do the context menu when we leave
         // if we don't prevent it.
         event.preventDefault();
+        let td = event.target;
+        cursong = td.innerText;
 
         // get the row element from the parent of the
         // td where the right-click was done.
-        el = event.target.parentNode;
-        cursong = el.innerText;
+        el = td.parentNode;
 
         // toggle qtet class for the song
         if (el.classList.contains("qtet")) {
@@ -236,22 +238,31 @@ function selsong(el) {
             qtetSongs.push(cursong);
             console.log(`${cursong} is now a quartet song.`);
         }
+        if (cursong.indexOf("\t") > -1) {
+            alert("gotcha!");
+        }
         return;
     }
-    cursong = el.innerText;
+    // get song name from td element
+    cursong = el.children[0].innerText;
     let cursels = document.querySelectorAll(".slctd");
+    for (let s of cursels) {
+        s.classList.remove("slctd");
+        s.querySelector("img").classList.add("hidden");
+    }
     if (cursels.length > 0) {
         if (cursels[0] == el) {
-            // same song re-selected - just leave.
+            // same song re-selected - un-select it and leave.
             return;
         }
     }
-    for (let s of cursels) {
-        s.classList.remove("slctd");
-    }
 
     el.classList.add("slctd");
+    el.querySelector("img").classList.remove("hidden");
     document.getElementById("editmenu").innerHTML = `<p>Choose an action for <span class="u">${cursong}</span></p>`;
+    if (cursong.indexOf("\t") > -1) {
+        alert("gotcha #2!");
+    }
 }
 function done() {
     // go back to caller after updating songlist in local storage.
@@ -265,30 +276,37 @@ function done() {
     window.location.href = "ch.html";
 }
 function cancel() {
-    // go back to caller without updating songlist in local storage.
+    console.log(`restoring event list to original value and returning to caller`);
+    localStorage.setItem('TunersEvents', JSON.stringify(origlist));
     window.location.href = "ch.html";
 }
 </script>
 </head>
 <body onload="init()">
-<table id='playlist' oncontextmenu="selsong(this)" border='1'>
-    <tr><td id='evtitl' colspan='3' class='tabletitle'>${title}</td></tr>
+<table id="wrapper" border="1">
+<tr><td>
+  <table id='playlist' oncontextmenu="selsong(this)">
+    <caption>${title}</caption>
     <tr id="putithere"></tr>
-<tr>
-<td class="footer"><input type="button" value="Done" onclick="done()"><br>
-<input type="button" value="Cancel" onclick="cancel()"></td>
-<td class="footer">
-<fieldset class="footer">
-<legend>Choose action</legend>
- <input type="radio" name="act" value="mov" onclick="sledit(this)">move
- <input type="radio" name="act" value="del" onclick="sledit(this)">remove
- <input type="radio" name="act" value="rep" onclick="sledit(this)">replace
- <input type="radio" name="act" value="add" onclick="sledit(this)">add
-</fieldset>
+  </table>
+</td></tr>
+<tr><td>
+  <div id='editmenu'> <p><strong>Select a song, then choose an action.</strong></p> </div>
+</td></tr>
+<tr><td>
+ <table><tr class="footer">
+  <td><input type="button" value="Done" onclick="done()"><br>
+   <input type="button" value="Cancel" onclick="cancel()"></td>
+  <td width="100%">
+    <fieldset>
+     <legend>Choose action</legend>
+     <input type="radio" name="act" value="mov" onclick="sledit(this)">move
+     <input type="radio" name="act" value="del" onclick="sledit(this)">remove
+     <input type="radio" name="act" value="rep" onclick="sledit(this)">replace
+     <input type="radio" name="act" value="add" onclick="sledit(this)">add
+    </fieldset>
+  </table>
 </td></tr>
 </table>
-<div id='editmenu'>
-    <p><strong>Select a song, then choose an action.</strong></p>
-</div>
 </body>
 </html>
