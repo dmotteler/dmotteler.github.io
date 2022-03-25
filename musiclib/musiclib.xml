@@ -2223,7 +2223,6 @@
     <composer>Traditional</composer>
     <key>Ab</key>
     <learn_by>2013-12-30</learn_by>
-    <notes>slower</notes>
     <words>Well, come and listen in</words>
     <tracks><voice gdid="1vm5PjL1P03WJ7ZNRmTq7f92eKCpIZGJN" mods="bari" path="bari/Turn Your Radio On - bari.mp3" voice="bari" />
       <voice gdid="1XhwflrFafAe_esaXtgaBuzERxXgN1rer" mods="bari slower" path="bari/Turn Your Radio On BARI slower 10.mp3" voice="bari" />
