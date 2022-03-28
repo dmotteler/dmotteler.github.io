@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title id="doctitle">make rehearsal playlist</title>
+<!--
+
+    $Id: playlist.html,v 1.1 2022/03/24 18:34:55 dfm Exp dfm $
+    $Log: playlist.html,v $
+    Revision 1.1  2022/03/24 18:34:55  dfm
+    Initial revision
+
+
+    build playlist for an event with google drive links to the mp3s
+-->
+<title id="doctitle">Tuners playlist</title>
 <style>
 .hidden { display: none; }
+.paused { background-image: linear-gradient(to right, yellow, yellow); }
 .playing { background-color: lightgreen; }
-.paused { background-color: yellow; }
-#pltab { width: 500px; }
-td>a { font-family: Arial; }
-caption { background-color: lightgreen; font-family: Arial; font-weight: bold; font-size: larger; }
+#wrapper { width: 528px; }
+#pltab, #plcapt, .plctrl, .partsel, #selevent, #selsongs { width: 100%; }
+#plcapt { text-align: center;
+    font-family: Arial; font-weight: bold; font-size: larger;
+    background-color: lightgreen; }
+#repeats { width: 2em; }
+.sep { margin-left: 20px; }
+input[type=number]::-webkit-inner-spin-button { opacity: 1 }
+div[id^='vtrk'] { font-family: Arial; font-weight: bold; }
 label, legend, .bigger, .venue { font-family: Arial; font-size: larger; }
 img { width:40px; height:40px; }
-fieldset img { padding: 10px 50%; }
-img.left { padding: 0px 10%; }
-img.middle { padding: 0px 10%; }
-.blink { animation: blink 2s linear infinite; }
+img { padding: 6px calc((100%-120px)/8); }
+.blink { animation: blink 1s linear infinite; }
 @keyframes blink { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-img.right { padding: 0px 10%; }
 h3 { font-size: xx-large; }
 </style>
 <script>
@@ -51,13 +64,42 @@ var pausesvg = `data:image/svg+xml;utf8,
 %3C/svg%3E`;
 
 function nextsong(dir) {
+    // requestor is ppimg when user sets playlist and then clicks play.
+    // it is previmg and nextimg when invoked by those buttons, and
+    // it is audel when invoked by song end.
+
+    let rqstr = event.target.id;
+    if (rqstr == "audel") {
+        if (doitagain > 0) {
+            console.log(`progress was updated ${numelcalls} times`);
+            numelcalls = 0;
+            doitagain--;
+            if (playPromise != undefined) {
+                playPromise.then(_ => {
+                    // previous play promise has completed, start the new one.
+                    playPromise = audel.play();
+                });
+            } else {
+                playPromise = audel.play();
+            }
+            console.log(`restarting ${vtrkid}, doitagain now ${doitagain}`);
+            return;
+        }
+    }
+
     let curtrks = [];
     let activendx = -1;
-    let seltrks = document.querySelectorAll("tr[id^='vtrk']");
+    let seltrks = document.querySelectorAll("div[id^='vtrk']");
     let ndx = 0;
+    let pozd = document.querySelector(".paused");
+    if (pozd) {
+        pozd.classList.remove("paused");
+    }
+
     for (let curtrk of seltrks) {
         if (curtrk.classList.contains("playing")) {
             curtrk.classList.remove("playing");
+            curtrk.style.backgroundImage = "";
             activendx = ndx;
             if (playPromise != undefined) {
                 playPromise.then(_ => {
@@ -66,7 +108,7 @@ function nextsong(dir) {
                 });
             }
         }
-        chkd = curtrk.querySelector("input[type='checkbox']").checked;
+        chkd = curtrk.children[0].checked;
         if (chkd) {
             curtrks.push(curtrk.id);
             ndx++;
@@ -86,14 +128,25 @@ function nextsong(dir) {
         activendx = curtrks.length - 1;
     }
     vtrkid = curtrks[activendx];
-    let trktr = document.getElementById(vtrkid);
-    opensrc = trktr.querySelector("a").href
-    let gid = opensrc.substring("https://drive.google.com/open?id=".length);
+    let trkdiv = document.getElementById(vtrkid);
+    let gid = trkdiv.children[0].value;
     songsrc = "https://docs.google.com/uc?export=download&id=" + gid;
+    // songsrc = `/dfm_ws/NormTracks/${songpath[gid]}`;
     if (! audel) {
         audel = document.getElementById("audel");
+        audel.addEventListener("playing", function() {
+            let nam = document.getElementById(vtrkid).innerText;
+            console.log(`starting ${vtrkid}: ${nam} (${audel.duration.toFixed(2)})`);
+        });
+        audel.addEventListener("timeupdate", function() {
+            numelcalls++;
+            var currentTime = audel.currentTime;
+            var duration = audel.duration;
+            let pct = 100.0*(currentTime +.25)/duration;
+            document.getElementById(vtrkid).style.backgroundImage = `linear-gradient(to right, lightgreen ${pct}%, yellow ${pct}%)`;
+        });
     }
-    console.log(`starting ${vtrkid}`);
+    doitagain = document.querySelector("#repeats").value - 1;
     audel.src = songsrc;
     document.getElementById(vtrkid).classList.add("playing");
     if (playPromise != undefined) {
@@ -107,10 +160,14 @@ function nextsong(dir) {
     ppimg.src = pausesvg;
     ppimg.classList.remove("blink");
     document.getElementById(vtrkid).classList.remove("paused");
+    numelcalls = 0;
 }
 var audel;
 var ppimg;
 var playPromise;
+var doitagain = 0;
+var vtrkid;
+var numelcalls;
 function playpause() {
     if (audel) {
         if (audel.paused) {
@@ -189,65 +246,118 @@ function playlist(cheathtml, voice) {
     //  create and display the playlist for it.
 
     document.querySelector("#selevent").classList.add("hidden");
-    document.querySelector("#pltab").innerHTML = "";
+    document.querySelector("#selsongs").classList.remove("hidden");
+
+    let pltab = document.querySelector("#pltab");
+    pltab.innerHTML = "";
 
     let voicesel = "." + voice;
     let songs = cheathtml.querySelectorAll(voicesel);
-    let html = `<tr><td><input type="checkbox" checked onclick="setclear(this)"></td><td class="bigger">Set/Clear All</td></tr>\n`;
+    let html = `<div id="setclr" class="bigger"><input type="checkbox" checked onclick="setclear(this)">Set/Clear All</div>\n`;
     let trkno = 0;
     for (let song of songs) {
+        trkno++;
         if (song.tagName == "A") {
             // console.log(`type A: ${song.textContent}, ${song.href}`);
-            trkno++;
-            html += `<tr id="vtrk${trkno}"><td><input type="checkbox" checked></td><td><a href="${song.href}">${song.textContent}</a></td></tr>`;
+            let gdid = song.href.split("id=")[1];
+            html += `<div id="vtrk${trkno}"><input type="checkbox" checked value="${gdid}">${song.textContent}</div>`;
         } else if (song.tagName == "DIV") {
             let trax = song.querySelectorAll("a");
             for (let a of trax) {
-                // console.log(`type DIV: ${a.textContent}, ${a.href}`);
+                let gdid = a.href.split("id=")[1];
+                html += `<div id="vtrk${trkno}"><input type="checkbox" checked value="${gdid}">${a.textContent}</div>`;
                 trkno++;
-                html += `<tr id="vtrk${trkno}"><td><input type="checkbox" checked></td><td>${a.outerHTML}</td></tr>`;
             }
         } else if (song.tagName == "TR") {
             let trax = song.querySelectorAll("a");
             if (trax) {
                 for (let a of trax) {
-                    // console.log(`type TR: ${a.textContent}, ${a.href}`);
+                    let gdid = a.href.split("id=")[1];
+                    html += `<div id="vtrk${trkno}"><input type="checkbox" checked value="${gdid}">${a.textContent}</div>`;
                     trkno++;
-                    html += `<tr id="vtrk${trkno}"><td><input type="checkbox" checked></td><td>${a.outerHTML}</td></tr>`;
                 }
             }
         } else {
             console.log(`type ${song.tagName}??? WTF?`);
         }
     }
+    pltab.innerHTML = html;
     let titlel = cheathtml.querySelector(".tabletitle");
     document.querySelector(".plctrl").classList.remove("hidden");
-    let pl = document.querySelector("#pltab");
-    pl.innerHTML = html;
-    let caption = pl.createCaption();
-    caption.innerHTML = `<a href='${cheathtml.baseURI}'>${titlel.textContent}</a>`;
-    caption.style.fontSize = "1.2em";
+    let plcapt = document.querySelector("#plcapt");
+    plcapt.innerText = `${titlel.textContent}`;
+    plcapt.style.fontSize = "1.2em";
 }
-function init() {
-    document.querySelector("#previmg").src = prevsvg;
-    document.querySelector("#nextimg").src = nextsvg;
-
-    ppimg = document.querySelector("#ppimg");
-    ppimg.src = playsvg;
-    ppimg.classList.add("blink");
-
+var songpath = [];
+function loadlib(liburl) {
     const xhr = new XMLHttpRequest();
     xhr.onload = function () {
-        // index has loaded - go prepare the list
-        cheatindex(this.responseXML.documentElement);
+        // musiclib has loaded - build gdid to filepath map
+        let musiclib = this.responseXML.documentElement;
+
+        let nids = 0;
+        for (let songNode of musiclib.children) {
+            for (let prop of songNode.children) {
+                if (prop.nodeName == "tracks") {
+                    let gdid, path;
+                    for (let subp of prop.children) {
+                        if (subp.nodeName == "voice") {
+                            for (let att of subp.attributes) {
+                                if (att.name == 'gdid') {
+                                    gdid = att.value;
+                                } else if (att.name == 'path') {
+                                    path = att.value;
+                                }
+                            }
+                            songpath[gdid] = path;
+                            nids++;
+                        } else {
+                            console.log(`track for ${song} has child ${subp.nodeName}??`);
+                        }
+                    }
+                }
+            }
+        }
+        console.log(`gdid to file-path map has ${nids} entries.`);
+
+        // next, set up voice
+        let defaultVoice = localStorage.getItem("defaultVoice");
+        if (! defaultVoice) { defaultVoice = "mix"; }
+        let buttonId = defaultVoice + "p";
+        let butt = document.getElementById(buttonId);
+        butt.click();
+
+        document.querySelector("#previmg").src = prevsvg;
+        document.querySelector("#nextimg").src = nextsvg;
+
+        ppimg = document.querySelector("#ppimg");
+        ppimg.src = playsvg;
+        ppimg.classList.add("blink");
+
+        // now load cheats index
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            // index has loaded - go prepare the list
+            cheatindex(this.responseXML.documentElement);
+        }
+        xhr.onerror = function() {
+          console.log("Error while getting XML.");
+        }
+
+        xhr.open("GET", "https://dmotteler.github.io/cheats/index.html");
+        xhr.responseType = "document";
+        xhr.send();
     }
     xhr.onerror = function() {
       console.log("Error while getting XML.");
     }
 
-    xhr.open("GET", "https://dmotteler.github.io/cheats/index.html");
+    xhr.open("GET", liburl);
     xhr.responseType = "document";
     xhr.send();
+}
+function init() {
+    loadlib("https://dmotteler.github.io/musiclib/musiclib.xml");
 }
 function eventsel() {
     // event has been selected from the list
@@ -277,9 +387,14 @@ function havepart(el) {
     voice = el.value;
     document.querySelector("#selevent").classList.remove("hidden");
 }
+var repeats;
+function setrepeat(el) {
+    repeats = el.value;
+}
 </script>
 </head>
 <body onload='init()'>
+<div id="wrapper">
 <fieldset class='partsel'>
  <legend>Select voice</legend>
   <input type="radio" id="bassp" name="voicepart" onclick="havepart(this)" value="bass">
@@ -292,19 +407,25 @@ function havepart(el) {
   <label for="tenorp">tenor</label>
   <input type="radio" id="mixp" name="voicepart" onclick="havepart(this)" value="mix">
   <label for="mixp">mix</label>
+  <label for="repeats" class="sep">Repeats</label>
+  <input type="number" id="repeats" name="repeats" min="0" max="3" value="1" oninput="setrepeat(this)">
 </fieldset>
 <fieldset id="selevent" class="hidden" onclick="eventsel()">
 <legend>Select an event</legend>
 <div id="eventsdiv"></div>
 </fieldset>
-<table id="pltab"></table>
-<br>
+<fieldset id="selsongs" class="hidden">
+<legend>Select Songs</legend>
+<div id="plcapt"></div>
+<div id="pltab"></div>
+</fieldset>
 <fieldset class='hidden plctrl'>
 <legend>Control Playback</legend>
 <img id="previmg" src="" class="left" title="restart/previous song" onclick="prevsong()">
 <img id="ppimg" src="" class="middle" title="play/pause" onclick="playpause()">
 <img id="nextimg" src="" class="right" title="next song" onclick="nextsong(1)">
 </fieldset>
+</div>
 <audio id="audel" onended="nextsong(1)" src=""></audio>
 </body>
 </html>
