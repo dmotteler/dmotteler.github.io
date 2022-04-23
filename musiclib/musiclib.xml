@@ -9,6 +9,7 @@
     <crdate>1958-12-31</crdate>
     <key>Bb</key>
     <words>After dark, when ev'rything is still</words>
+    <sheet gdid='0Bxd7i2Hm5BiPdkxMYmNUTUhBR28' sheet='AfterDark.pdf' />
   </song>
   <song id="1109" name="After You've Gone">
     <category>Current</category>
@@ -266,6 +267,7 @@
       <voice gdid="1KaZF3nadALkCmNSEm5fkptWqDfBI36UR" mods="tenor" path="tenor/Breaking Up Is Hard To Do - tenor.mp3" voice="tenor" />
       <voice gdid="18mepGeWU6rQWw3NW6vlJ2MZ6cXlD-8F1" mods="all" path="mix/Breaking Up Is Hard To Do - all.mp3" voice="mix" />
     </tracks>
+    <sheet gdid='12qDcDk0ALICZvafzTWRZsaYumjasqMDG' sheet='Breaking Up Is Hard To Do.pdf' />
   </song>
   <song id="1111" name="Bright Was The Night">
     <category>PoleCatII</category>
@@ -597,6 +599,7 @@
       <voice gdid="1UbRuGZgUNh-tQleqfx9nIIMFG0hm7EHr" mods="mix" path="mix/Down By the Old Mill Stream.mp3" voice="mix" />
       <voice gdid="115mpmgtvRVVGSZHsSHHJuHUaZ5FkESqS" mods="tenor" path="tenor/Down By the Old Mill Stream - Tenor Left.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='12iurK5N73oZrTH2S69-LQvl5YslgDBwC' sheet='Down By the Old Mill Stream.pdf' />
   </song>
   <song id="1055" name="Down Our Way">
     <category>PoleCat</category>
@@ -611,6 +614,7 @@
       <voice gdid="198g_jL0Z2BBYX-RBQ_DUAYsEhmEXkgNT" mods="mix" path="mix/Down Our Way.mp3" voice="mix" />
       <voice gdid="11SA87C1syv-XTVlmysvT3gwYswyZPAYf" mods="tenor" path="tenor/Down Our Way - Tenor Left.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='120mTHkSy81g4q9gVJC7j3OfrZMqbOwkG' sheet='Down Our Way.pdf' />
   </song>
   <song id="1040" name="Dream">
     <category>Old</category>
@@ -902,6 +906,7 @@
       <voice gdid="1TFiw0WaI32IO03k2jxMiAJ9QfDSO3dAA" mods="mix" path="mix/Honey-Little Lize Medley.mp3" voice="mix" />
       <voice gdid="11Qxvsxx3P9ATkVRgtJ5PoVJx7nSxz00w" mods="tenor" path="tenor/Honey-Little Lize Medley - Tenor Left.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='1274WW3ccH_bDmkRxM318riUlA15D8887' sheet='Honey Little Lize Medley.pdf' />
   </song>
   <song id="1180" name="Hooked On a Feeling">
     <category>Show</category>
@@ -1098,6 +1103,7 @@
       <voice gdid="1kwW8n1Ulxdpd82eMtr2JQ90XrsGAX9AS" mods="lead" path="lead/In My Room - lead.mp3" voice="lead" />
       <voice gdid="1w2dltbwOtNUm8rJ9d2AVpVX2CewhCFKH" mods="tenor" path="tenor/In My Room - tenor.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='130laHfzcMzUd_p7AKtCPbgZJwLzdFPsn' sheet='In My Room.pdf' />
   </song>
   <song id="1134" name="In the Bleak Midwinter">
     <category>YF2</category>
@@ -1316,6 +1322,7 @@
       <voice gdid="1NCt7rwOzOiUVUAOi7wfZTRAs-I7jUKYw" mods="mix" path="mix/Let Me Call You Sweetheart.mp3" voice="mix" />
       <voice gdid="11QLZW4DhlzrWKQEwglG-Tcoh0uevJDq7" mods="tenor" path="tenor/Let Me Call You Sweetheart - Tenor Left.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='12IoEpEZUyG4GJwntNeu0W2w2wxA_RDuX' sheet='Let Me Call You Sweetheart.pdf' />
   </song>
   <song id="1035" name="Let's Get Together Again">
     <category>Current</category>
@@ -1561,6 +1568,7 @@
       <voice gdid="1hvYOeyvyyCZ2iODCurPyPdnS0i82D8iN" mods="Tenor" path="tenor/My Girl - Tenor.mp3" voice="tenor" />
       <voice gdid="1GcU-8Nw-zTGeNrhMFEHHDYTuQFTt6Rnu" mods="Mix" path="mix/My Girl - Mix.mp3" voice="mix" />
     </tracks>
+    <sheet gdid='133otuTJeoP8US6V1NUHTygk7FDdcvDX7' sheet='My Girl.pdf' />
   </song>
   <song id="1191" name="My Old Kentucky Home Goodnight">
     <category>Old</category>
@@ -1586,6 +1594,7 @@
       <voice gdid="1xnXkOtLCzEWdadrR0w0i_7FuSUZdRlHl" mods="mix" path="mix/My Wild Irish Rose.mp3" voice="mix" />
       <voice gdid="11Ovsck4h82qiM60gyq7jr89F6RSouPYN" mods="tenor" path="tenor/My Wild Irish Rose - Tenor Left.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='11y-Xz8bDOyszpRZAm1V6_Pc43xADDCOi' sheet='My Wild Irish Rose.pdf' />
   </song>
   <song id="1048" name="Naughty Lady Of Shady Lane">
     <category>Old</category>
@@ -1886,6 +1895,7 @@
     <tracks><voice gdid="1bGmXNssrzyw6x4EMEoI3pH5WPXAAbFxN" mods="tenor" path="tenor/Sentimental Journey.mp3" voice="tenor" />
       <voice gdid="1bzBbFNyT0mGw_hzDZmwXR9UnBeNJp0y3" mods="mix" path="mix/Sentimental Journey Mix.mp3" voice="mix" />
     </tracks>
+    <sheet gdid='134dLQUBlVkjiAKHIoKjaveXertY6G4Jf' sheet='Sentimental Journey.pdf' />
   </song>
   <song id="1178" name="Seven Bridges Road">
     <category>Show</category>
@@ -1952,6 +1962,7 @@
       <voice gdid="1ctMqwjEte_cFiRd4P3yWakyTNkOkh8Mi" mods="mix" path="mix/Shine On Me.mp3" voice="mix" />
       <voice gdid="11JzbLbitsrewuZCf8abQEJxfucdPmkWM" mods="tenor" path="tenor/Shine On Me - Tenor Left.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='12NEPx6Y9qjf4ykVfVtEw-PuKLNEJtk9W' sheet='Shine On Me.pdf' />
   </song>
   <song id="1103" name="Shut De Do">
     <category>Current</category>
@@ -1971,6 +1982,7 @@
     <tracks><voice gdid="12UBFJQhJeJusxUEdbkvpCSlL0OZ-dXWj" mods="mix" path="mix/Shut De Do - All.mp3" voice="mix" />
       <voice gdid="1HG5PWeB8JuMB5ZVCeUl61eDA9wJhObDh" mods="Tenor L Final" path="tenor/Shut De Do Tenor L Final.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='135FY0ulKfh4H1GOCBiEvFHWaee8yQmYT' sheet='Shut De Do.pdf' />
   </song>
   <song id="1095" name="Sixteen Tons">
     <category>Current</category>
@@ -1985,6 +1997,7 @@
       <voice gdid="11cssWUcFJF_4TpGqdaNqBZGQTpiGj6h5" mods="lead" path="lead/Sixteen Tons - lead.mp3" voice="lead" />
       <voice gdid="1qeMiiNNde2cRHw-5zCyT4ErnKSBMViB0" mods="tenor" path="tenor/Sixteen Tons - tenor.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='136SPTMJVmVjdqgzoEZu1InJmuNIvbovS' sheet='Sixteen Tons.pdf' />
   </song>
   <song id="1189" name="Smilin Through">
     <category>Other</category>
@@ -2086,6 +2099,7 @@
       <voice gdid="14U6sW_QDGQaNkZ36aXQ31Rr9uRQNjhaR" mods="mix" path="mix/Heart of My Heart.mp3" voice="mix" />
       <voice gdid="11R9hdLafqGFd87sDmVYV3knfkV80NRnZ" mods="tenor" path="tenor/Heart of My Heart - Tenor Left.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='12czXRobuKY4eA_8mTjxvFsCbBZHYnRhn' sheet='Heart of My Heart.pdf' />
   </song>
   <song id="1153" name="Sunshine of Your Smile, The">
     <category>Other</category>
@@ -2110,6 +2124,7 @@
       <voice gdid="1Fb2mYHMThDcg3WferghLP_TZNDHB1ltl" mods="mix" path="mix/Sweet and Lovely.mp3" voice="mix" />
       <voice gdid="11I4n9T_LaYAUra7lfO7dmG2e8DYoeM-2" mods="tenor" path="tenor/Sweet and Lovely - Tenor Left.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='12-S2gqDApFJJASwLL6O4MnLTuiHXCM6W' sheet='Sweet and Lovely.pdf' />
   </song>
   <song id="1057" name="Sweet, Sweet Roses of Morn">
     <category>PoleCat</category>
@@ -2124,6 +2139,7 @@
       <voice gdid="1p2cNzepJX-5Jbn0RMrN_ojsUyi5JFn2G" mods="mix" path="mix/Sweet Sweet Roses of Morn.mp3" voice="mix" />
       <voice gdid="11DRRzwGh3cW6egerKrEiNnKb1ab2jGyE" mods="tenor" path="tenor/Sweet Sweet Roses of Morn - Tenor Left.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='12N2l7Kg3kLf9HoOQFz5MwCOBh57SoAIr' sheet='Sweet Sweet Roses of Morn.pdf' />
   </song>
   <song id="1190" name="Teddy Bear">
     <category>Other</category>
@@ -2274,6 +2290,7 @@
       <voice gdid="1OU5QefdzbsOP9SzTwGSjkNcJwFImz_8e" mods="tenor" path="tenor/Under The Boardwalk - tenor.mp3" voice="tenor" />
       <voice gdid="1Z1aFNYeH69Yuoesag9CqpSwwRHfhLTFX" mods="mix - faster" path="mix/Under the boardwalk mix-faster9.mp3" voice="mix" />
     </tracks>
+    <sheet gdid='139LgNbmst02dQKyh8c4CPeWMEDHgMVIv' sheet='Under the Boardwalk.pdf' />
   </song>
   <song id="1054" name="Wait Till The Sun Shines, Nellie">
     <category>PoleCat</category>
@@ -2288,6 +2305,7 @@
       <voice gdid="1aaehICSdJdWKhQO6Vd9IqTtyUmfPHByl" mods="mix" path="mix/Wait Til The Sun Shines Nellie.mp3" voice="mix" />
       <voice gdid="11CrCJdd35eUNCMqVWnHnh9zQVdRZWJdl" mods="tenor" path="tenor/Wait Til The Sun Shines Nellie - Tenor Left.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='11zODkV-5x0o8mCQpdONR9_HREJ4Bb7mn' sheet='Wait Til the Sun Shines, Nellie.pdf' />
   </song>
   <song id="1170" name="We Need a Little Christmas">
     <category>Christmas</category>
@@ -2481,6 +2499,7 @@
       <voice gdid="1MYeuyH0zcYb24anti2IYD-_kxs5tTtRs" mods="Tenor" path="tenor/Yesterday - Tenor.mp3" voice="tenor" />
       <voice gdid="1-3iufDoOvu69UqB0pvFvq6pF8xQ95kLL" mods="mix" path="mix/Yesterday.mp3" voice="mix" />
     </tracks>
+    <sheet gdid='1391pzshslFWRg03EC9vOpGmowiNfIdmt' sheet='Yesterday.pdf' />
   </song>
   <song id="1031" name="Yona From Arizona">
     <category>Old</category>
@@ -2521,6 +2540,7 @@
       <voice gdid="1QisQkU5vXzulCmnQETnBIAlbMTmIZohK" mods="mix" path="mix/You Tell Me Your Dream.mp3" voice="mix" />
       <voice gdid="11CJgVog1Df--Ok0wTkhUnyXBcRYBc7rf" mods="tenor" path="tenor/You Tell Me Your Dream - Tenor Left.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='12lfYdDLPZEAZUmrKGmYXS7qeW1wEGayh' sheet='You Tell Me Your Dream.pdf' />
   </song>
   <song id="1008" name="You're Just In Love">
     <category>Old</category>
@@ -2553,6 +2573,7 @@
       <voice gdid="1GnG1puNKCpUs7NW8QD83sHY2Yn1Xo9c4" mods="mix" path="mix/Sweet Adeline.mp3" voice="mix" />
       <voice gdid="11IYS7amZUqQrhXBFC2bLLnNdMzKg6KN8" mods="tenor" path="tenor/Sweet Adeline - Tenor Left.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='12iZ3--EfLjKKRLasV08wIZdYRKYMlFx9' sheet='Sweet Adeline.pdf' />
   </song>
   <song id="1004" name="Zip-a-Dee Doo-Dah">
     <category>Old</category>
@@ -2572,6 +2593,7 @@
     <learn_by>2015-03-01</learn_by>
   </song>
   <song id="1202" name="Up on the Housetop">
+    <alias>Up On the Housetop</alias>
     <category>Christmas</category>
     <arranger>SPEBSQSA</arranger>
     <composer>B. R. Hanby</composer>
