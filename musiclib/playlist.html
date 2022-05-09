@@ -26,8 +26,8 @@ input[type=number]::-webkit-inner-spin-button { opacity: 1 }
 div[id^='vtrk'] { font-family: Arial; font-weight: bold; }
 label, legend, .bigger, .venue { font-family: Arial; font-size: larger; }
 img { width:40px; height:40px; }
-img { padding: 6px calc((100%-120px)/8); }
-.blink { animation: blink 1s linear infinite; }
+img { padding: 6px calc(100%/8 - 22px); }
+.blink { animation: blink 3s linear infinite; }
 @keyframes blink { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 h3 { font-size: xx-large; }
@@ -36,6 +36,28 @@ h3 { font-size: xx-large; }
 
 // encoded svg for the player control images
 // idea from https://codepen.io/tigt/post/optimizing-svgs-in-data-uris 
+var resetsvg = `data:image/svg+xml;utf8,
+%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='300' height='300'%3E
+%3Ccircle cx='150' cy='150' r='140' stroke='black' stroke-width='20' fill='lightgray'/%3E
+%3Cg%3E
+%3Cpath d='M 75 150 A 75 75, 0, 1, 1, 96.97 203.03' stroke='crimson' fill='none' stroke-width='40' /%3E
+%3Cpolygon points='30 175, 75 130, 120 175' stroke='crimson' fill='crimson' stroke-width='1'
+transform='translate(21.97 53.03) rotate(-45 75 150)' /%3E
+%3C/g%3E
+%3C/svg%3E`;
+
+var resetsvgan = `data:image/svg+xml;utf8,
+%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='300' height='300'%3E
+%3Ccircle cx='150' cy='150' r='140' stroke='black' stroke-width='20' fill='crimson'/%3E
+%3Cg%3E
+%3Cpath d='M 75 150 A 75 75, 0, 1, 1, 96.97 203.03' stroke='lightgray' fill='none' stroke-width='40' /%3E
+%3Cpolygon points='35 170, 75 130, 115 170' stroke='lightgray' fill='lightgray' stroke-width='1'
+transform='translate(21.97 53.03) rotate(-45 75 150)' /%3E
+%3CanimateTransform attributeName='transform' attributeType='XML' type='rotate'
+from='0 150 150' to='360 150 150' dur='5s' repeatCount='indefinite' /%3E
+%3C/g%3E
+%3C/svg%3E`;
+
 var prevsvg = `data:image/svg+xml;utf8,
 %3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='300' height='300'%3E
 %3Ccircle cx='150' cy='150' r='140' stroke='black' stroke-width='21' fill='lightblue'/%3E
@@ -63,25 +85,75 @@ var pausesvg = `data:image/svg+xml;utf8,
 %3Cline x1='180' x2='180' y1='210' y2='90' stroke='black' stroke-width='21' stroke-linecap='round'/%3E
 %3C/svg%3E`;
 
+// event listener called about 4/second by playing audio
+// updates the progress bar for the track.
+function timeupevlstn() {
+    numelcalls++;
+    var currentTime = audel.currentTime;
+    var duration = audel.duration;
+    let pct = 100.0*(currentTime +.25)/duration;
+    document.getElementById(vtrkid).style.backgroundImage = `linear-gradient(to right, lightgreen ${pct}%, yellow ${pct}%)`;
+}
+
+function play(req) {
+    // start the audio
+    console.log(`in play for ${req}`);
+    const playPromise = audel.play();
+    if (playPromise) {
+        playPromise
+        .then(_ => {
+            // promise has completed successfully - update UI
+            console.log(`successful promise for ${req}`);
+        })
+        .catch(err => {
+            console.log(`in play for req ${req}, err is ${err}`);
+        });
+    }
+    // ensure no track is marked "paused"
+    let pptrk = document.querySelector(".paused");
+    if (pptrk) {
+        pptrk.classList.remove("paused");
+    }
+}
+function pause() {
+    // if we haven't set audel, just leave
+    if (audel) {
+        // issue the pause, clean up if a promise was in progress
+        audel.pause();
+        let pptrk = document.querySelector(".playing");
+        if (pptrk) {
+            pptrk.classList.remove("playing");
+        }
+        if (playPromise) {
+            playPromise
+            .then(_ => {
+            })
+            .catch(err => {
+                console.log(`in pause, err is ${err}`)
+            });
+        }
+        // promise has completed - update UI
+        let trkdiv = document.getElementById(vtrkid);
+        trkdiv.classList.add("paused");
+        ppimg.src = playsvg;
+        ppimg.classList.add("blink");
+        console.log(`${vtrkid} paused at ${audel.currentTime}`);
+    }
+}
+
 function nextsong(dir) {
     // requestor is ppimg when user sets playlist and then clicks play.
-    // it is previmg and nextimg when invoked by those buttons, and
+    // it is previmg and nextimg when invoked by the prev and next buttons, and
     // it is audel when invoked by song end.
 
     let rqstr = event.target.id;
     if (rqstr == "audel") {
+        // called by song ended listener
         if (doitagain > 0) {
             console.log(`progress was updated ${numelcalls} times`);
             numelcalls = 0;
             doitagain--;
-            if (playPromise != undefined) {
-                playPromise.then(_ => {
-                    // previous play promise has completed, start the new one.
-                    playPromise = audel.play();
-                });
-            } else {
-                playPromise = audel.play();
-            }
+            play('song ended');
             console.log(`restarting ${vtrkid}, doitagain now ${doitagain}`);
             return;
         }
@@ -89,24 +161,19 @@ function nextsong(dir) {
 
     let curtrks = [];
     let activendx = -1;
+    // get the song row divs
     let seltrks = document.querySelectorAll("div[id^='vtrk']");
     let ndx = 0;
-    let pozd = document.querySelector(".paused");
-    if (pozd) {
-        pozd.classList.remove("paused");
-    }
 
     for (let curtrk of seltrks) {
+        // find the track marked playing, if one exists. remove
+        // playing status, clear the progress bar, save the row
+        // index for the "active" track, and call pause to update the UI.
         if (curtrk.classList.contains("playing")) {
             curtrk.classList.remove("playing");
             curtrk.style.backgroundImage = "";
             activendx = ndx;
-            if (playPromise != undefined) {
-                playPromise.then(_ => {
-                    // console.log("audio was playing, issuing pause and showing play icon");
-                    audel.pause();
-                });
-            }
+            pause();
         }
         chkd = curtrk.children[0].checked;
         if (chkd) {
@@ -135,31 +202,21 @@ function nextsong(dir) {
     if (! audel) {
         audel = document.getElementById("audel");
         audel.addEventListener("playing", function() {
+            // called when track is actually playing
+            // while a song is playing, the button shows pause.
+            ppimg.src = pausesvg;
+            ppimg.classList.remove("blink");
+            let trkdiv = document.getElementById(vtrkid);
+            trkdiv.classList.add("playing");
             let nam = document.getElementById(vtrkid).innerText;
             console.log(`starting ${vtrkid}: ${nam} (${audel.duration.toFixed(2)})`);
         });
-        audel.addEventListener("timeupdate", function() {
-            numelcalls++;
-            var currentTime = audel.currentTime;
-            var duration = audel.duration;
-            let pct = 100.0*(currentTime +.25)/duration;
-            document.getElementById(vtrkid).style.backgroundImage = `linear-gradient(to right, lightgreen ${pct}%, yellow ${pct}%)`;
-        });
+        audel.addEventListener("timeupdate", timeupevlstn, false);
     }
     doitagain = document.querySelector("#repeats").value - 1;
     audel.src = songsrc;
-    document.getElementById(vtrkid).classList.add("playing");
-    if (playPromise != undefined) {
-        playPromise.then(_ => {
-            // previous play promise has completed, start the new one.
-            playPromise = audel.play();
-        });
-    } else {
-        playPromise = audel.play();
-    }
-    ppimg.src = pausesvg;
-    ppimg.classList.remove("blink");
-    document.getElementById(vtrkid).classList.remove("paused");
+    trkdiv.classList.add("playing");
+    play('next song');
     numelcalls = 0;
 }
 var audel;
@@ -169,38 +226,15 @@ var doitagain = 0;
 var vtrkid;
 var numelcalls;
 function playpause() {
+    // play/pause button clicked. if audel not set,
+    // user is starting the player. just call nextsong.
+    // if audel is set, user is toggling between play and pause.
     if (audel) {
-        if (audel.paused) {
-            // console.log("audio was paused, issuing play and showing pause icon");
-            if (playPromise != undefined) {
-                playPromise.then(_ => {
-                    // console.log("audio was playing, issuing pause and showing play icon");
-                    playPromise = audel.play();
-                });
-            }
-            ppimg.src = pausesvg;
-            ppimg.classList.remove("blink");
-            document.getElementById(vtrkid).classList.remove("paused");
-        } else {
-            if (playPromise != undefined) {
-                playPromise.then(_ => {
-                    // console.log("audio was playing, issuing pause and showing play icon");
-                    audel.pause();
-                    ppimg.src = playsvg;
-                    ppimg.classList.add("blink");
-                    document.getElementById(vtrkid).classList.add("paused");
-                })
-                .catch(error => {
-                    console.log("caught playPromise error, showing play icon");
-                    ppimg.src = playsvg;
-                    ppimg.classList.add("blink");
-                });
+        if (audel.src != "") {
+            if (audel.paused) {
+                play('unpause');
             } else {
-                // console.log("playPromise undefined.");
-                playPromise = audel.play();
-                ppimg.src = pausesvg;
-                ppimg.classList.remove("blink");
-                document.getElementById(vtrkid).classList.remove("paused");
+                pause();
             }
         }
     } else {
@@ -224,7 +258,6 @@ function prevsong() {
 var urls = [];
 function cheatindex(chndx) {
     // create the list of events from the cheats index
-    // alert("loaded!");
     let html = "";
     let cheats = chndx.querySelectorAll("a");
     for (let cheat of cheats) {
@@ -327,6 +360,7 @@ function loadlib(liburl) {
         let butt = document.getElementById(buttonId);
         butt.click();
 
+        document.querySelector("#resetimg").src = resetsvg;
         document.querySelector("#previmg").src = prevsvg;
         document.querySelector("#nextimg").src = nextsvg;
 
@@ -341,7 +375,7 @@ function loadlib(liburl) {
             cheatindex(this.responseXML.documentElement);
         }
         xhr.onerror = function() {
-          console.log("Error while getting XML.");
+          console.log("Error while getting index.html.");
         }
 
         xhr.open("GET", "https://dmotteler.github.io/cheats/index.html");
@@ -391,6 +425,27 @@ var repeats;
 function setrepeat(el) {
     repeats = el.value;
 }
+function resetfn() {
+    // if we've never located the audio element, just leave
+    if (audel) {
+        // reset button pushed. stop audio, set play/pause to play (blinking)
+        // if a promise is outstanding, wait for it to complete, 
+
+        // don't remove the listener unless we find a way to put it back....
+        // audel.removeEventListener("timeupdate", timeupevlstn, false);
+
+        pause();
+
+        audel.currentTime = 0.0;
+        // if a track is paused or playing, remove that from classlist
+        let pptrk = document.querySelector(".paused,.playing");
+        if (pptrk) {
+            pptrk.classList.remove("paused");
+            pptrk.classList.remove("playing");
+            pptrk.style.backgroundImage = "";
+        }
+    }
+}
 </script>
 </head>
 <body onload='init()'>
@@ -421,9 +476,10 @@ function setrepeat(el) {
 </fieldset>
 <fieldset class='hidden plctrl'>
 <legend>Control Playback</legend>
-<img id="previmg" src="" class="left" title="restart/previous song" onclick="prevsong()">
-<img id="ppimg" src="" class="middle" title="play/pause" onclick="playpause()">
-<img id="nextimg" src="" class="right" title="next song" onclick="nextsong(1)">
+<img id="resetimg" src="" title="reset" onclick="resetfn()">
+<img id="previmg" src="" title="restart/previous song" onclick="prevsong()">
+<img id="ppimg" src="" title="play/pause" onclick="playpause()">
+<img id="nextimg" src="" title="next song" onclick="nextsong(1)">
 </fieldset>
 </div>
 <audio id="audel" onended="nextsong(1)" src=""></audio>
