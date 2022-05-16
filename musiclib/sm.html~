@@ -16,7 +16,7 @@ function loadDoc(doc) {
     xhr.responseType = "document";
     xhr.send();
 
-    var wantCats = getQueryVariable("cat", 'All');
+    var wantCats = getQueryVariable("cat", 'Show');
 
     xhr.onload = function () {
         let musiclib = xhr.responseXML.documentElement;
@@ -103,7 +103,7 @@ function loadDoc(doc) {
                 let keep = false;
                 if (songobj[sid].hasOwnProperty("categories")) {
                     for (let cat of songobj[sid]['categories']) {
-                        if (wantCats[0] == "All" || wantCats.includes(cat)) {
+                        if (wantCats.includes(cat)) {
                             keep = true;
                             break;
                         }
@@ -165,8 +165,6 @@ function loadDoc(doc) {
     if (wantCats.length > 0) {
         if (wantCats.length > 1) {
             title = "Songs in " + wantCats.join(" and ");
-        } else if (wantCats.length == 1 && wantCats[0] == "All") {
-            title = "All Songs";
         } else {
             title = "Songs in " + wantCats[0];
         }
