@@ -519,6 +519,7 @@
       <voice gdid="1h3wm0NQ1amNECDYVivkf6r3IZ-xTlzYB" mods="bass" path="bass/Daydream.mp3" voice="bass" />
       <voice gdid="1JS2F2CjU19OkDRu2Y58YjGdfmTX1jGfg" mods="tenor" path="tenor/Daydream.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid="141OydIotWbTLpwdbvg7Q_xCdqZ8xl_vR" sheet="Daydream.pdf" />
   </song>
   <song id="1070" name="Dear Hearts and Gentle People">
     <category>Old</category>
