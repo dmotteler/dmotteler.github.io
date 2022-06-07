@@ -1,0 +1,56 @@
+<html><head><title>display meta fields from Epi</title>
+<style>
+.left { width: 14% !important; }
+#wrap { width: 60%; }
+table :not(#wrap) { width: 100%; }
+table { border: 3px solid black; border-collapse: collapse; font: 18px Arial black; }
+th, td { border: 2px solid black; padding: 2px 5px; }
+</style>
+<script type="text/javascript" src="countypops.json"></script>
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "Epi.json";
+
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        let covdata = JSON.parse(xmlhttp.responseText);
+        let keys = Object.keys(covdata['meta']).sort();
+        let htm = "<table><tr><th class='left'>Key</th><th>Value</th></tr>\n";
+        for (let key of keys) {
+            if (key != 'Data Dictionary') {
+                let val = covdata['meta'][key];
+                htm += `<tr><td class='left'>${key}</td><td>${val}</td></tr>\n`;
+            } else {
+                var ddtabl = "<table><tr><th class='left'>Term</th><th>Definition</th></tr>\n";
+                for (let [k, v] of covdata['meta'][key]) {
+                    ddtabl += `<tr><td class='left'>${k}</td><td>${v}</td></tr>\n`;
+                }
+                ddtabl += "</table>";
+                document.querySelector("#dict").outerHTML = ddtabl;
+            }
+        }
+        htm += "</table>\n";
+        document.querySelector("#list").outerHTML = htm;
+
+        htm = "<table><tr><th class='left'>County</th><th>OFM 2021 Pop. Est.</th></tr>\n";
+        for (let c in countypops) {
+            htm += `<tr><td class='left'>${c}</td><td>${countypops[c]}</td></tr>\n`;
+        }
+        htm += "</table>\n";
+        document.querySelector("#pops").outerHTML = htm;
+    }
+}
+</script>
+<body>
+<table id='wrap'>
+<tr><td><table id='list'></table></td></tr>
+<tr></tr>
+<tr><td><table id='dict'></table></td></tr>
+<tr></tr>
+<tr><td><table id='pops'></table></td></tr>
+</table>
+</body>
+</html>

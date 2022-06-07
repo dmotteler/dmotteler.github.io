@@ -1,0 +1,29 @@
+/* $Id: cov.css,v 1.1 2022/06/06 21:26:48 dfm Exp $ */
+div.controls { padding: 30px !important; }
+.llabel { margin: 3px 6px 3px 0px; }
+.rlabel { margin: 3px 0px 3px 6px; }
+td, th { text-align: center; padding: 2px 4px; }
+input[type="button"] { width: 90px; background-color: #0075ff; color: white; border-radius: 11px; }
+.previous, .next { background-color: #0075ff; color: white; width: 7px;
+    text-decoration: none; display: inline-block; padding: 4px 8px;
+}
+div[id^="placeholder_"] { display: inline-block; width: 1500px; height: 750px; }
+.maxv { background-color: yellow; }
+.previous { margin-left: 20px; }
+.round { border-radius: 50%; }
+
+.loader {
+  /* animation: spin 5s cubic-bezier(0, 0, 0.4, 0.58) infinite; */
+  animation: spin 4s linear infinite; */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.legendLayer .background {
+    fill: rgba(240, 240, 240, 0.65);
+    stroke: rgba(0, 0, 0, 0.85);
+    stroke-width: 1;
+}
+.hidden { display: none; }
