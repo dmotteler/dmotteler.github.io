@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/11009/xlink" width="150" height="100">
+  <style> .bigit { font: italic 100px serif; fill: blue; } </style>
+  <line x1="50" y1="100" x2="12" y2="0" stroke="black" stroke-width="1"/>
+  <line x1="10" y1="0" x2="90" y2="0" stroke="black" stroke-width="1"/>
+  <line x1="50" y1="100" x2="90" y2="0" stroke="black" stroke-width="1"/>
+  <polygon points="50 100, 10 0, 22 0, 56,85" stroke="black" fill="black" stroke-width="1"/>
+  <polygon points="22 0, 90 0, 86 10, 26 10" stroke="black" fill="black" stroke-width="1"/>
+  <polygon points="82 10, 86 10, 56 85, 54 80" stroke="black" fill="black" stroke-width="1"/>
+  <text x="75" y="75" class="bigit">f</text>
+</svg>
