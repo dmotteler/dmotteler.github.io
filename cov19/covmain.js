@@ -49,7 +49,7 @@ function changeDates() {
 function fetchData() {
     // (re)start the wait spinner
     document.querySelector("#tabs").outerHTML = `<div id="tabs" class="loader" style="width: 300px; height: 300px;">
-  <img src="covid.png" alt="covid" width="300" height="300">
+  <img src="images/covid.png" alt="covid" width="300" height="300">
   </div>`;
 
     // ask ajax to get the data

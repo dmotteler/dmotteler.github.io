@@ -101,6 +101,7 @@ function buildHTML() {
 
     let updated = meta["dtm_updated"];
 
+    let w = 0.85 * window.innerWidth + "px", h = 0.78 * window.innerHeight + "px";
     // for each sheet (Cases, Deaths, Hospitilizations)...
     $.each(alldata[county], function (sheet, ageranges) {
         // start the tab div, put in a header, start a table, row, and cell 1.
@@ -110,9 +111,9 @@ function buildHTML() {
         let normornot = norm ? " per 100k" : "";
         let dispCounty = county == "Statewide" ? county : (county + " County");
         tabs_html += `\n<div id="tabs_${m}">
-<h3 align="center" style="width:1500px; margin-bottom:3px;">${dispCounty} ${sheet}${normornot}</h3>
-<h5 align="center" style="width:1500px; margin-top:3px;">data updated ${updated}</h5>
-<table><tr><td style='text-align: left;'>
+<h3>${dispCounty} ${sheet}${normornot}</h3>
+<h5>data updated ${updated}</h5>
+<table><tr><td class="choices">
 <p id="choices_${m}"><br/>`;
 
         let n = -1;
@@ -134,7 +135,7 @@ function buildHTML() {
         // and a hidden cell 1,3 for a table display.
         // close cell 1,3 and row 1
         tabs_html += `</p></td>
-<td class='dispischart'><div id="placeholder_${m}"></div></td>
+<td class='dispischart'><div id="placeholder_${m}" style="display:block;width:${w};height:${h};"></div></td>
 <td class='dispistable hidden'></td></tr>
 `;
 
@@ -350,9 +351,9 @@ function tableHTML(county, sheet) {
     let dispCounty = county == "Statewide" ? county : (county + " County");
     let normornot = norm ? " per 100k" : "";
     let phname = `tableholder_${sn}`;
-    var html = `<div id="${phname}" style="overflow-y:scroll;max-height:750px; ">
-<table border="1" style="font-size:14px;border-collapse:collapse">
-<caption style='font-size:16px;font-weight:bold;'> ${dispCounty} ${sheet}${normornot}</caption>
+    var html = `<div id="${phname}">
+<table class="datatab">
+<caption> ${dispCounty} ${sheet}${normornot}</caption>
 `;
     html += '<thead><tr><th>Date</th>';
 
