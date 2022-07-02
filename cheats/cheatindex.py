@@ -3,8 +3,6 @@
 import os, sys
 from datetime import datetime as dt
 
-mname = [dt(2020, mo, 1).strftime("%B") for mo in range(1,13)]
-
 cdir = "."
 
 html = '''<html><head><title>Tuners Cheats</title>
@@ -26,6 +24,7 @@ for fn in files:
     pat = "{}/{}".format(cdir, fn)
     with open(pat, "r") as fo:
         data = fo.read()
+    mtim = os.path.getmtime(pat)
 
     targ = '"tabletitle">'
     n = data.find(targ)
@@ -44,7 +43,10 @@ for fn in files:
         dats = titl[n+3:]
         try:
             d = dt.strptime(dats, "%B %d, %Y %I:%M%p")
-            reh[d] = (fn, titl)
+            if not d in reh:
+                reh[d] = []
+            reh[d].append((fn, titl, mtim))
+
         except Exception as e:
             # print("didn't like {}".format(dats))
             pass
@@ -54,7 +56,8 @@ fo.write(html)
 
 n = 0
 for d in sorted(reh, reverse = True):
-    fn, titl = reh[d]
+    # get the file with latest mod-time for this date/time
+    fn, titl, mtim = max(reh[d], key=lambda x: x[2])
     fn = fn.replace("'", "%27")
     lin = "<a href='{}'>{}</a><br/>\n".format(fn, titl)
     fo.write(lin)
