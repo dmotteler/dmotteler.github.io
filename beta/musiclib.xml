@@ -1,0 +1,2784 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="musiclib.xsl"?>
+<musiclib name="Tuners Music Library">
+  <song id="1101" name="After Dark">
+    <category>Old</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Traditional</composer>
+    <copyright>SPEBSQSA</copyright>
+    <crdate>1958-12-31</crdate>
+    <key>Bb</key>
+    <words>After dark, when ev'rything is still</words>
+    <sheet gdid='0Bxd7i2Hm5BiPdkxMYmNUTUhBR28' sheet='AfterDark.pdf' />
+  </song>
+  <song id="1109" name="After You've Gone">
+    <category>Current</category>
+    <category>PoleCatII</category>
+    <arranger>Don Gray</arranger>
+    <composer>Turner Layton</composer>
+    <copyright>Don Gray</copyright>
+    <crdate>2014-12-31</crdate>
+    <key>Bb</key>
+    <learn_by>2016-01-11</learn_by>
+    <location>Polecat II pg 2</location>
+    <lyricist>Henry Creamer</lyricist>
+    <words>Can't believe we're breakin' up</words>
+    <tracks><voice gdid="1RGbmlMi--jOEH1PoRHzvRbDAsJcOF51j" mods="Bari" path="bari/After You've Gone - Bari.mp3" voice="bari" />
+      <voice gdid="1d4mgo72Mjj0G7H2iLaud_OHrblKct5ZR" mods="Lead" path="lead/After You've Gone - Lead.mp3" voice="lead" />
+      <voice gdid="1BTj74ftbt11uaVyxsHqs8UXJIh5NBU1y" mods="Tenor" path="tenor/After You've Gone - Tenor.mp3" voice="tenor" />
+      <voice gdid="1izwOlzP3VBW2BEFVoz_kNKy4xqaz_QG9" mods="bass" path="bass/After You've Gone.mp3" voice="bass" />
+    </tracks>
+    <sheet gdid="1-9ofQvWoYGL6W1ejZt3HOrwRLNt6aea2" sheet="After You've Gone.pdf" />
+  </song>
+  <song id="1104" name="Alexander's Ragtime Band">
+    <category>Old</category>
+    <arranger>Burt Szabo</arranger>
+    <composer>Irving Berlin</composer>
+    <copies>30</copies>
+    <copyright>Irving Berlin</copyright>
+    <crdate>1974-12-31</crdate>
+    <key>C</key>
+    <learn_by>2016-03-07</learn_by>
+    <lyricist>Irving Berlin</lyricist>
+    <ordered>2015-09-23</ordered>
+    <pitch>C</pitch>
+    <source>BHS</source>
+    <stockID>7093</stockID>
+    <words>Comin' down the street</words>
+    <tracks><voice gdid="1B1IbgQOO-1FXHu4cMvMx-dK-Ny8p9Sk4" mods="mix" path="mix/Alexanders Ragtime Band.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1093" name="All I Do Is Dream Of You">
+    <category>Old</category>
+    <arranger>David Wallace</arranger>
+    <composer>Nacio Herb Brown</composer>
+    <copyright>MGM</copyright>
+    <crdate>2012-12-31</crdate>
+    <key>C</key>
+    <learn_by>2015-03-01</learn_by>
+    <lyricist>Arthur Freed</lyricist>
+    <stockID>208565</stockID>
+    <words>ba dm dm dm dm, ba dm dm...</words>
+    <tracks><voice gdid="18hixrS9ICT0rgKVvTkvOKhLANV4j9wSg" mods="BS" path="bass/All I Do Is Dream Of You - BS.mp3" voice="bass" />
+      <voice gdid="1-dpCGloSr_LDzHHKnpzrxZOD2DxJg95G" mods="bari" path="bari/All I Do Is Dream Of You - bari.mp3" voice="bari" />
+      <voice gdid="1uZ69aBRqlcCa8fU8-l6tst2VhN34_IIk" mods="Lead" path="lead/All I Do Is Dream Of You - Lead.mp3" voice="lead" />
+      <voice gdid="1ogLyBzziK4o1qOyFuxTkxCHRpvvYyugz" mods="all" path="mix/All I Do Is Dream Of You - all.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1199" name="Angels, From the Realms of Glory">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Henry Smart</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>C</key>
+    <location>YF pg 5</location>
+    <lyricist>James Montgomery</lyricist>
+    <words>Angels, from the realms</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPbG5fX3g5bUViNVU" mods="mix" path="mix/Angels, From The Realms of Glory.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1064" name="Armed Forces Medley">
+    <category>Old</category>
+    <arranger>Fred King</arranger>
+    <key>D</key>
+    <learn_by>2013-03-21</learn_by>
+    <words>From the rising of the sun</words>
+    <tracks><voice gdid="1QuogR5WmqZnSDzvW6jQx9CYcUZTrqi6A" mods="Bass L" path="bass/Armed Forces Medley - Bass L.mp3" voice="bass" />
+      <voice gdid="1leS15zGNhhd2gXMclBaxtKDeXEy1qKFI" mods="Bass" path="bass/Armed Forces Medley - Bass.mp3" voice="bass" />
+      <voice gdid="1RobbLpvjGXF0V4EDHAY3zCK5jmffzYxh" mods="Bari L" path="bari/Armed Forces Medley - Bari L.mp3" voice="bari" />
+      <voice gdid="1VHhC2lLh4Pf9oIz3OP9oUjt2uumPWl2Z" mods="Bari" path="bari/Armed Forces Medley - Bari.mp3" voice="bari" />
+      <voice gdid="1S_thUS-en2DXkgcgXTJ3wDt64V6TYhjI" mods="Lead L" path="lead/Armed Forces Medley - Lead L.mp3" voice="lead" />
+      <voice gdid="1rPdV_L9DCeQ8t5AuBaUITlfzuuS6ZjFF" mods="Lead" path="lead/Armed Forces Medley - Lead.mp3" voice="lead" />
+      <voice gdid="1WbGZokaJmG25fGfqCEqKxeWJA3Us0kxl" mods="Tenor L" path="tenor/Armed Forces Medley - Tenor L.mp3" voice="tenor" />
+      <voice gdid="1IjtlQuQY3IdccM-K1_TqZ7Q5ZjI0kFP6" mods="Tenor" path="tenor/Armed Forces Medley - Tenor.mp3" voice="tenor" />
+      <voice gdid="1JpCa_2Hg_1cyhkAKyrV-RQCZcJOtht9p" mods="All" path="mix/Armed Forces Medley - All.mp3" voice="mix" />
+      <voice gdid="1whKa4jV2J-WkcHP4Wy7oVTwKnLmStVbt" mods="Mix" path="mix/Armed Forces Medley - Mix.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1200" name="As With Gladness Men of Old">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Conrad Kocher</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>Ab</key>
+    <location>YF pg 9</location>
+    <lyricist>William C Dix</lyricist>
+    <words>As with gladness men of old</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPa3o2ZFJCeHpwTlk" mods="mix" path="mix/As With Gladness Men Of Old.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1126" name="Auld Lang Syne">
+    <category>YF2</category>
+    <arranger>Don Gray</arranger>
+    <composer>Traditional Scottish</composer>
+    <copies>3</copies>
+    <copyright>Don Gray</copyright>
+    <crdate>1996-12-31</crdate>
+    <key>G</key>
+    <location>YF2 p26</location>
+    <lyricist>Robert Burns</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>Should old acquaintance be forgot</words>
+  </song>
+  <song id="1201" name="Away In a Manger">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>James R Murray</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>G</key>
+    <location>YF pg 13</location>
+    <lyricist>Unknown</lyricist>
+    <words>Away in a manger</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPTmRDMnY5REtlWnM" mods="mix" path="mix/Away In A Manger.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1069" name="Baby Face">
+    <category>Old</category>
+    <arranger>Tom Ball</arranger>
+    <composer>Harry Akst</composer>
+    <copyright>1926 Warner Bros</copyright>
+    <key>C</key>
+    <words>Baby face</words>
+  </song>
+  <song id="1108" name="Back In The Saddle Again">
+    <category>Old</category>
+    <arranger>Jon Nicholas</arranger>
+    <composer>Gene Autry</composer>
+    <copies>30</copies>
+    <copyright>Gene Autry's Western Music Publ. Co</copyright>
+    <crdate>2008-12-31</crdate>
+    <key>C</key>
+    <learn_by>2016-02-08</learn_by>
+    <lyricist>Gene Autry</lyricist>
+    <ordered>2015-09-23</ordered>
+    <source>BHS</source>
+    <stockID>204496</stockID>
+    <words>I can say that city life</words>
+  </song>
+  <song id="1185" name="Bad, Bad Leroy Brown">
+    <category>Show</category>
+    <arranger>Fran Wilson</arranger>
+    <composer>Jim Croce</composer>
+    <copies>25</copies>
+    <copyright>Time In a Bottle</copyright>
+    <crdate>2016-12-31</crdate>
+    <key>G</key>
+    <learn_by>2020-01-20</learn_by>
+    <lyricist>Jim Croce</lyricist>
+    <ordered>2019-08-13</ordered>
+    <source>BHS</source>
+    <stockID>212058</stockID>
+    <words>Now, you could try the east</words>
+    <tracks><voice gdid="1LWihlubyIGX9-V2YeK0ll4_2XcTlHZp9" mods="Bass Fixed" path="bass/Bad, Bad Leroy Brown - Bass Fixed.mp3" voice="bass" />
+      <voice gdid="1lp-uMmgw-sZjtZTd6lTXxLkYRrAvF7ZK" mods="Bass" path="bass/Bad, Bad Leroy Brown - Bass.mp3" voice="bass" />
+      <voice gdid="1iWcpYA9rxrOxlX_OAWWZCYHYTqsxnKTw" mods="no Bass" path="bass/Bad, Bad Leroy Brown - no Bass.mp3" voice="bass" />
+      <voice gdid="1ME0nDM7pScyk-qf8ipKgkxxp47QFLvhx" mods="Bari fixed" path="bari/Bad, Bad Leroy Brown - Bari fixed.mp3" voice="bari" />
+      <voice gdid="1P1DJYfJMD0-IOPao_C2wi2MFBJxQJWOY" mods="Bari" path="bari/Bad, Bad Leroy Brown - Bari.mp3" voice="bari" />
+      <voice gdid="1AFzbbRe3QEzegHvBfznATU_QhaK1yshe" mods="no Bari" path="bari/Bad, Bad Leroy Brown - no Bari.mp3" voice="bari" />
+      <voice gdid="134HTN7gZSN8kiV3BTFuwsGLSh_yKvpe_" mods="Lead fixed" path="lead/Bad, Bad Leroy Brown - Lead fixed.mp3" voice="lead" />
+      <voice gdid="1-svG8-Ns-YGWOLhWHCd1YBUgzIznhibs" mods="Lead" path="lead/Bad, Bad Leroy Brown - Lead.mp3" voice="lead" />
+      <voice gdid="14u5n4wjd3V4yK6hQ4cHb_cICu_KME0af" mods="no Lead" path="lead/Bad, Bad Leroy Brown - no Lead.mp3" voice="lead" />
+      <voice gdid="1iqXrllpoT_nAH4h2y2iLvDkUyGOWtwuH" mods="Tenor" path="tenor/Bad, Bad Leroy Brown - Tenor.mp3" voice="tenor" />
+      <voice gdid="15MSaWGxllj9Slx0O1O2LNSWkWOsZY9lG" mods="fixed Tenor" path="tenor/Bad, Bad Leroy Brown - fixed Tenor.mp3" voice="tenor" />
+      <voice gdid="1pukUQ64EoXFlfx2gQiIIHi1g9vGPW6l_" mods="no Tenor" path="tenor/Bad, Bad Leroy Brown - no Tenor.mp3" voice="tenor" />
+      <voice gdid="1NSq9f7TzShd0EP_qb8_3ignlCEEBjD75" mods="mix" path="mix/Bad, Bad Leroy Brown - mix.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1dn0UOXnZTHidwYlrjhgXQR6x7Ux3sgFY" sheet="Bad, Bad Leroy Brown.pdf" />
+  </song>
+  <song id="1157" name="Barbara Ann">
+    <category>TTS</category>
+    <arranger>Mel Knight</arranger>
+    <key>Eb</key>
+    <words>Ba ba ba, ba ba b'ran</words>
+  </song>
+  <song id="1176" name="Barbersprach Zarathustra">
+    <category>Old</category>
+    <key>C</key>
+    <words>bah,bah,bah bah-bah</words>
+    <tracks><voice gdid="1bghpB7Met54ioetCpmvNIfgiElJgKTny" mods="Mix" path="mix/Barbersprach - Mix.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="19eprbI0tymDkhOSqJtmtHuPQQdSZJAOP" sheet="Barbersprach Zarathustra.pdf" />
+  </song>
+  <song id="1162" name="Beach Boys Medley">
+    <category>Old</category>
+    <arranger>Steve Delehanty</arranger>
+    <composer>Wilson/Love/Fassert</composer>
+    <copies>30</copies>
+    <copyright>Irving Music Inc</copyright>
+    <crdate>2008-12-31</crdate>
+    <key>C</key>
+    <lyricist>Wilson/Love/Fassert</lyricist>
+    <ordered>2018-07-18</ordered>
+    <source>BHS</source>
+    <stockID>202797</stockID>
+    <words>Doo, doo doo doo doo, doo-oo</words>
+    <tracks><voice gdid="1IlPAXTNQ_9nAr9Nc5JjDurC43LBnArv2" mods="bass" path="bass/Beach Boys Medley - bass.mp3" voice="bass" />
+      <voice gdid="1We1y6B9m21ewu1pGc2ZvA4v5n6WOXrgB" mods="bass left pnv" path="bass/Beach Boys Medley bass left pnv.mp3" voice="bass" />
+      <voice gdid="19kItszMhTz0941owxgwNQyiTzNQTDpoh" mods="bari" path="bari/Beach Boys Medley - bari.mp3" voice="bari" />
+      <voice gdid="11eL4K53dA5moMYJngHVZXIhEyaO_QExe" mods="bari left pnv" path="bari/Beach Boys Medley bari left pnv.mp3" voice="bari" />
+      <voice gdid="1FxnXJARwFinNcc9Pg_0mrislqtKwss4o" mods="lead" path="lead/Beach Boys Medley - lead.mp3" voice="lead" />
+      <voice gdid="1U13ODmKzXVupmZUJIJYbc1FUVFF7d9Z1" mods="lead left" path="lead/Beach Boys Medley lead left.mp3" voice="lead" />
+      <voice gdid="18GdrxA3tCn5jvxcFcJX1lk-gIhDzk6L8" mods="tenor" path="tenor/Beach Boys Medley - tenor.mp3" voice="tenor" />
+      <voice gdid="1zYNZipbdgpRnFJq4cQzsPnvCr0HeUI5r" mods="Tenor left pnv" path="tenor/Beach Boys Medley Tenor left pnv.mp3" voice="tenor" />
+      <voice gdid="1d6cwYMoKeHHjInbNtMIATMCad2qZ4Jzu" mods="mix" path="mix/Beach Boys Medley - mix.mp3" voice="mix" />
+      <voice gdid="14AIiwHPn0BlbWW2UKWAnCie4ITflzRC1" mods="MIX pnv" path="mix/Beach Boys Medley MIX pnv.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1d0vZ-H7XQtZqcw4ol6F6Kmuqc7KF3lx6" sheet="BeachBoysMedley.pdf" />
+  </song>
+  <song id="1146" name="Beyond the Sea">
+    <category>Old</category>
+    <arranger>Dave Briner</arranger>
+    <composer>Trenet/Lasry/Lawrence</composer>
+    <copyright>France Music Corp., Range Road Music Inc.</copyright>
+    <crdate>2005-12-31</crdate>
+    <key>Ab</key>
+    <lyricist>Trenet/Lasry/Lawrence</lyricist>
+    <stockID>200498</stockID>
+    <words>doot doot doot doot</words>
+    <tracks><voice gdid="1u_GUmiJJ7Hj-GHvDVAnanbYzkbLYtwRy" mods="Bass pred" path="bass/Beyond the Sea - Bass pred.mp3" voice="bass" />
+      <voice gdid="1kR9JlzII3_msT7decp1mAHAmexct_yN0" mods="Bari pred" path="bari/Beyond the Sea - Bari pred.mp3" voice="bari" />
+      <voice gdid="1ySY6xL47nmilJD74LUrSY77RSc5Ot1cD" mods="Lead pred" path="lead/Beyond the Sea - Lead pred.mp3" voice="lead" />
+      <voice gdid="1zgf2t4CqH3OCy8ezD5R6cxwnJ_jc5DeI" mods="Tenor pred" path="tenor/Beyond the Sea - Tenor pred.mp3" voice="tenor" />
+      <voice gdid="1YkTDdqPXiPtMhCVZ2L5YDNEsjFO502iJ" mods="mix" path="mix/Beyond the Sea.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="0Bxd7i2Hm5BiPQWpVWnU1MW93bTQ" sheet="Beyond the Sea (La Mer).pdf" />
+  </song>
+  <song id="1150" name="Blue Skies">
+    <category>Other</category>
+    <arranger>C. Hine</arranger>
+    <composer>Irving Berlin</composer>
+    <copyright>Irving Berlin</copyright>
+    <crdate>1926-12-31</crdate>
+    <key>F#</key>
+    <lyricist>Irving Berlin</lyricist>
+    <pitch>F#</pitch>
+    <stockID>113784</stockID>
+    <words>Blue Skies, blue skies</words>
+  </song>
+  <song id="1011" name="Breaking Up Is Hard To Do">
+    <category>Current</category>
+    <arranger>Tom Campbell</arranger>
+    <composer>Neil Sedaka, Howard Greenfiedl</composer>
+    <copyright>2005, Screen Gems-EMI Music</copyright>
+    <key>F</key>
+    <words>Down doo-be doo down down</words>
+    <tracks><voice gdid="1ePxGbCRdJ53DYKP2bgm_iU2oJ1a66T0T" mods="bass" path="bass/Breaking Up Is Hard To Do - bass.mp3" voice="bass" />
+      <voice gdid="1O48T9kMALuF6eMfvsB1y77XDSPjkqCLg" mods="bari" path="bari/Breaking Up Is Hard To Do - bari.mp3" voice="bari" />
+      <voice gdid="11J55-QoTMrtU_yM_pkx5nULmbliQDtZ5" mods="lead" path="lead/Breaking Up Is Hard To Do - lead.mp3" voice="lead" />
+      <voice gdid="1KaZF3nadALkCmNSEm5fkptWqDfBI36UR" mods="tenor" path="tenor/Breaking Up Is Hard To Do - tenor.mp3" voice="tenor" />
+      <voice gdid="18mepGeWU6rQWw3NW6vlJ2MZ6cXlD-8F1" mods="all" path="mix/Breaking Up Is Hard To Do - all.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid='12qDcDk0ALICZvafzTWRZsaYumjasqMDG' sheet='Breaking Up Is Hard To Do.pdf' />
+  </song>
+  <song id="1111" name="Bright Was The Night">
+    <category>PoleCatII</category>
+    <arranger>David Wright</arranger>
+    <composer>Anonymous</composer>
+    <copyright>David Wright</copyright>
+    <crdate>1990-12-31</crdate>
+    <key>Em</key>
+    <location>Polecat II pg 8</location>
+    <lyricist>Anonymous</lyricist>
+    <words>Saw her standing there</words>
+    <tracks><voice gdid="1XJHc60r7fHuUDaqND53HiYS6fGgNpq-K" mods="bass" path="bass/Bright Was The Night - bass.mp3" voice="bass" />
+      <voice gdid="10EML1pCYeHDCTld-ufoqZ5nS8pbgGgvb" mods="bari" path="bari/Bright Was The Night - bari.mp3" voice="bari" />
+      <voice gdid="1aqyCEZDNKWd5rzUFjC42c9a84DN79cRz" mods="lead" path="lead/Bright Was The Night - lead.mp3" voice="lead" />
+      <voice gdid="1sPq40WmFJu4rXRROte09Qq8Vn02C0SCs" mods="tenor" path="tenor/Bright Was The Night - tenor.mp3" voice="tenor" />
+    </tracks>
+  </song>
+  <song id="1012" name="Bury Me Out On The Lone Prairie">
+    <category>Old</category>
+    <arranger>PDB</arranger>
+    <key>F</key>
+    <words>doo doo doo doo</words>
+  </song>
+  <song id="1005" name="Bye Bye Blues">
+    <category>Old</category>
+    <arranger>Val Hicks</arranger>
+    <composer>Hamm, Bennett, Lown, Gray</composer>
+    <copyright>1969 Bourne Co.</copyright>
+    <key>Bb</key>
+    <learn_by>2011-03-24</learn_by>
+    <words>We're say-in' Bye</words>
+  </song>
+  <song id="1096" name="Bye Bye, Love">
+    <category>Other</category>
+    <arranger>SPEBSQSA, Inc</arranger>
+    <composer>Felice &amp; Boudleaux Bryant</composer>
+    <copyright>1957 House of Bryant Publ.</copyright>
+    <key>Ab</key>
+    <learn_by>2015-03-01</learn_by>
+  </song>
+  <song id="1192" name="California Dreamin'">
+    <category>Current</category>
+    <arranger>JOE JOHNSON</arranger>
+    <composer>JOHN PHILLIPS and MICHELLE PHILLIPS</composer>
+    <copyright>UNIVERSAL MUSIC CORP.</copyright>
+    <crdate>2016-12-31</crdate>
+    <key>Cm</key>
+    <lyricist>JOHN PHILLIPS and MICHELLE PHILLIPS</lyricist>
+    <stockID>211589</stockID>
+    <words>California Dreamin'</words>
+    <tracks><voice gdid="1i4-A8QT7Jedj88VSFRO0kBhi2v8fADLW" mods="bass missing" path="bass/California Dreamin' - Bass Missing.mp3" voice="bass" />
+      <voice gdid="1VyCRp6s12njby5kaRTR_hKFCoPZ3mQGC" mods="bass" path="bass/California Dreamin' - Bass.mp3" voice="bass" />
+      <voice gdid="1HjqKLX9TgV7S92r6wtsScK7jM816Svtt" mods="bari missing" path="bari/California Dreamin' - Bari Missing.mp3" voice="bari" />
+      <voice gdid="1klG6MH3UtK2BZoElP6pAJ8aam7-L_uH5" mods="bari" path="bari/California Dreamin' - Baritone.mp3" voice="bari" />
+      <voice gdid="1G9Ll8Welf2vsPNcyaepyJNmFUhAiE0v7" mods="lead missing" path="lead/California Dreamin' - Lead Missing.mp3" voice="lead" />
+      <voice gdid="1eJt1CgOWquEP4Oo4A3kv_yDEKBwwUwWX" mods="lead" path="lead/California Dreamin' - Lead.mp3" voice="lead" />
+      <voice gdid="1OqMyVJFMrqi8trHBhW2BfFV5939EVT6N" mods="tenor missing" path="tenor/California Dreamin' - Tenor Missing.mp3" voice="tenor" />
+      <voice gdid="10uh4MVKUuCQai_b62aNqoQ33zb8iptmW" mods="tenor" path="tenor/California Dreamin' - Tenor.mp3" voice="tenor" />
+      <voice gdid="1oFt0Gw5HujvfN64ki9TNylH76EQd05Zi" mods="mix" path="mix/California Dreamin' - Full Mixdown.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1tX992VnJReBQqs0xEIOKLMkAYmICYJNi" sheet="California Dreamin.pdf" />
+  </song>
+  <song id="1013" name="California Here I Come">
+    <category>Old</category>
+    <arranger>Dave Stevens</arranger>
+    <composer>Jolson/De Sylva/Meyer</composer>
+    <copyright>1924 Warner Bros, Inc</copyright>
+    <key>G</key>
+  </song>
+  <song id="1014" name="Caroline">
+    <category>Old</category>
+    <composer>Jolson/De Sylva/Meyer</composer>
+    <copyright>1924 Warner Bros, Inc</copyright>
+    <key>C</key>
+    <words>Bum bum bum</words>
+  </song>
+  <song id="1112" name="Caroline">
+    <category>PoleCatII</category>
+    <arranger>Larry Cole, Wally Cluett and the Boston Common</arranger>
+    <composer>Randy Newman</composer>
+    <copyright>Unichappell Music Inc</copyright>
+    <crdate>2013-12-31</crdate>
+    <key>C</key>
+    <location>Polecat II pg 12</location>
+    <lyricist>Randy Newman</lyricist>
+    <words>Bum bum bum</words>
+    <tracks><voice gdid="1o05YOQELof9cXJnv_GdqJT3dgzQkaR68" mods="bass" path="bass/Caroline - bass.mp3" voice="bass" />
+      <voice gdid="1z3FSYxCt-zucAAZqEqWR2j_5I1XoFCGy" mods="bari" path="bari/Caroline - bari.mp3" voice="bari" />
+      <voice gdid="1i9-eZ8sV4hHNXiyZ4TqipKXmaGRchWQH" mods="lead" path="lead/Caroline - lead.mp3" voice="lead" />
+      <voice gdid="1iiKL9jdX21bdbogMjwqh2hJUz7bimmBI" mods="tenor" path="tenor/Caroline - tenor.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid="1-GpMHSsAEiyr__xPHY_lSOWviUVlLclR" sheet="Caroline.pdf" />
+  </song>
+  <song id="1186" name="Celebrate Harmony">
+    <category>Old</category>
+    <words>??</words>
+    <tracks><voice gdid="1HznHS35nxI61T1r5X_HKf_TJO-OUAB8X" mods="Bass Left" path="bass/Celebrate Harmony - Bass Left.mp3" voice="bass" />
+      <voice gdid="1iHgnLVMD4W8lqUUiXBlgw7Klp2LFlQtX" mods="Bari Left" path="bari/Celebrate Harmony - Bari Left.mp3" voice="bari" />
+      <voice gdid="1oc00vx7-0MiC2NTHDkd074b-i6jAGXaO" mods="Lead Left" path="lead/Celebrate Harmony - Lead Left.mp3" voice="lead" />
+      <voice gdid="1wO3RjsRWjN8u5Ca4PuHVZzOmVgaSOmWD" mods="Tenor Left" path="tenor/Celebrate Harmony - Tenor Left.mp3" voice="tenor" />
+      <voice gdid="1rvTRi1iN1QpGaWVA3U9vg_lnxu998hI9" mods="All" path="mix/Celebrate Harmony - All.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1llQ8ti6_i9RIQ0Gi6lyYhmaD56UCCLxR" sheet="Celebrate Harmony OPENER-CLOSER 2012-04-04.pdf" />
+  </song>
+  <song id="1198" name="Chances Are">
+    <category>TTS</category>
+    <arranger>Greg Volk</arranger>
+    <composer>Robert Allen</composer>
+    <copyright>Korwin Music</copyright>
+    <crdate>1959</crdate>
+    <key>Bb</key>
+    <lyricist>Al Stillman</lyricist>
+    <words>Doo, doo doo doo doo</words>
+    <tracks><voice gdid="1xkp2-dierZTa7O2cRcsPr4EBCxbiob2Y" mods="bass" path="bass/Chances Are (bass predominant).mp3" voice="bass" />
+      <voice gdid="1HQPElEMMzlxaozt43T3JwmbjIsXgomYz" mods="lead" path="lead/Chances Are (lead predominant).mp3" voice="lead" />
+      <voice gdid="1m3q4PNIXPIEq_AdOWr5dQWl4Bw7IXmiq" mods="mix" path="mix/Chances Are (full mix).mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1127" name="Chanukah, Chanukah">
+    <category>YF2</category>
+    <arranger>Greg Lyne</arranger>
+    <composer>Traditional Jewish</composer>
+    <copies>3</copies>
+    <copyright>Greg Lyne</copyright>
+    <crdate>2015-12-31</crdate>
+    <key>Eb</key>
+    <location>YF2 p28</location>
+    <lyricist>Traditional Jewish</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>Chanukah, Chanukah</words>
+  </song>
+  <song id="1089" name="Christmas Chopsticks">
+    <category>Christmas</category>
+    <arranger>Anonymous</arranger>
+    <composer>Anonymous</composer>
+    <key>C</key>
+    <words>Twas the night before Christmas</words>
+  </song>
+  <song id="1141" name="Circle Of Life, The">
+    <category>Old</category>
+    <arranger>Chuck B Roegiers</arranger>
+    <composer>Tim Rice/Elton John</composer>
+    <key>A</key>
+    <lyricist>Tim Rice/Elton John</lyricist>
+    <pitch>A</pitch>
+    <words>Eng-win-yah-mah, eng-win-yah-mah bah-dah</words>
+    <tracks><voice gdid="19z2LKu9XFG6qEV6EjmOR1txN7xRuiupv" mods="Bass" path="bass/Circle of Life - Bass.mp3" voice="bass" />
+      <voice gdid="1R-KPJm6OLkR-k82NmSUBgwoBSvUhPrJG" mods="Baritone" path="bari/Circle of Life - Baritone.mp3" voice="bari" />
+      <voice gdid="1xnct52rfvn5tjb7CN3sgd5-HeS5dgyXY" mods="Lead" path="lead/Circle of Life - Lead.mp3" voice="lead" />
+      <voice gdid="1GXTyjEcXl2M54FQAxqABZnvRCqXhozwi" mods="Tenor" path="tenor/Circle of Life - Tenor.mp3" voice="tenor" />
+      <voice gdid="1OhLIjocXpL1zLHtzJuRFaXYVz7PAR4FJ" mods="mix" path="mix/Circle of Life - mix.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1WCnbOBSCHOiu16T4C-D1AgtCS9ToTHYM" sheet="COL.pdf" />
+  </song>
+  <song id="1128" name="Come, Thou Long-Expected Jesus">
+    <category>YF2</category>
+    <arranger>Adam Scott</arranger>
+    <composer>Rowland Prichard</composer>
+    <copies>3</copies>
+    <copyright>Adam Scott</copyright>
+    <crdate>2015-12-31</crdate>
+    <key>G</key>
+    <location>YF2 p16</location>
+    <lyricist>Charles Wesley</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>Come, Thou Long-Expected Jesus</words>
+  </song>
+  <song id="1220" name="Goodbye, My Coney Island Baby" aliasfor="1032"/>
+  <song id="1221" name="Coney Island" aliasfor="1032"/>
+  <song id="1032" name="Coney Island Baby">
+    <category>Current</category>
+    <category>PoleCatII</category>
+    <arranger>BHS</arranger>
+    <composer>Les Applegate</composer>
+    <copyright>Mills Music, Inc</copyright>
+    <crdate>2013-12-31</crdate>
+    <key>Bb</key>
+    <location>Polecat II pg 30</location>
+    <lyricist>Les Applegate</lyricist>
+    <words>Oh, goodbye, my Coney Island baby</words>
+    <tracks><voice gdid="1fTHkllcfXY-cQe3EvkSIl9wAi9QE41Pi" mods="All" path="mix/Coney Island Baby - All.mp3" voice="mix" />
+      <voice gdid="17EVQ4peEqzMIEpc0kqcK0b09QJfbr5Ru" mods="bass" path="bass/Coney Island Baby.mp3" voice="bass" />
+      <voice gdid="1Gb4yQs4lw9Sqs7-WXGLFJYBsYcQzXv-u" mods="bari" path="bari/Coney Island Baby.mp3" voice="bari" />
+      <voice gdid="18ZpDV7sZAaYgmHdLVbhj1Tw2nt2PV20x" mods="lead" path="lead/Coney Island Baby.mp3" voice="lead" />
+      <voice gdid="19XwB95EsWkdsascTD0udu6XrObLFIlXX" mods="tenor" path="tenor/Coney Island Baby.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid="1-dda0r7zu_3CDqkCE8i4rOB2Qri9hPme" sheet="Coney Island Baby.pdf" />
+  </song>
+  <song id="1143" name="Consider Yourself">
+    <category>Current</category>
+    <arranger>Tom Gentry</arranger>
+    <composer>Lionel Bart</composer>
+    <copyright>Lakeview Music Co. Ltd</copyright>
+    <crdate>1959-12-31</crdate>
+    <key>Bb</key>
+    <lyricist>Lionel Bart</lyricist>
+    <pitch>Ab</pitch>
+    <stockID>206615</stockID>
+    <words>When you start in to frown</words>
+    <tracks><voice gdid="11Td0y6d1oxykBMZvRF8A_sL1THbustyd" mods="Tenor" path="tenor/Consider Yourself - Tenor.mp3" voice="tenor" />
+      <voice gdid="1gSETIiivQx6_EL83VNPqixDW4KlqbVPx" mods="Bass" path="bass/Consider Yourself Bass.mp3" voice="bass" />
+      <voice gdid="1_g9QRy3I-tWRlf6mF7qT5xan7tnb-MBL" mods="Bari" path="bari/Consider Yourself Bari.mp3" voice="bari" />
+      <voice gdid="110OuOwJK4W8dR9SADc-DRykAsmC1bkIb" mods="Lead" path="lead/Consider Yourself Lead.mp3" voice="lead" />
+      <voice gdid="1p0oQKvqGW-SWIfpzq8ClvIACC9mqbLMA" mods="Mix" path="mix/Consider Yourself Mix.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1-6uEbvLXXZszAJdvHxcdkLq3IvVt4ZiL" sheet="Consider Yourself.pdf" />
+  </song>
+  <song id="1015" name="Cool Water">
+    <category>Old</category>
+    <arranger>Don Gray</arranger>
+    <composer>Bob Nolan</composer>
+    <copyright>1936 Valley Publishers, Inc</copyright>
+    <key>Ab</key>
+    <words>All day I faced the barren waste</words>
+  </song>
+  <song id="1113" name="Darkness On The Delta">
+    <category>PoleCatII</category>
+    <arranger>BHS</arranger>
+    <composer>Jerry Levinson</composer>
+    <copyright>Music Sales Corporation</copyright>
+    <crdate>2013-12-31</crdate>
+    <key>F</key>
+    <location>Polecat II pg 15</location>
+    <lyricist>Symes/Neiburg</lyricist>
+    <words>When it's darkness</words>
+    <tracks><voice gdid="1ambpISfpAkeClLlyRTmogk9HEeGTGOjw" mods="bass" path="bass/Darkness On The Delta - bass.mp3" voice="bass" />
+      <voice gdid="1btizgoJBNcT5wCmDfbtqsEOGEpGxDzGt" mods="bari" path="bari/Darkness On The Delta - bari.mp3" voice="bari" />
+      <voice gdid="1va2WDdI8chbCCLm1cMRQLN3KE_YMongn" mods="lead" path="lead/Darkness On The Delta - lead.mp3" voice="lead" />
+      <voice gdid="1afZun2ZLByOzaGjJu8lWCJp1VZLx61Tc" mods="tenor" path="tenor/Darkness On The Delta - tenor.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid="1-IGjSei3zzbATZuYP8FB2ZObmm-uH5_G" sheet="Darkness On the Delta.pdf" />
+  </song>
+  <song id="1100" name="Daydream">
+    <category>Current</category>
+    <arranger>Mel Knight</arranger>
+    <composer>John Sebastian</composer>
+    <key>B</key>
+    <learn_by>2015-03-02</learn_by>
+    <lyricist>John Sebastian</lyricist>
+    <pitch>B</pitch>
+    <words>ba doo, ba doo, ba doo</words>
+    <tracks><voice gdid="1lr7zfcxtHRBVeibpBoWOIWTOsS1S3lic" mods="bari" path="bari/Daydream - bari.mp3" voice="bari" />
+      <voice gdid="166xesBxhLLl-SNkoQyRmPw3ocpia7ERd" mods="lead" path="lead/Daydream - lead.mp3" voice="lead" />
+      <voice gdid="1F_NlxBq_KBtcCgXytZMnMrO5tHiwCKaQ" mods="all" path="mix/Daydream - all.mp3" voice="mix" />
+      <voice gdid="1h3wm0NQ1amNECDYVivkf6r3IZ-xTlzYB" mods="bass" path="bass/Daydream.mp3" voice="bass" />
+      <voice gdid="1JS2F2CjU19OkDRu2Y58YjGdfmTX1jGfg" mods="tenor" path="tenor/Daydream.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid="141OydIotWbTLpwdbvg7Q_xCdqZ8xl_vR" sheet="Daydream.pdf" />
+  </song>
+  <song id="1070" name="Dear Hearts and Gentle People">
+    <category>Old</category>
+    <arranger>Rob Campbell</arranger>
+    <composer>Sammy Fain</composer>
+    <copyright>1992 Better Half Music and Fain</copyright>
+    <key>G</key>
+    <learn_by>2014-02-10</learn_by>
+    <words>There's a place I'd like to be</words>
+    <tracks><voice gdid="1LV0hhnviLmNRsouhQ0nC_3ur0PNV2bLl" mods="Bass" path="bass/Dear Hearts - Bass.mp3" voice="bass" />
+      <voice gdid="1ypcA_BjNqgAmCZo23OiX3ZuHAP4TKdwt" mods="Bari" path="bari/Dear Hearts - Bari.mp3" voice="bari" />
+      <voice gdid="1UszTkWeVCOgecCVYa2pIKcuHqIVsYa2p" mods="Lead" path="lead/Dear Hearts - Lead.mp3" voice="lead" />
+      <voice gdid="1tuYnpCAYKcB2A3AnmTm2kcWCwJC31KhQ" mods="Tenor" path="tenor/Dear Hearts - Tenor.mp3" voice="tenor" />
+    </tracks>
+  </song>
+  <song id="1219" name="Deck the Halls">
+    <category>Christmas</category>
+    <key>Eb</key>
+    <words>Deck the halls with boughs of holly</words>
+  </song>
+  <song id="1129" name="Deck the Halls">
+    <category>YF2</category>
+    <category>Old</category>
+    <arranger>Burt Szabo</arranger>
+    <composer>Old Welsh Air</composer>
+    <copies>3</copies>
+    <copyright>Burt Szabo</copyright>
+    <crdate>2015-12-31</crdate>
+    <key>F</key>
+    <location>YF2 p4</location>
+    <lyricist>Old Welsh Air</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>Deck the halls</words>
+  </song>
+  <song id="1164" name="Do You Hear What I Hear">
+    <category>Christmas</category>
+    <arranger>Joe Liles</arranger>
+    <composer>Regney/Shayne</composer>
+    <copyright>Jewel Music Publ. Co</copyright>
+    <crdate>1961-12-31</crdate>
+    <key>G</key>
+    <location>Coll pg 4</location>
+    <lyricist>Regney/Shayne</lyricist>
+    <words>Oh, Oh, Said the night wind</words>
+  </song>
+  <song id="1042" name="Don't Sit Under The Apple Tree">
+    <category>Old</category>
+    <arranger>Dick Rode</arranger>
+    <composer>Brown, Tobias, Stept</composer>
+    <copyright>1942, Robbins Music</copyright>
+    <key>G</key>
+    <learn_by>2012-02-29</learn_by>
+    <tracks><voice gdid="1J7jHaqZbnCxBljz9HXQqKFf7xCa_eisX" mods="Bass" path="bass/Dont Sit Under The Apple Tree - Bass.mp3" voice="bass" />
+      <voice gdid="1CRKnKE769SUjCngm9H3D2vOnmYbHlJ1v" mods="Bari" path="bari/Dont Sit Under The Apple Tree - Bari.mp3" voice="bari" />
+      <voice gdid="19Ct05DJ3sKtCRSJys50Z17FJUuYhO6c0" mods="Lead" path="lead/Dont Sit Under The Apple Tree - Lead.mp3" voice="lead" />
+      <voice gdid="1RWWjdqWkg9e15hbZHX0ztd26rQB3TEQC" mods="Tenor" path="tenor/Dont Sit Under The Apple Tree - Tenor.mp3" voice="tenor" />
+      <voice gdid="1KQocrgGOTpHoEtb_GXQEPZ8iMWd8Adrw" mods="mix" path="mix/Dont Sit Under The Apple Tree.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1175" name="Dona Nobis Pacem">
+    <category>Current</category>
+    <key>F</key>
+    <words>Do-na no-bis</words>
+    <sheet gdid="1wVn9dDqhBZnR5u2hg5ofVASavIfdG9D3" sheet="Dona Nobis Pacem.pdf" />
+  </song>
+  <song id="1059" name="Down By The Old Mill Stream">
+    <category>PoleCat</category>
+    <arranger>Tell Taylor</arranger>
+    <composer>Tell Taylor</composer>
+    <copyright>1986, SPEBSQSA</copyright>
+    <key>Ab</key>
+    <location>Polecat I pg 16</location>
+    <words>Down by the old mill stream</words>
+    <tracks><voice gdid="1gcVywK5XsOvJGBXRYLNjSdSHUW0VqS_O" mods="bari left" path="bari/Down By the Old Mill Stream - bari left.mp3" voice="bari" />
+      <voice gdid="1d2fEwyOsQfG6FqLgwaccOKs2wwHDC-UL" mods="bass" path="bass/Down By the Old Mill Stream.mp3" voice="bass" />
+      <voice gdid="1UbRuGZgUNh-tQleqfx9nIIMFG0hm7EHr" mods="mix" path="mix/Down By the Old Mill Stream.mp3" voice="mix" />
+      <voice gdid="115mpmgtvRVVGSZHsSHHJuHUaZ5FkESqS" mods="tenor" path="tenor/Down By the Old Mill Stream - Tenor Left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='12iurK5N73oZrTH2S69-LQvl5YslgDBwC' sheet='Down By the Old Mill Stream.pdf' />
+  </song>
+  <song id="1055" name="Down Our Way">
+    <category>PoleCat</category>
+    <arranger>Floyd Connett</arranger>
+    <composer>Al Stedman, Fred Hughes</composer>
+    <copyright>1959, SPEBSQSA</copyright>
+    <key>Bb</key>
+    <location>Polecat I pg 8</location>
+    <words>Down our way</words>
+    <tracks><voice gdid="1YuMJWikBp40mWA1DpASDm4_q8DnAp1lD" mods="bari left" path="bari/Down Our Way - bari left.mp3" voice="bari" />
+      <voice gdid="1-4Bc1JG0gYtvP2VhqZ5NNS8zygBHfuUX" mods="bass" path="bass/Down Our Way.mp3" voice="bass" />
+      <voice gdid="198g_jL0Z2BBYX-RBQ_DUAYsEhmEXkgNT" mods="mix" path="mix/Down Our Way.mp3" voice="mix" />
+      <voice gdid="11SA87C1syv-XTVlmysvT3gwYswyZPAYf" mods="tenor" path="tenor/Down Our Way - Tenor Left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='120mTHkSy81g4q9gVJC7j3OfrZMqbOwkG' sheet='Down Our Way.pdf' />
+  </song>
+  <song id="1040" name="Dream">
+    <category>Old</category>
+    <arranger>SPEBSQSA, Inc</arranger>
+    <composer>Johnny Mercer</composer>
+    <copyright>1944, WB Music Corp.</copyright>
+    <key>Am</key>
+    <words>Get in touch with that sundown fellow</words>
+    <tracks><voice gdid="1n0Wk_z6MzzVz4S8a0QrLRqbt0FmnYzCC" mods="mix" path="mix/Dream.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1041" name="Dream Lover">
+    <category>Old</category>
+    <arranger>Bob Hart</arranger>
+    <composer>Bobby Darin</composer>
+    <key>Bb</key>
+    <words>Oo-oo-oo-oo-oo</words>
+    <tracks><voice gdid="19EcUjPVb-6ciAePdr2p-dyePgt3Z8JQ_" mods="Bass" path="bass/Dream Lover - Bass.mp3" voice="bass" />
+      <voice gdid="1-p33ShsZ-UmhXMqYVsiQ2pWWgGMepggS" mods="Bari" path="bari/Dream Lover - Bari.mp3" voice="bari" />
+      <voice gdid="1tRHlCA9OS_BeCvek6b6YnSZYw8pNFFC5" mods="Lead" path="lead/Dream Lover - Lead.mp3" voice="lead" />
+      <voice gdid="1GpTdChicvJKsBylPJeDlEPLW73Z9-B9Y" mods="Tenor" path="tenor/Dream Lover - Tenor.mp3" voice="tenor" />
+      <voice gdid="10u7Eoq9FqYHDfBx3cLLG-7AFt0czFUML" mods="mix" path="mix/Dream Lover.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1114" name="Drivin' Me Crazy">
+    <category>PoleCatII</category>
+    <arranger>Bob Disney</arranger>
+    <composer>Bob Disney</composer>
+    <copyright>Bob Disney</copyright>
+    <crdate>1976-12-31</crdate>
+    <key>Ab</key>
+    <location>Polecat II pg 20</location>
+    <lyricist>Bob Disney</lyricist>
+    <words>With the beat, beat, beat</words>
+    <tracks><voice gdid="1vkt5uJKWnDVqBjMnT8CqcuRs8MM2oRrJ" mods="bass" path="bass/Drivin' Me Crazy - bass.mp3" voice="bass" />
+      <voice gdid="1dz9l520_A-oT2s6PCH7Pf4WGMQ_XXOav" mods="bari" path="bari/Drivin' Me Crazy - bari.mp3" voice="bari" />
+      <voice gdid="1Hrt4w3ScFnxGd8OZQbuJbsUdKMOpsLe5" mods="lead" path="lead/Drivin' Me Crazy - lead.mp3" voice="lead" />
+      <voice gdid="1aefYg2Ss4FM1qXZBcRLuaz5TRlRjEqJo" mods="tenor" path="tenor/Drivin' Me Crazy - tenor.mp3" voice="tenor" />
+    </tracks>
+  </song>
+  <song id="1187" name="Each Time I Fall In Love">
+    <category>Old</category>
+    <key>Ab</key>
+    <pitch>A</pitch>
+    <words>They say that all who love are blind</words>
+    <tracks><voice gdid="1UyMVipznmLrveWsnFKgU7Ms_2hpmTFrY" mods="Bass" path="bass/Each Time I Fall In Love - Bass.mp3" voice="bass" />
+      <voice gdid="1-VXXRRSNxRKcMxbf4PNr4d9X40TYM05c" mods="Bari" path="bari/Each Time I Fall In Love - Bari.mp3" voice="bari" />
+      <voice gdid="1YBPrhNSnc9pRQSuDfuTYK9zwXVi-pOFk" mods="Lead" path="lead/Each Time I Fall In Love - Lead.mp3" voice="lead" />
+      <voice gdid="1ibzEyq_xocD1VYlFaoyf7LzCj7KkEgkL" mods="Tenor" path="tenor/Each Time I Fall In Love - Tenor.mp3" voice="tenor" />
+      <voice gdid="1-bJDYvF9nDBCM-u2NeHgBIxL3ZfAkZQ_" mods="All" path="mix/Each Time I Fall In Love - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1182" name="Edelweiss">
+    <category>Show</category>
+    <arranger>Julien Neel</arranger>
+    <composer>Oscar/Hammerstein</composer>
+    <key>C</key>
+    <learn_by>2019-10-21</learn_by>
+    <lyricist>Oscar/Hammerstein</lyricist>
+    <ordered>2019-08-13</ordered>
+    <words>Loo Loo Loo</words>
+    <tracks><voice gdid="11SGx1eb4fSAdRPNUvNS32gffUuuPP47H" mods="Bass hybrid" path="bass/Edelweiss - Bass hybrid.mp3" voice="bass" />
+      <voice gdid="1y64mj8voTLOg9h4MitvzXVzvpuRe-xa9" mods="Baritone hybrid" path="bari/Edelweiss - Baritone hybrid.mp3" voice="bari" />
+      <voice gdid="1TLcHcY3GYFEXEeCtfwxoKAGeXCTbtL3D" mods="Lead hybrid" path="lead/Edelweiss - Lead hybrid.mp3" voice="lead" />
+      <voice gdid="1e_Nim85FkNgkNlGKvb1d23Tk5V1hOP58" mods="Tenor hybrid" path="tenor/Edelweiss - Tenor hybrid.mp3" voice="tenor" />
+      <voice gdid="1WzpvGgx-h3-1wHSfIAFRX3HwEGwTZtYB" mods="Full Mix hybrid" path="mix/Edelweiss - Full Mix hybrid.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1eHDGFO_lNKOF0P_VdQlG5VHJ8IlHTVpw" sheet="Edelweiss.pdf" />
+  </song>
+  <song id="1158" name="Eight Days A Week">
+    <category>TTS</category>
+    <arranger>David Harrington</arranger>
+    <composer>Lennon/McCartney</composer>
+    <copyright>Siby/ATV Music Publishing</copyright>
+    <crdate>2010-12-31</crdate>
+    <key>B</key>
+    <lyricist>Lennon/McCartney</lyricist>
+    <words>na na na na na na na na</words>
+  </song>
+  <song id="1043" name="Embraceable You">
+    <category>Old</category>
+    <arranger>Bill Pellant</arranger>
+    <composer>Geo. and Ira Gershwin</composer>
+    <copyright>1930 WB Music</copyright>
+    <key>Ab</key>
+    <words>Embrace me</words>
+  </song>
+  <song id="1044" name="Firefly">
+    <category>Old</category>
+    <arranger>Ed Waesche</arranger>
+    <composer>Cy Coleman</composer>
+    <copyright>1986 Edwin H. Morris &amp; Co.</copyright>
+    <key>C</key>
+    <learn_by>2012-03-01</learn_by>
+    <words>Firefly, shine</words>
+    <tracks><voice gdid="1qmP6Mv9WSCuAd8ql4Pc1zTuW5qjlde8n" mods="Bass" path="bass/Firefly - Bass.mp3" voice="bass" />
+      <voice gdid="1Mp4DUf4ftyo2puF6IjXZoukVDk2Od5jG" mods="Bari" path="bari/Firefly - Bari.mp3" voice="bari" />
+      <voice gdid="1tavycMRlPX780hj-wEBBP8OnellbO5wy" mods="Lead" path="lead/Firefly - Lead.mp3" voice="lead" />
+      <voice gdid="10BTuA9-5_HC2WT9d0CSMgpZFS0ipNXGN" mods="Tenor" path="tenor/Firefly - Tenor.mp3" voice="tenor" />
+      <voice gdid="1jnoYgz4aBfoYDWq4C1BaLp4QZf6fDOmv" mods="All" path="mix/Firefly - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1222" name="From The First Hello" aliasfor="1115"/>
+  <song id="1115" name="From The First Hello To The Last Goodbye">
+    <category>PoleCatII</category>
+    <arranger>Lou Perry</arranger>
+    <composer>Johnny Burke</composer>
+    <copyright>Marke-Music Publishing Co, Inc</copyright>
+    <crdate>2013-12-31</crdate>
+    <key>F</key>
+    <location>Polecat II pg 26</location>
+    <lyricist>Johnny Burke</lyricist>
+    <words>Our song was a song</words>
+    <tracks><voice gdid="1jbkK1gq9Oopb5k-YUMFMFCsZBWdEjAF7" mods="bass" path="bass/From The First Hello - bass.mp3" voice="bass" />
+      <voice gdid="1F0WYtcMLQzidxPKuozDrVFtbh0yYVWls" mods="bari" path="bari/From The First Hello - bari.mp3" voice="bari" />
+      <voice gdid="120zEr5-7CTv7WZxqbyDDOLKiDTn0y_FZ" mods="lead" path="lead/From The First Hello - lead.mp3" voice="lead" />
+      <voice gdid="1lF6M6zVVG8XPpjQU4lT9QS5MMZSIA_tr" mods="tenor" path="tenor/From The First Hello - tenor.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid="1-ZuKCouJsF1OQhB61ARDu4hSwiJNmv77" sheet="From the First Hello.pdf" />
+  </song>
+  <song id="1131" name="Go, Tell It on the Mountain">
+    <category>YF2</category>
+    <arranger>Joe Johnson</arranger>
+    <composer>Traditional</composer>
+    <copies>3</copies>
+    <copyright>Joseph A. Johnson</copyright>
+    <crdate>2011-12-31</crdate>
+    <key>G</key>
+    <location>YF2 p7</location>
+    <lyricist>John Work, Jr.</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>Go, tell it on the mountain</words>
+  </song>
+  <song id="1016" name="God Bless America">
+    <category>Current</category>
+    <arranger>Greg Lyne</arranger>
+    <composer>Irving Berlin</composer>
+    <copyright>1975, Irving Berlin</copyright>
+    <key>G</key>
+    <words>While the storm clouds gather</words>
+    <tracks><voice gdid="1QqZyBsxQhujnh8L3o1jZPV54S9AaU5bS" mods="tenor L" path="tenor/God Bless America Tenor L.mp3" voice="tenor" />
+      <voice gdid="1bGcrxv2CUV6qy6z9FYnjE4CIoEezV5BC" mods="mix" path="mix/God Bless America.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1-3lnZit0jeoxUbEU4fwBiZ1DWbL9Y07V" sheet="God Bless America.pdf" />
+  </song>
+  <song id="1132" name="Good Christian Men, Rejoice">
+    <category>YF2</category>
+    <arranger>Joe Johnson</arranger>
+    <composer>Traditional German</composer>
+    <copies>3</copies>
+    <copyright>Joseph A. Johnson</copyright>
+    <crdate>2011-12-31</crdate>
+    <key>F</key>
+    <location>YF2 p10</location>
+    <lyricist>John M. Neale</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>Good Christian men, rejoice</words>
+  </song>
+  <song id="1181" name="Happy Together">
+    <category>Show</category>
+    <arranger>Liz Garnett</arranger>
+    <composer>Bonner/Gordon</composer>
+    <copies>25</copies>
+    <copyright>Alley Music</copyright>
+    <crdate>2004-12-31</crdate>
+    <key>Em</key>
+    <learn_by>2019-11-18</learn_by>
+    <lyricist>Bonner/Gordon</lyricist>
+    <ordered>2019-08-13</ordered>
+    <source>BHS</source>
+    <stockID>8639</stockID>
+    <words>doot so happy</words>
+    <tracks><voice gdid="1CQ-UR6hU6LCuMBA0y-riFJNJBDWGSFDh" mods="Bass" path="bass/Happy Together - Bass.mp3" voice="bass" />
+      <voice gdid="1qe9wgJk56HH-Vd6_et3va_olwH03d1yB" mods="Bari" path="bari/Happy Together  - Bari.mp3" voice="bari" />
+      <voice gdid="1bghfYI2NTp-4ZI5McLaXrn8uQnl-7XbZ" mods="Lead" path="lead/Happy Together - Lead.mp3" voice="lead" />
+      <voice gdid="1yG8zvNqizZYdxEAgs3UXWAmSI2B-2jFA" mods="Tenor" path="tenor/Happy Together - Tenor.mp3" voice="tenor" />
+      <voice gdid="1pSbPJLrNsjWA5CKJx-golMWBHExS1a9q" mods="Mix" path="mix/Happy Together - Mix.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="110FaozNqA9GzpY1DQu9idtwI6EqeFVQo" sheet="Happy Together.pdf" />
+  </song>
+  <song id="1159" name="Have A Little Talk With Myself">
+    <category>TTS</category>
+    <arranger>Gary Parker</arranger>
+    <composer>Ray Stevens</composer>
+    <copyright>Ahab Music Co./BMI</copyright>
+    <crdate>1996-12-31</crdate>
+    <key>F</key>
+    <lyricist>Ray Stevens</lyricist>
+    <stockID>203480</stockID>
+    <words>Lately I have noticed all my friends</words>
+  </song>
+  <song id="1017" name="Hello Mary Lou">
+    <category>Old</category>
+    <arranger>D. Wright</arranger>
+    <composer>Gene Pitney</composer>
+    <copyright>1960, Six Continents Music Publ. Co.</copyright>
+    <key>Bb</key>
+    <notes>Goodbye Heart</notes>
+    <words>Passed me by</words>
+  </song>
+  <song id="1116" name="Hello Mary Lou">
+    <category>Current</category>
+    <category>PoleCatII</category>
+    <arranger>David Wright</arranger>
+    <composer>Gene Pitney and Cayet Mangiaracina</composer>
+    <copyright>Songs of Universal, Inc</copyright>
+    <crdate>2013-12-31</crdate>
+    <key>Bb</key>
+    <location>Polecat II pg 34</location>
+    <lyricist>Gene Pitney and Cayet Mangiaracina</lyricist>
+    <notes>Goodbye Heart</notes>
+    <words>Passed me by</words>
+    <tracks><voice gdid="1A4BsG4vMKBnj6TP68BnYWjZofsE7XJsD" mods="bass" path="bass/Hello Mary Lou - bass.mp3" voice="bass" />
+      <voice gdid="1NEnKvWZ5JpmyO9Cf1SqFPZKFHU3_5sIT" mods="bari" path="bari/Hello Mary Lou - bari.mp3" voice="bari" />
+      <voice gdid="1j5QIse3zpk-cix5RpiG-J9hsDW7PfJlY" mods="lead" path="lead/Hello Mary Lou - lead.mp3" voice="lead" />
+      <voice gdid="10opf_mDgFfA-zHGpWp0AmaUHpbGbJIUY" mods="tenor" path="tenor/Hello Mary Lou - tenor.mp3" voice="tenor" />
+      <voice gdid="1FPHFbyQq0-aISgCdJr0r0zSB_zB3Ndqi" mods="all" path="mix/Hello Mary Lou - all.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1-fvobnxXGe2__NpiQ7YZzSVTyxloWgna" sheet="Hello Mary Lou.pdf" />
+  </song>
+  <song id="1133" name="Here We Come A-Wassailing">
+    <category>YF2</category>
+    <arranger>Larry Triplett</arranger>
+    <composer>Traditional English</composer>
+    <copies>3</copies>
+    <copyright>Larry Triplett</copyright>
+    <crdate>2007-12-31</crdate>
+    <key>F</key>
+    <location>YF2 p20</location>
+    <lyricist>Traditional English</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>Here we come a-wassailing</words>
+  </song>
+  <song id="1107" name="Hey, Look Me Over">
+    <category>Old</category>
+    <arranger>BHS</arranger>
+    <composer>Cy Coleman</composer>
+    <copies>30</copies>
+    <copyright>Notable Music Co, inc</copyright>
+    <crdate>1987-12-31</crdate>
+    <key>Ab</key>
+    <learn_by>2016-02-29</learn_by>
+    <lyricist>Carolyn Leigh</lyricist>
+    <ordered>2015-09-23</ordered>
+    <source>BHS</source>
+    <stockID>7394</stockID>
+    <words>I'm down and out today</words>
+    <tracks><voice gdid="1PMNEYMa52Oowou87Z7OBXXi3vmWNg2ps" mods="Bass" path="bass/Hey Look Me Over - Bass.mp3" voice="bass" />
+      <voice gdid="1ASqfkgNfajnecYHCwdzHYJrK0WAasUuH" mods="mix" path="mix/Hey Look Me Over.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1034" name="Hi Neighbor">
+    <category>Old</category>
+    <key>Bb</key>
+    <words>We're sing-in' Hi neighbor</words>
+  </song>
+  <song id="1033" name="Home On The Range">
+    <category>Old</category>
+    <arranger>Jim Clancy</arranger>
+    <key>E</key>
+  </song>
+  <song id="1165" name="Home for the Holidays">
+    <category>Christmas</category>
+    <arranger>Foris/Szabo</arranger>
+    <composer>Stillman/Allen</composer>
+    <copyright>Music Sales Corp.</copyright>
+    <crdate>1985-12-31</crdate>
+    <key>C</key>
+    <location>Coll pg 8</location>
+    <lyricist>Stillman/Allen</lyricist>
+    <words>Christmas comes but once a year</words>
+  </song>
+  <song id="1056" name="Honey/Little 'Lize - Medley">
+    <category>PoleCat</category>
+    <arranger>Floyd Connett</arranger>
+    <composer>Traditionial</composer>
+    <copyright>1959, SPEBSQSA</copyright>
+    <key>Bb</key>
+    <location>Polecat I pg 9</location>
+    <words>Oh, honey, honey</words>
+    <tracks><voice gdid="1r6TkEHAALvm1XcqR04W2-hKBaMy0dm8p" mods="bari left" path="bari/Honey-Little Lize Medley - bari left.mp3" voice="bari" />
+      <voice gdid="1bedt-9Wcd8X3pM6WcD8CxRr0skofuoYe" mods="bass" path="bass/Honey-Little Lize Medley.mp3" voice="bass" />
+      <voice gdid="1TFiw0WaI32IO03k2jxMiAJ9QfDSO3dAA" mods="mix" path="mix/Honey-Little Lize Medley.mp3" voice="mix" />
+      <voice gdid="11Qxvsxx3P9ATkVRgtJ5PoVJx7nSxz00w" mods="tenor" path="tenor/Honey-Little Lize Medley - Tenor Left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='1274WW3ccH_bDmkRxM318riUlA15D8887' sheet='Honey Little Lize Medley.pdf' />
+  </song>
+  <song id="1180" name="Hooked On a Feeling">
+    <category>Show</category>
+    <arranger>Jon Nicholas</arranger>
+    <composer>Mark James</composer>
+    <copies>30</copies>
+    <copyright>Screen Gems-EMI Music, Inc</copyright>
+    <key>G</key>
+    <learn_by>2019-12-02</learn_by>
+    <lyricist>Mark James</lyricist>
+    <ordered>2019-07-16</ordered>
+    <pitch>F</pitch>
+    <source>BHS</source>
+    <stockID>209261</stockID>
+    <words>oo-ga-cha-ka oo-ga-cha-ka</words>
+    <tracks><voice gdid="1mhAEkLgnF5j961Xu8yRwuxYCS5BjU1aC" mods="bari in F" path="bari/Hooked on A Feeling in F (Baritone).mp3" voice="bari" />
+      <voice gdid="1z3l_MzhNZfRJmR-Fw1f9pgTeyIHckMfO" mods="bass in F" path="bass/Hooked On a Feeling in F - Bass.mp3" voice="bass" />
+      <voice gdid="1DhoyC44LHKmtYAM-B5apepo-ZNsRD9eU" mods="lead in F" path="lead/Hooked On a Feeling in F - Lead.mp3" voice="lead" />
+      <voice gdid="1ov-2cPna48g5vr8O_JbCkWS3ud6PzZ1K" mods="mix in F" path="mix/Hooked on a Feeling Mix in F.mp3" voice="mix" />
+      <voice gdid="1eLF-3U8iXbddBIBFYo1sXdQF94-XOrjY" mods="tenor in F" path="tenor/Hooked on a Feeling in F (Tenor).mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid="1SpafBcp1oBWiXkOLLExAnba1-d8Y_pMH" sheet="Hooked On a Feeling.pdf" />
+  </song>
+  <song id="1006" name="Hushabye Mountain">
+    <category>Old</category>
+    <arranger>Bill Mitchell</arranger>
+    <composer>Richard M and Robert B Sherman</composer>
+    <copies>20</copies>
+    <copyright>EMI UNART Catalog</copyright>
+    <crdate>1967-12-31</crdate>
+    <key>Am</key>
+    <learn_by>2016-01-11</learn_by>
+    <lyricist>Richard M and Robert B Sherman</lyricist>
+    <ordered>2015-09-23</ordered>
+    <source>BHS</source>
+    <stockID>8840</stockID>
+    <words>Loo, doo, doo doo doo doo doo</words>
+    <tracks><voice gdid="1lhWP-VGBCsmuV7il4NT1OJe8lEsUbog7" mods="Bass Solo" path="bass/Hushabye Mountain - Bass Solo.mp3" voice="bass" />
+      <voice gdid="1mhfu-Q7D-B05TLfnCPHh_Q_kvempPsfB" mods="Bass" path="bass/Hushabye Mountain - Bass.mp3" voice="bass" />
+      <voice gdid="1iAnueNdGKP8zsDTosz3api46Cw1CS4yW" mods="Bari" path="bari/Hushabye Mountain - Bari.mp3" voice="bari" />
+      <voice gdid="1av08mlseEFFkL7dZINJVo33a7lzXSGaa" mods="Lead" path="lead/Hushabye Mountain - Lead.mp3" voice="lead" />
+      <voice gdid="11KfdjEXyl3i-Kv1_40fQtfFLwWR8t6fr" mods="Tenor" path="tenor/Hushabye Mountain - Tenor.mp3" voice="tenor" />
+      <voice gdid="17lio06EQQnXGapE3gzkv8KmBjksqVg7J" mods="All" path="mix/Hushabye Mountain - All.mp3" voice="mix" />
+      <voice gdid="11d8KSvGBJOKJHLjXTeDCwNQtZPMEUbE9" mods="mix" path="mix/Hushabye Mountain.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1002" name="I Believe">
+    <category>Old</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Drake, Graham, Shirl, Stillman</composer>
+    <copyright>1981 Hampshire House Publ.</copyright>
+    <key>Eb</key>
+    <learn_by>2011-03-24</learn_by>
+    <words>I believe for ev'ry drop</words>
+    <tracks><voice gdid="1YpBuq6HJkhDdKRaxhRpab3WlY1qBNCdq" mods="Bass" path="bass/I Believe - Bass.mp3" voice="bass" />
+      <voice gdid="1cb_cIwqoRBWePlcaYCQWz_FSk5tJKIT8" mods="Bari" path="bari/I Believe - Bari.mp3" voice="bari" />
+      <voice gdid="15842lj5Fwig3L8jK5s-NG1qVt6LyX81A" mods="Lead" path="lead/I Believe - Lead.mp3" voice="lead" />
+      <voice gdid="18sP_vEvMdVIG2kzVEF6PNOpYgk8vsUv5" mods="Tenor" path="tenor/I Believe - Tenor.mp3" voice="tenor" />
+      <voice gdid="1eMQzlUIGRb2aHVmCJkQWAOid-OWrpnen" mods="Mix" path="mix/I Believe - Mix.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1117" name="I Don't Know Why">
+    <category>Current</category>
+    <category>PoleCatII</category>
+    <arranger>Mel Knight</arranger>
+    <composer>Fred E Ahlert</composer>
+    <copyright>Cromwell Music, Inc</copyright>
+    <crdate>1930-12-31</crdate>
+    <key>Bb</key>
+    <location>Polecat II pg 40</location>
+    <lyricist>Roy Turk</lyricist>
+    <notes>I Just Do</notes>
+    <words>My mind is kinda hazy</words>
+    <tracks><voice gdid="1qJR-M2JW-7_Lfzai8UwRiUBxh44jiFTt" mods="bass" path="bass/I Don't Know Why.mp3" voice="bass" />
+      <voice gdid="1h_Nepw33hWb9XX5EZBAhqgja50iMlL-y" mods="bari" path="bari/I Don't Know Why.mp3" voice="bari" />
+      <voice gdid="1fJEJIl0J-dOUOncRs1a5ZOv-lFFzI2Sp" mods="lead" path="lead/I Don't Know Why.mp3" voice="lead" />
+      <voice gdid="1hDKZ-fe2PnfkotGPIwtb3XjRr5005fGI" mods="tenor" path="tenor/I Don't Know Why.mp3" voice="tenor" />
+    </tracks>
+  </song>
+  <song id="1018" name="I Love To Hear That Old Barbershop Style">
+    <category>Old</category>
+    <arranger>Val Hicks</arranger>
+    <composer>Einar Pedersen</composer>
+    <copyright>2002, Einar Pedersen</copyright>
+    <key>Eb</key>
+    <words>I'll be the last guy</words>
+  </song>
+  <song id="1019" name="I Want To Be In Chicago Town">
+    <category>Old</category>
+    <arranger>1966 Adv. Arr. School</arranger>
+    <composer>Traditional</composer>
+    <copyright>1967 SPEBSQSA</copyright>
+    <key>Bb</key>
+  </song>
+  <song id="1166" name="I'll Be Home for Christmas">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Gannon/Kent</composer>
+    <copyright>Gannon and Kent Music Co</copyright>
+    <crdate>1972-12-31</crdate>
+    <key>C</key>
+    <location>Coll p11</location>
+    <lyricist>Gannon/Kent</lyricist>
+    <words>My home's the place</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPSmozVDFjT25GTnM" mods="mix" path="mix/I'll Be Home For Christmas.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1223" name="Gonna Live Till I Die" aliasfor="1160"/>
+  <song id="1160" name="I'm Gonna Live Till I Die">
+    <category>TTS</category>
+    <arranger>Western Continentals/Greg Volk</arranger>
+    <composer>Hoffman/Kent/Curtis</composer>
+    <copyright>Onyx Music Co.</copyright>
+    <crdate>2010-12-31</crdate>
+    <key>Em</key>
+    <lyricist>Hoffman/Kent/Curtis</lyricist>
+    <words>I'm gonna live till I die</words>
+    <tracks><voice gdid="1324-6hOuslsnvo3Vlp_HILKduTn5g6m2" mods="Mix" path="mix/Live Til I Die - All.mp3" voice="mix" />
+      <voice gdid="1qX0LoeILz7kmGByHrbxFV2H3IjBlViE2" mods="Bari" path="bari/Live Til I Die - Bari.mp3" voice="bari" />
+      <voice gdid="1t_FPl3w3mghc5tm3P2zzcDCs66RvHaRg" mods="No Bari" path="bari/Live Til I Die - No Bari.mp3" voice="bari" />
+      <voice gdid="1vIDB9mH65OdFRyN6b0BwUr1rw7MyIvLk" mods="Lead" path="lead/Live Til I Die - Lead.mp3" voice="lead" />
+      <voice gdid="1oKHldDuSlq-1RN8F19Ly3ii8kDcXqV7-" mods="No Lead" path="lead/Live Til I Die - No Lead.mp3" voice="lead" />
+      <voice gdid="1orS6uSVgBR3UZcHxQgHMKHSOKyZb4iaS" mods="No Tenor" path="tenor/Live Til I Die - No Tenor.mp3" voice="tenor" />
+      <voice gdid="10mCGcdalneqNttja9lw9Bxwgv_KjVbVz" mods="Tenor" path="tenor/Live Til I Die - Tenor.mp3" voice="tenor" />
+      <voice gdid="1r66-dcvyjNfJgS-tCyeZcb3SniCeaQ0N" mods="Bass" path="bass/Live Til I Die - Bass.mp3" voice="bass" />
+      <voice gdid="15N4upHpw2PiCQIL8BM2U3gVSXRsUVG81" mods="No Bass" path="bass/Live Til I Die - No Bass.mp3" voice="bass" />
+    </tracks>
+  </song>
+  <song id="1118" name="I've Been Working On The Railroad">
+    <category>PoleCatII</category>
+    <arranger>Roger Payne</arranger>
+    <composer>Traditional</composer>
+    <copyright>Roger Payne</copyright>
+    <crdate>2014-12-31</crdate>
+    <key>Bb</key>
+    <location>Polecat II pg 44</location>
+    <lyricist>Traditional</lyricist>
+    <words>Hello, neighbor</words>
+    <tracks><voice gdid="1xifYUmoTLI0jXSxFbV3UYGTR6bujq8I9" mods="bass" path="bass/I've Been Working On The Railroad - bass.mp3" voice="bass" />
+      <voice gdid="1iywN-FnM9eiZbK8xaHS6vHjR4yCmh_ZG" mods="bari" path="bari/I've Been Working On The Railroad - bari.mp3" voice="bari" />
+      <voice gdid="1JEWoZPDch_GLCXkWoX4fEZlpSL629dTS" mods="lead" path="lead/I've Been Working On The Railroad - lead.mp3" voice="lead" />
+      <voice gdid="1uXx0VzOPg8r1uKUy0xyRbeV86bq_tb0W" mods="tenor" path="tenor/I've Been Working On The Railroad - tenor.mp3" voice="tenor" />
+    </tracks>
+  </song>
+  <song id="1151" name="I've Got the World on a String">
+    <category>Other</category>
+    <arranger>Adam Reimnitz</arranger>
+    <composer>Harold Arlen</composer>
+    <copyright>Ted Koehler Music and S.A. Music Co.</copyright>
+    <crdate>2005-12-31</crdate>
+    <key>F</key>
+    <lyricist>Ted Koehler</lyricist>
+    <stockID>114562</stockID>
+    <words>I'm sitting on top of the world</words>
+  </song>
+  <song id="1161" name="If I Had My Way">
+    <category>Old</category>
+    <arranger>Earl Moon</arranger>
+    <composer>James Kenis</composer>
+    <copies>30</copies>
+    <copyright>BHS</copyright>
+    <crdate>2005-12-31</crdate>
+    <key>Eb</key>
+    <lyricist>Lou Klein</lyricist>
+    <ordered>2018-07-18</ordered>
+    <source>BHS</source>
+    <stockID>114333</stockID>
+    <words>I'd like to make your golden dreams come true, dear</words>
+    <tracks><voice gdid="1jE4WvfufbS4aAGWnB04uB243ojYgrjD9" mods="Bass Right" path="bass/If I Had My Way Bass Right.mp3" voice="bass" />
+      <voice gdid="19bpsRCN4xPBAompPFYBpC460wk516ln3" mods="Bari Right" path="bari/If I Had My Way Bari Right.mp3" voice="bari" />
+      <voice gdid="17InYOnCYzmL-fOD5NgNREE1VgPWvTB_Q" mods="Lead" path="lead/If I Had My Way Lead.mp3" voice="lead" />
+      <voice gdid="1bCO4GR74FYRmKIDxHtJcMD-n99jSlM4O" mods="Tenor Left" path="tenor/If I Had My Way Tenor Left.mp3" voice="tenor" />
+      <voice gdid="1TMHJH7wRAjcj8RgxhiJIPlgYfkNz0SjZ" mods="Mix" path="mix/If I Had My Way Mix.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1067" name="If My Friends Could See Me Now">
+    <category>Old</category>
+    <arranger>Rob Hopkins</arranger>
+    <words>Tonight at eight</words>
+    <tracks><voice gdid="1IB0NJBjV-bfLNNdh3urwfZMU5JYQaAnG" mods="Bass" path="bass/If My Friends Could See Me Now - Bass.mp3" voice="bass" />
+      <voice gdid="1MkqIpQdYZxazH_5gBuw6ihJk5LwwXya2" mods="Bari" path="bari/If My Friends Could See Me Now - Bari.mp3" voice="bari" />
+      <voice gdid="1uc2q4exUl2lpT5mb-HGU_G_MeHaAyU8W" mods="Lead" path="lead/If My Friends Could See Me Now - Lead.mp3" voice="lead" />
+      <voice gdid="1rfe5O-Bw9eQ-zsee9nZfH_UAQh7TPoN4" mods="Tenor" path="tenor/If My Friends Could See Me Now - Tenor.mp3" voice="tenor" />
+    </tracks>
+  </song>
+  <song id="1020" name="In My Room">
+    <category>Current</category>
+    <arranger>Tom Gentry</arranger>
+    <composer>Brian Wilson/Gary Usher</composer>
+    <copyright>1992 Irving Music, Inc</copyright>
+    <key>Ab</key>
+    <words>There's a room</words>
+    <tracks><voice gdid="1U9iC65_3UepjA7gSaXEfmOQ84EkH7nw9" mods="BS" path="bass/In My Room - BS.mp3" voice="bass" />
+      <voice gdid="1jteY1DQX_ricidkzeMygSK4t1djOMp2b" mods="bari" path="bari/In My Room - bari.mp3" voice="bari" />
+      <voice gdid="1kwW8n1Ulxdpd82eMtr2JQ90XrsGAX9AS" mods="lead" path="lead/In My Room - lead.mp3" voice="lead" />
+      <voice gdid="1w2dltbwOtNUm8rJ9d2AVpVX2CewhCFKH" mods="tenor" path="tenor/In My Room - tenor.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='130laHfzcMzUd_p7AKtCPbgZJwLzdFPsn' sheet='In My Room.pdf' />
+  </song>
+  <song id="1134" name="In the Bleak Midwinter">
+    <category>YF2</category>
+    <arranger>Burt Szabo</arranger>
+    <composer>Gustav Holst</composer>
+    <copies>3</copies>
+    <copyright>Burt Szabo</copyright>
+    <crdate>1999-12-31</crdate>
+    <key>G</key>
+    <location>YF2 p18</location>
+    <lyricist>Christina Rossetti</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>In the bleak midwinter</words>
+  </song>
+  <song id="1135" name="Infant Holy, Infant Lowly">
+    <category>YF2</category>
+    <arranger>Burt Szabo</arranger>
+    <composer>Traditional Polish</composer>
+    <copies>3</copies>
+    <copyright>Burt Szabo</copyright>
+    <crdate>1991-12-31</crdate>
+    <key>G</key>
+    <location>YF2 p12</location>
+    <lyricist>Edith M. G. Reed</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>Infant holy, infant lowly</words>
+  </song>
+  <song id="1010" name="Irish Blessing">
+    <category>Current</category>
+    <arranger>Don Gray</arranger>
+    <composer>J. Jerome Williams, Don Gray</composer>
+    <copyright>1997 SPEBSQSA</copyright>
+    <key>F</key>
+    <learn_by>2016-01-11</learn_by>
+    <words>May the road rise to meet you</words>
+    <tracks><voice gdid="1xxyA9kli5kzisKh7YVRT8jEihm0Q35x_" mods="Bass" path="bass/Irish Blessing - Bass.mp3" voice="bass" />
+      <voice gdid="1AW3l6Bv3HhPlSBpUV6tFh9QDJRlNrvTF" mods="Bari" path="bari/Irish Blessing - Bari.mp3" voice="bari" />
+      <voice gdid="13Pi-m8H_7dEgoh0f7xzrYhrlkdK7W0p6" mods="Lead" path="lead/Irish Blessing - Lead.mp3" voice="lead" />
+      <voice gdid="1TEqAjSpIu7g46q61ExRjphGIZcytE5dX" mods="Tenor" path="tenor/Irish Blessing - Tenor.mp3" voice="tenor" />
+      <voice gdid="15V0v25rrBGg_OXDb2ncuBHQAl6Of7yWk" mods="All" path="mix/Irish Blessing - All.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="0Bxd7i2Hm5BiPdDZUeEE4Q1hqbFk" sheet="IrishBlessing.pdf" />
+  </song>
+  <song id="1003" name="It Had To Be You">
+    <category>Old</category>
+    <arranger>Earl Moon, Ed Waesche</arranger>
+    <composer>Isham Jones</composer>
+    <copyright>1924 Warner Bros</copyright>
+    <key>G</key>
+    <learn_by>2011-03-24</learn_by>
+    <stockID>209495</stockID>
+    <words>Why do I do just as you say</words>
+    <tracks><voice gdid="1DXnHea46Ym2eXqKy0CxUsip_YXlIbVPj" mods="Bass" path="bass/It Had To Be You - Bass.mp3" voice="bass" />
+      <voice gdid="1frtcFOsztI3vQclX-u5pWnsRwd17E1k7" mods="Bari" path="bari/It Had To Be You - Bari.mp3" voice="bari" />
+      <voice gdid="1PRLjjWtQHEkbSmYTc3ChCMYv-4cyvWrl" mods="Lead" path="lead/It Had To Be You - Lead.mp3" voice="lead" />
+      <voice gdid="1EKtHBJL2f6XGUzwzI9TexJ3M-Sw_f_yi" mods="Tenor" path="tenor/It Had To Be You - Tenor.mp3" voice="tenor" />
+      <voice gdid="1vJfdxRbsdEbwEL3UByhT0v8G2V7JnY-7" mods="All" path="mix/It Had To Be You - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1167" name="It's Beginning To Look a Lot Like Christmas">
+    <category>Christmas</category>
+    <arranger>Willis A Diekema</arranger>
+    <composer>Meredith Willson</composer>
+    <copyright>Frank Music corp/Meredith Willson Music</copyright>
+    <crdate>2009-12-31</crdate>
+    <key>Bb</key>
+    <location>Coll p14</location>
+    <lyricist>Meredith Willson</lyricist>
+    <words>It's beginning to look a lot like Christmas</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPODFYY3NYVFRjdzg" mods="mix" path="mix/It's Beginning To Look Like Christmas.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1224" name="It's the Music That Brings Us Together" aliasfor="1197"/>
+  <song id="1197" name="It's the Music">
+    <category>Current</category>
+    <arranger>Clay Hine</arranger>
+    <composer>Clay Hine</composer>
+    <copyright>Clayton B Hine</copyright>
+    <crdate>2020</crdate>
+    <key>Ab</key>
+    <lyricist>Clay Hine</lyricist>
+    <stockID>213994DL</stockID>
+    <words>It's the music that brings us together</words>
+    <tracks><voice gdid="1yEMyrIF_OmY-Z1TEen4BB8m1MXhywr1S" mods="mix" path="mix/It's the Music - Mix.mp3" voice="mix" />
+      <voice gdid="1Xcd21yHDCMKLeoJ84l_xZM4y6qtmDAT5" mods="bari" path="bari/04_its_the_music_that_brings_us_together_ttbb_-_bari.mp3" voice="bari" />
+      <voice gdid="1oHUuDHYQhbkoJV9cvHAG4aSuCJBytCb1" mods="bass" path="bass/05_its_the_music_that_brings_us_together_ttbb_-_bass.mp3" voice="bass" />
+      <voice gdid="1AMqb5fytfEFZXqwU1UQSbE9wfOR_6ANT" mods="lead" path="lead/03_its_the_music_that_brings_us_together_ttbb_-_lead.mp3" voice="lead" />
+      <voice gdid="1NSigi4jKrxxeId0Hu-DuD751pVvXxvSS" mods="tenor" path="tenor/02_its_the_music_that_brings_us_together_ttbb_-_tenor.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid="1u5cM2H-x-1xGvyd1FJooVATSgRAnZ0z-" sheet="Its the Music.pdf" />
+  </song>
+  <song id="1045" name="Jeepers Creepers">
+    <category>Old</category>
+    <arranger>C. J. Spatafora</arranger>
+    <composer>Harry Warren</composer>
+    <copyright>1938 WB Music</copyright>
+    <key>Bb</key>
+    <learn_by>2012-03-01</learn_by>
+    <words>I don't care what the weatherman says</words>
+    <tracks><voice gdid="1pbO9Dx6QI6IOB08ieVnhYNCSzkgm-q6n" mods="Bass" path="bass/Jeepers Creepers - Bass.mp3" voice="bass" />
+      <voice gdid="1m_oyuUyoMwUXABtmgBBY_XQfMGU_D4ut" mods="Bari" path="bari/Jeepers Creepers - Bari.mp3" voice="bari" />
+      <voice gdid="1m2oDYGYn2LRJgdRFAkdmmaqij08TR4sV" mods="Lead" path="lead/Jeepers Creepers - Lead.mp3" voice="lead" />
+      <voice gdid="1mGrpZAxJdZ0GtFNaL6ZtexZD_vfLzMH8" mods="Tenor" path="tenor/Jeepers Creepers - Tenor.mp3" voice="tenor" />
+      <voice gdid="1h5gvdjYzvcyxPz5zbp3YHiSjgTz0y51S" mods="mix" path="mix/Jeepers Creepers.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1an9L6mYWx7DDSW3L6p82T6qTaVIsPYUC" sheet="JeepersCreepers.pdf" />
+  </song>
+  <song id="1122" name="Jingle Bell Rock">
+    <category>Christmas</category>
+    <arranger>Burt Szabo</arranger>
+    <composer>Joe Beal and Jim Boothe</composer>
+    <copyright>Cornell Music, Inc</copyright>
+    <key>C</key>
+    <lyricist>Joe Beal and Jim Boothe</lyricist>
+    <stockID>7690</stockID>
+    <words>Jingle Bell, Jingle Bell, Jingle Bell Rock</words>
+  </song>
+  <song id="1174" name="Joy to the World">
+    <category>Christmas</category>
+    <key>C</key>
+    <words>Joy to the world, the Lord is come!</words>
+  </song>
+  <song id="1136" name="Joy to the World!">
+    <category>YF2</category>
+    <arranger>Joe Liles</arranger>
+    <composer>George F. Handel</composer>
+    <copies>3</copies>
+    <copyright>Joe Liles</copyright>
+    <crdate>2015-12-31</crdate>
+    <key>D</key>
+    <location>YF2 p2</location>
+    <lyricist>Isaac Watts</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>Joy! Joy! Joy! Joy!</words>
+  </song>
+  <song id="1036" name="Keep The Whole World Singing">
+    <category>Current</category>
+    <key>Eb</key>
+    <words>Keep the whole world singing</words>
+    <sheet gdid="19GaQR8UblmC7nkfeeqj4GuhAXzlsc6Xz" sheet="Let's Get Together - KTWWS.pdf" />
+  </song>
+  <song id="1090" name="Kentucky Babe">
+    <category>Old</category>
+    <arranger>Kirk Roose, rev 11/2007</arranger>
+    <composer>Adam Geibel</composer>
+    <copyright>2009, Kirk Roose</copyright>
+    <key>Bb</key>
+    <learn_by>2014-01-27</learn_by>
+    <words>Skeeters are a-hummin'</words>
+    <tracks><voice gdid="16o3qKjJbqkQ-LW1s-pRoS7DNoFRx7hbY" mods="bass" path="bass/Kentucky Babe.mp3" voice="bass" />
+      <voice gdid="1-u-Xrj_fDUdZQsxTfKvIgzMwmgLFbDav" mods="bari" path="bari/Kentucky Babe.mp3" voice="bari" />
+      <voice gdid="1O7MpJ_qgbm3HyBCD8KdTorVSHdop2a0E" mods="lead" path="lead/Kentucky Babe.mp3" voice="lead" />
+      <voice gdid="1UzMJojYhJOTPNgCiHxV50cVIetcPVtza" mods="tenor" path="tenor/Kentucky Babe.mp3" voice="tenor" />
+      <voice gdid="1x0RNWgNJa5pxQXLC0nADz0G8uqgTky60" mods="mix" path="mix/Kentucky Babe.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1195" name="Kokomo">
+    <category>Current</category>
+    <arranger>Don Reckenbeil</arranger>
+    <composer>Phillips/Melcher/Love/McKenzie</composer>
+    <copyright>Touchstone Pictures</copyright>
+    <crdate>2017</crdate>
+    <key>C</key>
+    <lyricist>Phillips/Melcher/Love/McKenzie</lyricist>
+    <stockID>212050</stockID>
+    <words>Aruba, Jamaica, ooh I wanna take ya</words>
+    <tracks><voice gdid="1t6kXJxigoNrax6B1PBf8mluKynsc6xPo" mods="bari" path="bari/Kokomo Baritone left GP.mp3" voice="bari" />
+      <voice gdid="1GAsWrpbwVc-gaNQNsridTl-WbvG6hLwo" mods="bass" path="bass/Kokomo Bass left GP.mp3" voice="bass" />
+      <voice gdid="1bBFARiRNM-_EplRw5s6AF-faKtjlFlqT" mods="lead" path="lead/Kokomo Lead left GP.mp3" voice="lead" />
+      <voice gdid="1kTwCh0B6NIF7hFnutB3caN6pSU-EqGav" mods="mix" path="mix/Kokomo Mix GP.mp3" voice="mix" />
+      <voice gdid="1WVys6gHawzJC_92dqq8z2r4mgULbvmqP" mods="tenor" path="tenor/Kokomo Tenor left GP.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid="1KQgpa_XUY0JWy9kKnaQ05EHBWaH_gaP8" sheet="Kokomo.pdf" />
+  </song>
+  <song id="1137" name="Let All Mortal Flesh Keep Silence">
+    <category>YF2</category>
+    <arranger>Jeff Taylor</arranger>
+    <composer>Traditional French</composer>
+    <copies>3</copies>
+    <copyright>Jeff Taylor</copyright>
+    <crdate>2010-12-31</crdate>
+    <key>G</key>
+    <location>YF2 p22</location>
+    <lyricist>Gerard Moultrie</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>Let all mortal flesh keep silence</words>
+  </song>
+  <song id="1168" name="Let It Snow! Let It Snow! Let It Snow!">
+    <category>Christmas</category>
+    <arranger>Joe Liles</arranger>
+    <composer>Jule Styne</composer>
+    <copyright>Producers Music Publishing Co/Cahn Music Co.</copyright>
+    <crdate>1986-12-31</crdate>
+    <key>F</key>
+    <location>Coll p16</location>
+    <lyricist>Sammy Cahn</lyricist>
+    <words>doo doo doo doo doo doo</words>
+  </song>
+  <song id="1050" name="Let Me Call You Sweetheart">
+    <category>PoleCat</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Leo Friedman</composer>
+    <copyright>1986, SPEBSQSA</copyright>
+    <key>Bb</key>
+    <location>Polecat I pg 10</location>
+    <words>Let me call you sweetheart</words>
+    <tracks><voice gdid="1alqddXUFKxNcbyWz-DARTS3dktQXDyO_" mods="bari left" path="bari/Let Me Call You Sweetheart - bari left.mp3" voice="bari" />
+      <voice gdid="1fwt2MNlvHNj-7dtIGqh47BNkr1M2JiN4" mods="bass" path="bass/Let Me Call You Sweetheart.mp3" voice="bass" />
+      <voice gdid="1NCt7rwOzOiUVUAOi7wfZTRAs-I7jUKYw" mods="mix" path="mix/Let Me Call You Sweetheart.mp3" voice="mix" />
+      <voice gdid="11QLZW4DhlzrWKQEwglG-Tcoh0uevJDq7" mods="tenor" path="tenor/Let Me Call You Sweetheart - Tenor Left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='12IoEpEZUyG4GJwntNeu0W2w2wxA_RDuX' sheet='Let Me Call You Sweetheart.pdf' />
+  </song>
+  <song id="1035" name="Let's Get Together Again">
+    <category>Current</category>
+    <key>Bb</key>
+    <words>Let's get together again</words>
+    <tracks><voice gdid="1Y4Zp9F0at05CuSwgkbpxhZlfr4I2Gjw1" mods="bass" path="bass/Let's Get Together Again.mp3" voice="bass" />
+      <voice gdid="1Tx4VIXt4Hf8GBu_m1CMUMWMvB59SR1NC" mods="bari" path="bari/Let's Get Together Again.mp3" voice="bari" />
+      <voice gdid="1eqpHDhm4m4oLaaLEeW21PeyQOGSi747L" mods="lead" path="lead/Let's Get Together Again.mp3" voice="lead" />
+      <voice gdid="1k5Jo6nZ3R6N1Clf2oK9b7jsEOdJIxOGK" mods="tenor" path="tenor/Let's Get Together Again.mp3" voice="tenor" />
+      <voice gdid="1yRewM1J7nYcQo_IEGH9G5UA5FvW7TWW2" mods="mix" path="mix/Let's Get Together Again.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="19GaQR8UblmC7nkfeeqj4GuhAXzlsc6Xz" sheet="Let's Get Together - KTWWS.pdf" />
+  </song>
+  <song id="1063" name="Lida Rose / Will I Ever Tell You">
+    <category>Old</category>
+    <arranger>Mo Rector</arranger>
+    <key>Bb</key>
+    <learn_by>2013-03-29</learn_by>
+    <words>So here is my love song</words>
+  </song>
+  <song id="1119" name="Lida Rose/Will I Ever Tell You">
+    <category>PoleCatII</category>
+    <arranger>Mo Rector/Nancy Bergman</arranger>
+    <composer>Meredith Willson</composer>
+    <copyright>Frank Music Corp and Meredith Willson Music</copyright>
+    <crdate>2013-12-31</crdate>
+    <key>F</key>
+    <location>Polecat II pg 49</location>
+    <lyricist>Meredith Willson</lyricist>
+    <words>So here is my love song</words>
+    <tracks><voice gdid="1XJvqOydVBWXr4ogMr7pt9CeVzaOf31sY" mods="Bass" path="bass/Lida Rose - Will I Ever Tell You - Bass.mp3" voice="bass" />
+      <voice gdid="1c25osMPgoQ8QeYj38G8NQfm3qbW3iLFa" mods="Bari" path="bari/Lida Rose - Will I Ever Tell You - Bari.mp3" voice="bari" />
+      <voice gdid="1CoydajhAivHb_573IhD-ZVuVOn6JgJQk" mods="Lead" path="lead/Lida Rose - Will I Ever Tell You - Lead.mp3" voice="lead" />
+      <voice gdid="1pHrk5mtXXZh3N4xah5lvMSMhyxTPPYXN" mods="Tenor" path="tenor/Lida Rose - Will I Ever Tell You - Tenor.mp3" voice="tenor" />
+      <voice gdid="1PPKHf3XDUUDgKhUoF1CWzaj7xvOQlzdN" mods="All" path="mix/Lida Rose - Will I Ever Tell You - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1194" name="Lion Sleeps Tonight">
+    <category>Current</category>
+    <arranger>Kirby Shaw</arranger>
+    <composer>Weiss/Peretti/Creatore</composer>
+    <copyright>Abilene Music LLC</copyright>
+    <crdate>2015-12-31</crdate>
+    <key>F</key>
+    <pitch>E</pitch>
+    <lyricist>Weiss/Peretti/Creatore</lyricist>
+    <stockID>155196</stockID>
+    <words>Wee dee dee dee</words>
+    <tracks><voice gdid="18s-d8GtQ6FGl0AysQRVLegww3wJJTfE4" mods="bari" path="bari/The Lion Sleeps Tonight BARITONE.mp3" voice="bari" />
+      <voice gdid="1ZQs-IZxXI6U9Bdl2kThc4v_ywQg0_dk_" mods="bass" path="bass/The Lion Sleeps Tonight BASS.mp3" voice="bass" />
+      <voice gdid="1bBDOKWJnKfXBOGFEHlUqnEFA9GSQgzZq" mods="lead" path="lead/The Lion Sleeps Tonight LEAD.mp3" voice="lead" />
+      <voice gdid="12oN2X1XdNjCFS1Ki5BYvwiz3bD8IG9HX" mods="mix" path="mix/The Lion Sleeps Tonight MIX.mp3" voice="mix" />
+      <voice gdid="19-G8MPEEofx9fMXnjwXG48Rp_6ZB6pB8" mods="tenor" path="tenor/The Lion Sleeps Tonight TENOR.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid="1X5FNUirDoqIC7-WUrwqXjT9WnsJQoF-D" sheet="Lion Sleeps Tonight.pdf" />
+  </song>
+  <song id="1169" name="Little Saint Nick">
+    <category>Christmas</category>
+    <arranger>Jon Nicholas</arranger>
+    <composer>Wilson/Love</composer>
+    <copyright>Irving Music Inc</copyright>
+    <crdate>2009-12-31</crdate>
+    <key>F</key>
+    <location>Coll p28</location>
+    <lyricist>Wilson/Love</lyricist>
+    <words>ba dm ba dm ba dm</words>
+    <tracks><voice gdid="10yTH6wR12RBAjoPfWrR5_5K1OaBRv7w-" mods="mix" path="mix/Little Saint Nick.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1066" name="Little Street Where Old Friends Meet, A">
+    <category>Old</category>
+    <arranger>Sam Breedon</arranger>
+    <key>F</key>
+    <learn_by>2013-03-21</learn_by>
+    <words>Homesick, heartsick</words>
+    <tracks><voice gdid="1IdELpLgP7h75mp-2oGIDufudgp67_SxE" mods="Bass" path="bass/Little Street Where Old Friends Meet - Bass.mp3" voice="bass" />
+      <voice gdid="1Zgi6mpiqUlWRl61Xp9UCpADUZjzQZ-3e" mods="Bari" path="bari/Little Street Where Old Friends Meet - Bari.mp3" voice="bari" />
+      <voice gdid="1DhsARcjBStmxg90RyYXiXzI-cdCmY8rT" mods="Lead" path="lead/Little Street Where Old Friends Meet - Lead.mp3" voice="lead" />
+      <voice gdid="1moXE9Iq_Avrb0xmse6icWuqFMiH5qTWn" mods="Tenor" path="tenor/Little Street Where Old Friends Meet - Tenor.mp3" voice="tenor" />
+      <voice gdid="1UJar1IooSAR89oM3BnimH2PtM-YcV3g-" mods="All" path="mix/Little Street Where Old Friends Meet - All.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="0Bxd7i2Hm5BiPMDBBUFJVeVRUbjA" sheet="LittleStreet.pdf" />
+  </song>
+  <song id="1179" name="Longest Time, The">
+    <category>Show</category>
+    <arranger>Tom Gentry</arranger>
+    <composer>Billy Joel</composer>
+    <copies>30</copies>
+    <copyright>Joel Songs</copyright>
+    <crdate>1982-12-31</crdate>
+    <key>Db</key>
+    <learn_by>2019-10-07</learn_by>
+    <lyricist>Billy Joel</lyricist>
+    <ordered>2019-07-16</ordered>
+    <pitch>Db</pitch>
+    <source>BHS</source>
+    <stockID>8631</stockID>
+    <words>woh-oh-oh</words>
+    <tracks><voice gdid="14_ZW7Kue-Lf4OCN10a2zqhOhFXsPauqT" mods="Bass" path="bass/Longest Time, The - Bass.mp3" voice="bass" />
+      <voice gdid="1CBa2BC6zvd4GZNWXmFMQJtAlySJJiJIg" mods="Baritone predominant" path="bari/Longest Time, The - Baritone predominant.mp3" voice="bari" />
+      <voice gdid="1Y7sDxE1m6JzuKS6-f7sNz-dRBJjA74cj" mods="Baritone right" path="bari/Longest Time, The - Baritone right.mp3" voice="bari" />
+      <voice gdid="18GrMpa-53tmGOFsBr__CpfsOkT4J2Wcq" mods="Baritone solo" path="bari/Longest Time, The - Baritone solo.mp3" voice="bari" />
+      <voice gdid="1d42y_FOE2lYJD41z_CVTrYFUl5k2mdjz" mods="Lead predominant" path="lead/Longest Time, The - Lead predominant.mp3" voice="lead" />
+      <voice gdid="1mrlpYh_eRqDS9NGhjv05uEPP7bKtClHe" mods="Lead right" path="lead/Longest Time, The - Lead right.mp3" voice="lead" />
+      <voice gdid="1ZQHPGuyyb9gIfQ0auAUZ14tE1gTfKfg9" mods="Lead solo" path="lead/Longest Time, The - Lead solo.mp3" voice="lead" />
+      <voice gdid="1v71TPlEwEXGO_s7YDryxlGXVAjrkuB35" mods="Tenor predominant" path="tenor/Longest Time, The - Tenor predominant.mp3" voice="tenor" />
+      <voice gdid="1EUrikzdoSInsxdtINspbL0vlyh77J4bb" mods="Tenor right" path="tenor/Longest Time, The - Tenor right.mp3" voice="tenor" />
+      <voice gdid="1diSl0F6MfKAp1pI2tQxEpcmcQvACbMCB" mods="Tenor solo" path="tenor/Longest Time, The - Tenor solo.mp3" voice="tenor" />
+      <voice gdid="1UOKi8BtB_rSOnhvEr31gKCNoQkQiQaxg" mods="Full" path="mix/Longest Time, The - Full.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1HIX7E3uPDRxQI7dDPwJlZPNBB_lEZlzH" sheet="For the Longest Time.pdf" />
+  </song>
+  <song id="1140" name="Lord's Prayer, The">
+    <category>Old</category>
+    <arranger>Joe Liles/Tom Gentry</arranger>
+    <composer>Albert Hay Malotte</composer>
+    <copies>25</copies>
+    <copyright>G.Schirmer, Inc.</copyright>
+    <crdate>1934-12-31</crdate>
+    <key>Bb</key>
+    <ordered>2017-06-04</ordered>
+    <source>BHS</source>
+    <stockID>8525</stockID>
+    <words>??</words>
+  </song>
+  <song id="1106" name="Lost In The Stars">
+    <category>Old</category>
+    <arranger>Warren "Buzz" Haeger</arranger>
+    <composer>Kurt Weil</composer>
+    <copyright>Chappell&amp; Co, Inc</copyright>
+    <crdate>1945-12-31</crdate>
+    <key>Ab</key>
+    <learn_by>2016-01-25</learn_by>
+    <lyricist>Maxwell Anderson</lyricist>
+    <ordered>2015-09-23</ordered>
+    <stockID>8821</stockID>
+    <words>ooo, oo-oo-oo</words>
+    <tracks><voice gdid="1BuJWSlEWiPuvw08vkMYd1XevnuR150eV" mods="Bass" path="bass/Lost In The Stars - Bass.mp3" voice="bass" />
+      <voice gdid="1_XQq00s2lpaSFnuGSEx_6UMbfx8eXMpW" mods="mix" path="mix/Lost In The Stars.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1152" name="Lullaby In Ragtime">
+    <category>Other</category>
+    <arranger>Boston Common et al</arranger>
+    <composer>Sylvia Fine</composer>
+    <copyright>DENA Music, Inc</copyright>
+    <crdate>1958-12-31</crdate>
+    <key>Ab</key>
+    <lyricist>Sylvia Fine</lyricist>
+    <words>doo doo doo doo</words>
+    <tracks><voice gdid="1jS_r-cNpYzweF8sjdwW56O6zlchpwH2q" mods="Bass" path="bass/Lullaby In Ragtime - Bass.mp3" voice="bass" />
+      <voice gdid="1VYM3bEnqkBxAyk8NcowMyqVzTQZnh8jG" mods="Bari" path="bari/Lullaby In Ragtime - Bari.mp3" voice="bari" />
+      <voice gdid="1UO74XwJJMnyxKcOvH6_RS71UdkwVgwx3" mods="Lead" path="lead/Lullaby In Ragtime - Lead.mp3" voice="lead" />
+      <voice gdid="1VJfpD11VVQjHwx7lNVXDCosMBG48q5zR" mods="Tenor" path="tenor/Lullaby In Ragtime - Tenor.mp3" voice="tenor" />
+      <voice gdid="1A668iSwe9k1kIaurI2V_ikBohYeieYFl" mods="All" path="mix/Lullaby In Ragtime - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1092" name="Mansions of the Lord">
+    <category>Old</category>
+    <arranger>Bob Shami</arranger>
+    <composer>Nick Glennie-Smith</composer>
+    <copyright>2001 Songs of Wheelhouse</copyright>
+    <key>Ab</key>
+    <learn_by>2014-07-28</learn_by>
+    <words>doo doo doo, doo doo doo</words>
+  </song>
+  <song id="1037" name="Mary, You're a Little Bit Old-Fashioned">
+    <category>Old</category>
+    <arranger>Bob Collins</arranger>
+    <composer>Henry L Marshall</composer>
+    <key>F</key>
+    <words>Mary was a bashful little flapper</words>
+  </song>
+  <song id="1046" name="Me And My Shadow">
+    <category>Old</category>
+    <arranger>Dennis Driscoll</arranger>
+    <composer>Al Jolson &amp; Dave Dreyer</composer>
+    <copyright>1970 Bourne Co.</copyright>
+    <key>Eb</key>
+    <learn_by>2012-03-01</learn_by>
+    <words>All alone</words>
+    <tracks><voice gdid="1wAdDHP83m2QdW7oC1kxZNKFUIvjhN5nL" mods="Bass" path="bass/Me And My Shadow - Bass.mp3" voice="bass" />
+      <voice gdid="1CTFsDgOlsM4izuknJ4SuNJK9y_WQJxkb" mods="Bari" path="bari/Me And My Shadow - Bari.mp3" voice="bari" />
+      <voice gdid="1KmINAM39KY-Cehuqd9z5ZBZaXLKDUH_K" mods="Lead" path="lead/Me And My Shadow - Lead.mp3" voice="lead" />
+      <voice gdid="1utPMzXWHQXp_zfk7s-iVUaVvi3W0C-Ho" mods="Tenor" path="tenor/Me And My Shadow - Tenor.mp3" voice="tenor" />
+      <voice gdid="1DtJqxQfRw-gOPhyi69wz2a7D6mNwAIft" mods="mix" path="mix/Me And My Shadow.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1047" name="Mills Brothers Medley">
+    <category>Old</category>
+    <arranger>Ed Waesche</arranger>
+    <composer>various</composer>
+    <copyright>various</copyright>
+    <key>Eb</key>
+    <words>Blue skies up above</words>
+    <tracks><voice gdid="1udFKWbryv2peZO52AgumZPZ7QV-yQX9Z" mods="Bass" path="bass/Mills Brothers Medley - Bass.mp3" voice="bass" />
+      <voice gdid="15thyy6e_4BBBDUZEiSX3YUtmo9B8E9gD" mods="Bari" path="bari/Mills Brothers Medley - Bari.mp3" voice="bari" />
+      <voice gdid="1NUFOuyXjXIlERu4VpzJR7s7CsxafClGZ" mods="Lead" path="lead/Mills Brothers Medley - Lead.mp3" voice="lead" />
+      <voice gdid="1z1NfE3xdUgOUgKJxYX3VyDVdaM4omhKe" mods="Tenor" path="tenor/Mills Brothers Medley - Tenor.mp3" voice="tenor" />
+      <voice gdid="1Mq1NuGREClCl2dlh4oIs707-AYIiUuGi" mods="All" path="mix/Mills Brothers Medley - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1065" name="Muskrat Ramble">
+    <category>Current</category>
+    <arranger>Rex Reeve</arranger>
+    <key>G</key>
+    <learn_by>2013-03-21</learn_by>
+    <words>Ra da da da da</words>
+    <tracks><voice gdid="1djESiiCa_JMOzUDR4NT3WAp8TISLqte9" mods="BASS" path="bass/Muskrat Ramble - BASS.mp3" voice="bass" />
+      <voice gdid="1W_rKxg_l66lh5mDYdDqvTP5NGT6VSzSi" mods="Bari" path="bari/Muskrat Ramble - Bari.mp3" voice="bari" />
+      <voice gdid="1a1xRS5oA8Tc8Z-FH_oW_hB-2lOpMutVC" mods="LEAD" path="lead/Muskrat Ramble - LEAD.mp3" voice="lead" />
+      <voice gdid="1cpLsJA3oy5cCI27qkBD-_MXnnQxvEWwM" mods="TENOR" path="tenor/Muskrat Ramble - TENOR.mp3" voice="tenor" />
+    </tracks>
+  </song>
+  <song id="1071" name="My Cutey's Due At Two-To-Two To-day">
+    <category>Old</category>
+    <arranger>Rob Hopkins</arranger>
+    <composer>Albert Von Tilzer</composer>
+    <copyright>1926 Stasny Music Corp</copyright>
+    <key>Bb</key>
+    <learn_by>2014-02-24</learn_by>
+    <words>Today's the day</words>
+    <tracks><voice gdid="1voQGRcR8gf7uutfye2UtiTcyiuelvpS3" mods="Bass" path="bass/Cutey Bass.mp3" voice="bass" />
+      <voice gdid="1nrn3bBlsXTnp00dNJDO-c1jEZaWS82EF" mods="Bari" path="bari/Cutey Bari.mp3" voice="bari" />
+      <voice gdid="14x511lsXXnab9xGobSncr7AzcgUHCqEG" mods="Lead" path="lead/Cutey Lead.mp3" voice="lead" />
+      <voice gdid="1gdWFQrN36vEYLZsoPEoCt_Gjw_XQOcNi" mods="Tenor" path="tenor/Cutey Tenor.mp3" voice="tenor" />
+    </tracks>
+  </song>
+  <song id="1124" name="My Girl">
+    <category>Current</category>
+    <arranger>Rob Campbell</arranger>
+    <composer>William "Smokey" Robinson and Ronald White</composer>
+    <copies>30</copies>
+    <copyright>Jobete Music Co. Inc.</copyright>
+    <crdate>2013-12-31</crdate>
+    <key>G</key>
+    <lyricist>William "Smokey" Robinson and Ronald White</lyricist>
+    <ordered>2016-09-27</ordered>
+    <source>BHS</source>
+    <stockID>209215</stockID>
+    <words>doo doo doo doo doo doo</words>
+    <tracks><voice gdid="1gu4oljYkYmPEid5OxbCXdJE1UvSJBrAr" mods="Bass" path="bass/My Girl - Bass.mp3" voice="bass" />
+      <voice gdid="1tdzx0PpMTugXdLQQJ4EEvbzbfjCYyvaZ" mods="Bari" path="bari/My Girl - Bari.mp3" voice="bari" />
+      <voice gdid="1fHJqhAxURDfRYX9tZzLPxSC0IU6IRMZH" mods="Lead" path="lead/My Girl - Lead.mp3" voice="lead" />
+      <voice gdid="1hvYOeyvyyCZ2iODCurPyPdnS0i82D8iN" mods="Tenor" path="tenor/My Girl - Tenor.mp3" voice="tenor" />
+      <voice gdid="1GcU-8Nw-zTGeNrhMFEHHDYTuQFTt6Rnu" mods="Mix" path="mix/My Girl - Mix.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid='133otuTJeoP8US6V1NUHTygk7FDdcvDX7' sheet='My Girl.pdf' />
+  </song>
+  <song id="1191" name="My Old Kentucky Home Goodnight">
+    <category>Old</category>
+    <words>??</words>
+    <tracks><voice gdid="13PWs8gM5-kBUOuhPuAyA441MFHYk_uul" mods="bass" path="bass/My Old Kentucky Home Goodnight - bass.mp3" voice="bass" />
+      <voice gdid="1kshx28JSor5dw17s1wtPk_P0uxkqdh9I" mods="bari" path="bari/My Old Kentucky Home Goodnight - bari.mp3" voice="bari" />
+      <voice gdid="1LzQHTE9x7UTIauQgivNcqjzPtSlscBQw" mods="lead" path="lead/My Old Kentucky Home Goodnight - lead.mp3" voice="lead" />
+      <voice gdid="1monyh98Ao_EdbU7snyUf9FKynFknjB_g" mods="tenor" path="tenor/My Old Kentucky Home Goodnight - tenor.mp3" voice="tenor" />
+      <voice gdid="1fYBNObsEipO9VsF0zSNQbeTCHUubmURx" mods="mix" path="mix/My Old Kentucky Home Goodnight - mix.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="0Bxd7i2Hm5BiPeDZLSWZrWkxyb3M" sheet="My Old Kentucky Home Goodnight.pdf" />
+  </song>
+  <song id="1053" name="My Wild Irish Rose">
+    <category>PoleCat</category>
+    <arranger>Floyd Connett</arranger>
+    <composer>Chauncey Olcott</composer>
+    <copyright>1959, SPEBSQSA</copyright>
+    <key>Bb</key>
+    <location>Polecat I pg 3</location>
+    <words>My wild Irish rose</words>
+    <tracks><voice gdid="129DPd7ugQyPHW_bEnDs_HQpqgI44wzyV" mods="bari left" path="bari/My Wild Irish Rose - bari left.mp3" voice="bari" />
+      <voice gdid="1tqK6C6vCzWsO20K9Dpa3O8XGkOVtQGtW" mods="bass" path="bass/My Wild Irish Rose.mp3" voice="bass" />
+      <voice gdid="1xnXkOtLCzEWdadrR0w0i_7FuSUZdRlHl" mods="mix" path="mix/My Wild Irish Rose.mp3" voice="mix" />
+      <voice gdid="11Ovsck4h82qiM60gyq7jr89F6RSouPYN" mods="tenor" path="tenor/My Wild Irish Rose - Tenor Left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='11y-Xz8bDOyszpRZAm1V6_Pc43xADDCOi' sheet='My Wild Irish Rose.pdf' />
+  </song>
+  <song id="1048" name="Naughty Lady Of Shady Lane">
+    <category>Old</category>
+    <arranger>Marty Israel</arranger>
+    <composer>Sid Tepper &amp; Roy C Bennet</composer>
+    <copyright>1954 Chappel &amp; Co</copyright>
+    <key>Am</key>
+    <learn_by>2012-02-29</learn_by>
+    <words>bmm da-da dmm bmm bmm bmm</words>
+    <tracks><voice gdid="1j40eMgXF2ITTUks-Ja13t5vDmv3xy-DT" mods="Bass" path="bass/Naughty Lady Of Shady Lane - Bass.mp3" voice="bass" />
+      <voice gdid="1aPhiEujl0mLBLdwCRn6SDgOapKad_MGc" mods="Bari" path="bari/Naughty Lady Of Shady Lane - Bari.mp3" voice="bari" />
+      <voice gdid="1xN9U5pv_0sLxVT7QiHX5xI2EXBbPPCdh" mods="Lead" path="lead/Naughty Lady Of Shady Lane - Lead.mp3" voice="lead" />
+      <voice gdid="1KRspElAmd06yyggcdZVoM6_R08a-di-4" mods="Tenor" path="tenor/Naughty Lady Of Shady Lane - Tenor.mp3" voice="tenor" />
+      <voice gdid="1yyMEdx-Jkbfm8TOhWz8UjbmKHgeBhWwH" mods="mix" path="mix/Naughty Lady Of Shady Lane.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1072" name="Nice Work If You Can Get It">
+    <category>Old</category>
+    <arranger>Ed Waesche</arranger>
+    <composer>George Gershwin</composer>
+    <copyright>1937 Chappell Music</copyright>
+    <key>Bb</key>
+    <words>Take a minute, mister</words>
+  </song>
+  <song id="1098" name="Nuttin' For Christmas">
+    <category>Christmas</category>
+    <arranger>Burt Szabo</arranger>
+    <composer>Sid Tepper and Roy C. Bennett</composer>
+    <copyright>Burt Szabo</copyright>
+    <crdate>1985-12-31</crdate>
+    <key>E</key>
+    <learn_by>2014-10-20</learn_by>
+    <lyricist>Sid Tepper and Roy C. Bennett</lyricist>
+    <ordered>2014-10-20</ordered>
+    <stockID>112032</stockID>
+    <words>I'm gettin' nuttin' for Christmas</words>
+  </song>
+  <song id="1121" name="O Canada!">
+    <category>Old</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>C. Lavallée</composer>
+    <copyright>unknown</copyright>
+    <key>Eb</key>
+    <lyricist>The 1975 CorpusAlmanac of Canada</lyricist>
+    <stockID>N/C</stockID>
+    <words>O Canada!</words>
+    <tracks><voice gdid="10JBpDMb1hxqlRtq70OHsTgpMLBi_iTvI" mods="Bass" path="bass/O Canada - Bass.mp3" voice="bass" />
+      <voice gdid="1DhZ1pX2tz_RDs1u9MhD9zmEouatSeXvb" mods="Bari" path="bari/O Canada - Bari.mp3" voice="bari" />
+      <voice gdid="1WyoS1esEw56UJEMYPU1mQcdXFChhgUP9" mods="Lead" path="lead/O Canada - Lead.mp3" voice="lead" />
+      <voice gdid="1w0EbeeudUaLA6_oK7YIm7om_qlqsuLkA" mods="Tenor" path="tenor/O Canada - Tenor.mp3" voice="tenor" />
+      <voice gdid="1SEewkHP-C7c0mU_3xKwZCGG4e-CwNn4b" mods="Mix" path="mix/O Canada - Mix.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1163" name="O Danny Boy">
+    <category>Show</category>
+    <key>Eb</key>
+    <learn_by>2019-11-04</learn_by>
+    <words>O Danny Boy</words>
+    <tracks><voice gdid="178ZV6EcHXivoDZd_cKbNe7U-MJ8KAwPa" mods="Lead L Bass R" path="bass/O Danny Boy Lead L Bass R.mp3" voice="bass" />
+      <voice gdid="1aSMmCTfCzpf_fJQVMzoioIBGYeVQcTh2" mods="Bari pno L" path="bari/O Danny Boy Bari pno L.mp3" voice="bari" />
+      <voice gdid="1XBhIEYE85jqOQw0LU_0e2-10eOKmlUEJ" mods="Lead L Tenor R" path="lead/O Danny Boy Lead L Tenor R.mp3" voice="lead" />
+      <voice gdid="1Q-eWy3nxzgKLNu71Tp-_3rxmVKk-IH3b" mods="Lead L Tenor R" path="tenor/O Danny Boy Lead L Tenor R.mp3" voice="tenor" />
+      <voice gdid="1WkIRXPSm4kU1-jsx-GCz3eSp2bPLEa_G" mods="mix" path="mix/O Danny Boy mix.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1EtrZ__V_PwmAOKyn5W38Lqd60nrRZwJN" sheet="O Danny Boy.pdf" />
+  </song>
+  <song id="1225" name="Pretty Woman" aliasfor="1193"/>
+  <song id="1193" name="Oh, Pretty Woman">
+    <category>Current</category>
+    <composer>Roy Orbison, Bill Dees</composer>
+    <copyright>Roy Orbison Music Company</copyright>
+    <crdate>2009-12-31</crdate>
+    <key>E</key>
+    <lyricist>Roy Orbison, Bill Dees</lyricist>
+    <ordered>2020-10-25</ordered>
+    <pitch>E</pitch>
+    <source>BHS</source>
+    <stockID>212536</stockID>
+    <words> "(bass) dm ba dm ba doo"</words>
+    <tracks><voice gdid="1CSlwvN4Nm8sgYHtiC169abj_1fsTkBEJ" mods="Bass Missing" path="bass/Oh, Pretty Woman - Bass Missing.mp3" voice="bass" />
+      <voice gdid="1igPYYUI9h430ZQwoECXyAnW4qe0_tSm_" mods="Bass" path="bass/Oh, Pretty Woman - Bass.mp3" voice="bass" />
+      <voice gdid="1FYKIBhnyIw96Ep6Gxl-8e8i8loftTcGw" mods="Baritone" path="bari/Oh, Pretty Woman - Baritone.mp3" voice="bari" />
+      <voice gdid="1FrwfA9ZRpbSZjLDMyXYW9GQGGCvCWZeH" mods="Lead" path="lead/Oh, Pretty Woman - Lead.mp3" voice="lead" />
+      <voice gdid="10WyCyGiRBfCWPWhfSjm9GWeaJwZESE6u" mods="Tenor" path="tenor/Oh, Pretty Woman - Tenor.mp3" voice="tenor" />
+      <voice gdid="1QIaQkniaccO5AfPCrQlHWDLMjf0LypfD" mods="Full Mixdown" path="mix/Oh, Pretty Woman - Full Mixdown.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1P5YwK772cJWVYypKt4YF5jZRcGSvhYTS" sheet="Pretty Womanpdf - Score (1).pdf" />
+  </song>
+  <song id="1147" name="Old Devil Moon">
+    <category>Other</category>
+    <arranger>Aaron Dale</arranger>
+    <composer>Burton Lane</composer>
+    <copyright>Chappell &amp; Co. Inc and Glocca Morra Music</copyright>
+    <crdate>2014-12-31</crdate>
+    <key>Ab</key>
+    <lyricist>E. Y. "Yip" Harburg</lyricist>
+    <stockID>211097</stockID>
+    <words>Ev'ry-thing about you blinds me</words>
+  </song>
+  <song id="1062" name="Old Piano Roll Blues">
+    <category>Old</category>
+    <arranger>Mo Rector</arranger>
+    <key>C</key>
+    <learn_by>2013-03-21</learn_by>
+    <words>When I hear Dixieland jazz</words>
+    <tracks><voice gdid="14XP18AHjxYYPIcNqoZi31YhGLsFtEoHX" mods="Bass" path="bass/Old Piano Roll Blues - Bass.mp3" voice="bass" />
+      <voice gdid="1KZg6PHithipz_DNVEh-9EKEKN8x8-nsF" mods="Bari" path="bari/Old Piano Roll Blues - Bari.mp3" voice="bari" />
+      <voice gdid="13LGNFIV5c90U1fm_TjmfpYvpXQJJ_NZC" mods="Lead" path="lead/Old Piano Roll Blues - Lead.mp3" voice="lead" />
+      <voice gdid="1ZQy6uO12yMAF6u7D77fKEfLSSIqfL_bI" mods="Tenor" path="tenor/Old Piano Roll Blues - Tenor.mp3" voice="tenor" />
+      <voice gdid="1ULYQRtLMc0Em1dtmTN-Itlz0r2d7S82g" mods="All" path="mix/Old Piano Roll Blues - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1102" name="Old Songs, The">
+    <category>Current</category>
+    <arranger>Geoffrey O'Hara</arranger>
+    <composer>Geoffrey O'Hara</composer>
+    <copyright>SPEBSQSA</copyright>
+    <crdate>2003-12-31</crdate>
+    <key>Bb</key>
+    <lyricist>Geoffrey O'Hara</lyricist>
+    <words>The old songs</words>
+    <sheet gdid="1TocYtKifQWG0Cg_GZgpoDduUZN56AjW7" sheet="Old Songs.pdf" />
+  </song>
+  <song id="1049" name="On The Sunny Side of the Street">
+    <category>Current</category>
+    <arranger>Mel Knight</arranger>
+    <composer>Jimmy McHugh &amp; Dorothy Fields</composer>
+    <copies>25</copies>
+    <copyright>1930 Aldi Music</copyright>
+    <key>C</key>
+    <learn_by>2012-02-29</learn_by>
+    <lyricist>Jimmy McHugh &amp; Dorothy Fields</lyricist>
+    <ordered>2011-09-21</ordered>
+    <source>BHS</source>
+    <stockID>7381</stockID>
+    <words>I used to walk in the shadows</words>
+    <tracks><voice gdid="1DwxwwHFTT5yb2DfOMUyU434_GzzolAj7" mods="bari" path="bari/On The Sunny Side Of The Street - Bari.mp3" voice="bari" />
+      <voice gdid="1p1NokbqtnflHRI0H3h61qXFSpiSUhcSC" mods="mix" path="mix/On The Sunny Side Of The Street - All.mp3" voice="mix" />
+      <voice gdid="1_A7vd7oFQYZn4tG2SIYa-ybHyy8IPF8b" mods="bass" path="bass/On The Sunny Side Of The Street - Bass.mp3" voice="bass" />
+      <voice gdid="1O1UD9TTz224ok3LpwFV5e4ffdJQwr43W" mods="tenor" path="tenor/On The Sunny Side Of The Street - Tenor.mp3" voice="tenor" />
+      <voice gdid="1gxhOYGRUVQSWZQYxYPp5n7J1So6XNfso" mods="lead" path="lead/On The Sunny Side Of The Street - Lead.mp3" voice="lead" />
+    </tracks>
+  </song>
+  <song id="1021" name="One More Song">
+    <category>Old</category>
+    <arranger>Joe Liles</arranger>
+    <composer>Joe Liles</composer>
+    <copyright>1985 Joe Liles</copyright>
+    <key>Bb</key>
+    <words>One more song</words>
+  </song>
+  <song id="1061" name="Over The Rainbow">
+    <category>Old</category>
+    <arranger>J. Bescos</arranger>
+    <composer>Harold Arlen</composer>
+    <key>Eb</key>
+    <notes>Bescos</notes>
+    <words>When all the world</words>
+  </song>
+  <song id="1120" name="Over The Rainbow">
+    <category>Current</category>
+    <category>PoleCatII</category>
+    <arranger>Ed Waesche</arranger>
+    <composer>Harold Arlen</composer>
+    <copyright>EMI Feist Catalog Inc</copyright>
+    <crdate>2013-12-31</crdate>
+    <key>Eb</key>
+    <learn_by>2016-02-22</learn_by>
+    <location>Polecat II pg 59</location>
+    <lyricist>E. Y. Harburg</lyricist>
+    <words>When all the world</words>
+    <tracks><voice gdid="1cvhy62HVUyoJti-ftORo16p0KQKEpOGz" mods="Lead" path="lead/Over The Rainbow - Lead.mp3" voice="lead" />
+      <voice gdid="1viQRqHDKAI5EXD7TvwcGoSVzsQ5mk3Gq" mods="bass" path="bass/Over The Rainbow.mp3" voice="bass" />
+      <voice gdid="1C0TEOfRQeY6VSfo-iJm7qaKn5N-XXEZr" mods="bari" path="bari/Over The Rainbow.mp3" voice="bari" />
+      <voice gdid="1mtOhhE5WFvRRe2GA0As4Wx8s1op1HcUE" mods="tenor" path="tenor/Over The Rainbow.mp3" voice="tenor" />
+      <voice gdid="1BzmtCsHUBUKrpYLr4TikB6m42G0urOhF" mods="mix" path="mix/Over The Rainbow.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1WF8HStpt071Qpwz28zAD1_LjZ9ZdfzVI" sheet="Over the Rainbow.pdf" />
+  </song>
+  <song id="1022" name="Pennies From Heaven">
+    <category>Old</category>
+    <arranger>Bill Thurmon</arranger>
+    <composer>Burke/Johnston</composer>
+    <copyright>1936 Select Music Publishers</copyright>
+    <key>C</key>
+    <words>Ev'ry time it rains</words>
+  </song>
+  <song id="1023" name="Play A Simple Melody">
+    <category>Old</category>
+    <composer>Irving Berlin</composer>
+    <key>Ab</key>
+    <words>bmm bmm bmm won't</words>
+  </song>
+  <song id="1154" name="Pray For Sunshine">
+    <category>Other</category>
+    <arranger>Tom Gentry</arranger>
+    <copyright>Tom Gentry</copyright>
+    <crdate>1997-12-31</crdate>
+    <key>C</key>
+    <words>My mother sent a birthday card</words>
+  </song>
+  <song id="1074" name="Radio">
+    <category>Old</category>
+    <arranger>Dave Briner</arranger>
+    <composer>Bob Marcus</composer>
+    <copyright>1969 Peer International Corp</copyright>
+    <key>Ab</key>
+    <learn_by>2014-02-24</learn_by>
+    <words>Radio, remember radio</words>
+    <tracks><voice gdid="1pbqENVOJk_R757njOmXj8UWsMuUzxrmC" mods="Bass" path="bass/Radio - Bass.mp3" voice="bass" />
+      <voice gdid="1rdjOCSLm9ZESsx6428ZJ-R80nvoIKIq2" mods="Bari" path="bari/Radio - Bari.mp3" voice="bari" />
+      <voice gdid="1Q5HR_mV_2GCUNjYIw-ZRDxMcnMfe6yAO" mods="Lead" path="lead/Radio - Lead.mp3" voice="lead" />
+      <voice gdid="1B7H0uCzK70wnDuDhQKJaJ9xv5UIXCYUq" mods="Tenor" path="tenor/Radio - Tenor.mp3" voice="tenor" />
+    </tracks>
+  </song>
+  <song id="1024" name="Ragtime Cowboy Joe">
+    <category>Old</category>
+    <key>Bb</key>
+    <words>Rag-time cowboy</words>
+  </song>
+  <song id="1091" name="Red Roses For A Blue Lady">
+    <category>Old</category>
+    <arranger>Chuck Brooks</arranger>
+    <composer>Sid Tepper/Roy C Bennett</composer>
+    <copyright>1948, Mills Music, Inc</copyright>
+    <key>Eb</key>
+    <learn_by>2014-03-03</learn_by>
+    <tracks><voice gdid="1qLkFiKLATN_ZDJ0gE-ByC1dHyVSHALTq" mods="bass" path="bass/Red Roses.mp3" voice="bass" />
+      <voice gdid="1EmmECqSpKxXWdsrJgUyxZjvGLt72Jsnw" mods="bari" path="bari/Red Roses.mp3" voice="bari" />
+      <voice gdid="1cFWo9U4luTf1mYe-oGh5d-znPL_O2Ez4" mods="lead" path="lead/Red Roses.mp3" voice="lead" />
+      <voice gdid="1Nwv9AT7DLVnmIhSfJXZk2XTtRkEYoMmE" mods="tenor" path="tenor/Red Roses.mp3" voice="tenor" />
+    </tracks>
+  </song>
+  <song id="1073" name="Riders In The Sky">
+    <category>Current</category>
+    <arranger>Larry Wright</arranger>
+    <composer>Stan Jones</composer>
+    <copyright>1958 Warner Bros</copyright>
+    <key>Cm</key>
+    <learn_by>2014-02-24</learn_by>
+    <words>Oo-oo-oo-oo-oo</words>
+    <tracks><voice gdid="1dJkbWLSB8TO-9Nmm5MaEbr1QDPIi6fBS" mods="bari" path="bari/Riders in the Sky.mp3" voice="bari" />
+      <voice gdid="1-99Cn7QJAjbeNNgsATsid_GNJhcHsDQx" mods="lead" path="lead/Riders in the Sky.mp3" voice="lead" />
+      <voice gdid="1lXTHabHMJzjoEB33lvsrP_fZUCu5eQkc" mods="tenor" path="tenor/Riders in the Sky.mp3" voice="tenor" />
+      <voice gdid="1UlAIeuY-GOtTk5bw8shB7c2HepV-Kera" mods="bass" path="bass/Riders in the Sky.mp3" voice="bass" />
+      <voice gdid="1rWP71pdujvG6K_K0fbHgWrAw-qGzFDSD" mods="mix" path="mix/Riders in the Sky.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1-juomRY0fdec18ujhyet5H9qK0NEHBaD" sheet="Riders In the Sky.pdf" />
+  </song>
+  <song id="1025" name="Roll Out Of Bed With A Smile">
+    <category>Old</category>
+    <key>Bb</key>
+  </song>
+  <song id="1142" name="Rose, The">
+    <category>Old</category>
+    <arranger>B. Doepke</arranger>
+    <composer>Amanda McBroom</composer>
+    <copyright>Warner-Tamerland Publishing Corp.</copyright>
+    <crdate>1976-12-31</crdate>
+    <key>D</key>
+    <lyricist>Amanda McBroom</lyricist>
+    <stockID>112361</stockID>
+    <words>Doo doo doo doo</words>
+    <sheet gdid="1S-dzHE_oUwteBE8KfXScReLITLa_VBnu" sheet="The Rose.pdf" />
+  </song>
+  <song id="1188" name="Route 66">
+    <category>Other</category>
+    <words>??</words>
+    <tracks><voice gdid="1q3qg4dyWYT9I0ZDeMDgpwQVh58_BZF__" mods="Bass" path="bass/Route 66 - Bass.mp3" voice="bass" />
+      <voice gdid="1KpaHEKk-KoT3K_wtaFtg0zpIZZHas8Qv" mods="Bari" path="bari/Route 66 - Bari.mp3" voice="bari" />
+      <voice gdid="1q7yJT9317_DrtT3RAx5kpCPB_HKvK7UB" mods="Lead" path="lead/Route 66 - Lead.mp3" voice="lead" />
+      <voice gdid="1MfDiLD3PSF3af11RFQXA17YosOUQN5HB" mods="Tenor" path="tenor/Route 66 - Tenor.mp3" voice="tenor" />
+      <voice gdid="1QSO_8GOWKmI4mgIYfCiuFDgjg9Lc3bsc" mods="All" path="mix/Route 66 - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1123" name="Santa Claus Is Coming To Town">
+    <category>Christmas</category>
+    <arranger>Joe Liles</arranger>
+    <composer>J. Fred Coots</composer>
+    <copies>25</copies>
+    <copyright>EMI Feist Catalog</copyright>
+    <crdate>2013-12-31</crdate>
+    <key>C</key>
+    <lyricist>Haven Gillespie</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>7703</stockID>
+    <words>Jing jing jing</words>
+  </song>
+  <song id="1007" name="Sentimental Journey">
+    <category>Current</category>
+    <arranger>John Hohl</arranger>
+    <composer>Green, Brown, Homer</composer>
+    <copyright>2002 MORLEY MUSIC</copyright>
+    <key>Bb</key>
+    <learn_by>2011-03-24</learn_by>
+    <words>Ev'ry rolling stone</words>
+    <tracks><voice gdid="1bGmXNssrzyw6x4EMEoI3pH5WPXAAbFxN" mods="tenor" path="tenor/Sentimental Journey.mp3" voice="tenor" />
+      <voice gdid="1bzBbFNyT0mGw_hzDZmwXR9UnBeNJp0y3" mods="mix" path="mix/Sentimental Journey Mix.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid='134dLQUBlVkjiAKHIoKjaveXertY6G4Jf' sheet='Sentimental Journey.pdf' />
+  </song>
+  <song id="1178" name="Seven Bridges Road">
+    <category>Show</category>
+    <arranger>Jeremy Johnson</arranger>
+    <composer>Steve Young</composer>
+    <copies>30</copies>
+    <copyright>Irving Music</copyright>
+    <crdate>1968-12-31</crdate>
+    <key>C</key>
+    <learn_by>2019-11-04</learn_by>
+    <lyricist>Steve Young</lyricist>
+    <ordered>2019-07-16</ordered>
+    <pitch>C</pitch>
+    <source>BHS</source>
+    <stockID>213021</stockID>
+    <words>There are stars in the southern sky</words>
+    <tracks><voice gdid="0B5zMEaROa1AvaGIxVl9Td2FXTUM3LThHV1BtVkM1aGdscmpr" mods="mix" path="mix/Seven Bridges Road in C - Full Mix.mp3" voice="mix" />
+      <voice gdid="0B5zMEaROa1AvRTBQZS15dUtkTV83cHNQZFFoUzkxQ3JPcmNj" mods="bari" path="bari/Seven Bridges Road in C - Bari.mp3" voice="bari" />
+      <voice gdid="1geUgov9m0Qxz291ZBP0lKrWEipIy4PJX" mods="bass SLOWer" path="bass/Seven Bridges Road in C - SLOWer Bass.mp3" voice="bass" />
+      <voice gdid="1zN1Hhcy7pdDCn9tMAxxnYuJUaJI5qwZN" mods="bass slow" path="bass/Seven Bridges Road in C - slow Bass.mp3" voice="bass" />
+      <voice gdid="0B5zMEaROa1AvYmU3QTNpM0tiWmVEV3d1ZWNNakdfWldkelVz" mods="bass" path="bass/Seven Bridges Road in C - Bass.mp3" voice="bass" />
+      <voice gdid="0B5zMEaROa1Avc3BhTDAzdVpEa1NWZzkwQWk4bnFycDlPZUxZ" mods="lead" path="lead/Seven Bridges Road in C - Lead.mp3" voice="lead" />
+      <voice gdid="0B5zMEaROa1AvOXBfbWk5REMyWExUaTNUM2xJUXlBZV9EZXpB" mods="tenor" path="tenor/Seven Bridges Road in C - Tenor.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid="13_YF9HREw0VgsjThJt2n5dSEWpcs6Bnn" sheet="Seven Bridges Road.pdf" />
+  </song>
+  <song id="1148" name="Seventy-Six Trombones">
+    <category>Other</category>
+    <arranger>John Peterson</arranger>
+    <composer>Meredith Willson</composer>
+    <key>C</key>
+    <lyricist>Meredith Willson</lyricist>
+    <words>Seventy-Six Seventy-Six Seventy-Six</words>
+  </song>
+  <song id="1196" name="Shenandoah">
+    <category>Current</category>
+    <arranger>Burt Szabo</arranger>
+    <composer>American Sea Chanty</composer>
+    <copyright>Burt Szabo</copyright>
+    <crdate>1993</crdate>
+    <key>F</key>
+    <lyricist>American Sea Chanty</lyricist>
+    <pitch>C</pitch>
+    <stockID>8603</stockID>
+    <words>Oh, Shenandoah, I long to hear you</words>
+    <tracks><voice gdid="1xubzzHzgtMwfuwJ26rj47Z4gR5sF1wQB" mods="bass L" path="bass/Shenandoah Bass L.mp3" voice="bass" />
+      <voice gdid="1PRxagO5n6KpFyDEYKr26AnunjYn6DQWM" mods="lead L" path="lead/Shenandoah Lead L.mp3" voice="lead" />
+      <voice gdid="17IkC39F9KmYdWVO-3lub09ShYco8IUq8" mods="tenor L" path="tenor/Shenandoah Tenor L.mp3" voice="tenor" />
+      <voice gdid="1A8pR-KC8x9SHjjBneryhwNCYpwPjak8f" mods="mix L" path="mix/Shenandoah Mix.mp3" voice="mix" />
+      <voice gdid="1AuT2eV5UZqpywkPov0_Zw55-y0yakkWN" mods="bari L" path="bari/Shenandoah Baritone L.mp3" voice="bari" />
+    </tracks>
+    <sheet gdid="11toWxQREwBLYb0N54Xi9n7jgnZBWSwgD" sheet="Shenandoah.pdf" />
+  </song>
+  <song id="1058" name="Shine On Me">
+    <category>PoleCat</category>
+    <arranger>Floyd Connett</arranger>
+    <composer>Traditional</composer>
+    <copyright>1959, SPEBSQSA</copyright>
+    <key>Bb</key>
+    <location>Polecat I pg 13</location>
+    <words>Oh! Shine on me</words>
+    <tracks><voice gdid="1yRN8_aXExIQ0-V04sNM-rzzc6p1smdtX" mods="bari left" path="bari/Shine On Me - bari left.mp3" voice="bari" />
+      <voice gdid="12EhllFOl8_P7lyYDR79rzDsUsHNetX3R" mods="bass" path="bass/Shine On Me.mp3" voice="bass" />
+      <voice gdid="1ctMqwjEte_cFiRd4P3yWakyTNkOkh8Mi" mods="mix" path="mix/Shine On Me.mp3" voice="mix" />
+      <voice gdid="11JzbLbitsrewuZCf8abQEJxfucdPmkWM" mods="tenor" path="tenor/Shine On Me - Tenor Left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='12NEPx6Y9qjf4ykVfVtEw-PuKLNEJtk9W' sheet='Shine On Me.pdf' />
+  </song>
+  <song id="1103" name="Shut De Do">
+    <category>Current</category>
+    <arranger>Kirby Shaw</arranger>
+    <composer>Randy Stonehill</composer>
+    <copies>30</copies>
+    <copyright>Word Music LLC</copyright>
+    <crdate>1982-12-31</crdate>
+    <key>E</key>
+    <learn_by>2016-03-07</learn_by>
+    <lyricist>Randy Stonehill</lyricist>
+    <ordered>2015-09-23</ordered>
+    <pitch>E</pitch>
+    <source>BHS</source>
+    <stockID>208683</stockID>
+    <words>oh-oh-oh Shut de do,</words>
+    <tracks><voice gdid="12UBFJQhJeJusxUEdbkvpCSlL0OZ-dXWj" mods="mix" path="mix/Shut De Do - All.mp3" voice="mix" />
+      <voice gdid="1HG5PWeB8JuMB5ZVCeUl61eDA9wJhObDh" mods="Tenor L Final" path="tenor/Shut De Do Tenor L Final.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='135FY0ulKfh4H1GOCBiEvFHWaee8yQmYT' sheet='Shut De Do.pdf' />
+  </song>
+  <song id="1095" name="Sixteen Tons">
+    <category>Current</category>
+    <arranger>John Hohl</arranger>
+    <composer>Merle Travis</composer>
+    <copyright>1947 American Music, Inc</copyright>
+    <key>Cm</key>
+    <learn_by>2015-03-01</learn_by>
+    <words>I owe my soul</words>
+    <tracks><voice gdid="1WhgiTUWiZalXKeFoe8YNJPLbwGsnLKGh" mods="BS" path="bass/Sixteen Tons - BS.mp3" voice="bass" />
+      <voice gdid="1G2riaOQUl2xCK4aFeAZIX9ehqMPiyJ3e" mods="bari" path="bari/Sixteen Tons - bari.mp3" voice="bari" />
+      <voice gdid="11cssWUcFJF_4TpGqdaNqBZGQTpiGj6h5" mods="lead" path="lead/Sixteen Tons - lead.mp3" voice="lead" />
+      <voice gdid="1qeMiiNNde2cRHw-5zCyT4ErnKSBMViB0" mods="tenor" path="tenor/Sixteen Tons - tenor.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='136SPTMJVmVjdqgzoEZu1InJmuNIvbovS' sheet='Sixteen Tons.pdf' />
+  </song>
+  <song id="1189" name="Smilin Through">
+    <category>Other</category>
+    <words>??</words>
+    <tracks><voice gdid="136I0TFy8-sAalRjKk2a0JzhZo_tGEhin" mods="Bass" path="bass/Smilin Through - Bass.mp3" voice="bass" />
+      <voice gdid="1Hr3TXrEvFNdhCYbVI8KyoTnJ4v5xznWJ" mods="Bari" path="bari/Smilin Through - Bari.mp3" voice="bari" />
+      <voice gdid="1G40d-K-Fq-WXow-P_DLN5dyBzKtUvtcj" mods="Lead" path="lead/Smilin Through - Lead.mp3" voice="lead" />
+      <voice gdid="1rQUiyAAQeRfz-yQCp358_cEE02V8sjR0" mods="Tenor" path="tenor/Smilin Through - Tenor.mp3" voice="tenor" />
+      <voice gdid="1CQx4c7pwXIEiJCMa0LdtNo4s4BY5koGd" mods="All" path="mix/Smilin Through - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1183" name="Stand By Me">
+    <category>Show</category>
+    <arranger>Steve Delehanty</arranger>
+    <composer>King/Leiber/Stoller</composer>
+    <copies>25</copies>
+    <copyright>Sony/ATV</copyright>
+    <crdate>2009-12-31</crdate>
+    <key>F</key>
+    <learn_by>2019-12-16</learn_by>
+    <lyricist>King/Leiber/Stoller</lyricist>
+    <ordered>2019-08-13</ordered>
+    <source>BHS</source>
+    <stockID>204170</stockID>
+    <words>dm ba da da</words>
+    <tracks><voice gdid="1l7741eRAmVRRj5SX3IiV-yUacclsZdwP" mods="Bass" path="bass/Stand By Me - Bass.mp3" voice="bass" />
+      <voice gdid="1NNPZGY0slqGbzxzh4ucNmreVOjkyYF71" mods="Bari" path="bari/Stand By Me - Bari.mp3" voice="bari" />
+      <voice gdid="11ezoNqYrlYnx2VMJFLSoFENYDSU6d1Zn" mods="Lead" path="lead/Stand By Me - Lead.mp3" voice="lead" />
+      <voice gdid="1gYTuRzr7O2WjbQfP-yQ38xJk-6kBT0FF" mods="Tenor" path="tenor/Stand By Me - Tenor.mp3" voice="tenor" />
+      <voice gdid="16jt4ypuoBOpAf_RAM9ahHYzpojrnsN5c" mods="Mix" path="mix/Stand By Me - Mix.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1Mb4B7ZoHZTCt1bdAp9KFyhYY6VY6zHt4" sheet="Stand By Me.pdf" />
+  </song>
+  <song id="1009" name="Standing On The Corner/Five Foot Two">
+    <category>Old</category>
+    <arranger>Mel Knight</arranger>
+    <composer>Frank Loesser</composer>
+    <copyright>2004</copyright>
+    <key>G</key>
+    <learn_by>2011-03-24</learn_by>
+    <words>Saturday night</words>
+    <tracks><voice gdid="1rl-hPjxLerVhSQM3a-MH_wLGAjj9-EwA" mods="bari" path="bari/Standing On The Corner-Five Foot Two - Bari.mp3" voice="bari" />
+      <voice gdid="1Mg0ADbXSOTcsWzVP6m1Xh0g7HY31f_Wg" mods="No Bari" path="bari/Standing On The Corner-Five Foot Two - No Bari.mp3" voice="bari" />
+      <voice gdid="1NPK4JxAKHTfmsevhwV7MkiVQ7Kit5CAU" mods="No Lead" path="lead/Standing On The Corner-Five Foot Two - No Lead.mp3" voice="lead" />
+      <voice gdid="1tNa8Q_J9Hm6XI5WjLAOhMLTHeZiYCIh8" mods="Lead" path="lead/Standing On The Corner-Five Foot Two - Lead.mp3" voice="lead" />
+      <voice gdid="12fqx4FBIvtfgVu0sDATNm9S114dPJFxT" mods="No Tenor" path="tenor/Standing On The Corner-Five Foot Two - No Tenor.mp3" voice="tenor" />
+      <voice gdid="1L4LL448f6x6kfF8CZgi1d4j8Gd-JP7nP" mods="Tenor" path="tenor/Standing On The Corner-Five Foot Two - Tenor.mp3" voice="tenor" />
+      <voice gdid="1TNxko9qlJYHTcPOzkmr43kzxeK-QQXEi" mods="bass" path="bass/Standing On The Corner-Five Foot Two - Bass.mp3" voice="bass" />
+      <voice gdid="1LDubOsrw62NwM4ViosXcf2qPoEVRlSgj" mods="No Bass" path="bass/Standing On The Corner-Five Foot Two - No Bass.mp3" voice="bass" />
+      <voice gdid="1z0BBFKNWDoY8nZEETtZ6JXe4IsBJMSa7" mods="All" path="mix/Standing On The Corner-Five Foot Two - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1038" name="Star-Spangled Banner, The">
+    <category>Current</category>
+    <arranger>Val Hicks</arranger>
+    <composer>John Stafford Smith</composer>
+    <copyright>1974, Val Hicks</copyright>
+    <key>E</key>
+    <pitch>E</pitch>
+    <words>Oh, say, can  you see</words>
+    <tracks><voice gdid="1Aw5ELHNZCIAZsGxasilbXMJJvl2I-g8E" mods="bari" path="bari/Star Spangled Banner.mp3" voice="bari" />
+      <voice gdid="1urSUtpcbMn7IoRtilVewhz_ytjMreYX3" mods="lead" path="lead/Star Spangled Banner.mp3" voice="lead" />
+      <voice gdid="1IrETZO9Kb8tQj30x-NeiJL7-Hsrw1a_k" mods="bass" path="bass/Star Spangled Banner.mp3" voice="bass" />
+      <voice gdid="13-cOJvOF37OOM34bvx4Y4gYIzYoka9DT" mods="tenor" path="tenor/Star Spangled Banner.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid="1I0nmgz5yvgGlA1lAFe450iFQtgyplmvf" sheet="Star Spangled Banner.pdf" />
+  </song>
+  <song id="1001" name="Steamin' Down The River">
+    <category>Old</category>
+    <arranger>Val Hicks</arranger>
+    <composer>Einar N. Pedersen</composer>
+    <copyright>1970, SPEBSQSA</copyright>
+    <key>C</key>
+    <learn_by>2011-03-25</learn_by>
+    <words>I can't keep those memories</words>
+    <tracks><voice gdid="1RDzBxBzaoiAdiwEGVv2pAv8b6_U6Qq_6" mods="Bass" path="bass/Steamin' Down The River - Bass.mp3" voice="bass" />
+      <voice gdid="1jgEF-hevyLCZ18WIFF-9vlp6L0eDW1mX" mods="No Bass" path="bass/Steamin' Down The River - No Bass.mp3" voice="bass" />
+      <voice gdid="1fvqjoS-mj4UNHWkNvbxc-KyaI_5mnqa_" mods="Bari" path="bari/Steamin' Down The River - Bari.mp3" voice="bari" />
+      <voice gdid="1U-k9d6joa82Snlbn2_k9Y_CkkosUGS3p" mods="No Bari" path="bari/Steamin' Down The River - No Bari.mp3" voice="bari" />
+      <voice gdid="1Z0VuLWh0BP_DVKnpKISqTIVDUGM0Ivq7" mods="Lead" path="lead/Steamin' Down The River - Lead.mp3" voice="lead" />
+      <voice gdid="1elPks4a94KHr1Z8BUsk9Yrk2tnxhmjIU" mods="No Lead" path="lead/Steamin' Down The River - No Lead.mp3" voice="lead" />
+      <voice gdid="1MXoSDRmTrqBiayXX2KuhPLV_H7HcbVxU" mods="No Tenor" path="tenor/Steamin' Down The River - No Tenor.mp3" voice="tenor" />
+      <voice gdid="1nmUeoY_rf2av-M7xBb-Ylf_uWrPhxGLD" mods="Tenor" path="tenor/Steamin' Down The River - Tenor.mp3" voice="tenor" />
+      <voice gdid="1NRH83jAl7AREdcbZBLmKwQDe1whAcqkP" mods="All" path="mix/Steamin' Down The River - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1226" name="Heart Of My Heart" aliasfor="1052"/>
+  <song id="1052" name="Story Of The Rose">
+    <category>PoleCat</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Andrew Mack</composer>
+    <copyright>1973, SPEBSQSA</copyright>
+    <key>Ab</key>
+    <location>Polecat I pg 14</location>
+    <notes>Heart Of My Heart</notes>
+    <words>Heart of my heart</words>
+    <tracks><voice gdid="1_caBHv8T1KFsOeQP0gpBUbt0qXTHmUqT" mods="bari" path="bari/Heart of My Heart - bari left.mp3" voice="bari" />
+      <voice gdid="1a3bJjfqYyBec6Bzf-NLndx2uBgOUKJwK" mods="bass" path="bass/Heart of My Heart.mp3" voice="bass" />
+      <voice gdid="14U6sW_QDGQaNkZ36aXQ31Rr9uRQNjhaR" mods="mix" path="mix/Heart of My Heart.mp3" voice="mix" />
+      <voice gdid="11R9hdLafqGFd87sDmVYV3knfkV80NRnZ" mods="tenor" path="tenor/Heart of My Heart - Tenor Left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='12czXRobuKY4eA_8mTjxvFsCbBZHYnRhn' sheet='Heart of My Heart.pdf' />
+  </song>
+  <song id="1153" name="Sunshine of Your Smile, The">
+    <category>Other</category>
+    <arranger>Tom Gentry</arranger>
+    <composer>Lilian Ray</composer>
+    <copyright>Tom Gentry</copyright>
+    <crdate>2000-12-31</crdate>
+    <key>F</key>
+    <lyricist>Leonard Cooke</lyricist>
+    <words>You shine so bright</words>
+  </song>
+  <song id="1051" name="Sweet And Lovely">
+    <category>PoleCat</category>
+    <arranger>Mac Huff</arranger>
+    <composer>Norman Starks</composer>
+    <copyright>1971, SPEBSQSA</copyright>
+    <key>F</key>
+    <location>Polecat I pg 6</location>
+    <words>Last night alone</words>
+    <tracks><voice gdid="1mYSUc4uVc9dDLpYADSbTDRAbJgt--b-Z" mods="bari left" path="bari/Sweet and Lovely - bari left.mp3" voice="bari" />
+      <voice gdid="1rwDtm0w_H37M6mOCOw0wTGCSlCsECPog" mods="bass" path="bass/Sweet and Lovely.mp3" voice="bass" />
+      <voice gdid="1Fb2mYHMThDcg3WferghLP_TZNDHB1ltl" mods="mix" path="mix/Sweet and Lovely.mp3" voice="mix" />
+      <voice gdid="11I4n9T_LaYAUra7lfO7dmG2e8DYoeM-2" mods="tenor" path="tenor/Sweet and Lovely - Tenor Left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='12-S2gqDApFJJASwLL6O4MnLTuiHXCM6W' sheet='Sweet and Lovely.pdf' />
+  </song>
+  <song id="1057" name="Sweet, Sweet Roses of Morn">
+    <category>PoleCat</category>
+    <arranger>Floyd Connett</arranger>
+    <composer>Oscar Jones, Martin Peake</composer>
+    <copyright>1959, SPEBSQSA</copyright>
+    <key>Bb</key>
+    <location>Polecat I pg 11</location>
+    <words>Sweet, sweet roses of morn</words>
+    <tracks><voice gdid="1h0WqcAeLeVOjtpYyGkjbBAeHNHD_wZ2i" mods="bari left" path="bari/Sweet Sweet Roses of Morn - bari left.mp3" voice="bari" />
+      <voice gdid="1L_AjV4yRVMz4cqbIo8Roy_r585Y9lFX4" mods="bass" path="bass/Sweet Sweet Roses of Morn.mp3" voice="bass" />
+      <voice gdid="1p2cNzepJX-5Jbn0RMrN_ojsUyi5JFn2G" mods="mix" path="mix/Sweet Sweet Roses of Morn.mp3" voice="mix" />
+      <voice gdid="11DRRzwGh3cW6egerKrEiNnKb1ab2jGyE" mods="tenor" path="tenor/Sweet Sweet Roses of Morn - Tenor Left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='12N2l7Kg3kLf9HoOQFz5MwCOBh57SoAIr' sheet='Sweet Sweet Roses of Morn.pdf' />
+  </song>
+  <song id="1190" name="Teddy Bear">
+    <category>Other</category>
+    <words>??</words>
+    <tracks><voice gdid="1GMPi-Ky6d6ltjEKYhgclOj39LvrUs0Ri" mods="Bass" path="bass/Teddy Bear - Bass.mp3" voice="bass" />
+      <voice gdid="1ZiOA-bH6zYmuYCk__xUEW7nKJmU_fJUG" mods="Bari" path="bari/Teddy Bear - Bari.mp3" voice="bari" />
+      <voice gdid="18LoYzxZCAfe8aNJI7aztErkdbZV47agg" mods="Lead" path="lead/Teddy Bear - Lead.mp3" voice="lead" />
+      <voice gdid="1J4h2XoCWBPlRUEY7etpbiceYdPgvpy_M" mods="Tenor" path="tenor/Teddy Bear - Tenor.mp3" voice="tenor" />
+      <voice gdid="1P9TQdsI-AdUDd0_p4gTYpoHvjA30mqW_" mods="All" path="mix/Teddy Bear - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1039" name="Tee-Idle Dum Dum">
+    <category>Old</category>
+    <arranger>BHS</arranger>
+    <composer>Traditional</composer>
+    <copyright>1996, SPEBSQSA, Inc.</copyright>
+    <key>G</key>
+    <words>Oh,  tee-idle dum dum</words>
+  </song>
+  <song id="1130" name="The First Noel">
+    <category>YF2</category>
+    <arranger>Wayne M Grimmer</arranger>
+    <composer>Traditional English</composer>
+    <copies>3</copies>
+    <copyright>Wayne M. Grimmer</copyright>
+    <crdate>2015-12-31</crdate>
+    <key>D</key>
+    <location>YF2 p8</location>
+    <lyricist>Traditional English</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>Noel Noel</words>
+  </song>
+  <song id="1155" name="There's a Vacant Chair at Home Sweet Home">
+    <category>Other</category>
+    <arranger>Paul Olguin</arranger>
+    <composer>James F. Hanley</composer>
+    <copyright>Paul Olguin</copyright>
+    <crdate>2008-12-31</crdate>
+    <key>C</key>
+    <lyricist>Joe Goodwin</lyricist>
+    <words>(If you're) weary of wand'ring</words>
+  </song>
+  <song id="1026" name="This Is My Country">
+    <category>Old</category>
+    <arranger>Miamians</arranger>
+    <composer>Al Jacobs</composer>
+    <copyright>1940</copyright>
+    <key>Eb</key>
+    <words>This is my country</words>
+  </song>
+  <song id="1105" name="This Land Is Your Land">
+    <category>Old</category>
+    <arranger>David J Naddor</arranger>
+    <composer>Woody Guthrie</composer>
+    <copyright>WGP/TRO</copyright>
+    <crdate>1971-12-31</crdate>
+    <key>Bb</key>
+    <learn_by>2016-02-15</learn_by>
+    <lyricist>Woody Guthrie</lyricist>
+    <ordered>2015-09-23</ordered>
+    <stockID>208615</stockID>
+    <words>This land is your land</words>
+  </song>
+  <song id="1075" name="This Little Light Of Mine / Do Lord Medley">
+    <category>Old</category>
+    <arranger>Val Hicks</arranger>
+    <composer>Traditional</composer>
+    <copyright>1999 Val Hicks, ASCAP</copyright>
+    <key>A</key>
+    <learn_by>2013-12-30</learn_by>
+    <words>This little light of mine</words>
+    <tracks><voice gdid="1N44MSwp7T2urFagKbqXoGiT0nB7znmee" mods="Bass" path="bass/Do Lord - Bass.mp3" voice="bass" />
+      <voice gdid="1sobEJWE2aVwJncnvgCyp4esOVgCYdmFO" mods="Bari" path="bari/Do Lord - Bari.mp3" voice="bari" />
+      <voice gdid="1QrF6KJ6KYE5VW9yqET2HeSSzvbHmtlB1" mods="Lead" path="lead/Do Lord - Lead.mp3" voice="lead" />
+      <voice gdid="1ks7ugJ9EbMvDIdPhIk-rK-nXTb_HiE1Y" mods="Tenor" path="tenor/Do Lord - Tenor.mp3" voice="tenor" />
+      <voice gdid="1bWXy3qqqUSLHWKCfByCFv6twjN4S6JmF" mods="All" path="mix/Do Lord - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1177" name="Three Blind Mice">
+    <category>Old</category>
+    <key>D</key>
+    <words>Oh, Oh, Oh</words>
+  </song>
+  <song id="1027" name="True Love">
+    <category>Old</category>
+    <arranger>Val Hicks</arranger>
+    <composer>Cole Porter</composer>
+    <copyright>1956 Chappell &amp; Co.</copyright>
+    <key>Bb</key>
+    <words>Sun-tanned, wind-blown</words>
+  </song>
+  <song id="1076" name="Turn Your Radio On!">
+    <category>Current</category>
+    <arranger>unk</arranger>
+    <composer>Traditional</composer>
+    <key>Ab</key>
+    <learn_by>2013-12-30</learn_by>
+    <words>Well, come and listen in</words>
+    <tracks><voice gdid="1vm5PjL1P03WJ7ZNRmTq7f92eKCpIZGJN" mods="bari" path="bari/Turn Your Radio On - bari.mp3" voice="bari" />
+      <voice gdid="1XhwflrFafAe_esaXtgaBuzERxXgN1rer" mods="bari slower" path="bari/Turn Your Radio On BARI slower 10.mp3" voice="bari" />
+      <voice gdid="1BNqmqlbwslOTAUfLeRzCjAl1_abIsEWF" mods="lead" path="lead/Turn Your Radio On - Lead.mp3" voice="lead" />
+      <voice gdid="1Oz3-pzz6wGyOTFjxj6sfnfKKLdP24a0S" mods="lead slower" path="lead/Turn Your Radio On LEAD slower 10.mp3" voice="lead" />
+      <voice gdid="1dEqebk7gcsfkMOUUzmqkvvbwfBWpQ_J-" mods="tenor" path="tenor/Turn Your Radio On - Tenor.mp3" voice="tenor" />
+      <voice gdid="1L0iHCAxfF6UXA9ZQYBM2zWxHUeOALdrf" mods="tenor slower" path="tenor/Turn Your Radio On TENOR slower 10.mp3" voice="tenor" />
+      <voice gdid="1J69Of7TXuUlv1jNClR1jVPzOnyxo0veX" mods="bass" path="bass/Turn Your Radio On Bass.mp3" voice="bass" />
+      <voice gdid="1DapPFj4NlVYDsT6q3LoKpRVPFoz2ef9s" mods="bass slower" path="bass/Turn Your Radio On BASS slower 10.mp3" voice="bass" />
+      <voice gdid="1jy4_Ck_UZgXolPgJxQhZccRLd86u_MGk" mods="mix" path="mix/Turn Your Radio On.mp3" voice="mix" />
+      <voice gdid="1Dao-2gmndztfHbTHFBW7mM3U7w8xZgK6" mods="mix slower" path="mix/Turn Your Radio On - Mix slower 10.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1-9b8QO4Oi7yxZpNYN6W7Lno0i9aeDEc0" sheet="TurnYourRadioOn.pdf" />
+  </song>
+  <song id="1145" name="Unchained Melody">
+    <category>Old</category>
+    <arranger>Bill Eberius</arranger>
+    <composer>Alex North</composer>
+    <copyright>Frank Music Corp</copyright>
+    <crdate>1954-12-31</crdate>
+    <key>Bb</key>
+    <learn_by>2017-01-16</learn_by>
+    <lyricist>Hy Zaret</lyricist>
+    <ordered>2017-08-14</ordered>
+    <stockID>114381</stockID>
+    <words>oo__________</words>
+    <tracks><voice gdid="18mwTt1FZ94sHalM9RWvUWqA0eMPUvyK7" mods="bass pred" path="bass/Unchained Melody bass pred.mp3" voice="bass" />
+      <voice gdid="1wPekoK65xqew4yK7C3Ddrjo96fac5_1t" mods="bass" path="bass/Unchained Melody bass.mp3" voice="bass" />
+      <voice gdid="1yURz8Wk0UYsbhoDAH9TxbDBpnJAhIWlE" mods="bari pred" path="bari/Unchained Melody bari pred.mp3" voice="bari" />
+      <voice gdid="1f9tco8DBWjYPRVTF7pkPfAMdfcL9ZWdF" mods="bari" path="bari/Unchained Melody bari.mp3" voice="bari" />
+      <voice gdid="10m1TwTrzmfLBqmovHsROqP-d5TKKKsws" mods="lead pred" path="lead/Unchained Melody lead pred.mp3" voice="lead" />
+      <voice gdid="1NElUTpCooQvokubl9x58IxlmFJ6cCOjT" mods="lead" path="lead/Unchained Melody lead.mp3" voice="lead" />
+      <voice gdid="1KJ0o7L9D9s7mO_Othn90FZX2ADQ0W9d0" mods="tenor pred" path="tenor/Unchained Melody tenor pred.mp3" voice="tenor" />
+      <voice gdid="1XZeVQWpTOSLmb-VPqkBpBnd1AxtYNrQE" mods="tenor" path="tenor/Unchained Melody tenor.mp3" voice="tenor" />
+      <voice gdid="1wl5me4a4Tk8OVoiZn5hpfZodvTcHpz1A" mods="mix" path="mix/Unchained Melody.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1hoRBN-ZwcXDdPfsyiUU_9GgBG2TCbX_r" sheet="UnchainedMelody_v1.2.pdf" />
+  </song>
+  <song id="1028" name="Under The Boardwalk">
+    <category>Current</category>
+    <arranger>SPEBSQSA, Inc</arranger>
+    <composer>Resnick/Young</composer>
+    <copyright>1964 Alley Music Corp &amp; Trio Music Co.</copyright>
+    <key>Ab</key>
+    <words>Bm bm bm bm bm bm</words>
+    <tracks><voice gdid="13fo7gTci-jSCUDbCXv9VHAHzJ3CSARVb" mods="bass" path="bass/Under The Boardwalk - bass.mp3" voice="bass" />
+      <voice gdid="1-BD4AzzGMm7fZwBXt1CNfw2inwu5hQMN" mods="bari" path="bari/Under The Boardwalk - bari.mp3" voice="bari" />
+      <voice gdid="1NyZqboGqha0yq3VdtH9GQiVR3bBNUqp6" mods="lead" path="lead/Under The Boardwalk - lead.mp3" voice="lead" />
+      <voice gdid="1OU5QefdzbsOP9SzTwGSjkNcJwFImz_8e" mods="tenor" path="tenor/Under The Boardwalk - tenor.mp3" voice="tenor" />
+      <voice gdid="1Z1aFNYeH69Yuoesag9CqpSwwRHfhLTFX" mods="mix - faster" path="mix/Under the boardwalk mix-faster9.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid='139LgNbmst02dQKyh8c4CPeWMEDHgMVIv' sheet='Under the Boardwalk.pdf' />
+  </song>
+  <song id="1054" name="Wait Till The Sun Shines, Nellie">
+    <category>PoleCat</category>
+    <arranger>Warren "Buzz" Haeger</arranger>
+    <composer>Sterling, Von Tilzer</composer>
+    <copyright>1986, SPEBSQSA</copyright>
+    <key>Ab</key>
+    <location>Polecat I pg 4</location>
+    <words>On a Sunday morn</words>
+    <tracks><voice gdid="19DLSxn_SdW1Tn4JmLPzklxYWOSUUX1ua" mods="bari left" path="bari/Wait Til The Sun Shines Nellie - bari left.mp3" voice="bari" />
+      <voice gdid="13HMMiJrp_dX0uG91x-N_fr-JX7MT2P3y" mods="bass" path="bass/Wait Til The Sun Shines Nellie.mp3" voice="bass" />
+      <voice gdid="1aaehICSdJdWKhQO6Vd9IqTtyUmfPHByl" mods="mix" path="mix/Wait Til The Sun Shines Nellie.mp3" voice="mix" />
+      <voice gdid="11CrCJdd35eUNCMqVWnHnh9zQVdRZWJdl" mods="tenor" path="tenor/Wait Til The Sun Shines Nellie - Tenor Left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='11zODkV-5x0o8mCQpdONR9_HREJ4Bb7mn' sheet='Wait Til the Sun Shines, Nellie.pdf' />
+  </song>
+  <song id="1170" name="We Need a Little Christmas">
+    <category>Christmas</category>
+    <arranger>Dave Briner</arranger>
+    <composer>Jerry Herman</composer>
+    <copyright>Jerry Herman</copyright>
+    <crdate>2011-12-31</crdate>
+    <key>G</key>
+    <location>Coll p20</location>
+    <lyricist>Jerry Herman</lyricist>
+    <pitch>G</pitch>
+    <words>Oh, we need a little</words>
+    <tracks><voice gdid="10uINtALGay-h0HsqxPefNrcBLLu-N87F" mods="mix" path="mix/We Need a Little Christmas.mp3" voice="mix"/></tracks>
+  </song>
+  <song id="1138" name="We Three Kings of Orient Are">
+    <category>YF2</category>
+    <arranger>Joe Johnson</arranger>
+    <composer>Traditional German</composer>
+    <copies>3</copies>
+    <copyright>Joseph A. Johnson</copyright>
+    <crdate>2011-12-31</crdate>
+    <key>F</key>
+    <location>YF2 p11</location>
+    <lyricist>John M. Neale</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>We three kings of Orient are</words>
+  </song>
+  <song id="1149" name="Wells Fargo Wagon">
+    <category>Old</category>
+    <arranger>Howard Jones, Jr.</arranger>
+    <composer>Meredith Willson</composer>
+    <copyright>Frank Music Corp.</copyright>
+    <crdate>1956-12-31</crdate>
+    <key>Bb</key>
+    <lyricist>Meredith Willson</lyricist>
+    <stockID>113040</stockID>
+    <words>I think she's comin', comin', comin'</words>
+    <tracks><voice gdid="1h0n2P1RR2dNNsg9LBdEnybvyzhTzfsxZ" mods="bass left" path="bass/Wells Fargo Wagon - bass left.mp3" voice="bass" />
+      <voice gdid="1Yal2wkQtNdfn2u7RhqL7BHd1_HZm9dAr" mods="bari left" path="bari/Wells Fargo Wagon - bari left.mp3" voice="bari" />
+      <voice gdid="1-kMNT7-oy0bdd__GeUQ6Gbk5tw-H912t" mods="lead left" path="lead/Wells Fargo Wagon - lead left.mp3" voice="lead" />
+      <voice gdid="1DOzqfGNfQR4O_kiuDqTlaAz53BZNRZIq" mods="tenor left" path="tenor/Wells Fargo Wagon - tenor left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid="1NlBDmM04BAal2sD5m4frftfNEvRfMvv9" sheet="Wells Fargo Wagon.pdf" />
+  </song>
+  <song id="1139" name="What Child is This?">
+    <category>YF2</category>
+    <arranger>Burt Szabo</arranger>
+    <composer>Traditional English</composer>
+    <copies>3</copies>
+    <copyright>Burt Szabo</copyright>
+    <crdate>1991-12-31</crdate>
+    <key>Bb</key>
+    <location>YF2 p14</location>
+    <lyricist>William C. Dix</lyricist>
+    <ordered>2016-11-15</ordered>
+    <source>BHS</source>
+    <stockID>210494</stockID>
+    <words>What child is this</words>
+  </song>
+  <song id="1099" name="White Christmas">
+    <category>Christmas</category>
+    <category>Old</category>
+    <arranger>Mac Huff</arranger>
+    <composer>Irving Berlin</composer>
+    <copies>20</copies>
+    <copyright>Irving Berlin</copyright>
+    <crdate>1941-12-31</crdate>
+    <key>D</key>
+    <learn_by>2014-10-20</learn_by>
+    <lyricist>Irving Berlin</lyricist>
+    <ordered>2014-10-07</ordered>
+    <source>ebiz</source>
+    <stockID>204444</stockID>
+    <words>Far away from home</words>
+  </song>
+  <song id="1171" name="White Christmas">
+    <category>Christmas</category>
+    <arranger>Mac Huff</arranger>
+    <composer>Irving Berlin</composer>
+    <copyright>Irving Berlin</copyright>
+    <crdate>2009-12-31</crdate>
+    <key>D</key>
+    <location>Coll p24</location>
+    <lyricist>Irving Berlin</lyricist>
+    <words>Far away from home</words>
+    <tracks><voice gdid="10mQJfX0XlAj0wyQh908DJeOZxqLGwZpk" mods="mix" path="mix/WHite Christmas.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1184" name="Who Put the Bomp">
+    <category>Show</category>
+    <arranger>Janne Olsson</arranger>
+    <composer>BARRY MANN/GERRY GOFFIN</composer>
+    <copyright>Screen Gems/EMI</copyright>
+    <crdate>2013-12-31</crdate>
+    <key>G</key>
+    <learn_by>2020-01-06</learn_by>
+    <lyricist>BARRY MANN/GERRY GOFFIN</lyricist>
+    <ordered>2019-07-31</ordered>
+    <pitch>G</pitch>
+    <words>I'd like to thank the guy</words>
+    <tracks><voice gdid="1buYRREwbQ-yRK_TxaGX7bNA1eDX7skdM" mods="Bass" path="bass/Who Put the Bomp - Bass.mp3" voice="bass" />
+      <voice gdid="1M-UPhXrYR_RlccN35joGQx3JXZTjj3an" mods="no Bass" path="bass/Who Put the Bomp - no Bass.mp3" voice="bass" />
+      <voice gdid="1OUWKjdVkhUPHu6H1th2Uy_Xjxd_aMgyj" mods="Bari" path="bari/Who Put the Bomp - Bari.mp3" voice="bari" />
+      <voice gdid="1H7xDxmuVN60pKz3ICQc1zjf7L1xvdAtF" mods="no Bari" path="bari/Who Put the Bomp - no Bari.mp3" voice="bari" />
+      <voice gdid="11wIAoooLi8r-VB_iLAi7Ui0qcvbIy_Eq" mods="Lead" path="lead/Who Put the Bomp - Lead.mp3" voice="lead" />
+      <voice gdid="1aShvufTVl_CaO0SPxb7RH_fmVPm_pXpz" mods="no Lead" path="lead/Who Put the Bomp - no Lead.mp3" voice="lead" />
+      <voice gdid="1Q_Kk_zFEOYXl5UCJK4OEZM1oKhzQBmkX" mods="Tenor" path="tenor/Who Put the Bomp - Tenor.mp3" voice="tenor" />
+      <voice gdid="18K8GPSK5C72zJBjD4FqegnsIdQ2vGSre" mods="no Tenor" path="tenor/Who Put the Bomp - no Tenor.mp3" voice="tenor" />
+      <voice gdid="1MwJ64aAqhSCPae5BgYs_evaiccIUEGRJ" mods="mix" path="mix/Who Put the Bomp - mix.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid="1X8I5BP_dmg8ZdCf5TfQbT57MME2v6exd" sheet="Who Put The Bomp.pdf" />
+  </song>
+  <song id="1144" name="Who Will Buy">
+    <category>Old</category>
+    <arranger>Bill Eberius</arranger>
+    <composer>Lionel Bart</composer>
+    <copyright>Lakeview Music Co.</copyright>
+    <crdate>1959-12-31</crdate>
+    <key>Dm</key>
+    <lyricist>Lionel Bart</lyricist>
+    <stockID>204165</stockID>
+    <words>Who will buy my sweet red roses</words>
+    <tracks><voice gdid="1iNy_8W7Zrnn3nj3-LfxDiLj4lgcYO_4p" mods="Bari" path="bari/Who Will Buy - Bari.mp3" voice="bari" />
+      <voice gdid="1RfShwOw9USrX6VYFy_81aHJmOmXnwriV" mods="piano" path="bari/Who Will Buy (piano) Bari.mp3" voice="bari" />
+      <voice gdid="13ds-mgwD5zIQfzVgUTrYz87IYi5bTRub" mods="Intro" path="bari/Who Will Buy Intro Bari.mp3" voice="bari" />
+      <voice gdid="1AJWKOj21i0MJVAjaGFAUasDsXzI9dXPX" mods="Bass" path="bass/Who Will Buy Bass.mp3" voice="bass" />
+      <voice gdid="122fgZgYqavNTSUPLm_T_75Ar4R9F8wya" mods="piano" path="bass/Who Will Buy (piano) Bass.mp3" voice="bass" />
+      <voice gdid="1_owsAKlT5frJydoeT2q8f0tisv3z00nO" mods="Intro" path="bass/Who Will Buy Intro Bass.mp3" voice="bass" />
+      <voice gdid="1Dmc3Mgr9GobJHwjQX9fVUA8lua1VD9Br" mods="Lead" path="lead/Who Will Buy Lead.mp3" voice="lead" />
+      <voice gdid="1mRyHazN33KA1svIPbWQhhhNcz4zlr7a_" mods="piano" path="lead/Who Will Buy (piano) Lead.mp3" voice="lead" />
+      <voice gdid="1haowRpYkfcDC5bwLZjP51oYEr9ABnLww" mods="Intro" path="lead/Who Will Buy Intro Lead.mp3" voice="lead" />
+      <voice gdid="1RkL5o9550gwp95YPLK7fH2ixkA63OqWs" mods="Tenor" path="tenor/Who Will Buy Tenor.mp3" voice="tenor" />
+      <voice gdid="1JWaPBT6vp7wuK2t1tBPgZTzOVkFCl6bN" mods="piano" path="tenor/Who Will Buy (piano) Tenor.mp3" voice="tenor" />
+      <voice gdid="1QQCv4e7DeAsShWfxmi2uH0lNcnPEKVDx" mods="Intro" path="tenor/Who Will Buy Intro Tenor.mp3" voice="tenor" />
+      <voice gdid="1aqAYeV4NJnS-J-sc8onZp_MuRl89Jvkm" mods="mix" path="mix/Who Will Buy.mp3" voice="mix" />
+      <voice gdid="1naV_OeGtrsNt7VzDE3j0FG-zTaF88CNP" mods="piano" path="mix/Who Will Buy (piano).mp3" voice="mix" />
+      <voice gdid="1Fk5HaEKJOEAuL4P-ImsuRM_yoyDmXglG" mods="Intro" path="mix/Who Will Buy Intro.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1097" name="Who's Sorry Now?">
+    <category>Old</category>
+    <arranger>Earl Moon</arranger>
+    <composer>Ted Snyder</composer>
+    <copyright>1923 EMI Mills Catalog, Inc</copyright>
+    <key>Bb</key>
+    <learn_by>2015-03-01</learn_by>
+    <words>You smiled when we parted</words>
+    <tracks><voice gdid="12jlxI2aLc5ieqEDQP13rch6rWUcy60Yh" mods="Bass" path="bass/Whos Sorry Now - Bass.mp3" voice="bass" />
+      <voice gdid="1F-40SSPKNVpRTprsRD8jWuZVEfc-yO2g" mods="Bari" path="bari/Whos Sorry Now - Bari.mp3" voice="bari" />
+      <voice gdid="1dJpNL7HAfu3lQQB-33XrHlEiopv2M01d" mods="Tag" path="bari/Who's Sorry Tag - Bari.mp3" voice="bari" />
+      <voice gdid="15pw_VSGvDTDZ6bs26flnURLelpiJ3Jru" mods="Lead" path="lead/Whos Sorry Now - Lead.mp3" voice="lead" />
+      <voice gdid="1nzc7pN2dBt7xSt57pxoPcixyBjm-HWSg" mods="Tenor" path="tenor/Whos Sorry Now - Tenor.mp3" voice="tenor" />
+    </tracks>
+  </song>
+  <song id="1156" name="Winter Wonderland">
+    <category>Christmas</category>
+    <arranger>J. Edward Waesche</arranger>
+    <composer>Felix Bernard</composer>
+    <copies>25</copies>
+    <copyright>WB Music Corp.</copyright>
+    <crdate>1960-12-31</crdate>
+    <key>Eb</key>
+    <lyricist>Dick Smith</lyricist>
+    <ordered>2017-10-30</ordered>
+    <source>BHS</source>
+    <stockID>7629</stockID>
+    <words>Over the ground lies a mantle of white</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPYUlCeU1oSDF0VlE" mods="mix" path="mix/Winter Wonderland.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1029" name="Yes Sir, That's My Baby">
+    <category>Old</category>
+    <arranger>Jack Baird</arranger>
+    <composer>Walter Donaldson</composer>
+    <copyright>1925 Bourne Co.</copyright>
+    <key>Eb</key>
+    <words>Who's that coming down the street</words>
+  </song>
+  <song id="1030" name="Yesterday">
+    <category>Current</category>
+    <arranger>Tom Gentry</arranger>
+    <composer>Lennon/McCartney</composer>
+    <copyright>1965 Northern Songs</copyright>
+    <key>E</key>
+    <pitch>E</pitch>
+    <stockID>114381</stockID>
+    <words>oo oo oo oo oo</words>
+    <tracks><voice gdid="1DbDTK7eLMlsQUMVFYjHPlRN6QV2bcw8s" mods="Bass" path="bass/Yesterday - Bass.mp3" voice="bass" />
+      <voice gdid="1U_RsE2ANxixsOOjHiqIsBWf32vhZOZ_c" mods="Bari" path="bari/Yesterday - Bari.mp3" voice="bari" />
+      <voice gdid="19vxtWw5rJmB6aigDiWLIJ78pbC1_KHEx" mods="Lead" path="lead/Yesterday - Lead.mp3" voice="lead" />
+      <voice gdid="1MYeuyH0zcYb24anti2IYD-_kxs5tTtRs" mods="Tenor" path="tenor/Yesterday - Tenor.mp3" voice="tenor" />
+      <voice gdid="1-3iufDoOvu69UqB0pvFvq6pF8xQ95kLL" mods="mix" path="mix/Yesterday.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid='1391pzshslFWRg03EC9vOpGmowiNfIdmt' sheet='Yesterday.pdf' />
+  </song>
+  <song id="1031" name="Yona From Arizona">
+    <category>Old</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Traditional</composer>
+    <copyright>1979 SPEBSQSA, Inc</copyright>
+    <key>Bb</key>
+    <words>Ev'ry night by the light</words>
+  </song>
+  <song id="1125" name="You Must Have Been A Beautiful Baby">
+    <category>Old</category>
+    <arranger>Renee Craig</arranger>
+    <composer>Harry Warren</composer>
+    <copies>25</copies>
+    <copyright>Remick Music Corp</copyright>
+    <crdate>1937-12-31</crdate>
+    <key>A</key>
+    <lyricist>Johnny Mercer</lyricist>
+    <ordered>2016-11-11</ordered>
+    <pitch>A</pitch>
+    <source>Puget Sounders</source>
+    <stockID>Puget Sounders</stockID>
+    <words>Oh, You must have been a beautiful baby</words>
+    <tracks><voice gdid="1nGqNcNg8jMpuWEGVhTlhLU6ViBv9vk3E" mods="Bass" path="bass/You Must Have Been A Beautiful Baby - Bass.mp3" voice="bass" />
+      <voice gdid="1syPUBJg-ifv0HBHpYli3PmaMAt39VwEM" mods="Mix" path="mix/You Must Have Been A Beautiful Baby - Mix.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1060" name="You Tell Me Your Dream">
+    <category>PoleCat</category>
+    <arranger>Phil Embury</arranger>
+    <composer>Charles N. Daniels</composer>
+    <copyright>1959, SPEBSQSA</copyright>
+    <key>Ab</key>
+    <location>Polecat I pg 17</location>
+    <words>You had a dream</words>
+    <tracks><voice gdid="1sJ1_Q_5uN8NM_5_qnvuqkDfwCBqKCADT" mods="bari left" path="bari/You Tell Me Your Dream - bari left.mp3" voice="bari" />
+      <voice gdid="1NN17yv_vyep2RQNzAIq7d7K8UkseoYZp" mods="bass" path="bass/You Tell Me Your Dream.mp3" voice="bass" />
+      <voice gdid="1QisQkU5vXzulCmnQETnBIAlbMTmIZohK" mods="mix" path="mix/You Tell Me Your Dream.mp3" voice="mix" />
+      <voice gdid="11CJgVog1Df--Ok0wTkhUnyXBcRYBc7rf" mods="tenor" path="tenor/You Tell Me Your Dream - Tenor Left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='12lfYdDLPZEAZUmrKGmYXS7qeW1wEGayh' sheet='You Tell Me Your Dream.pdf' />
+  </song>
+  <song id="1008" name="You're Just In Love">
+    <category>Old</category>
+    <arranger>Tom Gentry</arranger>
+    <composer>Irving Berlin</composer>
+    <copyright>1950 Irving Berlin</copyright>
+    <key>F</key>
+    <learn_by>2011-03-24</learn_by>
+    <words>Woe is me!</words>
+    <tracks><voice gdid="1NlhhypQl5unny35odZ732jTUlOjjLHdp" mods="Bass" path="bass/You're Just In Love - Bass.mp3" voice="bass" />
+      <voice gdid="1zKQHnFdwrDN9WpYjaeNVbF6l8bT0wDBy" mods="Bari" path="bari/You're Just In Love - Bari.mp3" voice="bari" />
+      <voice gdid="179s7znW1Tc4_hLluQaPKnMRlScmqUWBO" mods="Lead" path="lead/You're Just In Love - Lead.mp3" voice="lead" />
+      <voice gdid="1itIM9Y__4h1xvfBSpT00Uph4LHwWLtjy" mods="Tenor" path="tenor/You're Just In Love - Tenor.mp3" voice="tenor" />
+      <voice gdid="13JJQeiereNgSxTIzs80Mwxb-9AGUEI2s" mods="All" path="mix/You're Just In Love - All.mp3" voice="mix" />
+    </tracks>
+  </song>
+  <song id="1227" name="Sweet Adeline" aliasfor="1110"/>
+  <song id="1110" name="You're The Flower Of My Heart, Sweet Adeline">
+    <category>PoleCat</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Harry Armstrong</composer>
+    <copyright>SPEBSQSA, Inc</copyright>
+    <key>Bb</key>
+    <location>Polecat I pg 15</location>
+    <lyricist>Richard H. Gerard</lyricist>
+    <source>1973</source>
+    <words>Sweet Adeline</words>
+    <tracks><voice gdid="1LQn_FfPbnOcPHLJ1X7qswFdS3O1qEFbA" mods="bari left" path="bari/Sweet Adeline - bari left.mp3" voice="bari" />
+      <voice gdid="11gAEnW3wQt9GEfl8CMAMNFaANg-DjWFr" mods="bass" path="bass/Sweet Adeline.mp3" voice="bass" />
+      <voice gdid="1GnG1puNKCpUs7NW8QD83sHY2Yn1Xo9c4" mods="mix" path="mix/Sweet Adeline.mp3" voice="mix" />
+      <voice gdid="11IYS7amZUqQrhXBFC2bLLnNdMzKg6KN8" mods="tenor" path="tenor/Sweet Adeline - Tenor Left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid='12iZ3--EfLjKKRLasV08wIZdYRKYMlFx9' sheet='Sweet Adeline.pdf' />
+  </song>
+  <song id="1004" name="Zip-a-Dee Doo-Dah">
+    <category>Old</category>
+    <arranger>Joe Liles</arranger>
+    <composer>Ray Gilbert, Allie Wrubel</composer>
+    <copyright>1945 Walt Disney Music Co.</copyright>
+    <key>C</key>
+    <learn_by>2011-03-25</learn_by>
+    <words>This is just the kind of day</words>
+  </song>
+  <song id="1094" name="old Bad, Bad Leroy Brown">
+    <category>Old</category>
+    <arranger>Fran Wilson</arranger>
+    <composer>Jim Croce</composer>
+    <copyright>2010, Time in a Bottle Publ. &amp; Croce Publ.</copyright>
+    <key>G</key>
+    <learn_by>2015-03-01</learn_by>
+  </song>
+  <song id="1228" name="Up On the Housetop" aliasfor="1202"/>
+  <song id="1202" name="Up on the Housetop">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>B. R. Hanby</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>Eb</key>
+    <location>YF pg 2</location>
+    <lyricist>B. R. Hanby</lyricist>
+    <words>Up on the house-top</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPcXA1ZVpDa21PRmM" mods="mix" path="mix/Children's Medley.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1203" name="Coventry Carol">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Robert Croo</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>Gm</key>
+    <location>YF pg 21</location>
+    <lyricist>Traditional</lyricist>
+    <words>Lul-lay, thou little tiny child</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPU1BXdVZoMUNqQms" mods="mix" path="mix/Coventry Carol.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1204" name="God Rest Ye Merry, Gentlemen">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Traditional</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>Fm</key>
+    <location>YF pg 8</location>
+    <lyricist>Traditional</lyricist>
+    <words>God rest ye merry, gentlemen</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPWUFMNVE4ZzBmZTQ" mods="mix" path="mix/God Rest Ye Merry, Gentlemen.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1205" name="O Christmas Tree">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Traditional German</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>G</key>
+    <location>YF pg 22</location>
+    <words>O Christmas tree</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPcElBU19CaFdpOHc" mods="mix" path="mix/O Christmas Tree.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1206" name="O Little Town of Bethlehem">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Lewis H Redner</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>G</key>
+    <location>YF pg 14</location>
+    <lyricist>Phillips Brooks</lyricist>
+    <words>O little town of Bethlehem</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPU05PcHl3b0kxX1E" mods="mix" path="mix/O Little Town Of Bethlehem.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1207" name="Angels We Have Heard On High">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Traditional French</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>F</key>
+    <location>YF pg 15</location>
+    <lyricist>Traditional French</lyricist>
+    <words>Angels we have heard on high</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPNF9FVEthU3BtejQ" mods="mix" path="mix/Angels We Have Heard On High.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1208" name="Hark! The Herald Angels Sing">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Felix Mendelssohn</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>G</key>
+    <location>YF pg 4</location>
+    <lyricist>Wesley/Cummings</lyricist>
+    <words>Hark! The herald angels sing</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPRVVnclVtYWM1dEE" mods="mix" path="mix/Hark! The Herald Angels Sing.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1209" name="I Heard The Bells On Christmas Day">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>J Baptiste Calkin</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>Eb</key>
+    <location>YF pg 17</location>
+    <lyricist>Henry W Longfellow</lyricist>
+    <words>I heard the bells on Christmas day</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPeGRXX3lvYjZfNDA" mods="mix" path="mix/I Heard The Bells On Christmas Day.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1210" name="It Came Upon The Midnight Clear">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Richard S Willis</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>Bb</key>
+    <location>YF pg 6</location>
+    <lyricist>Edmund H Sears</lyricist>
+    <words>It came upon the midnight clear</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPTzhVeVNZNHZ4Q28" mods="mix" path="mix/It Came Upon The Midnight Clear.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1211" name="Jingle Bells">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>James Pierpont</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>Ab</key>
+    <pitch>Eb</pitch>
+    <location>YF pg 18</location>
+    <lyricist>James Pierpont</lyricist>
+    <words>Jingle, jingle, jingle, jingle</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPOWFRXzF4dlgzX28" mods="mix" path="mix/Jingle Bells.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1212" name="Lo, How A Rose E'er Blooming">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Michael Praetorius</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>F</key>
+    <location>YF pg 24</location>
+    <lyricist>Theodore Baker</lyricist>
+    <words>Lo, How A Rose E'er Blooming</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPZ0F6bU1EYWJSbVk" mods="mix" path="mix/Lo, How A Rose E'er Blooming.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1213" name="O Come, All Ye Faithful">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>John F Wade</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>Ab</key>
+    <location>YF pg 12</location>
+    <lyricist>Frederick Oakeley</lyricist>
+    <words>O Come, All Ye Faithful</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPY1g3VmZCV1pld2M" mods="mix" path="mix/O Come, All Ye Faithful.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1214" name="O Holy Night">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Adolphe Adam</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>C</key>
+    <location>YF pg 10</location>
+    <lyricist>Cappeau/Dwight</lyricist>
+    <words>O Holy Night</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPMV9pREdQUDRwZVE" mods="mix" path="mix/O Holy Night.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1215" name="Silent Night">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Franz Gruber</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>C</key>
+    <location>YF pg 7</location>
+    <lyricist>Mohr/Young</lyricist>
+    <words>Silent night, Holy night</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPQzZhd2Yzd0xkazQ" mods="mix" path="mix/Silent Night.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1216" name="Silver Bells">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Livingston/Evans</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>Bb</key>
+    <lyricist>Livingston/Evans</lyricist>
+    <words>Silver Bells</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPNXNhQkIwV0I2T3c" mods="mix" path="mix/Silver Bells.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1217" name="We Wish You A Merry Christmas">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Traditional English</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>Bb</key>
+    <location>YF pg 16</location>
+    <lyricist>Traditional English</lyricist>
+    <words>We Wish You A Merry Christmas</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPNUNMY0xSTy0tcWc" mods="mix" path="mix/We Wish You A Merry Christmas.mp3" voice="mix" /></tracks>
+  </song>
+  <song id="1218" name="While By My Sheep">
+    <category>Christmas</category>
+    <arranger>SPEBSQSA</arranger>
+    <composer>Traditional German</composer>
+    <copyright>SPEBSQSA 1974</copyright>
+    <key>C</key>
+    <location>YF pg 23</location>
+    <lyricist>Traditional German</lyricist>
+    <words>While By My Sheep</words>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPUnRTSkU4d2IzQVE" mods="mix" path="mix/While By My Sheep.mp3" voice="mix" /></tracks>
+  </song>
+</musiclib>

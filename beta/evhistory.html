@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<!-- $Id: evhistory.html,v 1.1 2022/06/27 00:57:38 dfm Exp dfm $
+     $Log: evhistory.html,v $
+     Revision 1.1  2022/06/27 00:57:38  dfm
+     Initial revision
+
+
+     display cheat sheet for any event that has one, -or-
+     display summary of songs sung at a list of events.
+
+-->
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Event Histories</title>
+<link rel="stylesheet" href="pick.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="getMusicLib.js"></script>
+<script src="getEventList.js"></script>
+<script src="formatDate.js"></script>
+<script type="text/javascript">
+
+var aliasfor = []; // gives main sid for an alias sid
+var allcats = []; // all categories from musiclib
+var catSelected = []; // indexed by cat, true if cat checked
+var cheatorsumm = "cheat"; // "cheat" or "summary" to control which report to generate
+var eventlist = {}; // indexed by ymdhm of event, value is event definition
+var evndx = ""; // event date, used to index eventlist. passed to ch.html
+var lowerVenue = {}; // lists of dtndx for lower-case venue
+var newevent; // event passed to ch.html
+var newestFirst = []; // most recent matches list, newest (biggest) first
+var songlib = []; // indexed by song name, value list of sids
+var songlist = []; // all song sids for an event
+var songorder = 0; // ordinal of last picked
+var songsincat = []; // indexed by category, value is list of song names
+var venue = ""; // venue for event
+var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none'];
+
+function loads() {
+    let mlurl = "musiclib.xml";
+    let gmlpromise = getMusicLib(mlurl);
+
+    let elurl = "events.xml";
+    let gelpromise = getEventList(elurl);
+
+    let promises = [gmlpromise, gelpromise];
+
+    Promise.all(promises).then(values => {
+        // all promises complete. values is list of values returned 
+        // by the promises, in the same order.
+        musiclib = values[0];
+        eventlist = values[1];
+
+        for (let dtndx in eventlist) {
+            evt = eventlist[dtndx];
+            let lowven = evt['where'].toLowerCase();
+            if (! lowerVenue.hasOwnProperty(lowven)) {
+                lowerVenue[lowven] = [];
+            }
+            lowerVenue[lowven].push(dtndx);
+        }
+
+        // init searchsel with all events.
+        let sel = document.getElementById("searchsel");
+
+        // get a list of dtndx in newest first order
+        newestFirst = Object.keys(eventlist).sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
+        for (let dtndx of newestFirst) {
+            let opt = document.createElement("option");
+            let perfev = eventlist[dtndx];
+            opt.value = `${perfev['where']} - ${perfev['when']}`;
+            opt.dataset.dtndx = dtndx;
+            sel.append(opt);
+        }
+
+        for (let sid in musiclib) {
+            let nam = musiclib[sid]['name'];
+            if (! songlib.hasOwnProperty(nam)) {
+                songlib[nam] = [];
+            }
+            songlib[nam].push(sid);
+            if (musiclib[sid].hasOwnProperty('category')) {
+                for (let cat of musiclib[sid]['category']) {
+                    if (! allcats.includes(cat)) {
+                        allcats.push(cat);
+                    }
+                    if (! songsincat.hasOwnProperty(cat)) {
+                        songsincat[cat] = [];
+                    }
+                    songsincat[cat].push(nam)
+                }
+            }
+        }
+
+        for (let cat in songsincat) {
+            songsincat[cat] = songsincat[cat].sort();
+        }
+
+        for (let nam in songlib) {
+            if (songlib[nam].length > 1) {
+                for (let sid of songlib[nam]) {
+                    if (musiclib[sid]['category'].includes("Old")) {
+                        let oldnam = nam + " (Old)";
+                        // add modified name to songlib, for sid
+                        if (! songlib.hasOwnProperty(oldnam)) {
+                            songlib[oldnam] = [];
+                        }
+                        songlib[oldnam].push(sid);
+                        // remove sid from list for unmodified name
+                        let n = songlib[nam].indexOf(sid);
+                        songlib[nam].splice(n, 1);
+                        // console.log(oldnam);
+                    }
+                }
+            }
+        }
+    });
+}
+
+function venuesel(el) {
+    // a venue has been selected. el is the input element
+    // note: this routine is called when a venue is selected,
+    // and every time an entry is made in the search window.
+
+    let targ = el.value.toLowerCase();
+
+    let matches = [];
+    // scan the event list for events matching selected venue
+    for (let lowven in lowerVenue) {
+        if (lowven.includes(targ)) {
+            for (let d of lowerVenue[lowven]) {
+                matches.push(d);
+            }
+        }
+    }
+    // sort the dates biggest (newest) first
+    newestFirst = matches.sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
+    let html = '';
+
+    let since = document.querySelector("#since").value.replaceAll("-", "");
+
+    for (let dtndx of newestFirst) {
+        if (dtndx >= since) {
+            let perfev = eventlist[dtndx];
+            let when = perfev['when'];
+            let where = perfev['where'];
+            html += `<tr><td>${where}</td><td>${when}</td><td class="hidden">${dtndx}</td></tr>\n`;
+        }
+    }
+    html += "</table>\n";
+
+    document.querySelector("#eventTable").innerHTML = html;
+    document.getElementById("cheatList").innerHTML = "";
+    if(event.target.id == "venuesel") {
+        document.getElementById("searchpick").value = "";
+    }
+}
+
+function eventsel(el) {
+    let tr = el.closest("tr");
+    let when = tr.children[1].textContent;
+    let dtndx = tr.children[2].textContent;
+    let perfev = eventlist[dtndx];
+
+    makelist(perfev);
+
+    // console.log(`${perfev['when']} at ${perfev['where']}`);
+    // for (let sid of perfev['songlist']) {
+        // console.log(`${musiclib[sid]['name']}`);
+    // }
+}
+
+function init() {
+    // start the load of the xmls.
+    loads();
+    document.querySelector("#venuesel").addEventListener('change', perfev => venuesel(perfev.target));
+    document.querySelector("#searchpick").addEventListener('keyup', keyev => venuesel(keyev.target));
+    document.querySelector("#eventTable").addEventListener('click', perfev => eventsel(perfev.target));
+}
+
+function setvoice(el) {
+    let voice = el.value;
+    // show the class we were called with (i.e., remove "hidden")
+    for (let element of document.getElementsByClassName(voice)) {
+       element.classList.remove("hidden");
+    }
+    let others = new Set(voices);
+    others.delete(voice);
+    // don't show the rest of the classes
+    for (let v of others) {
+        for (let element of document.getElementsByClassName(v)) { element.classList.add("hidden"); }
+    }
+    if (voice != "none") {
+        localStorage.setItem("defaultVoice", voice);
+    }
+}
+
+function makelist(perfev) {
+    let evname = `${perfev['where']} - ${perfev['when']}`;
+    let html = `<title>${evname}</title>
+<link rel='stylesheet' href='pick.css' />
+<table id='cheatTable'>
+<tr><td id="evtitl" colspan="3" class="tabletitle">${evname}</td></tr>
+    `
+
+    let songlist = perfev['songlist'];
+    let qtetsongs = [];
+    if (perfev.hasOwnProperty('qtetsongs')) {
+        qtetsongs = perfev['qtetsongs'];
+    }
+
+    for (let sid of songlist) {
+        let song = musiclib[sid];
+        let nam = song['name'];
+        let songTitle = nam; // songTitle becomes songname (notes) [location]
+        let key = song['key'];
+        let keyclass = "key";
+        if (song.hasOwnProperty('pitch')) {
+            let pit = song['pitch'];
+            if (pit != "") {
+                key = 'blow ' + pit;
+                keyclass = "pitch";
+            }
+        }
+        let words = song['words'];
+        if (song.hasOwnProperty("notes")) {
+            songTitle += ` (${song['notes']})`;
+        }
+        if (song.hasOwnProperty("location")) {
+            songTitle += ` [${song['location']}]`;
+        }
+        let picks = "";
+        if (song.hasOwnProperty("tracks")) {
+            for (let voice of voices) {
+                let choices = [];
+                let ancclass = voice;
+                if (voice != "mix") {
+                    ancclass += " hidden";
+                }
+                if (song['tracks'].hasOwnProperty(voice)) {
+                    for (let v of song['tracks'][voice]) {
+                        let gdid = v['gdid'];
+                        let mods = v['mods'];
+                        choices.push(`<a href='https://drive.google.com/open?id=${gdid}'>${songTitle} : ${mods}</a>`);
+                    }
+                } else if (voice == "none") {
+                    // don't include location for voice none
+                    let short = nam;
+                    if (song.hasOwnProperty("notes")) {
+                        short += ` (${song['notes']})`;
+                    }
+                    choices.push(short);
+                } else { 
+                    // no tracks for this voice
+                    choices.push(songTitle);
+                }
+                picks += `<div class='${ancclass}'>` + choices.join("<br/>\n") + "\n</div>";
+            }
+        } else {
+            picks = songTitle + "\n";
+        }
+
+        let cl = "class='song'";
+        if (qtetsongs.includes(sid)) {
+            cl = "class='song qtet'";
+        }
+        html += `<tr ${cl}><td class='${keyclass}'>${key}</td><td>${picks}</td><td>${words}</td></tr>\n`;
+    }
+    html += `<tr><td colspan='3' class='partsel'>
+<fieldset class='partsel'>
+<legend>Show voice</legend>
+ <input type="radio" id="seltenor" name="part" value="tenor" onclick="setvoice(this)">tenor</input>
+ <input type="radio" id="sellead" name="part" value="lead" onclick="setvoice(this)">lead</input>
+ <input type="radio" id="selbari" name="part" value="bari" onclick="setvoice(this)">bari</input>
+ <input type="radio" id="selbass" name="part" value="bass" onclick="setvoice(this)">bass</input>
+ <input type="radio" id="selmix" name="part" value="mix" onclick="setvoice(this)">mix</input>
+ <input type="radio" id="selnone" name="part" value="none" onclick="setvoice(this)">none</input>
+</fieldset>
+</td></tr>
+`;
+    dialel = document.querySelector("#dialog");
+    dialel.innerHTML = html;
+    $( "#dialog" ).dialog({ title: evname, width: "auto" });
+}
+function scrollToTop() {
+    document.getElementById("tabid").scrollIntoView({block: "end"});
+}
+function summary(el) {
+    // newestFirst has the most recent list of eventlist indices to summarize.
+    // build a list of (category, songname, dtndx) from those events and sort it.
+    // then collapse the sorted list to a dict by [cat][song], value [ntimes, last]
+
+    // get the start date from the date picker and remove the "-"s for comparing.
+    let dpdate = document.querySelector("#since").value;
+    let since = dpdate.replaceAll("-", "");
+    
+    let cats = allcats;
+    let d = new Date(dpdate);
+    let dstr = formatDate(d, "%b %d, %Y");
+
+    let header = "Song Performance Summary, all cats, since " + dstr;
+    if (el.id == "cursumm") {
+        cats = ['Current', 'Show', 'PoleCat', 'PoleCatII'];
+        header = "Song Performance Summary since " + dstr;
+    }
+
+    let catSong = [];
+    for (let cat of cats) {
+        catSong[cat] = [];
+        for (let song of songsincat[cat]) {
+            catSong[cat][song] = [];
+            catSong[cat][song]['ntimes'] = 0;
+            catSong[cat][song]['last'] = "";
+        }
+    }
+
+    // now process every song of every event of interest.
+    for (let dtndx of newestFirst) {
+        if (dtndx >= since) {
+            let ev = eventlist[dtndx];
+            qtetsongs = [];
+            if (ev.hasOwnProperty('qtetsongs')) {
+                qtetsongs = ev['qtetsongs'];
+            }
+            for (let sid of ev['songlist']) {
+                // don't include qtet songs in summary.
+                if (! qtetsongs.includes(sid)) {
+                    let song = musiclib[sid];
+                    let nam = song['name'];
+                    for (let cat of song['category']) {
+                        if (cats.includes(cat)) {
+                            catSong[cat][nam]['ntimes']++;
+                            if (dtndx > catSong[cat][nam]['last']) {
+                                catSong[cat][nam]['last'] = dtndx;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    let sortedCats = Object.keys(catSong).sort();
+
+    // special-case KTWWS - (almost) always sung with LGTA
+    let ktwws = "Keep The Whole World Singing";
+    let lgta = "Let's Get Together Again";
+
+    // if we don't have ktwws or it reports 0 times, use lgta instead.
+    if (! catSong['Current'].hasOwnProperty(ktwws) || catSong['Current'][ktwws]['ntimes'] == 0) {
+        catSong['Current'][ktwws] = catSong['Current'][lgta];
+    }
+
+    let html = `<title>Summary of song performances</title>
+<link rel='stylesheet' href='pick.css' />
+<table id='cheatTable'><tr><td>
+`;
+    let prevcat = "";
+
+    // mdy(dtndx) returns date in mm/dd/yyyy format
+    var mdy = s => s.substring(4,6) + "/" + s.substring(6,8) + "/" + s.substring(0,4);
+
+    for (let cat of sortedCats) {
+        let sortedSongs = Object.keys(catSong[cat]).sort();
+        let last, ntimes;
+        for (let song of sortedSongs) {
+            last = catSong[cat][song]['last'];
+            ntimes = catSong[cat][song]['ntimes'];
+            if (prevcat == "") {
+                prevcat = cat;
+                html += `<tr><td><table class='catperf'><caption>${cat}</caption>\n`;
+                html += `<tr><th>Song</th><th>Times</th><th>Last</th></tr>`;
+            } else if (cat != prevcat) {
+                html += `</table></td></tr>\n`;
+                // just closed table for prev cat. start one for cat
+                html += `<tr><td><table class='catperf'><caption>${cat}</caption>\n`;
+                html += `<tr><th>Song</th><th>Times</th><th>Last</th></tr>`;
+                prevcat = cat;
+            }
+            if (ntimes == 0) {
+                lasttd = "<td class='never'>";
+            } else {
+                last = mdy(last);
+                lasttd = "<td>";
+            }
+            html += `<tr><td>${song}</td><td>${ntimes}</td>${lasttd}${last}</td></tr>\n`;
+        }
+    }
+    // close the last cat table, then the outer cheatTable
+    html += `</table></td></tr>
+</table>
+`;
+    // console.log("--- Summary HTML ---");
+    // console.log(html);
+    // console.log("--- end of Summary HTML ---");
+
+    dialel = document.querySelector("#dialog");
+    dialel.innerHTML = html;
+    $( "#dialog" ).dialog({ title: header, height: "auto", width: "auto" });
+}
+</script>
+</head>
+<body onload="init()">
+<table id="wrap">
+    <tr><td>
+    <table border="1" id="tabid">
+    <tr><th>
+        <select id="venuesel" class="select-css" name="venue">
+        <option value="" disabled selected hidden>select Venue</option>
+        <option>Rehearsal</option>
+        <option>Chehalis West</option>
+        <option>Colonial</option>
+        <option>Prestige Care</option>
+        <option>Sharon Care</option>
+        <option>Vintage</option>
+        <option>Woodland Village</option>
+        </select>
+        </th><th>
+        <input type="text" id="searchpick" class="select-css" name="venue" placeholder="or Search"/>
+        <datalist id="searchsel">
+        </datalist>
+    </th></tr>
+    <tr><th colspan="2">
+    <input type="radio" id="allsumm" name="summtype" onclick="summary(this)"></input>
+    <label for="cursumm"> &lt; All - Summary - Current &gt;</label>
+    <input type="radio" id="cursumm" name="summtype" onclick="summary(this)"></input>
+    <label for="since">Since: <input type="date" id="since" value="2020-01-01" min="2015-01-01" max="2022-04-01"></input></label>
+
+    </th></tr>
+    <tr><th>Where</th><th>When</th></tr>
+        <tbody id="eventTable">
+    </table>
+</td><td> <!-- wrap -->
+    <table id="cheatTable">
+            <tbody id="cheatList">
+    </table>
+</td></tr></table> <!-- wrap -->
+
+<div id="dialog" title="Basic dialog"> </div>
+</body>
+</html>

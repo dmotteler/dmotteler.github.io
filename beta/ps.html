@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<!-- $Id: ps.html,v 1.1 2022/06/30 23:59:00 dfm Exp dfm $
+     Log:$
+
+     provide song list for cheat-sheet song selection
+
+     save the song list to local storage and invoke cheat
+-->
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Pick songs</title>
+<link rel="stylesheet" href="xmlpick.css" />
+<script src="formatDate.js"></script>
+<script src="getMusicLib.js"></script>
+<script src="getEventList.js"></script>
+<script type="text/javascript">
+
+var aliasfor = []; // gives main sid for an alias sid
+var allcats = []; // all categories from musiclib
+var catSelected = []; // indexed by cat, true if cat checked
+var eventlist = {}; // indexed by ymdhm of event, value is event definition
+var evndx = ""; // event date, used to index eventlist. passed to ch.html
+var nevshow = 999; // number of events from eventlist to show in "Use"
+var newevent; // event passed to ch.html
+var songlib = []; // indexed by song name, value list of sids
+var songlist = []; // all song sids for an event
+var songorder = 0; // ordinal of last picked
+var venue = ""; // venue for event
+
+function selme(el) {
+    let right_click = false;
+    if (el.id == "tabid") {
+        event.preventDefault();
+        el = event.target.parentNode;
+        right_click = true;
+    }
+    // order cell is first child of the row
+    let ordel = el.childNodes[0];
+
+    // nbsp; is char code a0 hex. cell will have
+    // that value until it has been selected.
+    if (ordel.textContent == "\xa0") {
+        songorder += 1;
+        ordel.textContent = songorder.toString();
+        el.classList.add("chosen");
+        if (right_click) {
+            el.classList.add("qtet");
+        }
+    } else {
+        // if this song was already chosen,
+        //   on right-click, toggle qtet setting.
+        //   on left-click, un-choose it and blank out the order.
+        if (right_click) {
+            el.classList.toggle("qtet");
+        } else {
+            el.classList.remove("chosen");
+            el.classList.remove("qtet");
+            ordel.textContent = "\xa0";
+        }
+    }
+}
+
+function togcat() {
+    // one of the "show category" checkboxes has changed.
+    // set the hidden value as appropriate for each row.
+    // only set hidden if all categories for the song are un-checked.
+
+    // get current states for the category selections.
+    // The Other selection means any of allcats for which there is no button.
+
+    // make catSelected array agree with cats checkboxes.
+
+    catSelected = [];
+
+    let catsels = document.querySelectorAll("input[name='cats']");
+
+    for (let catel of catsels) {
+        // category name follows the checkbox, and has unwanted
+        // whitespace after it.
+        let cat = catel.nextSibling.textContent.replace(/(\s+$)/,'');
+        catSelected[cat] = catel.checked;
+    }
+
+    let othersSel = document.querySelector("#othercats").checked;
+
+    // set catSelected for cats that don't have a button.
+    // allcats are all of the song categories from the lib.
+    // catSelected has the current setting of the checkboxes, excluding Others.
+    for (let cat of allcats) {
+        if (cat in catSelected) {
+        } else {
+            catSelected[cat] = othersSel;
+        }
+    }
+
+    let songRows = document.querySelectorAll(".song");
+
+    for (let songRow of songRows) {
+        // if any of a song's cats (except song and hidden) is
+        // checked, show the song.
+        let showit = false;
+        let ishidden = false;
+        for (let scat of songRow.classList) {
+            if (scat == "hidden") {
+                ishidden = true;
+            } else if (scat == "song") {
+            } else if (catSelected[scat]) {
+                showit = true;
+            }
+        }
+
+        if (showit) {
+            if (ishidden) {
+                // currently hidden, but should be showed.
+                songRow.classList.remove("hidden");
+            }
+        } else {
+            if (! ishidden) {
+                // not hidden, but don't showit
+                songRow.classList.add("hidden");
+            }
+        }
+    }
+}
+
+function alldone() {
+    venue = document.querySelector("#venuesel").value;
+    if (venue == "") {
+        alert("Please select a venue from the 'Songs for' menu!");
+        return;
+    }
+
+    let songs = [];
+    let qtetSongs = [];
+    for (let chosenRow of document.getElementsByClassName("chosen")) {
+        let song = chosenRow.childNodes[1].textContent;
+        if (chosenRow.classList.contains("hidden")) {
+            if (confirm(`Include hidden song ${song}?`)) {
+                let ord = Number(chosenRow.childNodes[0].textContent) - 1;
+                let sid = chosenRow.childNodes[1].dataset.sid;
+                songs[ord] = sid;
+                if (chosenRow.classList.contains("qtet")) {
+                    qtetSongs.push(sid);
+                }
+            }
+        } else {
+            let ord = Number(chosenRow.childNodes[0].textContent) - 1;
+            let sid = chosenRow.childNodes[1].dataset.sid;
+            songs[ord] = sid;
+            if (chosenRow.classList.contains("qtet")) {
+                qtetSongs.push(sid);
+            }
+        }
+    }
+    if (songs.length < 1) {
+        alert("No songs selected?");
+        return;
+    }
+
+    // songs array may be sparse if any song was de-selected.
+    // json will put 'null' for any empty cell. this gets rid of that.
+    var seq = [];
+    for (let song of songs) {
+        if (song) {
+            seq.push(song);
+        }
+    }
+
+    let monthNames = ["January", "February", "March", "April", "May", "June",
+                   "July", "August", "September", "October", "November", "December"];
+
+    let datel = document.getElementById("eventdate");
+    let evdate = new Date(datel.value);
+
+    // let [fulldate, datndx] = fmtDate(evdate);
+    //   July 9, 2022 12:30PM
+    let fulldate = formatDate(evdate, "%b %d, %Y %I:%M%P", monthNames);
+    let datndx = formatDate(evdate, "%Y%m%d%H%M");
+
+    evndx = datndx;
+    newevent = {'when': fulldate, 'where': venue, 'songlist': seq, 'qtetSongs': qtetSongs };
+    let chwin = window.open("ch.html");
+}
+
+function loads() {
+    let mlurl = "musiclib.xml";
+    let gmlpromise = getMusicLib(mlurl);
+
+    let elurl = "events.xml";
+    let gelpromise = getEventList(elurl);
+
+    let promises = [gmlpromise, gelpromise];
+
+    Promise.all(promises).then(values => {
+        // musiclib and eventlist loads are complete.
+        musiclib = values[0];
+        eventlist = values[1];
+
+        // get the datalist element
+        let sel = document.getElementById("vens");
+
+        sel = document.getElementById("prevev");
+        let sortedbydate = Object.keys(eventlist).sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
+        if (nevshow > 0) {
+            let nadd = 0;
+            for (let ndx of sortedbydate) {
+                let ev = eventlist[ndx];
+
+                let opt = document.createElement("option");
+                opt.dataset.dtndx = ndx;
+                opt.value = `${ev['where']} - ${ev['when']}`;
+                sel.append(opt);
+                nadd += 1;
+                if (nadd >= nevshow) {
+                    break;
+                }
+            }
+        }
+        for (let sid in musiclib) {
+            let nam = musiclib[sid]['name'];
+            if (!songlib.hasOwnProperty(nam)) {
+                songlib[nam] = [];
+            }
+            songlib[nam].push(sid);
+        }
+        sortedSongs = Object.keys(songlib).sort();
+
+        let songtable = "";
+        for (let song of sortedSongs) {
+            for (let sid of songlib[song]) {
+                // if sid is an alias, get main sid for it. 
+                let msid;
+                if (musiclib[sid].hasOwnProperty('aliasfor')) {
+                    msid = musiclib[sid]['aliasfor'];
+                } else {
+                    msid = sid;
+                }
+                let cls = "class='song " + musiclib[msid]['category'].join(" ") + "'";
+                let row = `<tr ${cls} onclick="selme(this)"><td class="ord">&nbsp;</td><td data-sid="${sid}">${song}</td></tr>`;
+                songtable += row;
+            }
+        }
+        document.getElementById("songtable").outerHTML = songtable;
+
+        allcats = [];
+        for (let sid in musiclib) {
+            if (musiclib[sid].hasOwnProperty('category')) {
+                for (let cat of musiclib[sid]['category']) {
+                    if (! allcats.includes(cat)) {
+                        allcats.push(cat);
+                    }
+                }
+            }
+        }
+
+        togcat();
+    });
+}
+
+function evsel(el) {
+    // a previous event has been selected. el is the input element
+    console.log(el.value);
+    let opfound = false;
+    let opt;
+    let dlist = document.querySelector("#prevev");
+    for (opt of dlist.options) {
+        if (opt.value == el.value) {
+            opfound = true;
+            break;
+        }
+    }
+
+    if (opfound) {
+        // found the selection in existing list.
+        // set evndx to the date/time of the existing event,
+        // which is used to get the songlist.
+
+        // show date of selected event
+        venue = opt.value;
+        if (venue.includes(" - ")) {
+            venue = venue.split(" - ")[0];
+        }
+        // show just the venue in the select box
+        el.value = opt.value.split(" - ")[1];
+        evndx = opt.dataset.dtndx;
+        console.log(`existing venue selected, evndx = ${evndx}`);
+    } else {
+        // user typed in a new venue
+        opt = document.createElement('option');
+        opt.value = el.value;
+        opt.dataset.dtndx = '';
+
+        venue = opt.value;
+        evndx = "";
+
+        dlist.appendChild(opt);
+        console.log("added " + venue);
+    }
+
+    // get count of number of songs flagged as chosen.
+    let chosenels = document.querySelectorAll(".chosen");
+    let nchosen = chosenels.length;
+
+    // if the selected event value is not blank,
+    // it had better be an index into the event list.
+    // if it is blank, don't disturb the song selections.
+
+    // qtetSongs is local. the string is turned into a list
+    // at load time, and is used in this routine to add the
+    // qtet class to the song row.
+    let qtetSongs = [];
+    if (evndx != "") {
+        if (nchosen > 0) {
+            if (confirm("replace song selections with those from selected event?")) {
+                for (let el of document.querySelectorAll(".chosen")) {
+                    el.classList.remove("chosen");
+                }
+                for (let el of document.querySelectorAll(".qtet")) {
+                    el.classList.remove("qtet");
+                }
+                let ev = eventlist[opt.dataset.dtndx];
+                songlist = ev['songlist'];
+                if (ev.hasOwnProperty("qtetSongs")) {
+                    qtetSongs = ev.qtetSongs;
+                }
+            } else {
+                // user cancelled - get out of here.
+                return;
+            }
+        } else {
+            // selected event has a songlist, and no songs yet chosen.
+            // start with the selection's list.
+            let ev = eventlist[opt.dataset.dtndx];
+            songlist = ev['songlist'];
+            if (ev.hasOwnProperty("qtetSongs")) {
+                qtetSongs = ev.qtetSongs;
+            }
+        }
+    } else {
+        // no songlist for selected event. if songs had been
+        // selected, leave them. if not, reset the table.
+        if (songorder < 1) {
+            songlist = [];
+            qtetSongs = [];
+         } else {
+            return;
+         }
+    }
+
+    // check the songlist for songs not in the current library, and for
+    // songs in the library but in un-selected categories. Think "Christmas".
+    for (let sid of songlist) {
+        let song = musiclib[sid];
+        let songnam = song['name'];
+        let songactive = false;
+        for (let cat of song['category']) {
+            if (cat in catSelected && catSelected[cat]) {
+                songactive = true;
+            }
+        }
+        if (! songactive) {
+            console.log("no cat active for " + songnam);
+        }
+    }
+
+    // event selected has no songlist, no songs had been selected, or
+    // user says replace selected ones from the old event. init the table.
+
+    // for each song row...
+    for (let element of document.getElementsByClassName("song")) {
+        // get the song id
+        let sid = element.childNodes[1].dataset.sid;
+        // see if it's in the list of songs we want
+        let neword = songlist.indexOf(sid) + 1;
+        // ordel is the td for the song order
+        let ordel = element.childNodes[0];
+        if (neword < 1) {
+            // song is not one we want.
+            // if this song was already chosen, un-choose it and
+            // blank out the order. choosing it again will put it 
+            // at the current end.
+            element.classList.remove("chosen");
+            // set the song order to &nbsp;
+            ordel.textContent = "\xa0";
+        } else {
+            // song is one we want. set its ord based on
+            // position in songlist, and add it to chosen class.
+            ordel.textContent = neword.toString();
+            element.classList.add("chosen");
+            if (qtetSongs.includes(sid)) {
+                element.classList.add("qtet");
+            }
+        }
+    }
+    // set songorder global, so new selections will get the correct ord.
+    songorder = songlist.length;
+}
+
+function init() {
+    // start the load of the xmls.
+    loads();
+
+    // init date picker to next Tuesday (today if it is Tuesday)
+    let d = new Date();
+    d.setDate(d.getDate() + (7 - d.getDay() + 2) % 7);
+    let datel = document.getElementById("eventdate");
+
+    let day = d.getDate();
+    let mo = d.getMonth() + 1;
+
+    // make zero-left-padded strings of day and mo
+    let dstr = day.toString().padStart(2, 0);
+    let mstr = mo.toString().padStart(2, 0);
+
+    datel.value = d.getFullYear() + "-" + mstr + "-" + dstr + "T18:00";
+    let catsels = document.querySelectorAll("[type='checkbox']");
+    for (let catsel of catsels) {
+        catsel.addEventListener('change', ev => togcat(ev.target));
+    }
+    document.querySelector("#prevsel").addEventListener('change', ev => evsel(ev.target));
+}
+</script>
+</head>
+<body onload="init()">
+<table border="1" id="tabid" oncontextmenu="selme(this)">
+<tr><th colspan='2'>
+<label>Songs for:
+<select id="venuesel" class="select-css" name="venue">
+<option value="" disabled selected hidden>select Venue</option>
+<option>Rehearsal</option>
+<option>Chehalis West</option>
+<option>Colonial</option>
+<option>Prestige Care</option>
+<option>Sharon Care</option>
+<option>Vintage</option>
+<option>Woodland Village</option>
+</select>
+<label for="eventdate">on</label>
+<input type="datetime-local" class="select-css" value="" id="eventdate" step="900">
+<br/>
+<label>Use: 
+<input id="prevsel" list="prevev" class="select-css" name="prev"></label>
+<datalist id="prevev">
+</datalist>
+</th></tr>
+<tr><td id='catboxes' colspan='2'>
+ <input type='checkbox' name='cats' checked="1">Current</input>
+ <input type='checkbox' name='cats' checked="1">PoleCat</input>
+ <input type='checkbox' name='cats' checked="1">PoleCatII</input>
+ <input type='checkbox' name='cats' checked="1">Show</input>
+ <input type='checkbox' name='cats'>Christmas</input>
+ <input type='checkbox' id='othercats'>Others</input>
+</td></tr>
+<tr>
+<th><input type="button" class="donebutt" value="Save" onclick="alldone()"/></th>
+<th>Song Title</th>
+</tr>
+<tr id="songtable"></tr>
+</table>
+</body>
+</html>
