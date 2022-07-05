@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- $Id: ps.html,v 1.1 2022/06/30 23:59:00 dfm Exp dfm $
+<!-- $Id: ps.html,v 1.2 2022/07/05 23:08:34 dfm Exp $
      Log:$
 
      provide song list for cheat-sheet song selection
@@ -10,6 +10,7 @@
 <head>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Pick songs</title>
+<link rel="stylesheet" href="select.css" />
 <link rel="stylesheet" href="xmlpick.css" />
 <script src="formatDate.js"></script>
 <script src="getMusicLib.js"></script>
@@ -173,13 +174,11 @@ function alldone() {
     let datel = document.getElementById("eventdate");
     let evdate = new Date(datel.value);
 
-    // let [fulldate, datndx] = fmtDate(evdate);
     //   July 9, 2022 12:30PM
     let fulldate = formatDate(evdate, "%b %d, %Y %I:%M%P", monthNames);
-    let datndx = formatDate(evdate, "%Y%m%d%H%M");
-
-    evndx = datndx;
+    let evndx = formatDate(evdate, "%Y%m%d%H%M");
     newevent = {'when': fulldate, 'where': venue, 'songlist': seq, 'qtetSongs': qtetSongs };
+
     let chwin = window.open("ch.html");
 }
 

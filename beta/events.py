@@ -1,7 +1,10 @@
 #! env python
 '''
-    $Id:$
-    $Log:$
+    $Id: events.py,v 1.4 2022/07/05 22:45:26 dfm Exp dfm $
+    $Log: events.py,v $
+    Revision 1.4  2022/07/05 22:45:26  dfm
+    complete overhaul to make xml loads more like the .js version
+
 
     Create list of events by parsing cheat files.
     All cheats from the github cheats folder are parsed,
@@ -136,7 +139,7 @@ evmtime = {} # mod time of source file for event - latest wins
 
 def parsecheat(lines, fn, musiclib):
     songlist = []
-    qtetsongs = []
+    qtetSongs = []
 
     title = ""
     n1 = lines.find('<title')
@@ -246,7 +249,7 @@ def parsecheat(lines, fn, musiclib):
 
                     if isqtet:
                         # if flagged as qtet, also add to list of quartet songs
-                        qtetsongs.append(sid)
+                        qtetSongs.append(sid)
 
         else:
             # this row has no tracks. split the row by <td.
@@ -289,9 +292,9 @@ def parsecheat(lines, fn, musiclib):
 
                     if isqtet:
                         # if flagged as qtet, also add to list of quartet songs
-                        qtetsongs.append(songid)
+                        qtetSongs.append(songid)
 
-    ev = {'when': when, 'where': ven, 'songlist': songlist, 'qtetsongs': qtetsongs }
+    ev = {'when': when, 'where': ven, 'songlist': songlist, 'qtetSongs': qtetSongs }
     return dtndx, ev
 
 def stripsong(song):
@@ -322,8 +325,8 @@ def eventxml(xfile, evlist, musiclib, brief):
         eventatts = {"where": venue, "when": evdate, "dtndx": dtndx}
         if brief:
             eventatts['songlist'] = " ".join(ev['songlist'])
-            if 'qtetsongs' in ev and len(ev['qtetsongs']) > 0:
-                eventatts['qtetsongs'] = " ".join(ev['qtetsongs'])
+            if 'qtetSongs' in ev and len(ev['qtetSongs']) > 0:
+                eventatts['qtetSongs'] = " ".join(ev['qtetSongs'])
 
         eventel = ET.SubElement(root, "event", attrib=eventatts)
 
@@ -331,7 +334,7 @@ def eventxml(xfile, evlist, musiclib, brief):
             for sid in ev['songlist']:
                 songname = musiclib['songs'][sid]['name']
                 songatts = {"name": songname, "sid": sid}
-                if 'qtetsongs' in ev and sid in ev['qtetsongs']:
+                if 'qtetSongs' in ev and sid in ev['qtetSongs']:
                     songatts['qtet'] = 'y'
                 songel = ET.SubElement(eventel, "song", attrib=songatts)
 
@@ -418,26 +421,26 @@ def loadxml(fn):
         tree = ET.XML(xml)
         for ev in tree:
             songlist = []
-            qtetsongs = []
+            qtetSongs = []
 
             dtndx = ev.attrib['dtndx']
             when = ev.attrib['when']
             where = ev.attrib['where']
             if 'songlist' in ev.attrib:
                 songlist = ev.attrib['songlist'].split(" ")
-                if 'qtetsongs' in ev.attrib:
-                    qtetsongs = ev.attrib['qtetsongs'].split(" ")
+                if 'qtetSongs' in ev.attrib:
+                    qtetSongs = ev.attrib['qtetSongs'].split(" ")
             else:
                 for sel in ev.findall("song"):
                     song = sel.attrib["name"]
                     sid = sel.attrib["sid"]
                     songlist.append(sid)
                     if 'qtet' in sel.attrib:
-                        qtetsongs.append(sid)
+                        qtetSongs.append(sid)
 
             ev = {'when': when, 'where': where, 'songlist': songlist }
-            if len(qtetsongs) > 0:
-                ev['qtetsongs'] = qtetsongs
+            if len(qtetSongs) > 0:
+                ev['qtetSongs'] = qtetSongs
             
             mtim = datetime.fromtimestamp(os.path.getmtime(fn))
             if dtndx not in evlist or mtim > evmtime[dtndx]:
@@ -625,23 +628,23 @@ def main():
         # list them all by default if no venue lists requested.
         # first, create a list of all songs rehearsed and/or performed,
         # with a list of dates performed for each.
-        # songs flagged as qtet are included in both songlist and qtetsongs.
+        # songs flagged as qtet are included in both songlist and qtetSongs.
         # we only want to include them in the count if qtopt is "inc" or "only"
         practice = {}
         for dtndx in evlist:
             ev = evlist[dtndx]
             if qtopt == "only":
-                if 'qtetsongs' in ev:
-                    for songid in ev['qtetsongs']:
+                if 'qtetSongs' in ev:
+                    for songid in ev['qtetSongs']:
                         name = musiclib['songs'][songid]['name']
                         if name not in practice:
                             practice[name] = []
                         practice[name].append(dtndx)
             else:
-                # qtopt is not set or is "inc". if qtetsongs is present, we want
+                # qtopt is not set or is "inc". if qtetSongs is present, we want
                 # to add songs it contains only if qtopt is "inc"
                 for songid in ev['songlist']:
-                    if ('qtetsongs' not in ev) or (songid not in ev['qtetsongs']) or qtopt == "inc":
+                    if ('qtetSongs' not in ev) or (songid not in ev['qtetSongs']) or qtopt == "inc":
                         name = musiclib['songs'][songid]['name']
                         if name not in practice:
                             practice[name] = []

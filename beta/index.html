@@ -2,8 +2,13 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    $Id: index.html,v 1.1 2022/06/30 23:40:53 dfm Exp dfm $
+    $Id: index.html,v 1.2 2022/07/05 23:05:35 dfm Exp $
     $Log: index.html,v $
+    Revision 1.2  2022/07/05 23:05:35  dfm
+    change eventlist url so it will work on github
+    use ch.html to display cheat sheet
+    remove unused getMusicLib ref
+
     Revision 1.1  2022/06/30 23:40:53  dfm
     Initial revision
 
@@ -13,126 +18,30 @@
     currently set to show most recent 15 events, configurable.
 -->
 <title id="doctitle">Tuners cheat-sheets</title>
-<style>
-body { font-family: Arial; font-size: larger; }
-</style>
-<script src="getMusicLib.js"></script>
+<link rel="stylesheet" href="select.css" />
 <script src="getEventList.js"></script>
 <script>
 
-var defaultVoice = ""; // voice part for displayed cheat sheets
 var eventlist = {}; // indexed by dtndx of event, value is event definition
-var musiclib; // songs, loaded from musiclib.xml
 var newestFirst = []; // most recent matches list, newest (biggest) first
-var songlist = []; // all song sids for an event
-var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none'];
+var evndx, newevent; // event info for ch.html
 
-function makelist(perfev) {
-    let evname = `${perfev['where']} - ${perfev['when']}`;
-    let html = `
-<table id='cheatTable'>
-<tr><td id="evtitl" colspan="3" class="tabletitle">${evname}</td></tr>
-    `
-
-    let songlist = perfev['songlist'];
-    let qtetsongs = [];
-    if (perfev.hasOwnProperty('qtetsongs')) {
-        qtetsongs = perfev['qtetsongs'];
-    }
-
-    for (let sid of songlist) {
-        let song = musiclib[sid];
-        let nam = song['name'];
-        let songTitle = nam; // songTitle becomes songname (notes) [location]
-        let key = song['key'];
-        let keyclass = "key";
-        if (song.hasOwnProperty('pitch')) {
-            let pit = song['pitch'];
-            if (pit != "") {
-                key = 'blow ' + pit;
-                keyclass = "pitch";
-            }
-        }
-        let words = song['words'];
-        if (song.hasOwnProperty("notes")) {
-            songTitle += ` (${song['notes']})`;
-        }
-        if (song.hasOwnProperty("location")) {
-            songTitle += ` [${song['location']}]`;
-        }
-        let picks = "";
-        if (song.hasOwnProperty("tracks")) {
-            for (let voice of voices) {
-                let choices = [];
-                let ancclass = voice;
-                if (voice != "mix") {
-                    ancclass += " hidden";
-                }
-                if (song['tracks'].hasOwnProperty(voice)) {
-                    for (let gm of song['tracks'][voice]) {
-                        let gdid = gm['gdid'];
-                        let mods = gm['mods'];
-                        choices.push(`<a href='https://drive.google.com/open?id=${gdid}'>${songTitle} : ${mods}</a>`);
-                    }
-                } else if (voice == "none") {
-                    // don't include location for voice none
-                    let short = nam;
-                    if (song.hasOwnProperty("notes")) {
-                        short += ` (${song['notes']})`;
-                    }
-                    choices.push(short);
-                } else { 
-                    // no tracks for this voice
-                    choices.push(songTitle);
-                }
-                picks += `<div class='${ancclass}'>` + choices.join("<br/>\n") + "\n</div>";
-            }
-        } else {
-            picks = songTitle + "\n";
-        }
-
-        let cl = "class='song'";
-        if (qtetsongs.includes(sid)) {
-            cl = "class='song qtet'";
-        }
-        html += `<tr ${cl}><td class='${keyclass}'>${key}</td><td>${picks}</td><td>${words}</td></tr>\n`;
-    }
-    html += `<tr><td colspan='3' class='partsel'>
-<fieldset class='partsel'>
-<legend>Show voice</legend>
- <input type="radio" id="seltenor" name="part" value="tenor">tenor</input>
- <input type="radio" id="sellead" name="part" value="lead">lead</input>
- <input type="radio" id="selbari" name="part" value="bari">bari</input>
- <input type="radio" id="selbass" name="part" value="bass">bass</input>
- <input type="radio" id="selmix" name="part" value="mix">mix</input>
- <input type="radio" id="selnone" name="part" value="none">none</input>
-</fieldset>
-</td></tr>
-</table>
-`;
-    return html;
-}
 function loads() {
-    let mlurl = "https://dmotteler.github.io/musiclib/musiclib.xml";
-    let gmlpromise = getMusicLib(mlurl);
-
     let elurl = "events.xml";
     let gelpromise = getEventList(elurl);
 
-    let promises = [gmlpromise, gelpromise];
+    let promises = [gelpromise];
 
     Promise.all(promises).then(values => {
         // all promises complete. values is list of values returned 
         // by the promises, in the same order.
-        musiclib = values[0];
-        eventlist = values[1];
+        eventlist = values[0];
 
         // events and musiclib xmls both loaded. get list of date indexes, sorted newest (biggest) first
         let newestFirst = Object.keys(eventlist).sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
-        let nevshow = 15; // number of events to show
+        let nevshow = 999; // number of events to add to select
         let nadd = 0;
-        let html = `<link rel='stylesheet' href='pick.css' />
-<select id='sel' class='select-css'>
+        let html = `<select id='sel' class='select-css'>
 <option data-dtndx=''>select an event</option>;
 `;
         for (let ndx of newestFirst) {
@@ -149,83 +58,27 @@ function loads() {
         // listen for changes on the select
         document.querySelector("#sel").addEventListener('change', perfev => eventsel(perfev.target));
 
-        // make hidden tables with a cheat sheet in each.
-        html = "";
-        nadd = 0;
-        for (let dtndx of newestFirst) {
-            let perfev = eventlist[dtndx];
-            html += `<table id='dt${dtndx}' class='hidden'><tr><td>` + makelist(perfev) + "</td></tr></table>\n"
-            nadd += 1;
-            if (nadd >= nevshow) {
-                break;
-            }
-        }
-        document.querySelector("#cheat").innerHTML = html;
-
-        defaultVoice = localStorage.getItem("defaultVoice");
-        if (! defaultVoice) { defaultVoice = "mix"; }
-
         // setup complete - user selection will cause cheat sheet to display.
      });
 }
 
 function eventsel(tab) {
-    // user selected an event. One event at a time may be showing,
-    // so if there is one not hidden, hide it and remove the event listener 
-    // on the part selection table.
-    let tabid = document.querySelector("table[id^=dt]:not(.hidden)");
-    if (tabid) {
-        let psel = document.querySelector("table[id^=dt]:not(.hidden) .partsel");
-        psel.removeEventListener('click', ev => setVoice(ev.target));
-
-        tabid.classList.add("hidden");
-    }
+    // user selected an event. 
 
     // get the dtndx from the data-dtndx attribute of the selected event.
     let dtndx = tab.options[tab.selectedIndex].dataset.dtndx;
     if (dtndx == "") {
-        // the first option has dtndx == ''. previous event is hidden.
+        // the first option has dtndx == ''.
         return;
     }
-
-    tabid = "#" + dtndx;
-    // unhide the selected event
-    let cheatdiv = document.querySelector(tabid);
-    cheatdiv.classList.remove("hidden");
-
-    // add an event listener to the part selection table
-    let psel = cheatdiv.querySelector(".partsel");
-    psel.addEventListener('click', ev => setVoice(ev.target));
-
-    // simulate a click on the selected voice
-    let buttsel = `table[id^=dt]:not(.hidden) #sel${defaultVoice}`
-    let butt = document.querySelector(buttsel);
-    butt.click();
-}
-function setVoice(el) {
-    let voice = el.value;
-    let clr = "." + voice;
-    // show the class we were called with (i.e., remove "hidden")
-    document.querySelectorAll(clr).forEach(node => { node.classList.remove("hidden") });
-    let others = new Set(voices);
-    others.delete(voice);
-    // don't show the rest of the classes
-    for (let v of others) {
-        let cla = "." + v;
-        document.querySelectorAll(cla).forEach(node => { node.classList.add("hidden") });
-    }
-    if (voice != "none") {
-        localStorage.setItem("defaultVoice", voice);
-    }
-    defaultVoice = voice;
-    console.log(`default voice set to ${voice}`);
+    // remove the "dt" 
+    evndx = dtndx.substring(2);
+    newevent = eventlist[evndx];
+    let chwin = window.open("ch.html");
 }
 </script>
 </head>
 <body onload='loads()'>
-    <table>
-        <tr><td id='selev'></td></tr>
-        <tr><td id='cheat'></td></tr>
-    </table>
+    <div id='selev'></div>
 </body>
 </html>

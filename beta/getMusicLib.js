@@ -1,6 +1,9 @@
 /*
-    $Id: getMusicLib.js,v 1.1 2022/06/30 23:35:50 dfm Exp $
+    $Id: getMusicLib.js,v 1.2 2022/07/05 23:02:55 dfm Exp $
     $Log: getMusicLib.js,v $
+    Revision 1.2  2022/07/05 23:02:55  dfm
+    minor log message tweak
+
     Revision 1.1  2022/06/30 23:35:50  dfm
     Initial revision
 

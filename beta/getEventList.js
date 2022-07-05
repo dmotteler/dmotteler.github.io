@@ -1,6 +1,9 @@
 /*
-    $Id: getEventList.js,v 1.1 2022/06/30 23:37:59 dfm Exp $
+    $Id: getEventList.js,v 1.2 2022/07/05 23:01:58 dfm Exp $
     $Log: getEventList.js,v $
+    Revision 1.2  2022/07/05 23:01:58  dfm
+    use camel-case qtetSongs throughout
+
     Revision 1.1  2022/06/30 23:37:59  dfm
     Initial revision
 
@@ -19,7 +22,7 @@ function getEventList(url) {
             let evt = [];
             let dtndx = '';
             for (let att of eventel.attributes) {
-                if (att.name == 'songlist' || att.name == 'qtetsongs') {
+                if (att.name == 'songlist' || att.name == 'qtetSongs') {
                     evt[att.name] = att.value.split(" ");
                 } else if (att.name == 'dtndx') {
                     dtndx = att.value;

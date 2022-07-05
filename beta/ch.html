@@ -1,41 +1,24 @@
 <!DOCTYPE html>
 <!--
 
-    $Id: ch.html,v 1.1 2022/07/01 18:49:05 dfm Exp dfm $
+    $Id: ch.html,v 1.2 2022/07/05 22:36:15 dfm Exp $
     $Log: ch.html,v $
+    Revision 1.2  2022/07/05 22:36:15  dfm
+    move styles to cheat.css
+    replace xhr load of musiclib.xml with fetch, in getMusicLib.js
+    rewrite the removal of functions before download to use element.replaceWith
+
     Revision 1.1  2022/07/01 18:49:05  dfm
     Initial revision
 
 
-    display cheat sheet based on song list from ps.html
+    display cheat sheet based on evndx and newevent
+    called from ps.html, evhistory.html, and index.html
 
 -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title id="doctitle"></title>
-<style>
-#wrapper { max-width: 800px; }
-#main_table, #footer { width: 100%; }
-#footer { text-align: center; }
-.key, .pitch { text-align: center; }
-td select { float: left; margin: 0 auto; width: 100%; }
-td { padding: 6px; }
-.tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
-.butts { background: lightgreen; }
-.voices { background: lightgreen; }
-.hidden { display: none; }
-.qtet { background-color: blue !important; color: white !important; }
-.qtet a { background-color: blue !important; color: white !important; }
-tr:nth-child(even) { background: #CCC }
-tr:nth-child(odd) { background: #FFF }
-table { border-collapse: collapse; font-family: Arial; font-size: 18px; font-weight: bold; border-width: 5px; }
-@media print {
-  @page { size: letter portrait; margin: .5in; }
-  body { max-width: 5.5in; }
-  table { font-size: 12px; }
-  td { padding: 4px; }
-  .tabletitle { font-size: 18px; }
-}
-</style>
+<link rel='stylesheet' href='cheat.css' />
 <script src="getMusicLib.js"></script>
 <script>
 var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none'];
@@ -66,7 +49,8 @@ function setvoice(el) {
         localStorage.setItem("defaultVoice", voice);
     }
 }
-// BEGIN CLIP
+</script>
+<script id='remove_these'>
 // songlib is indexed by song name, values are
 //   lists of song ids with that name
 var songlib = [];
@@ -106,10 +90,17 @@ function init() {
         }
 
         makelist();
-        clickVoice();
 
         const maintab = document.querySelector("#main_table");
         maintab.addEventListener('contextmenu', ev => togqtet(ev));
+
+        // ch is called from ps.html, evhistory.html, cheats/index.html, 
+        // only ps needs the call edit and download stuff.
+        console.log(`referrer is ${document.referrer}`);
+        if (! document.referrer.includes("ps.html")) {
+            display_only();
+        }
+        clickVoice();
     });
 }
 function makelist() {
@@ -170,21 +161,35 @@ function makelist() {
     }
     document.querySelector("#main_table").innerHTML=html;
 }
-function down() {
+function display_only() {
+    // strip down to just the cheat display - no need for qtet toggle or calledit.
+    console.log(`display_only called.`);
+
+    // remove the "edit" and "download" buttons.
     document.querySelector(".butts").parentNode.deleteCell(0);
 
-    // get the html
-    let h = document.documentElement.outerHTML;
+    let newinit = "function init() { clickVoice(); }";
+    let screl = document.createElement("script");
+    let scrcon = document.createTextNode(newinit);
+    screl.appendChild(scrcon);
 
-    // remove the functions not needed in downloaded file
-    let clipstart = h.indexOf("// BEGIN CLIP");
-    let clipend = h.lastIndexOf("// END CLIP") + "// END CLIP".length + 1;
-    let dlhtml = h.substr(0, clipstart) + h.substr(clipend).replace("init", "clickVoice");
+    // replace functions unneeded for display_only version with
+    //  a new init() that just calls clickVoice.
+    let sel = document.querySelector("#remove_these");
+    sel.replaceWith(screl);
+
+    console.log("unneeded functions removed.");
+}
+function down() {
+    display_only();
+
     let yymoda = opener.evndx.substring(2, 8);
     let dlfn = `${venue}_${yymoda}.html`;
     let pom = document.createElement('a');
     pom.style.display = 'none';
-    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(dlhtml));
+    // the init function has been removed. change the body onload=init to onload=clickmix.
+    // let h = document.documentElement.outerHTML.replace("init", "clickmix");
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(h));
     pom.setAttribute('download', dlfn);
     document.body.appendChild(pom);
     pom.click();
@@ -210,12 +215,14 @@ function togqtet(ev) {
                 qtetSongs.splice(n2, 1);
             }
             tr.classList.remove("qtet");
+            let song = musiclib[sid]['name'];
             console.log(`removed qtet song ${song}`);
         } else {
             // non-qtet song selected - add it
             qtetSongs.push(sid);
             tr.classList.add("qtet");
-            console.log(`added qtet song ${sid}`);
+            let song = musiclib[sid]['name'];
+            console.log(`added qtet song ${song}`);
         }
     }
 }
@@ -249,19 +256,15 @@ function calledit() {
         }
     }
 }
-// END CLIP
 </script>
 </head>
 <body onload='init()'>
 <table id="wrapper">
-    <tr><td>
-        <table id="main_table" border='1'>
-            <tr id="putithere"></tr>
-        </table>
-    </td></tr>
-    <tr><td>
-    <table id="footer">
-        <tr><td class='butts'>
+    <table class="cheat">
+        <tbody id="main_table"> </tbody>
+    <tfoot>
+    <tr>
+        <td class='butts'>
              <input type="button" value="Download" onclick="down()"></input><br/>
              <input type="button" value="Edit list" onclick="calledit()"></input></td>
         <td colspan="99">
@@ -275,9 +278,8 @@ function calledit() {
          <input type="radio" id="selnone" name="part" value="none">none</input>
         </fieldset>
         </td>
-         </tr>
-        </table>
-    </tr></td>
+     </tr>
+    </tfoot>
 </table>
 </body>
 </html>

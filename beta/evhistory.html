@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<!-- $Id: evhistory.html,v 1.1 2022/06/27 00:57:38 dfm Exp dfm $
+<!-- $Id: evhistory.html,v 1.2 2022/07/05 22:47:00 dfm Exp $
      $Log: evhistory.html,v $
+     Revision 1.2  2022/07/05 22:47:00  dfm
+     replace xml loads with getMusicLib.js[B and getEventList.js
+     use ch.html to display cheats
+     use dialog for summary displays
+
      Revision 1.1  2022/06/27 00:57:38  dfm
      Initial revision
 
@@ -13,6 +18,7 @@
 <head>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Event Histories</title>
+<link rel="stylesheet" href="select.css" />
 <link rel="stylesheet" href="pick.css" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -120,7 +126,7 @@ function loads() {
 }
 
 function venuesel(el) {
-    // a venue has been selected. el is the input element
+    // a venue has been selected, or a search entered. el is the input element
     // note: this routine is called when a venue is selected,
     // and every time an entry is made in the search window.
 
@@ -155,21 +161,18 @@ function venuesel(el) {
     document.getElementById("cheatList").innerHTML = "";
     if(event.target.id == "venuesel") {
         document.getElementById("searchpick").value = "";
+    } else if(event.target.id == "searchpick") {
+        document.getElementById("venuesel").value = "";
     }
+    $( "#dialog" ).dialog( "close" );
 }
 
 function eventsel(el) {
     let tr = el.closest("tr");
     let when = tr.children[1].textContent;
-    let dtndx = tr.children[2].textContent;
-    let perfev = eventlist[dtndx];
-
-    makelist(perfev);
-
-    // console.log(`${perfev['when']} at ${perfev['where']}`);
-    // for (let sid of perfev['songlist']) {
-        // console.log(`${musiclib[sid]['name']}`);
-    // }
+    evndx = tr.children[2].textContent;
+    newevent = eventlist[evndx];
+    let chwin = window.open("ch.html");
 }
 
 function init() {
@@ -196,94 +199,6 @@ function setvoice(el) {
         localStorage.setItem("defaultVoice", voice);
     }
 }
-
-function makelist(perfev) {
-    let evname = `${perfev['where']} - ${perfev['when']}`;
-    let html = `<title>${evname}</title>
-<link rel='stylesheet' href='pick.css' />
-<table id='cheatTable'>
-<tr><td id="evtitl" colspan="3" class="tabletitle">${evname}</td></tr>
-    `
-
-    let songlist = perfev['songlist'];
-    let qtetsongs = [];
-    if (perfev.hasOwnProperty('qtetsongs')) {
-        qtetsongs = perfev['qtetsongs'];
-    }
-
-    for (let sid of songlist) {
-        let song = musiclib[sid];
-        let nam = song['name'];
-        let songTitle = nam; // songTitle becomes songname (notes) [location]
-        let key = song['key'];
-        let keyclass = "key";
-        if (song.hasOwnProperty('pitch')) {
-            let pit = song['pitch'];
-            if (pit != "") {
-                key = 'blow ' + pit;
-                keyclass = "pitch";
-            }
-        }
-        let words = song['words'];
-        if (song.hasOwnProperty("notes")) {
-            songTitle += ` (${song['notes']})`;
-        }
-        if (song.hasOwnProperty("location")) {
-            songTitle += ` [${song['location']}]`;
-        }
-        let picks = "";
-        if (song.hasOwnProperty("tracks")) {
-            for (let voice of voices) {
-                let choices = [];
-                let ancclass = voice;
-                if (voice != "mix") {
-                    ancclass += " hidden";
-                }
-                if (song['tracks'].hasOwnProperty(voice)) {
-                    for (let v of song['tracks'][voice]) {
-                        let gdid = v['gdid'];
-                        let mods = v['mods'];
-                        choices.push(`<a href='https://drive.google.com/open?id=${gdid}'>${songTitle} : ${mods}</a>`);
-                    }
-                } else if (voice == "none") {
-                    // don't include location for voice none
-                    let short = nam;
-                    if (song.hasOwnProperty("notes")) {
-                        short += ` (${song['notes']})`;
-                    }
-                    choices.push(short);
-                } else { 
-                    // no tracks for this voice
-                    choices.push(songTitle);
-                }
-                picks += `<div class='${ancclass}'>` + choices.join("<br/>\n") + "\n</div>";
-            }
-        } else {
-            picks = songTitle + "\n";
-        }
-
-        let cl = "class='song'";
-        if (qtetsongs.includes(sid)) {
-            cl = "class='song qtet'";
-        }
-        html += `<tr ${cl}><td class='${keyclass}'>${key}</td><td>${picks}</td><td>${words}</td></tr>\n`;
-    }
-    html += `<tr><td colspan='3' class='partsel'>
-<fieldset class='partsel'>
-<legend>Show voice</legend>
- <input type="radio" id="seltenor" name="part" value="tenor" onclick="setvoice(this)">tenor</input>
- <input type="radio" id="sellead" name="part" value="lead" onclick="setvoice(this)">lead</input>
- <input type="radio" id="selbari" name="part" value="bari" onclick="setvoice(this)">bari</input>
- <input type="radio" id="selbass" name="part" value="bass" onclick="setvoice(this)">bass</input>
- <input type="radio" id="selmix" name="part" value="mix" onclick="setvoice(this)">mix</input>
- <input type="radio" id="selnone" name="part" value="none" onclick="setvoice(this)">none</input>
-</fieldset>
-</td></tr>
-`;
-    dialel = document.querySelector("#dialog");
-    dialel.innerHTML = html;
-    $( "#dialog" ).dialog({ title: evname, width: "auto" });
-}
 function scrollToTop() {
     document.getElementById("tabid").scrollIntoView({block: "end"});
 }
@@ -298,7 +213,7 @@ function summary(el) {
     
     let cats = allcats;
     let d = new Date(dpdate);
-    let dstr = formatDate(d, "%b %d, %Y");
+    let dstr = formatUTCDate(d, "%b %d, %Y");
 
     let header = "Song Performance Summary, all cats, since " + dstr;
     if (el.id == "cursumm") {
@@ -320,13 +235,13 @@ function summary(el) {
     for (let dtndx of newestFirst) {
         if (dtndx >= since) {
             let ev = eventlist[dtndx];
-            qtetsongs = [];
-            if (ev.hasOwnProperty('qtetsongs')) {
-                qtetsongs = ev['qtetsongs'];
+            qtetSongs = [];
+            if (ev.hasOwnProperty('qtetSongs')) {
+                qtetSongs = ev['qtetSongs'];
             }
             for (let sid of ev['songlist']) {
                 // don't include qtet songs in summary.
-                if (! qtetsongs.includes(sid)) {
+                if (! qtetSongs.includes(sid)) {
                     let song = musiclib[sid];
                     let nam = song['name'];
                     for (let cat of song['category']) {
@@ -436,7 +351,6 @@ function summary(el) {
             <tbody id="cheatList">
     </table>
 </td></tr></table> <!-- wrap -->
-
-<div id="dialog" title="Basic dialog"> </div>
+<div id="dialog"></div>
 </body>
 </html>
