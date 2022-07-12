@@ -15,19 +15,19 @@
 .hidden { display: none; }
 .paused { background-image: linear-gradient(to right, yellow, yellow); }
 .playing { background-color: lightgreen; }
-#wrapper { width: 810px; }
+#wrapper { width: 530px; }
 .events, .player, .parts, .songs { width: 100%; }
 .events, .parts { margin-bottom: 12px; }
 .plcapt { border: 2px solid black; text-align: center; font: bold 20px Arial; background-color: lightgreen; }
 #repeats { width: 2em; }
 input[type=number]::-webkit-inner-spin-button { opacity: 1 }
-input[type=radio] { margin-left: calc(100%/12 - 10px); }
-.sep { margin-left: 60px; }
+input[type=radio] { margin-left: calc(100%/12 - 30px); }
+.sep { margin-left: 25px; }
 div[id^='vtrk'], #setclr { font: bold 20px Arial; padding: 3px; }
 fieldset { border: 3px solid black; }
 label { font-family: Arial; font-size: 1.2em; }
 legend { font-family: Arial; font-size: 1.4em; font-weight: bold; }
-select { width: 810px; }
+select { width: 530px; height: auto; }
 [id^='vtrk']:nth-child(even) { background: white; }
 [id^='vtrk']:nth-child(odd) { background: lightblue; }
 img { width:40px; height:40px; }
@@ -302,7 +302,11 @@ function havepart(el) {
 
     // playlist was already showing, voice changed ->
     // need to redo the playlist
-    playlist();
+    // get the cat from the select
+    let selel = document.getElementById("cats");
+    let ndx = selel.options.selectedIndex;
+    let cat = selel.options[ndx].value;
+    playlist(cat);
 }
 function setrepeat(el) {
     repeats = el.value;
@@ -356,9 +360,11 @@ function playlist(cat) {
         if (song.hasOwnProperty('notes')) {
             nam += " (" + song.notes + ")";
         }
+        /*
         if (song.hasOwnProperty('location')) {
             nam += " [" + song.location + "]";
         }
+        */
         if (song.hasOwnProperty('tracks')) {
             if (song['tracks'].hasOwnProperty(voice)) {
                 for (let vtr of song['tracks'][voice]) {
