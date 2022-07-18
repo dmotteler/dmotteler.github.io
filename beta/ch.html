@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <!--
 
-    $Id: ch.html,v 1.2 2022/07/05 22:36:15 dfm Exp $
+    $Id: ch.html,v 1.3 2022/07/08 16:16:25 dfm Exp dfm $
     $Log: ch.html,v $
+    Revision 1.3  2022/07/08 16:16:25  dfm
+    fix a bug in download
+
     Revision 1.2  2022/07/05 22:36:15  dfm
     move styles to cheat.css
     replace xhr load of musiclib.xml with fetch, in getMusicLib.js
@@ -18,7 +21,29 @@
 -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title id="doctitle"></title>
-<link rel='stylesheet' href='cheat.css' />
+<style>
+#main_table { width: 100%; }
+tfoot { text-align: center; background: lightgreen; }
+.key, .pitch { text-align: center; }
+tr, td { border: solid 2px; padding: 6px; }
+.tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; }
+.butts { background: lightgreen; }
+.voices { background: lightgreen; }
+.hidden { display: none; }
+.qtet { background-color: blue !important; color: white !important; }
+.qtet a { background-color: blue !important; color: white !important; }
+tr:nth-child(even) { background: #CCC }
+tr:nth-child(odd) { background: #FFF }
+table { border-collapse: collapse; border: solid 5px;
+    font-family: Arial; font-size: 18px; font-weight: bold; }
+@media print {
+  @page { size: letter portrait; margin: .5in; }
+  body { max-width: 5.5in; }
+  table { font-size: 12px; }
+  td { padding: 4px; }
+  .tabletitle { font-size: 18px; }
+}
+</style>
 <script src="getMusicLib.js"></script>
 <script>
 var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none'];
@@ -165,6 +190,9 @@ function display_only() {
     // strip down to just the cheat display - no need for qtet toggle or calledit.
     console.log(`display_only called.`);
 
+    // remove the link to musiclib.
+    document.querySelector('script[src^="getMus"').remove();
+
     // remove the "edit" and "download" buttons.
     document.querySelector(".butts").parentNode.deleteCell(0);
 
@@ -187,8 +215,8 @@ function down() {
     let dlfn = `${venue}_${yymoda}.html`;
     let pom = document.createElement('a');
     pom.style.display = 'none';
-    // the init function has been removed. change the body onload=init to onload=clickmix.
-    // let h = document.documentElement.outerHTML.replace("init", "clickmix");
+
+    let h = document.documentElement.outerHTML;
     pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(h));
     pom.setAttribute('download', dlfn);
     document.body.appendChild(pom);
@@ -259,8 +287,7 @@ function calledit() {
 </script>
 </head>
 <body onload='init()'>
-<table id="wrapper">
-    <table class="cheat">
+    <table>
         <tbody id="main_table"> </tbody>
     <tfoot>
     <tr>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- $Id: ps.html,v 1.2 2022/07/05 23:08:34 dfm Exp $
+<!-- $Id: ps.html,v 1.3 2022/07/17 19:23:54 dfm Exp $
      Log:$
 
      provide song list for cheat-sheet song selection
@@ -176,7 +176,8 @@ function alldone() {
 
     //   July 9, 2022 12:30PM
     let fulldate = formatDate(evdate, "%b %d, %Y %I:%M%P", monthNames);
-    let evndx = formatDate(evdate, "%Y%m%d%H%M");
+
+    evndx = formatDate(evdate, "%Y%m%d%H%M");
     newevent = {'when': fulldate, 'where': venue, 'songlist': seq, 'qtetSongs': qtetSongs };
 
     let chwin = window.open("ch.html");
