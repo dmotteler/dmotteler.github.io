@@ -1,7 +1,10 @@
 #! env python
 '''
-    $Id: events.py,v 1.4 2022/07/05 22:45:26 dfm Exp dfm $
+    $Id: events.py,v 1.5 2022/07/18 22:54:38 dfm Exp $
     $Log: events.py,v $
+    Revision 1.5  2022/07/18 22:54:38  dfm
+    print fn in cdir loop
+
     Revision 1.4  2022/07/05 22:45:26  dfm
     complete overhaul to make xml loads more like the .js version
 
@@ -586,7 +589,7 @@ def main():
 
             pat = "{}/{}".format(d, fn)
             with open(pat, "r") as fo:
-                # print("\n{}".format(fn))
+                print("\n{}".format(fn))
                 when = ""
                 lines = fo.read()
                 dtndx, ev = parsecheat(lines, fn, musiclib)

@@ -2,17 +2,8 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    $Id: playlist.html,v 1.3 2022/07/08 04:10:30 dfm Exp dfm $
-    $Log: playlist.html,v $
-    Revision 1.3  2022/07/08 04:10:30  dfm
-    mostly display formatting issues
-
-    Revision 1.2  2022/07/08 01:11:56  dfm
-    mostly commenting and reordering functions
-
-    Revision 1.1  2022/07/07 04:18:37  dfm
-    Initial revision
-
+    $Id:$
+    $Log:$
 
     build playlist for an event with google drive links to the mp3s
     this version uses musiclib.xml and eventlist.xml
@@ -24,19 +15,19 @@
 .hidden { display: none; }
 .paused { background-image: linear-gradient(to right, yellow, yellow); }
 .playing { background-color: lightgreen; }
-#wrapper { width: 810px; }
+#wrapper { width: 530px; }
 .events, .player, .parts, .songs { width: 100%; }
 .events, .parts { margin-bottom: 12px; }
 .plcapt { border: 2px solid black; text-align: center; font: bold 20px Arial; background-color: lightgreen; }
 #repeats { width: 2em; }
 input[type=number]::-webkit-inner-spin-button { opacity: 1 }
-input[type=radio] { margin-left: calc(100%/12 - 10px); }
-.sep { margin-left: 60px; }
+input[type=radio] { margin-left: calc(100%/12 - 30px); }
+.sep { margin-left: 25px; }
 div[id^='vtrk'], #setclr { font: bold 20px Arial; padding: 3px; }
 fieldset { border: 3px solid black; }
 label { font-family: Arial; font-size: 1.2em; }
 legend { font-family: Arial; font-size: 1.4em; font-weight: bold; }
-select { width: 810px; }
+select { width: 530px; height: auto; }
 [id^='vtrk']:nth-child(even) { background: white; }
 [id^='vtrk']:nth-child(odd) { background: lightblue; }
 img { width:40px; height:40px; }
@@ -51,14 +42,14 @@ h3 { font-size: xx-large; }
 <script src="getEventList.js"></script>
 <script>
 
+var activesongel;
 var audel;
 var doitagain = 0;
-var nevshow = 5; // number events for initial event select - size s/b 1 more than this
+var nevshow = 999; // number events for initial event select - size s/b 1 more than this
 var newestFirst = []; // event indices, newest first
 var numelcalls;
 var playPromise;
 var ppimg;
-var qtetSongs = [];
 var repeats;
 var songlib = [];
 var songlist = [];
@@ -125,7 +116,7 @@ function timeupevlstn() {
     var currentTime = audel.currentTime;
     var duration = audel.duration;
     let pct = 100.0*(currentTime +.25)/duration;
-    document.getElementById(vtrkid).style.backgroundImage = `linear-gradient(to right, lightgreen ${pct}%, yellow ${pct}%)`;
+    activesongel.style.backgroundImage = `linear-gradient(to right, lightgreen ${pct}%, yellow ${pct}%)`;
 }
 
 // next two functions provide play and pause audio element support.
@@ -167,35 +158,42 @@ function pause() {
             });
         }
         // promise has completed - update UI
-        let trkdiv = document.getElementById(vtrkid);
-        trkdiv.classList.add("paused");
+        activesongel = document.getElementById(vtrkid);
+        activesongel.classList.add("paused");
         ppimg.src = playsvg;
         ppimg.classList.add("blink");
         console.log(`${vtrkid} paused at ${audel.currentTime}`);
     }
 }
+function closetrk() {
+    // called any time a playing or paused track is to be "closed".
+    // returns the id of that track, or null.
+    var actid = null;
 
+    if (audel) {
+        let actel = document.querySelector(".playing");
+        if (actel) {
+            actel.classList.remove("playing");
+        } else {
+            actel = document.querySelector(".paused");
+            if (actel) {
+                actel.classList.remove("paused");
+            }
+        }
+        if (actel) {
+            actid = actel.id;
+            // clear the "progress bar"
+            actel.style.backgroundImage = "";
+            pause();
+        }
+        audel.currentTime = 0.0;
+        // audel.removeAttribute('src');
+    }
+    return actid;
+}
 // following four functions provide player button actions.
 function resetfn() {
-    // if we've never located the audio element, just leave
-    if (audel) {
-        // reset button pushed. stop audio, set play/pause to play (blinking)
-        // if a promise is outstanding, wait for it to complete, 
-
-        // don't remove the listener unless we find a way to put it back....
-        // audel.removeEventListener("timeupdate", timeupevlstn, false);
-
-        pause();
-
-        audel.currentTime = 0.0;
-        // if a track is paused or playing, remove that from classlist
-        let pptrk = document.querySelector(".paused,.playing");
-        if (pptrk) {
-            pptrk.classList.remove("paused");
-            pptrk.classList.remove("playing");
-            pptrk.style.backgroundImage = "";
-        }
-    }
+    closetrk();
 }
 function prevsong() {
     // if song has started, restart.
@@ -215,7 +213,8 @@ function playpause() {
     // user is starting the player. just call nextsong.
     // if audel is set, user is toggling between play and pause.
     if (audel) {
-        if (audel.src != "") {
+        if (audel.src) {
+            console.log(`in playpause, audel.src is ${audel.src}`);
             if (audel.paused) {
                 play('unpause');
             } else {
@@ -244,32 +243,30 @@ function nextsong(dir) {
         }
     }
 
+    // close any track that is playing or paused, and update the UI.
+    let trkid = closetrk();
+
+    // build a list of selected tracks
     let curtrks = [];
-    let activendx = -1;
     // get the song row divs
     let seltrks = document.querySelectorAll("div[id^='vtrk']");
-    let ndx = 0;
 
     for (let curtrk of seltrks) {
-        // find the track marked playing, if one exists. remove
-        // playing status, clear the progress bar, save the row
-        // index for the "active" track, and call pause to update the UI.
-        if (curtrk.classList.contains("playing")) {
-            curtrk.classList.remove("playing");
-            curtrk.style.backgroundImage = "";
-            activendx = ndx;
-            pause();
-        }
         chkd = curtrk.children[0].checked;
         if (chkd) {
             curtrks.push(curtrk.id);
-            ndx++;
         }
     }
     if (curtrks.length < 1) {
         // no tracks are selected. avoid infinite loop!
             alert("no tracks selected!");
         return;
+    }
+    let activendx;
+    if (trkid) {
+        activendx = curtrks.indexOf(trkid);
+    } else {
+        activendx = -1;
     }
 
     let songsrc = "";
@@ -280,8 +277,8 @@ function nextsong(dir) {
         activendx = curtrks.length - 1;
     }
     vtrkid = curtrks[activendx];
-    let trkdiv = document.getElementById(vtrkid);
-    let gid = trkdiv.children[0].value;
+    activesongel = document.getElementById(vtrkid);
+    let gid = activesongel.children[0].value;
     songsrc = "https://docs.google.com/uc?export=download&id=" + gid;
     // songsrc = `/dfm_ws/NormTracks/${songpath[gid]}`;
     if (! audel) {
@@ -291,27 +288,44 @@ function nextsong(dir) {
             // while a song is playing, the button shows pause.
             ppimg.src = pausesvg;
             ppimg.classList.remove("blink");
-            let trkdiv = document.getElementById(vtrkid);
-            trkdiv.classList.add("playing");
-            let nam = document.getElementById(vtrkid).innerText;
+            activesongel.classList.add("playing");
+            let nam = activesongel.innerText;
             console.log(`starting ${vtrkid}: ${nam} (${audel.duration.toFixed(2)})`);
         });
         audel.addEventListener("timeupdate", timeupevlstn, false);
     }
     doitagain = document.querySelector("#repeats").value - 1;
     audel.src = songsrc;
-    trkdiv.classList.add("playing");
+    activesongel.classList.add("playing");
     play('next song');
     numelcalls = 0;
 }
 
 // listeners for the buttons
 function havepart(el) {
+    // if music is playing when a voice part is selected, shut it down.
+    if (audel) {
+        closetrk();
+        audel.removeEventListener("timeupdate", timeupevlstn, false);
+        audel = null;
+    }
+
     voice = el.value;
     localStorage.setItem("defaultVoice", voice);
 
-    // playlist was already showing, voice changed ->
-    // need to redo the playlist
+    // get the event from the select
+    let selel = document.getElementById("events");
+    let ndx = selel.options.selectedIndex;
+    dtndx = selel.options[ndx].dataset.dtndx;
+
+    let ev = eventlist[dtndx];
+    when = ev['when'];
+    where = ev['where'];
+    songlist = ev['songlist'];
+    qtetSongs = [];
+    if (ev.hasOwnProperty('qtetSongs')) {
+        qtetSongs = ev['qtetSongs'];
+    }
     playlist();
 }
 function setrepeat(el) {
@@ -333,34 +347,26 @@ function eventsel() {
     let opt = targ.options[ndx];
     let dtndx = opt.dataset.dtndx;
 
-    if (dtndx == "full") {
-        // remove the select options and add the full list.
-        let ops = targ.querySelectorAll("option");
-
-        ops.forEach((val, ndx, ops) => { ops[ndx].remove(); });
-
-        for (let ndx of newestFirst) {
-            let ev = eventlist[ndx];
-            opt = document.createElement("option");
-            opt.dataset.dtndx = ndx;
-            opt.text = `${ev['where']} - ${ev['when']}`;
-            targ.add(opt);
-        }
-    } else {
-        // load the selected event and go display its song list.
-        let ev = eventlist[dtndx];
-        when = ev['when'];
-        where = ev['where'];
-        songlist = ev['songlist'];
-        qtetSongs = [];
-        if (ev.hasOwnProperty('qtetSongs')) {
-            qtetSongs = ev['qtetSongs'];
-        }
-        playlist();
+    // if music is playing when a category is selected, shut it down.
+    if (audel) {
+        closetrk();
+        audel.removeEventListener("timeupdate", timeupevlstn, false);
+        audel = null;
     }
+
+    // get the list of songs from the selected event.
+    let ev = eventlist[dtndx];
+    when = ev['when'];
+    where = ev['where'];
+    songlist = ev['songlist'];
+    qtetSongs = [];
+    if (ev.hasOwnProperty('qtetSongs')) {
+        qtetSongs = ev['qtetSongs'];
+    }
+    playlist();
 }
 function playlist() {
-    // the part has been selected and the event selected.
+    // the part has been selected and the category selected.
     //  create and display the playlist for it.
     if (songlist.length < 1) {
         return; // avoid showing songlist before one is selected.
@@ -404,7 +410,7 @@ function playlist() {
     document.querySelector(".songs").classList.remove("hidden");
 }
 
-// init gets the music lib and events list loaded, sets up the
+// init gets the music lib and events lists loaded, sets up the
 // voice selection and player button listeners
 function init() {
     let mlurl = "musiclib.xml";
@@ -435,6 +441,8 @@ function init() {
             opt.dataset.dtndx = ndx;
             opt.text = `${ev['where']} - ${ev['when']}`;
             selel.add(opt);
+
+            /*
             nadd += 1;
             if (nadd >= nevshow) {
                 opt = document.createElement("option");
@@ -443,13 +451,16 @@ function init() {
                 selel.add(opt);
                 break;
             }
+            */
         }
+        selel.options[0].selected = 'selected';
 
         // next, set up voice
         let defaultVoice = localStorage.getItem("defaultVoice");
         if (! defaultVoice) { defaultVoice = "mix"; }
         voice = defaultVoice;
-        document.querySelector(`#${voice}p`).checked = true;
+        let voiceel = document.querySelector(`#${voice}p`);
+        voiceel.checked = true;
 
         // initialize the control buttons
         document.querySelector("#resetimg").src = resetsvg;
@@ -459,6 +470,8 @@ function init() {
         ppimg = document.querySelector("#ppimg");
         ppimg.src = playsvg;
         ppimg.classList.add("blink");
+
+        havepart(voiceel);
     });
 }
 </script>
@@ -467,7 +480,7 @@ function init() {
 <div id="wrapper">
 <fieldset class="events" onchange="eventsel()">
   <legend>Select an event</legend>
-  <select id="events" class="select-css" size="6"></select>
+  <select id="events" class="select-css"></select>
 </fieldset>
 <fieldset class="parts">
  <legend>Select voice</legend>
