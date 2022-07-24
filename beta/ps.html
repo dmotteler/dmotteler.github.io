@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- $Id: ps.html,v 1.3 2022/07/17 19:23:54 dfm Exp $
+<!-- $Id: ps.html,v 1.4 2022/07/24 20:59:22 dfm Exp $
      Log:$
 
      provide song list for cheat-sheet song selection
@@ -426,7 +426,9 @@ function init() {
 <table border="1" id="tabid" oncontextmenu="selme(this)">
 <tr><th colspan='2'>
 <label>Songs for:
-<select id="venuesel" class="select-css" name="venue">
+<input id="venuesel" list="vensel" class="select-css" name="venue" onChange="evsel(this)"/>
+</label>
+<datalist id="vensel">
 <option value="" disabled selected hidden>select Venue</option>
 <option>Rehearsal</option>
 <option>Chehalis West</option>
@@ -435,7 +437,7 @@ function init() {
 <option>Sharon Care</option>
 <option>Vintage</option>
 <option>Woodland Village</option>
-</select>
+</datalist>
 <label for="eventdate">on</label>
 <input type="datetime-local" class="select-css" value="" id="eventdate" step="900">
 <br/>
