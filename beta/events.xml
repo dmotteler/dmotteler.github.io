@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event dtndx="202207261800" songlist="1102 1110 1197 1028 1124 1116 1195 1011 1194 1016 1103 1035" when="July 26, 2022 06:00PM" where="Rehearsal" />
   <event dtndx="202207191800" songlist="1102 1058 1182 1197 1178 1180 1192 1143 1020 1194 1181 1035" when="July 19, 2022 06:00PM" where="Rehearsal" />
   <event dtndx="202207121800" songlist="1102 1057 1032 1196 1124 1192 1100 1181 1183 1184 1179 1035" when="July 12, 2022 06:00PM" where="Rehearsal" />
   <event dtndx="202207091230" qtetSongs="1032 1117" songlist="1011 1195 1007 1183 1196 1032 1117 1103 1120 1100 1030 1184 1016" when="July 09, 2022 12:30PM" where="Veterans' Museum 100th Birthday" />

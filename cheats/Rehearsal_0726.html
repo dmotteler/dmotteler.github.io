@@ -1,0 +1,149 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id="doctitle">Rehearsal - July 26, 2022 06:00PM</title>
+<style>
+.key, .pitch { text-align: center; }
+td { padding: 6px; }
+.tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
+.hidden { display: none; }
+.qtet { background-color: blue !important; color: white !important; }
+.qtet a { background-color: blue !important; color: white !important; }
+tr:nth-child(even) { background: #CCC }
+tr:nth-child(odd) { background: #FFF }
+.partsel { text-align: center; background: lightgreen; }
+table { border-collapse: collapse; font-family: Arial; font-size: 18px; font-weight: bold; border-width: 5px; }
+@media print {
+  @page { size: letter portrait; margin: .5in; }
+  body { max-width: 5.5in; }
+  table { font-size: 12px; }
+  td { padding: 4px; }
+  .tabletitle { font-size: 18px; }
+}
+</style>
+<script>
+var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none'];
+function clickmix() {
+    let defaultVoice = localStorage.getItem("defaultVoice");
+    if (! defaultVoice) { defaultVoice = "mix"; }
+    let buttonId = "sel" + defaultVoice;
+    let butt = document.getElementById(buttonId);
+    butt.click();
+}
+function setvoice(el) {
+    let voice = el.value;
+    // show the class we were called with (i.e., remove "hidden")
+    for (let element of document.getElementsByClassName(voice)) {
+       element.classList.remove("hidden");
+    }
+    let others = new Set(voices);
+    others.delete(voice);
+    // don't show the rest of the classes
+    for (let v of others) {
+        for (let element of document.getElementsByClassName(v)) { element.classList.add("hidden"); }
+    }
+    if (voice != "none") {
+        localStorage.setItem("defaultVoice", voice);
+    }
+}
+</script>
+</head>
+<body onload="clickmix()">
+<table oncontextmenu="togqtet()" border="1">
+    <tbody><tr><td id="evtitl" colspan="3" class="tabletitle">Rehearsal - July 26, 2022 06:00PM</td></tr>
+    <tr class="song"><td class="key">Bb</td><td>Old Songs, The
+</td><td>The old songs</td></tr>
+<tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=11gAEnW3wQt9GEfl8CMAMNFaANg-DjWFr">You're The Flower Of My Heart, Sweet Adeline [Polecat I pg 15] : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1LQn_FfPbnOcPHLJ1X7qswFdS3O1qEFbA">You're The Flower Of My Heart, Sweet Adeline [Polecat I pg 15] : bari left</a>
+</div><div class="lead hidden">You're The Flower Of My Heart, Sweet Adeline [Polecat I pg 15]
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=11IYS7amZUqQrhXBFC2bLLnNdMzKg6KN8">You're The Flower Of My Heart, Sweet Adeline [Polecat I pg 15] : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1GnG1puNKCpUs7NW8QD83sHY2Yn1Xo9c4">You're The Flower Of My Heart, Sweet Adeline [Polecat I pg 15] : mix</a>
+</div><div class="none hidden">You're The Flower Of My Heart, Sweet Adeline
+</div></td><td>Sweet Adeline</td></tr>
+<tr class="song"><td class="key">Ab</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1oHUuDHYQhbkoJV9cvHAG4aSuCJBytCb1">It's the Music That Brings Us Together : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1Xcd21yHDCMKLeoJ84l_xZM4y6qtmDAT5">It's the Music That Brings Us Together : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1AMqb5fytfEFZXqwU1UQSbE9wfOR_6ANT">It's the Music That Brings Us Together : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1NSigi4jKrxxeId0Hu-DuD751pVvXxvSS">It's the Music That Brings Us Together : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1yEMyrIF_OmY-Z1TEen4BB8m1MXhywr1S">It's the Music That Brings Us Together : mix</a>
+</div><div class="none hidden">It's the Music That Brings Us Together
+</div></td><td>It's the music that brings us together</td></tr>
+<tr class="song"><td class="key">Ab</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=13fo7gTci-jSCUDbCXv9VHAHzJ3CSARVb">Under The Boardwalk : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1-BD4AzzGMm7fZwBXt1CNfw2inwu5hQMN">Under The Boardwalk : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1NyZqboGqha0yq3VdtH9GQiVR3bBNUqp6">Under The Boardwalk : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1OU5QefdzbsOP9SzTwGSjkNcJwFImz_8e">Under The Boardwalk : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1Z1aFNYeH69Yuoesag9CqpSwwRHfhLTFX">Under The Boardwalk : mix - faster</a>
+</div><div class="none hidden">Under The Boardwalk
+</div></td><td>Bm bm bm bm bm bm</td></tr>
+<tr class="song"><td class="key">G</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1gu4oljYkYmPEid5OxbCXdJE1UvSJBrAr">My Girl : Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1tdzx0PpMTugXdLQQJ4EEvbzbfjCYyvaZ">My Girl : Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1fHJqhAxURDfRYX9tZzLPxSC0IU6IRMZH">My Girl : Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1hvYOeyvyyCZ2iODCurPyPdnS0i82D8iN">My Girl : Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1GcU-8Nw-zTGeNrhMFEHHDYTuQFTt6Rnu">My Girl : Mix</a>
+</div><div class="none hidden">My Girl
+</div></td><td>doo doo doo doo doo doo</td></tr>
+<tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1A4BsG4vMKBnj6TP68BnYWjZofsE7XJsD">Hello Mary Lou (Goodbye Heart) [Polecat II pg 34] : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1NEnKvWZ5JpmyO9Cf1SqFPZKFHU3_5sIT">Hello Mary Lou (Goodbye Heart) [Polecat II pg 34] : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1j5QIse3zpk-cix5RpiG-J9hsDW7PfJlY">Hello Mary Lou (Goodbye Heart) [Polecat II pg 34] : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=10opf_mDgFfA-zHGpWp0AmaUHpbGbJIUY">Hello Mary Lou (Goodbye Heart) [Polecat II pg 34] : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1FPHFbyQq0-aISgCdJr0r0zSB_zB3Ndqi">Hello Mary Lou (Goodbye Heart) [Polecat II pg 34] : all</a>
+</div><div class="none hidden">Hello Mary Lou (Goodbye Heart)
+</div></td><td>Passed me by</td></tr>
+<tr class="song"><td class="key">C</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1GAsWrpbwVc-gaNQNsridTl-WbvG6hLwo">Kokomo : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1t6kXJxigoNrax6B1PBf8mluKynsc6xPo">Kokomo : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1bBFARiRNM-_EplRw5s6AF-faKtjlFlqT">Kokomo : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1WVys6gHawzJC_92dqq8z2r4mgULbvmqP">Kokomo : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1kTwCh0B6NIF7hFnutB3caN6pSU-EqGav">Kokomo : mix</a>
+</div><div class="none hidden">Kokomo
+</div></td><td>Aruba, Jamaica, ooh I wanna take ya</td></tr>
+<tr class="song"><td class="key">F</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1ePxGbCRdJ53DYKP2bgm_iU2oJ1a66T0T">Breaking Up Is Hard To Do : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1O48T9kMALuF6eMfvsB1y77XDSPjkqCLg">Breaking Up Is Hard To Do : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=11J55-QoTMrtU_yM_pkx5nULmbliQDtZ5">Breaking Up Is Hard To Do : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1KaZF3nadALkCmNSEm5fkptWqDfBI36UR">Breaking Up Is Hard To Do : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=18mepGeWU6rQWw3NW6vlJ2MZ6cXlD-8F1">Breaking Up Is Hard To Do : all</a>
+</div><div class="none hidden">Breaking Up Is Hard To Do
+</div></td><td>Down doo-be doo down down</td></tr>
+<tr class="song"><td class="pitch">blow E</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1ZQs-IZxXI6U9Bdl2kThc4v_ywQg0_dk_">Lion Sleeps Tonight : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=18s-d8GtQ6FGl0AysQRVLegww3wJJTfE4">Lion Sleeps Tonight : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1bBDOKWJnKfXBOGFEHlUqnEFA9GSQgzZq">Lion Sleeps Tonight : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=19-G8MPEEofx9fMXnjwXG48Rp_6ZB6pB8">Lion Sleeps Tonight : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=12oN2X1XdNjCFS1Ki5BYvwiz3bD8IG9HX">Lion Sleeps Tonight : mix</a>
+</div><div class="none hidden">Lion Sleeps Tonight
+</div></td><td>Wee dee dee dee</td></tr>
+<tr class="song"><td class="key">G</td><td><div class="bass hidden">God Bless America
+</div><div class="bari hidden">God Bless America
+</div><div class="lead hidden">God Bless America
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1QqZyBsxQhujnh8L3o1jZPV54S9AaU5bS">God Bless America : tenor L</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1bGcrxv2CUV6qy6z9FYnjE4CIoEezV5BC">God Bless America : mix</a>
+</div><div class="none hidden">God Bless America
+</div></td><td>While the storm clouds gather</td></tr>
+<tr class="song"><td class="pitch">blow E</td><td><div class="bass hidden">Shut De Do
+</div><div class="bari hidden">Shut De Do
+</div><div class="lead hidden">Shut De Do
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1HG5PWeB8JuMB5ZVCeUl61eDA9wJhObDh">Shut De Do : Tenor L Final</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=12UBFJQhJeJusxUEdbkvpCSlL0OZ-dXWj">Shut De Do : mix</a>
+</div><div class="none hidden">Shut De Do
+</div></td><td>oh-oh-oh Shut de do,</td></tr>
+<tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1Y4Zp9F0at05CuSwgkbpxhZlfr4I2Gjw1">Let's Get Together Again : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1Tx4VIXt4Hf8GBu_m1CMUMWMvB59SR1NC">Let's Get Together Again : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1eqpHDhm4m4oLaaLEeW21PeyQOGSi747L">Let's Get Together Again : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1k5Jo6nZ3R6N1Clf2oK9b7jsEOdJIxOGK">Let's Get Together Again : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1yRewM1J7nYcQo_IEGH9G5UA5FvW7TWW2">Let's Get Together Again : mix</a>
+</div><div class="none hidden">Let's Get Together Again
+</div></td><td>Let's get together again</td></tr>
+
+<tr>
+<td id="butts" class="partsel hidden"><input type="button" value="Download" onclick="down()"><br>
+<input type="button" value="Edit list" onclick="editlist()"></td>
+<td colspan="3" class="partsel">
+<fieldset class="partsel">
+<legend>Show voice</legend>
+ <input type="radio" id="seltenor" name="part" value="tenor" onclick="setvoice(this)">tenor
+ <input type="radio" id="sellead" name="part" value="lead" onclick="setvoice(this)">lead
+ <input type="radio" id="selbari" name="part" value="bari" onclick="setvoice(this)">bari
+ <input type="radio" id="selbass" name="part" value="bass" onclick="setvoice(this)">bass
+ <input type="radio" id="selmix" name="part" value="mix" onclick="setvoice(this)">mix
+ <input type="radio" id="selnone" name="part" value="none" onclick="setvoice(this)">none
+</fieldset>
+ </td></tr>
+</tbody></table>
+
+
+</body></html>
