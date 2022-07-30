@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<!-- $Id: songperfs.html,v 1.1 2022/07/30 17:49:25 dfm Exp $
+     $Log: songperfs.html,v $
+     Revision 1.1  2022/07/30 17:49:25  dfm
+     Initial revision
+
+
+     display summary of songs performed
+        - given date range
+        - at venue(s)
+        - all cats or "current" set
+
+-->
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Song Performance History</title>
+
+<link rel="stylesheet" href="select.css" />
+<link rel="stylesheet" href="songsumm.css" />
+<script src="getMusicLib.js"></script>
+<script src="getEventList.js"></script>
+<script src="formatDate.js"></script>
+
+<script type="text/javascript">
+var aliasfor = []; // gives main sid for an alias sid
+var allcats = []; // all categories from musiclib
+var begindate; // start date from date-picker with - removed yyyymmdd
+var enddate; // end date from date-picker with - removed yyyymmdd
+var catSelected = []; // indexed by cat, true if cat checked
+var eventlist = {}; // indexed by ymdhm of event, value is event definition
+var evndx = ""; // event date, used to index eventlist. passed to ch.html
+var lowerVenue = {}; // lists of dtndx for lower-case venue
+var newevent; // event passed to ch.html
+var newestFirst = []; // matches list, newest (biggest) first
+var songlib = []; // indexed by song name, value list of sids
+var songlist = []; // all song sids for an event
+var songsincat = []; // indexed by category, value is list of song names
+var venue = ""; // venue for event
+
+var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none'];
+
+var venues = [];
+var matches = [];
+var doAllVenues = false;
+
+var curcats = ['Current', 'Show', 'PoleCat', 'PoleCatII'];
+var oldcats = ['Old', 'Other'];
+var thesecats = [];
+
+function loads() {
+    let mlurl = "musiclib.xml";
+    let gmlpromise = getMusicLib(mlurl);
+
+    let elurl = "events.xml";
+    let gelpromise = getEventList(elurl);
+
+    let promises = [gmlpromise, gelpromise];
+
+    Promise.all(promises).then(values => {
+        // all promises complete. values is list of values returned 
+        // by the promises, in the same order.
+        musiclib = values[0];
+        eventlist = values[1];
+
+        for (let dtndx in eventlist) {
+            evt = eventlist[dtndx];
+            let lowven = evt['where'].toLowerCase();
+            if (! lowerVenue.hasOwnProperty(lowven)) {
+                lowerVenue[lowven] = [];
+            }
+            lowerVenue[lowven].push(dtndx);
+        }
+
+        for (let sid in musiclib) {
+            let nam = musiclib[sid]['name'];
+            if (! songlib.hasOwnProperty(nam)) {
+                songlib[nam] = [];
+            }
+            songlib[nam].push(sid);
+            if (musiclib[sid].hasOwnProperty('category')) {
+                for (let cat of musiclib[sid]['category']) {
+                    if (! allcats.includes(cat)) {
+                        allcats.push(cat);
+                    }
+                    if (! songsincat.hasOwnProperty(cat)) {
+                        songsincat[cat] = [];
+                    }
+                    songsincat[cat].push(nam)
+                }
+            }
+        }
+
+        for (let cat in songsincat) {
+            songsincat[cat] = songsincat[cat].sort();
+        }
+
+        for (let nam in songlib) {
+            if (songlib[nam].length > 1) {
+                for (let sid of songlib[nam]) {
+                    if (musiclib[sid]['category'].includes("Old")) {
+                        let oldnam = nam + " (Old)";
+                        // add modified name to songlib, for sid
+                        if (! songlib.hasOwnProperty(oldnam)) {
+                            songlib[oldnam] = [];
+                        }
+                        songlib[oldnam].push(sid);
+                        // remove sid from list for unmodified name
+                        let n = songlib[nam].indexOf(sid);
+                        songlib[nam].splice(n, 1);
+                        // console.log(oldnam);
+                    }
+                }
+            }
+        }
+        /*
+        // get the datalist element for the search
+        let sel = document.getElementById("prevev");
+
+        let sortedbydate = Object.keys(eventlist).sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
+
+        for (let ndx of sortedbydate) {
+            let ev = eventlist[ndx];
+
+            let opt = document.createElement("option");
+            opt.dataset.dtndx = ndx;
+            opt.value = `${ev['where']} - ${ev['when']}`;
+            sel.append(opt);
+        }
+        */
+    });
+}
+function getMatches() {
+    // get yyyy-mm-dd from date inputs, remove -'s for compare
+    begindate = document.querySelector("#begindate").value.replaceAll("-", "");
+    enddate = document.querySelector("#enddate").value.replaceAll("-", "");
+
+    // get current selected venues
+    let el = document.querySelector("#vensel");
+    let cbs = el.querySelectorAll("input:checked");
+    doAllVenues = false; 
+    venues = [];
+    let targs = [];
+    for (let cb of cbs) {
+        let v = cb.labels[0].textContent;
+        let lc = v.toLowerCase();
+        venues.push(v);
+        targs.push(lc);
+    }
+
+    doAllVenues = venues.includes("All Events");
+
+    // get current selected categories
+    el = document.querySelector(".catsel");
+    cbs = el.querySelectorAll("input:checked");
+    thesecats = [];
+    for (let cb of cbs) {
+        let c = cb.labels[0].textContent;
+        let cats = c.split(", ");
+        for (let cat of cats) {
+            thesecats.push(cat);
+        }
+    }
+
+    matches = [];
+
+    // scan the event list for events matching selected venues
+    // lowerVenue has a list of dtndx for the lower case of each venue name.
+    for (let lowven in lowerVenue) {
+        if (doAllVenues) {
+            for (let d of lowerVenue[lowven]) {
+                matches.push(d);
+            }
+        } else {
+            for (let targ of targs) {
+                if (lowven.includes(targ)) {
+                    for (let d of lowerVenue[lowven]) {
+                        matches.push(d);
+                    }
+                }
+            }
+        }
+    }
+
+    // newestFirst has the most recent list of eventlist indices
+    // sorted descending, or newest-first.
+    newestFirst = matches.sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
+}
+function list_events() {
+    // get all the event dtndxs for selected cats and venues
+    getMatches();
+
+    let html = '<table>';
+    for (let dtndx of newestFirst) {
+        if (dtndx >= begindate && dtndx <= enddate) {
+            let perfev = eventlist[dtndx];
+            let when = perfev['when'];
+            let where = perfev['where'];
+            html += `<tr><td>${where}</td><td data-dtndx='dt${dtndx}'>${when}</td></tr>\n`;
+        }
+    }
+    html += "</table>\n";
+
+    document.querySelector("#eventTable").innerHTML = html;
+}
+function summary(el) {
+    // get all the event dtndxs for selected cats and venues
+    getMatches();
+
+    // build a list of (category, songname, dtndx) from those events and sort it.
+    // then collapse the sorted list to a dict by [cat][song], value [ntimes, last]
+
+    // get the start date from the date picker and remove the "-"s for comparing.
+    let dsdate = document.querySelector("#begindate").value;
+    let begindate = dsdate.replaceAll("-", "");
+    let dedate = document.querySelector("#enddate").value;
+    let enddate = dedate.replaceAll("-", "");
+    
+    let ds = new Date(dsdate);
+    let de = new Date(dedate);
+    let dsstr = formatDate(ds, "%b %d, %Y");
+    let destr = formatDate(de, "%b %d, %Y");
+
+
+    let catSong = [];
+    if (thesecats.length < 1) {
+        for (let c of curcats) {
+            thesecats.push(c);
+        }
+    }
+
+    for (let cat of thesecats) {
+        catSong[cat] = [];
+        for (let song of songsincat[cat]) {
+            catSong[cat][song] = [];
+            catSong[cat][song]['ntimes'] = 0;
+            catSong[cat][song]['last'] = "";
+        }
+    }
+
+    // now process every song of every event of interest.
+    for (let dtndx of newestFirst) {
+        if (dtndx >= begindate && dtndx <= enddate) {
+            let ev = eventlist[dtndx];
+            qtetSongs = [];
+            if (ev.hasOwnProperty('qtetSongs')) {
+                qtetSongs = ev['qtetSongs'];
+            }
+            for (let sid of ev['songlist']) {
+                // don't include qtet songs in summary.
+                if (! qtetSongs.includes(sid)) {
+                    let song = musiclib[sid];
+                    let nam = song['name'];
+                    for (let cat of song['category']) {
+                        if (thesecats.includes(cat)) {
+                            catSong[cat][nam]['ntimes']++;
+                            if (dtndx > catSong[cat][nam]['last']) {
+                                catSong[cat][nam]['last'] = dtndx;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    let sortedCats = Object.keys(catSong).sort();
+
+    // special-case KTWWS - (almost) always sung with LGTA
+    let ktwws = "Keep The Whole World Singing";
+    let lgta = "Let's Get Together Again";
+
+    // if we don't have ktwws or it reports 0 times, use lgta instead.
+    if ('Current' in catSong) {
+        if (! catSong['Current'].hasOwnProperty(ktwws) || catSong['Current'][ktwws]['ntimes'] == 0) {
+            catSong['Current'][ktwws] = catSong['Current'][lgta];
+        }
+    }
+
+    let prevcat = "";
+
+    // mdy(dtndx) returns date in mm/dd/yyyy format
+    var mdy = s => s.substring(4,6) + "/" + s.substring(6,8) + "/" + s.substring(0,4);
+
+    let html = "";
+    for (let cat of sortedCats) {
+        let sortedSongs = Object.keys(catSong[cat]).sort();
+        let last, ntimes;
+        for (let song of sortedSongs) {
+            last = catSong[cat][song]['last'];
+            ntimes = catSong[cat][song]['ntimes'];
+            if (prevcat == "") {
+                prevcat = cat;
+                html += `<tr><td><table class='catperf'><caption>${cat}</caption>\n`;
+                html += `<tr><th>Song</th><th>Times</th><th>Last</th></tr>`;
+            } else if (cat != prevcat) {
+                html += `</table></td></tr>\n`;
+                // just closed table for prev cat. start one for cat
+                html += `<tr><td><table class='catperf'><caption>${cat}</caption>\n`;
+                html += `<tr><th>Song</th><th>Times</th><th>Last</th></tr>`;
+                prevcat = cat;
+            }
+            if (ntimes == 0) {
+                lasttd = "<td class='never'>";
+            } else {
+                last = mdy(last);
+                lasttd = "<td>";
+            }
+            html += `<tr><td>${song}</td><td>${ntimes}</td>${lasttd}${last}</td></tr>\n`;
+        }
+    }
+    // close the last cat table, then the outer table
+    html += `</table></td></tr>
+</table>
+`;
+    document.querySelector("#eventTable").innerHTML = html;
+}
+
+function eventsel(el) {
+    // an event from the listed events was clicked...
+    let tr = el.closest("tr");
+    let when = tr.children[1].textContent;
+    evndx = tr.children[1].dataset.dtndx.substring(2);
+    newevent = eventlist[evndx];
+    let chwin = window.open("ch.html");
+}
+
+function venuesel(targ) {
+    // one of the venue-select boxes has changed. if it is the "All" box,
+    // set the rest to the same state as it is now in. for the others,
+    // if the all box is checked and the changed box is not, clear the all box.
+    
+    // this routine will be called if the click occurs anywhere in the vensel area.
+    // if the click happened in the checkbox (the input element), the venue
+    // is given by the associated label.
+    let ven = null, targid = null, ckd = null;
+    if (targ.tagName == "INPUT") {
+        ven = targ.labels[0].textValue;
+        targid = targ.id;
+        ckd = targ.checked;
+    } else if (targ.tagName == "LABEL") {
+        ven = targ.textValue;
+        targid = targ.htmlfor.id;
+        ckd = targ.htmlfor.checked;
+    } else {
+        // click was in the vensel area, but not input or label.
+        // if we just ignore it, the user will catch on, no?
+        return;
+    }
+    let doall = document.querySelector("#allop").checked;
+    let cbs = document.querySelector("#vensel").querySelectorAll("input[type='checkbox']");
+    if (targid == "allop") {
+        for (let cb of cbs) {
+            if (cb.id != "allop") {
+                cb.checked = ckd;
+            }
+        }
+    } else if (doall) {
+        if (!ckd) {
+            document.querySelector("#allop").checked = false;
+        }
+    }
+}
+
+function matchit(targ) {
+    // called on keyup in the search window
+
+    matches = [];
+    let srch = targ.value.toLowerCase();
+
+    // scan the event list for events matching selected venues
+    // lowerVenue has a list of dtndx for the lower case of each venue name.
+    for (let lowven in lowerVenue) {
+        if (lowven.includes(srch)) {
+            for (let d of lowerVenue[lowven]) {
+                matches.push(d);
+            }
+        }
+    }
+
+    // newestFirst has the most recent list of eventlist indices
+    // sorted descending, or newest-first.
+    newestFirst = matches.sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
+
+    // get yyyy-mm-dd from date inputs, remove -'s for compare
+    begindate = document.querySelector("#begindate").value.replaceAll("-", "");
+    enddate = document.querySelector("#enddate").value.replaceAll("-", "");
+
+    let html = '<table>';
+    for (let dtndx of newestFirst) {
+        if (dtndx >= begindate && dtndx <= enddate) {
+            let perfev = eventlist[dtndx];
+            let when = perfev['when'];
+            let where = perfev['where'];
+            html += `<tr><td>${where}</td><td data-dtndx='dt${dtndx}'>${when}</td></tr>\n`;
+        }
+    }
+    html += "</table>\n";
+
+    document.querySelector("#eventTable").innerHTML = html;
+}
+
+function init() {
+    // start the load of the xmls.
+    loads();
+    document.querySelector("#eventTable").addEventListener('click', perfev => eventsel(perfev.target));
+    document.querySelector("#vensel").addEventListener('click', perfev => venuesel(perfev.target));
+    document.querySelector("#srchfs").addEventListener('keyup', perfev => matchit(perfev.target));
+
+    // initialize the end date to today.
+    let tod = new Date();
+    let destr = formatDate(tod, "%Y-%m-%d");
+    document.querySelector("#enddate").value = destr;
+    // initialize the start date to one year ago
+    let dsstr = `${+tod.getFullYear() - 1}-${destr.substring(5)}`;
+    document.querySelector("#begindate").value = dsstr;
+}
+</script>
+</head>
+<body onload="init()">
+    <table border="1" id="tabid">
+        <!-- venues row -->
+    <tr><th>
+      <fieldset id="vensel">
+        <legend>Venue:</legend>
+        <input type="checkbox" id="allop"><label for="allop">All Events</label>
+        <input type="checkbox" id="rehop"><label for="rehop">Rehearsal</label><br/>
+        <input type="checkbox" id="cwop"> <label for="cwop">Chehalis West</label>
+        <input type="checkbox" id="colop"><label for="colop">Colonial</label>
+        <input type="checkbox" id="pcop"> <label for="pcop">Prestige Care</label><br/>
+        <input type="checkbox" id="scop"> <label for="scop">Sharon Care</label>
+        <input type="checkbox" id="vop">  <label for="vop">Vintage</label>
+        <input type="checkbox" id="wvop"> <label for="wvop">Woodland Village</label>
+      </fieldset>
+    </th></tr>
+        <!-- search row -->
+    <tr><th>
+      <fieldset id="srchfs">
+        <legend>Search by Event Name:</legend>
+        <input id="prevsel" type="text" size='32' class="select-css" name="prev">
+      </fieldset>
+    </th></tr>
+        <!-- categories row-->
+    <tr><th>
+      <fieldset class="catsel">
+        <legend>Categories:</legend>
+        <input type="checkbox" id="curcat" checked><label for="curcat">Current, Show, PoleCat, PoleCatII</label><br/>
+        <input type="checkbox" id="xmscat"><label for="xmscat">Christmas</label>
+        <input type="checkbox" id="oldcat"><label for="oldcat">Old, Other</label>
+      </fieldset>
+    </th></tr>
+        <!-- dates row -->
+    <tr><th>
+      <fieldset class="datesel">
+        <legend>Date Range:</legend>
+    <label for="begindate">Between <input type="date" id="begindate" class="select-css" value="2020-01-01" min="2015-01-01" max=""></input></label>
+    <label for="enddate">and <input type="date" id="enddate" class="select-css" value="" min="2015-01-01" max=""></input></label>
+      </fieldset>
+    </th></tr>
+        <!-- control buttons row -->
+    <tr><th>
+    <input type="button" value="Show Events" onclick="list_events()">
+    <input type="button" value="Show Summary" onclick="summary()">
+    </th></tr>
+        <!-- event list row -->
+    <tr><td id="eventTable"></td></tr>
+    </table>
+</body>
+</html>
