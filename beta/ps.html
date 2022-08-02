@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<!-- $Id: ps.html,v 1.4 2022/07/24 20:59:22 dfm Exp $
+<!-- $Id: ps.html,v 1.5 2022/08/02 04:12:09 dfm Exp $
      Log:$
 
      provide song list for cheat-sheet song selection
 
-     save the song list to local storage and invoke cheat
 -->
 <html>
 <head>
@@ -126,7 +125,6 @@ function togcat() {
 }
 
 function alldone() {
-    venue = document.querySelector("#venuesel").value;
     if (venue == "") {
         alert("Please select a venue from the 'Songs for' menu!");
         return;
@@ -177,6 +175,7 @@ function alldone() {
     //   July 9, 2022 12:30PM
     let fulldate = formatDate(evdate, "%b %d, %Y %I:%M%P", monthNames);
 
+    // careful - names "evndx" and "newevent" must match what ch.html is expecting...
     evndx = formatDate(evdate, "%Y%m%d%H%M");
     newevent = {'when': fulldate, 'where': venue, 'songlist': seq, 'qtetSongs': qtetSongs };
 
@@ -197,23 +196,27 @@ function loads() {
         musiclib = values[0];
         eventlist = values[1];
 
-        // get the datalist element
-        let sel = document.getElementById("vens");
-
-        sel = document.getElementById("prevev");
+        // get the select element
+        let sel = document.getElementById("prevsel");
         let sortedbydate = Object.keys(eventlist).sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
         if (nevshow > 0) {
+            let opt = document.createElement("option");
+            opt.textContent = "";
+            opt.dataset.dtndx = "";
+            sel.append(opt);
+
             let nadd = 0;
             for (let ndx of sortedbydate) {
                 let ev = eventlist[ndx];
-
-                let opt = document.createElement("option");
-                opt.dataset.dtndx = ndx;
-                opt.value = `${ev['where']} - ${ev['when']}`;
-                sel.append(opt);
-                nadd += 1;
-                if (nadd >= nevshow) {
-                    break;
+                if (! ev.where.includes("TTS")) {
+                    opt = document.createElement("option");
+                    opt.textContent = `${ev['where']} - ${ev['when']}`;
+                    opt.dataset.dtndx = ndx;
+                    sel.append(opt);
+                    nadd += 1;
+                    if (nadd >= nevshow) {
+                        break;
+                    }
                 }
             }
         }
@@ -258,80 +261,38 @@ function loads() {
     });
 }
 
-function evsel(el) {
-    // a previous event has been selected. el is the input element
-    console.log(el.value);
-    let opfound = false;
-    let opt;
-    let dlist = document.querySelector("#prevev");
-    for (opt of dlist.options) {
-        if (opt.value == el.value) {
-            opfound = true;
-            break;
-        }
-    }
+function useprev(el) {
+    // a previous event has been selected. el is the select element
 
-    if (opfound) {
-        // found the selection in existing list.
-        // set evndx to the date/time of the existing event,
-        // which is used to get the songlist.
+    let opt = el.options[el.selectedIndex];
+    let dtndx = opt.dataset.dtndx;
 
-        // show date of selected event
-        venue = opt.value;
-        if (venue.includes(" - ")) {
-            venue = venue.split(" - ")[0];
-        }
-        // show just the venue in the select box
-        el.value = opt.value.split(" - ")[1];
-        evndx = opt.dataset.dtndx;
-        console.log(`existing venue selected, evndx = ${evndx}`);
-    } else {
-        // user typed in a new venue
-        opt = document.createElement('option');
-        opt.value = el.value;
-        opt.dataset.dtndx = '';
-
-        venue = opt.value;
-        evndx = "";
-
-        dlist.appendChild(opt);
-        console.log("added " + venue);
-    }
+    let ev = dtndx != "" ? eventlist[dtndx] : null;
 
     // get count of number of songs flagged as chosen.
     let chosenels = document.querySelectorAll(".chosen");
     let nchosen = chosenels.length;
 
-    // if the selected event value is not blank,
-    // it had better be an index into the event list.
-    // if it is blank, don't disturb the song selections.
-
     // qtetSongs is local. the string is turned into a list
     // at load time, and is used in this routine to add the
     // qtet class to the song row.
     let qtetSongs = [];
-    if (evndx != "") {
+
+    if (dtndx != "") {
         if (nchosen > 0) {
-            if (confirm("replace song selections with those from selected event?")) {
-                for (let el of document.querySelectorAll(".chosen")) {
-                    el.classList.remove("chosen");
-                }
-                for (let el of document.querySelectorAll(".qtet")) {
-                    el.classList.remove("qtet");
-                }
-                let ev = eventlist[opt.dataset.dtndx];
-                songlist = ev['songlist'];
-                if (ev.hasOwnProperty("qtetSongs")) {
-                    qtetSongs = ev.qtetSongs;
-                }
-            } else {
-                // user cancelled - get out of here.
-                return;
+            for (let el of document.querySelectorAll(".chosen")) {
+                el.classList.remove("chosen");
+            }
+            for (let el of document.querySelectorAll(".qtet")) {
+                el.classList.remove("qtet");
+            }
+            songlist = ev['songlist'];
+            if (ev.hasOwnProperty("qtetSongs")) {
+                qtetSongs = ev.qtetSongs;
             }
         } else {
             // selected event has a songlist, and no songs yet chosen.
             // start with the selection's list.
-            let ev = eventlist[opt.dataset.dtndx];
             songlist = ev['songlist'];
             if (ev.hasOwnProperty("qtetSongs")) {
                 qtetSongs = ev.qtetSongs;
@@ -397,6 +358,24 @@ function evsel(el) {
     songorder = songlist.length;
 }
 
+function selvenue(el) {
+    // a venue has been selected. el is the input element
+    venue = el.value;
+
+    if (venue == "Other...") {
+        let newven = prompt("Enter venue", "");
+        if (newven && newven != "") {
+            console.log(`using new venue ${newven}`);
+            venue = newven;
+            document.querySelector("#venueel").value = venue;
+        } else {
+            el.value = "";
+            return;
+        }
+    }
+    console.log(`${venue} selected...`);
+}
+
 function init() {
     // start the load of the xmls.
     loads();
@@ -418,7 +397,9 @@ function init() {
     for (let catsel of catsels) {
         catsel.addEventListener('change', ev => togcat(ev.target));
     }
-    document.querySelector("#prevsel").addEventListener('change', ev => evsel(ev.target));
+    document.querySelector("#prevsel").addEventListener('change', ev => useprev(ev.target));
+    // clear venue select value so list reappears?
+    document.querySelector("#venueel").addEventListener('dblclick', ev => { ev.target.value = ""; venue = ""; });
 }
 </script>
 </head>
@@ -426,9 +407,9 @@ function init() {
 <table border="1" id="tabid" oncontextmenu="selme(this)">
 <tr><th colspan='2'>
 <label>Songs for:
-<input id="venuesel" list="vensel" class="select-css" name="venue" onChange="evsel(this)"/>
+<input id="venueel" list="venlist" class="select-css" name="venue" onChange="selvenue(this)"/>
 </label>
-<datalist id="vensel">
+<datalist id="venlist">
 <option value="" disabled selected hidden>select Venue</option>
 <option>Rehearsal</option>
 <option>Chehalis West</option>
@@ -437,14 +418,14 @@ function init() {
 <option>Sharon Care</option>
 <option>Vintage</option>
 <option>Woodland Village</option>
+<option>Other...</option>
 </datalist>
 <label for="eventdate">on</label>
 <input type="datetime-local" class="select-css" value="" id="eventdate" step="900">
 <br/>
 <label>Use: 
-<input id="prevsel" list="prevev" class="select-css" name="prev"></label>
-<datalist id="prevev">
-</datalist>
+<select id="prevsel" class="select-css"></select>
+</label>
 </th></tr>
 <tr><td id='catboxes' colspan='2'>
  <input type='checkbox' name='cats' checked="1">Current</input>

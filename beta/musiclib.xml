@@ -155,7 +155,7 @@
     <words>I can say that city life</words>
   </song>
   <song id="1185" name="Bad, Bad Leroy Brown">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Fran Wilson</arranger>
     <composer>Jim Croce</composer>
     <copies>25</copies>
@@ -669,7 +669,7 @@
     </tracks>
   </song>
   <song id="1182" name="Edelweiss">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Julien Neel</arranger>
     <composer>Oscar/Hammerstein</composer>
     <key>C</key>
@@ -779,7 +779,7 @@
     <words>Good Christian men, rejoice</words>
   </song>
   <song id="1181" name="Happy Together">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Liz Garnett</arranger>
     <composer>Bonner/Gordon</composer>
     <copies>25</copies>
@@ -910,7 +910,7 @@
     <sheet gdid='1274WW3ccH_bDmkRxM318riUlA15D8887' sheet='Honey Little Lize Medley.pdf' />
   </song>
   <song id="1180" name="Hooked On a Feeling">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Jon Nicholas</arranger>
     <composer>Mark James</composer>
     <copies>30</copies>
@@ -1407,7 +1407,7 @@
     <sheet gdid="0Bxd7i2Hm5BiPMDBBUFJVeVRUbjA" sheet="LittleStreet.pdf" />
   </song>
   <song id="1179" name="Longest Time, The">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Tom Gentry</arranger>
     <composer>Billy Joel</composer>
     <copies>30</copies>
@@ -1651,7 +1651,7 @@
     </tracks>
   </song>
   <song id="1163" name="O Danny Boy">
-    <category>Show</category>
+    <category>Current</category>
     <key>Eb</key>
     <learn_by>2019-11-04</learn_by>
     <words>O Danny Boy</words>
@@ -1900,7 +1900,7 @@
     <sheet gdid='134dLQUBlVkjiAKHIoKjaveXertY6G4Jf' sheet='Sentimental Journey.pdf' />
   </song>
   <song id="1178" name="Seven Bridges Road">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Jeremy Johnson</arranger>
     <composer>Steve Young</composer>
     <copies>30</copies>
@@ -2012,7 +2012,7 @@
     </tracks>
   </song>
   <song id="1183" name="Stand By Me">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Steve Delehanty</arranger>
     <composer>King/Leiber/Stoller</composer>
     <copies>25</copies>
@@ -2398,7 +2398,7 @@
     <tracks><voice gdid="10mQJfX0XlAj0wyQh908DJeOZxqLGwZpk" mods="mix" path="mix/WHite Christmas.mp3" voice="mix" /></tracks>
   </song>
   <song id="1184" name="Who Put the Bomp">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Janne Olsson</arranger>
     <composer>BARRY MANN/GERRY GOFFIN</composer>
     <copyright>Screen Gems/EMI</copyright>

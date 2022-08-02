@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<!-- $Id: songperfs.html,v 1.1 2022/07/30 17:49:25 dfm Exp $
+<!-- $Id: songperfs.html,v 1.2 2022/07/31 00:17:46 dfm Exp $
      $Log: songperfs.html,v $
+     Revision 1.2  2022/07/31 00:17:46  dfm
+     simplify locating the checkbox elements by using one complex query rather than two.
+     guard against categories with no songs (Show is currently empty)
+     clear any selected venues on input into the search box
+
      Revision 1.1  2022/07/30 17:49:25  dfm
      Initial revision
 
@@ -136,8 +141,7 @@ function getMatches() {
     enddate = document.querySelector("#enddate").value.replaceAll("-", "");
 
     // get current selected venues
-    let el = document.querySelector("#vensel");
-    let cbs = el.querySelectorAll("input:checked");
+    let cbs = document.querySelectorAll("#vensel input:checked");
     doAllVenues = false; 
     venues = [];
     let targs = [];
@@ -151,8 +155,7 @@ function getMatches() {
     doAllVenues = venues.includes("All Events");
 
     // get current selected categories
-    el = document.querySelector(".catsel");
-    cbs = el.querySelectorAll("input:checked");
+    cbs = document.querySelectorAll(".catsel input:checked");
     thesecats = [];
     for (let cb of cbs) {
         let c = cb.labels[0].textContent;
@@ -230,11 +233,13 @@ function summary(el) {
     }
 
     for (let cat of thesecats) {
-        catSong[cat] = [];
-        for (let song of songsincat[cat]) {
-            catSong[cat][song] = [];
-            catSong[cat][song]['ntimes'] = 0;
-            catSong[cat][song]['last'] = "";
+        if (cat in songsincat) {
+            catSong[cat] = [];
+            for (let song of songsincat[cat]) {
+                catSong[cat][song] = [];
+                catSong[cat][song]['ntimes'] = 0;
+                catSong[cat][song]['last'] = "";
+            }
         }
     }
 
@@ -347,7 +352,7 @@ function venuesel(targ) {
         return;
     }
     let doall = document.querySelector("#allop").checked;
-    let cbs = document.querySelector("#vensel").querySelectorAll("input[type='checkbox']");
+    let cbs = document.querySelectorAll("#vensel input[type='checkbox']");
     if (targid == "allop") {
         for (let cb of cbs) {
             if (cb.id != "allop") {
@@ -367,7 +372,10 @@ function matchit(targ) {
     matches = [];
     let srch = targ.value.toLowerCase();
 
-    // scan the event list for events matching selected venues
+    // clear any selected venues
+    document.querySelectorAll("#vensel input:checked").forEach(cb => { cb.checked = false; });
+
+    // scan the venues list for event names matching selected venues
     // lowerVenue has a list of dtndx for the lower case of each venue name.
     for (let lowven in lowerVenue) {
         if (lowven.includes(srch)) {
@@ -402,6 +410,8 @@ function matchit(targ) {
 function init() {
     // start the load of the xmls.
     loads();
+
+    // register event listeners
     document.querySelector("#eventTable").addEventListener('click', perfev => eventsel(perfev.target));
     document.querySelector("#vensel").addEventListener('click', perfev => venuesel(perfev.target));
     document.querySelector("#srchfs").addEventListener('keyup', perfev => matchit(perfev.target));
