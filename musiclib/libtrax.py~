@@ -53,10 +53,9 @@ if False:
 
 voices = ['mix', 'bass', 'bari', 'lead', 'tenor']
 
-tmj = "Tuners Music.json"
-with open(tmj) as f:
+with open("C:/cygwin64/home/Del/src/devel/Tracks.json") as f:
     sljson = f.read()
-    print("read {} bytes from {}".format(len(sljson), tmj))
+    print("read {} bytes for Tracks.json".format(len(sljson)))
 
 jsongs = json.loads(sljson)
 
