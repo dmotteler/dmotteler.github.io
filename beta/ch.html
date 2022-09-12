@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <!--
 
-    $Id: ch.html,v 1.4 2022/07/20 20:38:47 dfm Exp $
+    $Id: ch.html,v 1.5 2022/09/12 00:16:54 dfm Exp $
     $Log: ch.html,v $
+    Revision 1.5  2022/09/12 00:16:54  dfm
+    corrected the list of places ch.html is called from (in 2 places)
+    went back to onclick on the radio button input elements, removed the addEventListener call[B
+    changed the approach to setting the init onload to see if Safari likes this one better
+    added DOCTYPE html to the top of the download to get out of quirks mode
+
     Revision 1.4  2022/07/20 20:38:47  dfm
     get cheat to print right, by removing border-collapse
     move style back inline, so downloaded cheats look right
@@ -21,7 +27,7 @@
 
 
     display cheat sheet based on evndx and newevent
-    called from ps.html, evhistory.html, and index.html
+    called from ps.html, songperfs.html, and index.html
 
 -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -54,12 +60,6 @@ function clickVoice() {
     // set showVoice, then emulate clicking that voice selection
     // to get the tracks showing or hidden. this is the init function
     // when a downloaded cheat is executed.
-
-    // register event listeners for the voice part selectors
-    let vsels = document.querySelectorAll("[name='part']");
-    for (let vsel of vsels) {
-        vsel.addEventListener('click', ev => setvoice(ev.target));
-    }
 
     let showVoice = localStorage.getItem("defaultVoice");
     if (! showVoice) { showVoice = "mix"; }
@@ -126,13 +126,13 @@ function init() {
         clickVoice();
         makelist();
 
-        const maintab = document.querySelector("#main_table");
-        maintab.addEventListener('contextmenu', ev => togqtet(ev));
-
-        // ch is called from ps.html, evhistory.html, cheats/index.html, 
+        // ch is called from ps.html, songperfs.html, cheats/index.html, 
         // only ps needs the call edit and download stuff.
         console.log(`referrer is ${document.referrer}`);
-        if (! document.referrer.includes("ps.html")) {
+        if (document.referrer.includes("ps.html")) {
+            let maintab = document.querySelector("#main_table");
+            maintab.addEventListener('contextmenu', ev => togqtet(ev));
+        } else {
             display_only();
         }
     });
@@ -209,15 +209,13 @@ function display_only() {
     // remove the "edit" and "download" buttons.
     document.querySelector(".butts").parentNode.deleteCell(0);
 
-    let newinit = "function init() { clickVoice(); }";
-    let screl = document.createElement("script");
-    let scrcon = document.createTextNode(newinit);
-    screl.appendChild(scrcon);
-
-    // replace functions unneeded for display_only version with
-    //  a new init() that just calls clickVoice.
+    // remove the unneeded functions.
     let sel = document.querySelector("#remove_these");
-    sel.replaceWith(screl);
+    sel.parentNode.removeChild(sel);
+
+    // replace the onload function on the <body>
+    let bel = document.querySelector("body");
+    bel.setAttribute("onload", "clickVoice()")
 
     console.log("unneeded functions removed.");
 }
@@ -229,7 +227,7 @@ function down() {
     let pom = document.createElement('a');
     pom.style.display = 'none';
 
-    let h = document.documentElement.outerHTML;
+    let h = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
     pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(h));
     pom.setAttribute('download', dlfn);
     document.body.appendChild(pom);
@@ -310,12 +308,12 @@ function calledit() {
         <td colspan="99">
         <fieldset class="partsel">
         <legend>Show voice</legend>
-         <input type="radio" id="seltenor" name="part" value="tenor">tenor</input>
-         <input type="radio" id="sellead" name="part" value="lead">lead</input>
-         <input type="radio" id="selbari" name="part" value="bari">bari</input>
-         <input type="radio" id="selbass" name="part" value="bass">bass</input>
-         <input type="radio" id="selmix" name="part" value="mix">mix</input>
-         <input type="radio" id="selnone" name="part" value="none">none</input>
+         <input type="radio" id="seltenor" name="part" value="tenor" onclick="setvoice(this)">tenor</input>
+         <input type="radio" id="sellead" name="part" value="lead" onclick="setvoice(this)">lead</input>
+         <input type="radio" id="selbari" name="part" value="bari" onclick="setvoice(this)">bari</input>
+         <input type="radio" id="selbass" name="part" value="bass" onclick="setvoice(this)">bass</input>
+         <input type="radio" id="selmix" name="part" value="mix" onclick="setvoice(this)">mix</input>
+         <input type="radio" id="selnone" name="part" value="none" onclick="setvoice(this)">none</input>
         </fieldset>
         </td>
      </tr>

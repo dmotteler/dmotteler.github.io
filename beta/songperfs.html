@@ -1,6 +1,14 @@
 <!DOCTYPE html>
-<!-- $Id: songperfs.html,v 1.2 2022/07/31 00:17:46 dfm Exp $
+<!-- $Id: songperfs.html,v 1.4 2022/09/12 16:45:07 dfm Exp $
      $Log: songperfs.html,v $
+     Revision 1.4  2022/09/12 16:45:07  dfm
+     reworked handling of categories reflecting musiclib changes
+
+     Revision 1.3  2022/09/12 00:11:27  dfm
+     selecting a song from the summary was failing to display the last performance,
+     because the dtndx wasn't available in the row. added the data-dtndx to the tr,
+     and moved it from one of the td's to the tr in two other places.
+
      Revision 1.2  2022/07/31 00:17:46  dfm
      simplify locating the checkbox elements by using one complex query rather than two.
      guard against categories with no songs (Show is currently empty)
@@ -29,7 +37,6 @@
 
 <script type="text/javascript">
 var aliasfor = []; // gives main sid for an alias sid
-var allcats = []; // all categories from musiclib
 var begindate; // start date from date-picker with - removed yyyymmdd
 var enddate; // end date from date-picker with - removed yyyymmdd
 var catSelected = []; // indexed by cat, true if cat checked
@@ -41,6 +48,7 @@ var newestFirst = []; // matches list, newest (biggest) first
 var songlib = []; // indexed by song name, value list of sids
 var songlist = []; // all song sids for an event
 var songsincat = []; // indexed by category, value is list of song names
+var sortedCats = []; // sorted list of all categories from library
 var venue = ""; // venue for event
 
 var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none'];
@@ -85,9 +93,6 @@ function loads() {
             songlib[nam].push(sid);
             if (musiclib[sid].hasOwnProperty('category')) {
                 for (let cat of musiclib[sid]['category']) {
-                    if (! allcats.includes(cat)) {
-                        allcats.push(cat);
-                    }
                     if (! songsincat.hasOwnProperty(cat)) {
                         songsincat[cat] = [];
                     }
@@ -99,10 +104,13 @@ function loads() {
         for (let cat in songsincat) {
             songsincat[cat] = songsincat[cat].sort();
         }
+        sortedCats = Object.keys(songsincat).sort();
 
         for (let nam in songlib) {
+            // if song nam has more than one sid...
             if (songlib[nam].length > 1) {
                 for (let sid of songlib[nam]) {
+                    // if song[sid] is in Old...
                     if (musiclib[sid]['category'].includes("Old")) {
                         let oldnam = nam + " (Old)";
                         // add modified name to songlib, for sid
@@ -118,6 +126,23 @@ function loads() {
                 }
             }
         }
+
+        // add all cats to the catsel fieldset
+        let catfs = document.querySelector(".catsel");
+        for (let cat of sortedCats) {
+            let rad = document.createElement("input");
+            rad.setAttribute("type", "checkbox");
+            rad.id = cat;
+            rad.value = cat;
+
+            let lab = document.createElement("label");
+            lab.htmlFor = cat;
+            lab.innerHTML = cat;
+
+            catfs.appendChild(rad);
+            catfs.appendChild(lab);
+        }
+
         /*
         // get the datalist element for the search
         let sel = document.getElementById("prevev");
@@ -199,7 +224,7 @@ function list_events() {
             let perfev = eventlist[dtndx];
             let when = perfev['when'];
             let where = perfev['where'];
-            html += `<tr><td>${where}</td><td data-dtndx='dt${dtndx}'>${when}</td></tr>\n`;
+            html += `<tr data-dtndx='dt${dtndx}'><td>${where}</td><td>${when}</td></tr>\n`;
         }
     }
     html += "</table>\n";
@@ -268,7 +293,6 @@ function summary(el) {
             }
         }
     }
-    let sortedCats = Object.keys(catSong).sort();
 
     // special-case KTWWS - (almost) always sung with LGTA
     let ktwws = "Keep The Whole World Singing";
@@ -288,29 +312,33 @@ function summary(el) {
 
     let html = "";
     for (let cat of sortedCats) {
-        let sortedSongs = Object.keys(catSong[cat]).sort();
-        let last, ntimes;
-        for (let song of sortedSongs) {
-            last = catSong[cat][song]['last'];
-            ntimes = catSong[cat][song]['ntimes'];
-            if (prevcat == "") {
-                prevcat = cat;
-                html += `<tr><td><table class='catperf'><caption>${cat}</caption>\n`;
-                html += `<tr><th>Song</th><th>Times</th><th>Last</th></tr>`;
-            } else if (cat != prevcat) {
-                html += `</table></td></tr>\n`;
-                // just closed table for prev cat. start one for cat
-                html += `<tr><td><table class='catperf'><caption>${cat}</caption>\n`;
-                html += `<tr><th>Song</th><th>Times</th><th>Last</th></tr>`;
-                prevcat = cat;
+        if (cat in catSong) { 
+            let sortedSongs = Object.keys(catSong[cat]).sort();
+            let dtndx, last, ntimes;
+            for (let song of sortedSongs) {
+                dtndx = catSong[cat][song]['last'];
+                ntimes = catSong[cat][song]['ntimes'];
+                if (prevcat == "") {
+                    prevcat = cat;
+                    html += `<tr><td><table class='catperf'><caption>${cat}</caption>\n`;
+                    html += `<tr><th>Song</th><th>Times</th><th>Last</th></tr>`;
+                } else if (cat != prevcat) {
+                    html += `</table></td></tr>\n`;
+                    // just closed table for prev cat. start one for cat
+                    html += `<tr><td><table class='catperf'><caption>${cat}</caption>\n`;
+                    html += `<tr><th>Song</th><th>Times</th><th>Last</th></tr>`;
+                    prevcat = cat;
+                }
+                if (ntimes == 0) {
+                    dtndx = ""
+                    lasttd = "<td class='never'>";
+                    last = ""
+                } else {
+                    last = mdy(dtndx);
+                    lasttd = "<td>";
+                }
+                html += `<tr data-dtndx='dt${dtndx}'><td>${song}</td><td>${ntimes}</td>${lasttd}${last}</td></tr>\n`;
             }
-            if (ntimes == 0) {
-                lasttd = "<td class='never'>";
-            } else {
-                last = mdy(last);
-                lasttd = "<td>";
-            }
-            html += `<tr><td>${song}</td><td>${ntimes}</td>${lasttd}${last}</td></tr>\n`;
         }
     }
     // close the last cat table, then the outer table
@@ -324,9 +352,11 @@ function eventsel(el) {
     // an event from the listed events was clicked...
     let tr = el.closest("tr");
     let when = tr.children[1].textContent;
-    evndx = tr.children[1].dataset.dtndx.substring(2);
-    newevent = eventlist[evndx];
-    let chwin = window.open("ch.html");
+    evndx = tr.dataset.dtndx.substring(2);
+    if (evndx != "") {
+        newevent = eventlist[evndx];
+        let chwin = window.open("ch.html");
+    }
 }
 
 function venuesel(targ) {
@@ -399,7 +429,7 @@ function matchit(targ) {
             let perfev = eventlist[dtndx];
             let when = perfev['when'];
             let where = perfev['where'];
-            html += `<tr><td>${where}</td><td data-dtndx='dt${dtndx}'>${when}</td></tr>\n`;
+            html += `<tr data-dtndx='dt${dtndx}'><td>${where}</td><td>${when}</td></tr>\n`;
         }
     }
     html += "</table>\n";
@@ -453,9 +483,6 @@ function init() {
     <tr><th>
       <fieldset class="catsel">
         <legend>Categories:</legend>
-        <input type="checkbox" id="curcat" checked><label for="curcat">Current, Show, PoleCat, PoleCatII</label><br/>
-        <input type="checkbox" id="xmscat"><label for="xmscat">Christmas</label>
-        <input type="checkbox" id="oldcat"><label for="oldcat">Old, Other</label>
       </fieldset>
     </th></tr>
         <!-- dates row -->
