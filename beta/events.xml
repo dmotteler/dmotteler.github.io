@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event dtndx="202209151815" qtetSongs="1032 1117" songlist="1011 1194 1116 1195 1184 1124 1032 1117 1103 1180 1100 1028 1183 1016" when="September 15, 2022 06:15PM" where="Vintage" />
+  <event dtndx="202209131800" songlist="1102 1055 1016 1124 1100 1194 1195 1116 1183 1184 1103 1180 1028 1011 1035" when="September 13, 2022 06:00PM" where="Rehearsal" />
   <event dtndx="202209031300" songlist="1011 1028 1116 1195 1124 1103" when="September 03, 2022 01:00PM" where="harbor days list" />
   <event dtndx="202208301800" songlist="1102 1052 1182 1124 1196 1028 1116 1195 1011 1103 1197 1035" when="August 30, 2022 06:00PM" where="Rehearsal" />
   <event dtndx="202208231800" songlist="1102 1055 1016 1124 1100 1194 1195 1116 1183 1184 1103 1180 1028 1011 1035" when="August 23, 2022 06:00PM" where="Rehearsal" />
