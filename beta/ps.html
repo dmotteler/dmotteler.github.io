@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- $Id: ps.html,v 1.5 2022/08/02 04:12:09 dfm Exp $
+<!-- $Id: ps.html,v 1.6 2022/09/12 19:10:20 dfm Exp $
      Log:$
 
      provide song list for cheat-sheet song selection
@@ -82,18 +82,6 @@ function togcat() {
         catSelected[cat] = catel.checked;
     }
 
-    let othersSel = document.querySelector("#othercats").checked;
-
-    // set catSelected for cats that don't have a button.
-    // allcats are all of the song categories from the lib.
-    // catSelected has the current setting of the checkboxes, excluding Others.
-    for (let cat of allcats) {
-        if (cat in catSelected) {
-        } else {
-            catSelected[cat] = othersSel;
-        }
-    }
-
     let songRows = document.querySelectorAll(".song");
 
     for (let songRow of songRows) {
@@ -159,12 +147,7 @@ function alldone() {
 
     // songs array may be sparse if any song was de-selected.
     // json will put 'null' for any empty cell. this gets rid of that.
-    var seq = [];
-    for (let song of songs) {
-        if (song) {
-            seq.push(song);
-        }
-    }
+    var seq = songs.filter(v => v);
 
     let monthNames = ["January", "February", "March", "April", "May", "June",
                    "July", "August", "September", "October", "November", "December"];
@@ -361,18 +344,6 @@ function useprev(el) {
 function selvenue(el) {
     // a venue has been selected. el is the input element
     venue = el.value;
-
-    if (venue == "Other...") {
-        let newven = prompt("Enter venue", "");
-        if (newven && newven != "") {
-            console.log(`using new venue ${newven}`);
-            venue = newven;
-            document.querySelector("#venueel").value = venue;
-        } else {
-            el.value = "";
-            return;
-        }
-    }
     console.log(`${venue} selected...`);
 }
 
@@ -418,7 +389,6 @@ function init() {
 <option>Sharon Care</option>
 <option>Vintage</option>
 <option>Woodland Village</option>
-<option>Other...</option>
 </datalist>
 <label for="eventdate">on</label>
 <input type="datetime-local" class="select-css" value="" id="eventdate" step="900">
@@ -430,10 +400,10 @@ function init() {
 <tr><td id='catboxes' colspan='2'>
  <input type='checkbox' name='cats' checked="1">Current</input>
  <input type='checkbox' name='cats' checked="1">PoleCat</input>
- <input type='checkbox' name='cats' checked="1">PoleCatII</input>
  <input type='checkbox' name='cats' checked="1">Show</input>
  <input type='checkbox' name='cats'>Christmas</input>
- <input type='checkbox' id='othercats'>Others</input>
+ <input type='checkbox' name='cats'>Quartet</input>
+ <input type='checkbox' name='cats'>Old</input>
 </td></tr>
 <tr>
 <th><input type="button" class="donebutt" value="Save" onclick="alldone()"/></th>
