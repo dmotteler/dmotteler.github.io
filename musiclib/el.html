@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+<!--
+
+    $Id: el.html,v 1.2 2022/07/05 22:42:12 dfm Exp $
+    $Log: el.html,v $
+    Revision 1.2  2022/07/05 22:42:12  dfm
+    replace[B musiclib load with getMusicLib.js
+
+    Revision 1.1  2022/07/01 19:12:29  dfm
+    Initial revision
+
+
+    provide list edit capabilities for ps -> ch -> el
+-->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title class="doctitle">${title}</title>
 <style>
@@ -26,6 +39,7 @@ span.u { text-decoration: underline black; font-style: italic; }
   td { padding: 4px; }
 }
 </style>
+<script src="getMusicLib.js"></script>
 <script>
 function sledit(el) {
     // this function is called when the action menu item 
@@ -44,10 +58,8 @@ function sledit(el) {
         return;
     }
     let cursong = songrow.children[0].innerText;
+    let cursid = songrow.children[2].innerText;
     let songndx = songrow.rowIndex;
-    if (songndx < 0) {
-        throw `${cursong} not found in ${songlist}`;
-    }
 
     // build select for current songlist. default option 0
     // is hidden because it con't be selected.
@@ -59,8 +71,9 @@ function sledit(el) {
             slsel += `<option style="display:none">
         <option>--top--</option>
         `
-            for (let s of songlist) {
-                slsel += `<option>${s}</option>\n`;
+            for (let sid of songlist) {
+                let song = musiclib[sid];
+                slsel += `<option value="${sid}">${song['name']}</option>\n`;
             }
             slsel += "</select>\n";
             editmenu = `<p onchange="slfunc('mov', this, ${songndx})">move <span class="u">${cursong}</span> after ${slsel}</p>`;
@@ -113,6 +126,7 @@ function slfunc(func, el, ndx) {
             console.log(`removed ${r} - ${songlist}`);
             break;
         case "rep":
+            // get new song name from the select in the instruction 
             let newsong = el.children[1].value;
             songlist.splice(ndx, 1, newsong);
             console.log(`replaced ${cursong} with ${newsong} - ${songlist}`);
@@ -137,22 +151,25 @@ function slfunc(func, el, ndx) {
 }
 function makelist() {
     let html = "";
-    for (let song of songlist) {
-        let cl = qtetSongs.includes(song) ? "class='qtet song'" : "class='song'"
-        html += `<tr onclick="selsong(this)" ${cl}><td>${song}</td><td class="selimg"><img src=""/></td></tr>`;
+    for (let sid of songlist) {
+        let song = musiclib[sid];
+        let cl = qtetSongs.includes(sid) ? "class='qtet song'" : "class='song'"
+        html += `<tr onclick="selsong(this)" ${cl}><td>${song['name']}</td>
+<td class="selimg"><img src=""/></td>
+<td class="hidden">${sid}</td></tr>`;
     }
-    document.getElementById("playlist").innerHTML = html;
+    document.getElementById("putithere").innerHTML = html;
     let chkimgs = document.querySelectorAll("img");
     for (let img of chkimgs) {
         img.src = nochecksvg;
     }
 }
-var datndx;
+var aliasfor = []; // gives main sid for an alias sid
 var evdate;
-var eventlist = [];
-var libsel;
 var qtetSongs = [];
+var songlib = [];
 var songlist = [];
+var songsid = [];
 var title;
 var venue;
 var checksvg; // svg for check mark to indicate selected row
@@ -171,52 +188,56 @@ function init() {
   %3Crect width="128" height="128" fill="none" /%3E
 %3C/svg%3E`;
 
-    // load and parse the song name list (actually a <select>)
-    let lsjson = localStorage.getItem('songlibsel');
+    let mlurl = "musiclib.xml";
+    let gmlpromise = getMusicLib(mlurl);
 
-    if (lsjson) {
-        libsel = JSON.parse(lsjson);
-    } else {
-        alert("couldn't load the lib song list from local storage.");
-        return;
-    }
+    let promises = [gmlpromise];
 
-    // load and parse the event list
-    let eljson = localStorage.getItem('TunersEvents');
+    Promise.all(promises).then(values => {
+        // all promises complete. values is list of values returned 
+        // by the promises, in the same order.
+        musiclib = values[0];
+        
+        for (let sid in musiclib) {
+            let song = musiclib[sid];
+            let nam = song['name'];
+            if (! songlib.hasOwnProperty(nam)) {
+                songlib[nam] = [];
+            }
+            songlib[nam].push(sid);
+        }
 
-    if (eljson) {
-        eventlist = JSON.parse(eljson);
-    } else {
-        alert("couldn't load the event list from local storage.");
-        return;
-    }
+        let sortedSongs = Object.keys(songlib).sort();
 
-    // showEvent is the index of the last event selected by picksongs. 
-    let evjson = localStorage.getItem('showEvent');
+        libsel = "<select id='libel'>";
+        libsel += `<option style="display:none">`
+        for (let s of sortedSongs) {
+            let sid = songlib[s][0];
+            libsel += `<option value="${sid}">${s}</option>\n`;
+        }
+        libsel += "</select>\n";
 
-    if (evjson) {
-        datndx = JSON.parse(evjson);
-    } else {
-        alert("couldn't find current event in local storage.");
-        return;
-    }
+        let ev = Object.assign(opener.chevt);
 
-    let ev = eventlist[datndx];
+        venue = ev['where'];
+        evdate = ev['when'];
 
-    venue = ev['where'];
-    evdate = ev['when'];
+        title = `Edit ${venue} - ${evdate}`;
+        document.title = title;
+        document.querySelector("#playlist").caption.textContent = title;
 
-    title = `${venue} - ${evdate}`;
-    document.title = title;
-    document.querySelector("#playlist").caption.textContent = title;
+        songlist = [];
+        for (let sid of ev['songlist']) {
+            songlist.push(sid);
+        }
 
-    songlist = ev['songlist'];
+        qtetSongs = [];
+        if (ev.hasOwnProperty("qtetSongs")) {
+            qtetSongs = ev['qtetSongs'];
+        }
 
-    qtetSongs = [];
-    if (ev.hasOwnProperty("qtetSongs")) {
-        qtetSongs = ev['qtetSongs'];
-    }
-    makelist();
+        makelist();
+    });
 }
 function selsong(el) {
     // el is the row where the left-click was done, or
@@ -227,7 +248,8 @@ function selsong(el) {
         // if we don't prevent it.
         event.preventDefault();
         let td = event.target;
-        cursong = td.innerText;
+        // get sid from hidden last column of row
+        cursong = td.parentNode.lastElementChild.textContent;
 
         // get the row element from the parent of the
         // td where the right-click was done.
@@ -268,19 +290,18 @@ function selsong(el) {
     document.getElementById("editmenu").innerHTML = `<p>Choose an action for <span class="u">${cursong}</span></p>`;
 }
 function done() {
-    // go back to caller after updating songlist in local storage.
+    // go back to caller after passing back a replacement event.
     let newevent = {'when': evdate, 'where': venue, 'songlist': songlist, 'qtetSongs': qtetSongs };
-    eventlist[datndx] = newevent;
-    console.log(`leaving with newevent ${newevent}`);
+    console.log(`leaving with songlist ${songlist}, qtetSongs ${qtetSongs}`);
 
-    // replace the updated event list in local storage.
-    localStorage.setItem('TunersEvents', JSON.stringify(eventlist));
-
-    window.location.href = "ch.html";
+    opener.chevt = newevent;
+    opener.elcancel = false;
+    window.close();
 }
 function cancel() {
-    console.log(`leavging without updating eventlist (cancel)`);
-    window.location.href = "ch.html";
+    console.log(`leaving without updating event (cancel)`);
+    opener.elcancel = true;
+    window.close();
 }
 </script>
 </head>
@@ -289,7 +310,7 @@ function cancel() {
 <tr><td>
   <table id='playlist' oncontextmenu="selsong(this)">
     <caption>${title}</caption>
-    <tr id="putithere"></tr>
+    <tbody id="putithere"></tbody>
   </table>
 </td></tr>
 <tr><td>

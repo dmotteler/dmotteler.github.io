@@ -1,26 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-
-    $Id: musiclib.xml,v 1.3 2022/09/12 16:49:04 dfm Exp $
-    $Log: musiclib.xml,v $
-    Revision 1.3  2022/09/12 16:49:04  dfm
-    *** empty log message ***
-
-    Revision 1.2  2022/09/12 16:41:13  dfm
-    changed aliases to aliasfor
-    changed YF2 category to Christmas
-    moved songs from Song category to Current
-    changed Other category to Old
-    changed TTS to Quartet
-    changed PoleCatII to PoleCat
-
-    Revision 1.1  2022/09/12 01:50:08  dfm
-    Initial revision
-
-
-    Tuners Music Library in xml - collection of <song>s
-
--->
+<!-- $Id: musiclib.xml,v 1.1 2022/09/13 00:38:30 dfm Exp $ -->
 <?xml-stylesheet type="text/xsl" href="musiclib.xsl"?>
 <musiclib name="Tuners Music Library">
   <song id="1101" name="After Dark">

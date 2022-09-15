@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- $Id: musiclib.xml,v 1.1 2022/09/13 00:38:30 dfm Exp $ -->
 <?xml-stylesheet type="text/xsl" href="musiclib.xsl"?>
 <musiclib name="Tuners Music Library">
   <song id="1101" name="After Dark">
@@ -13,7 +14,7 @@
   </song>
   <song id="1109" name="After You've Gone">
     <category>Current</category>
-    <category>PoleCatII</category>
+    <category>PoleCat</category>
     <arranger>Don Gray</arranger>
     <composer>Turner Layton</composer>
     <copyright>Don Gray</copyright>
@@ -106,7 +107,7 @@
     <tracks><voice gdid="0Bxd7i2Hm5BiPa3o2ZFJCeHpwTlk" mods="mix" path="mix/As With Gladness Men Of Old.mp3" voice="mix" /></tracks>
   </song>
   <song id="1126" name="Auld Lang Syne">
-    <category>YF2</category>
+    <category>Christmas</category>
     <arranger>Don Gray</arranger>
     <composer>Traditional Scottish</composer>
     <copies>3</copies>
@@ -155,7 +156,7 @@
     <words>I can say that city life</words>
   </song>
   <song id="1185" name="Bad, Bad Leroy Brown">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Fran Wilson</arranger>
     <composer>Jim Croce</composer>
     <copies>25</copies>
@@ -185,7 +186,7 @@
     <sheet gdid="1dn0UOXnZTHidwYlrjhgXQR6x7Ux3sgFY" sheet="Bad, Bad Leroy Brown.pdf" />
   </song>
   <song id="1157" name="Barbara Ann">
-    <category>TTS</category>
+    <category>Quartet</category>
     <arranger>Mel Knight</arranger>
     <key>Eb</key>
     <words>Ba ba ba, ba ba b'ran</words>
@@ -243,7 +244,7 @@
     <sheet gdid="0Bxd7i2Hm5BiPQWpVWnU1MW93bTQ" sheet="Beyond the Sea (La Mer).pdf" />
   </song>
   <song id="1150" name="Blue Skies">
-    <category>Other</category>
+    <category>Old</category>
     <arranger>C. Hine</arranger>
     <composer>Irving Berlin</composer>
     <copyright>Irving Berlin</copyright>
@@ -270,7 +271,7 @@
     <sheet gdid='12qDcDk0ALICZvafzTWRZsaYumjasqMDG' sheet='Breaking Up Is Hard To Do.pdf' />
   </song>
   <song id="1111" name="Bright Was The Night">
-    <category>PoleCatII</category>
+    <category>PoleCat</category>
     <arranger>David Wright</arranger>
     <composer>Anonymous</composer>
     <copyright>David Wright</copyright>
@@ -301,7 +302,7 @@
     <words>We're say-in' Bye</words>
   </song>
   <song id="1096" name="Bye Bye, Love">
-    <category>Other</category>
+    <category>Old</category>
     <arranger>SPEBSQSA, Inc</arranger>
     <composer>Felice &amp; Boudleaux Bryant</composer>
     <copyright>1957 House of Bryant Publ.</copyright>
@@ -345,7 +346,7 @@
     <words>Bum bum bum</words>
   </song>
   <song id="1112" name="Caroline">
-    <category>PoleCatII</category>
+    <category>PoleCat</category>
     <arranger>Larry Cole, Wally Cluett and the Boston Common</arranger>
     <composer>Randy Newman</composer>
     <copyright>Unichappell Music Inc</copyright>
@@ -373,7 +374,7 @@
     <sheet gdid="1llQ8ti6_i9RIQ0Gi6lyYhmaD56UCCLxR" sheet="Celebrate Harmony OPENER-CLOSER 2012-04-04.pdf" />
   </song>
   <song id="1198" name="Chances Are">
-    <category>TTS</category>
+    <category>Quartet</category>
     <arranger>Greg Volk</arranger>
     <composer>Robert Allen</composer>
     <copyright>Korwin Music</copyright>
@@ -387,7 +388,7 @@
     </tracks>
   </song>
   <song id="1127" name="Chanukah, Chanukah">
-    <category>YF2</category>
+    <category>Christmas</category>
     <arranger>Greg Lyne</arranger>
     <composer>Traditional Jewish</composer>
     <copies>3</copies>
@@ -425,7 +426,7 @@
     <sheet gdid="1WCnbOBSCHOiu16T4C-D1AgtCS9ToTHYM" sheet="COL.pdf" />
   </song>
   <song id="1128" name="Come, Thou Long-Expected Jesus">
-    <category>YF2</category>
+    <category>Christmas</category>
     <arranger>Adam Scott</arranger>
     <composer>Rowland Prichard</composer>
     <copies>3</copies>
@@ -439,11 +440,11 @@
     <stockID>210494</stockID>
     <words>Come, Thou Long-Expected Jesus</words>
   </song>
+  <song id="1220" name="Goodbye, My Coney Island Baby" aliasfor="1032"/>
+  <song id="1221" name="Coney Island" aliasfor="1032"/>
   <song id="1032" name="Coney Island Baby">
-    <alias>Goodbye, My Coney Island Baby</alias>
-    <alias>Coney Island</alias>
     <category>Current</category>
-    <category>PoleCatII</category>
+    <category>PoleCat</category>
     <arranger>BHS</arranger>
     <composer>Les Applegate</composer>
     <copyright>Mills Music, Inc</copyright>
@@ -488,7 +489,7 @@
     <words>All day I faced the barren waste</words>
   </song>
   <song id="1113" name="Darkness On The Delta">
-    <category>PoleCatII</category>
+    <category>PoleCat</category>
     <arranger>BHS</arranger>
     <composer>Jerry Levinson</composer>
     <copyright>Music Sales Corporation</copyright>
@@ -541,7 +542,7 @@
     <words>Deck the halls with boughs of holly</words>
   </song>
   <song id="1129" name="Deck the Halls">
-    <category>YF2</category>
+    <category>Christmas</category>
     <category>Old</category>
     <arranger>Burt Szabo</arranger>
     <composer>Old Welsh Air</composer>
@@ -641,7 +642,7 @@
     </tracks>
   </song>
   <song id="1114" name="Drivin' Me Crazy">
-    <category>PoleCatII</category>
+    <category>PoleCat</category>
     <arranger>Bob Disney</arranger>
     <composer>Bob Disney</composer>
     <copyright>Bob Disney</copyright>
@@ -669,7 +670,7 @@
     </tracks>
   </song>
   <song id="1182" name="Edelweiss">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Julien Neel</arranger>
     <composer>Oscar/Hammerstein</composer>
     <key>C</key>
@@ -686,7 +687,7 @@
     <sheet gdid="1eHDGFO_lNKOF0P_VdQlG5VHJ8IlHTVpw" sheet="Edelweiss.pdf" />
   </song>
   <song id="1158" name="Eight Days A Week">
-    <category>TTS</category>
+    <category>Quartet</category>
     <arranger>David Harrington</arranger>
     <composer>Lennon/McCartney</composer>
     <copyright>Siby/ATV Music Publishing</copyright>
@@ -718,9 +719,9 @@
       <voice gdid="1jnoYgz4aBfoYDWq4C1BaLp4QZf6fDOmv" mods="All" path="mix/Firefly - All.mp3" voice="mix" />
     </tracks>
   </song>
+  <song id="1222" name="From The First Hello" aliasfor="1115"/>
   <song id="1115" name="From The First Hello To The Last Goodbye">
-    <alias>From The First Hello</alias>
-    <category>PoleCatII</category>
+    <category>PoleCat</category>
     <arranger>Lou Perry</arranger>
     <composer>Johnny Burke</composer>
     <copyright>Marke-Music Publishing Co, Inc</copyright>
@@ -737,7 +738,7 @@
     <sheet gdid="1-ZuKCouJsF1OQhB61ARDu4hSwiJNmv77" sheet="From the First Hello.pdf" />
   </song>
   <song id="1131" name="Go, Tell It on the Mountain">
-    <category>YF2</category>
+    <category>Christmas</category>
     <arranger>Joe Johnson</arranger>
     <composer>Traditional</composer>
     <copies>3</copies>
@@ -764,7 +765,7 @@
     <sheet gdid="1-3lnZit0jeoxUbEU4fwBiZ1DWbL9Y07V" sheet="God Bless America.pdf" />
   </song>
   <song id="1132" name="Good Christian Men, Rejoice">
-    <category>YF2</category>
+    <category>Christmas</category>
     <arranger>Joe Johnson</arranger>
     <composer>Traditional German</composer>
     <copies>3</copies>
@@ -779,7 +780,7 @@
     <words>Good Christian men, rejoice</words>
   </song>
   <song id="1181" name="Happy Together">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Liz Garnett</arranger>
     <composer>Bonner/Gordon</composer>
     <copies>25</copies>
@@ -801,7 +802,7 @@
     <sheet gdid="110FaozNqA9GzpY1DQu9idtwI6EqeFVQo" sheet="Happy Together.pdf" />
   </song>
   <song id="1159" name="Have A Little Talk With Myself">
-    <category>TTS</category>
+    <category>Quartet</category>
     <arranger>Gary Parker</arranger>
     <composer>Ray Stevens</composer>
     <copyright>Ahab Music Co./BMI</copyright>
@@ -822,7 +823,7 @@
   </song>
   <song id="1116" name="Hello Mary Lou">
     <category>Current</category>
-    <category>PoleCatII</category>
+    <category>PoleCat</category>
     <arranger>David Wright</arranger>
     <composer>Gene Pitney and Cayet Mangiaracina</composer>
     <copyright>Songs of Universal, Inc</copyright>
@@ -841,7 +842,7 @@
     <sheet gdid="1-fvobnxXGe2__NpiQ7YZzSVTyxloWgna" sheet="Hello Mary Lou.pdf" />
   </song>
   <song id="1133" name="Here We Come A-Wassailing">
-    <category>YF2</category>
+    <category>Christmas</category>
     <arranger>Larry Triplett</arranger>
     <composer>Traditional English</composer>
     <copies>3</copies>
@@ -910,7 +911,7 @@
     <sheet gdid='1274WW3ccH_bDmkRxM318riUlA15D8887' sheet='Honey Little Lize Medley.pdf' />
   </song>
   <song id="1180" name="Hooked On a Feeling">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Jon Nicholas</arranger>
     <composer>Mark James</composer>
     <copies>30</copies>
@@ -971,7 +972,7 @@
   </song>
   <song id="1117" name="I Don't Know Why">
     <category>Current</category>
-    <category>PoleCatII</category>
+    <category>PoleCat</category>
     <arranger>Mel Knight</arranger>
     <composer>Fred E Ahlert</composer>
     <copyright>Cromwell Music, Inc</copyright>
@@ -1014,9 +1015,9 @@
     <words>My home's the place</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPSmozVDFjT25GTnM" mods="mix" path="mix/I'll Be Home For Christmas.mp3" voice="mix" /></tracks>
   </song>
+  <song id="1223" name="Gonna Live Till I Die" aliasfor="1160"/>
   <song id="1160" name="I'm Gonna Live Till I Die">
-    <alias>Gonna Live Till I Die</alias>
-    <category>TTS</category>
+    <category>Quartet</category>
     <arranger>Western Continentals/Greg Volk</arranger>
     <composer>Hoffman/Kent/Curtis</composer>
     <copyright>Onyx Music Co.</copyright>
@@ -1036,7 +1037,7 @@
     </tracks>
   </song>
   <song id="1118" name="I've Been Working On The Railroad">
-    <category>PoleCatII</category>
+    <category>PoleCat</category>
     <arranger>Roger Payne</arranger>
     <composer>Traditional</composer>
     <copyright>Roger Payne</copyright>
@@ -1052,7 +1053,7 @@
     </tracks>
   </song>
   <song id="1151" name="I've Got the World on a String">
-    <category>Other</category>
+    <category>Old</category>
     <arranger>Adam Reimnitz</arranger>
     <composer>Harold Arlen</composer>
     <copyright>Ted Koehler Music and S.A. Music Co.</copyright>
@@ -1107,7 +1108,7 @@
     <sheet gdid='130laHfzcMzUd_p7AKtCPbgZJwLzdFPsn' sheet='In My Room.pdf' />
   </song>
   <song id="1134" name="In the Bleak Midwinter">
-    <category>YF2</category>
+    <category>Christmas</category>
     <arranger>Burt Szabo</arranger>
     <composer>Gustav Holst</composer>
     <copies>3</copies>
@@ -1122,7 +1123,7 @@
     <words>In the bleak midwinter</words>
   </song>
   <song id="1135" name="Infant Holy, Infant Lowly">
-    <category>YF2</category>
+    <category>Christmas</category>
     <arranger>Burt Szabo</arranger>
     <composer>Traditional Polish</composer>
     <copies>3</copies>
@@ -1180,8 +1181,8 @@
     <words>It's beginning to look a lot like Christmas</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPODFYY3NYVFRjdzg" mods="mix" path="mix/It's Beginning To Look Like Christmas.mp3" voice="mix" /></tracks>
   </song>
+  <song id="1224" name="It's the Music That Brings Us Together" aliasfor="1197"/>
   <song id="1197" name="It's the Music">
-    <alias>It's the Music That Brings Us Together</alias>
     <category>Current</category>
     <arranger>Clay Hine</arranger>
     <composer>Clay Hine</composer>
@@ -1231,7 +1232,7 @@
     <words>Joy to the world, the Lord is come!</words>
   </song>
   <song id="1136" name="Joy to the World!">
-    <category>YF2</category>
+    <category>Christmas</category>
     <arranger>Joe Liles</arranger>
     <composer>George F. Handel</composer>
     <copies>3</copies>
@@ -1249,6 +1250,13 @@
     <category>Current</category>
     <key>Eb</key>
     <words>Keep the whole world singing</words>
+    <tracks>
+      <voice gdid="14h7c_X47gjGQ_yPUfxVD_DjAqdndNALe" mods="bari" path="bari/04-Keep-the-Whole-World-Singing-Bari.mp3" voice="bari" />
+      <voice gdid="14zfjyCRN_O_YiodHCstwQESUWcSfRzY7" mods="bass" path="bass/05-Keep-the-Whole-World-Singing-Bass.mp3" voice="bass" />
+      <voice gdid="143VSt94ovb15p56Ia_UHJm7yaru1qC6G" mods="mix" path="mix/01-Keep-the-Whole-World-Singing-Full-Mix.mp3" voice="mix" />
+      <voice gdid="14SLQlkcwWP3uT7bv1u6a1yNgNxS7Zuei" mods="lead" path="lead/03-Keep-the-Whole-World-Singing-Lead.mp3" voice="lead" />
+      <voice gdid="14K0XXG10apzcwy2o1inSWbzMFIakYN6J" mods="tenor" path="tenor/02-Keep-the-Whole-World-Singing-Tenor.mp3" voice="tenor" />
+    </tracks>
     <sheet gdid="19GaQR8UblmC7nkfeeqj4GuhAXzlsc6Xz" sheet="Let's Get Together - KTWWS.pdf" />
   </song>
   <song id="1090" name="Kentucky Babe">
@@ -1285,7 +1293,7 @@
     <sheet gdid="1KQgpa_XUY0JWy9kKnaQ05EHBWaH_gaP8" sheet="Kokomo.pdf" />
   </song>
   <song id="1137" name="Let All Mortal Flesh Keep Silence">
-    <category>YF2</category>
+    <category>Christmas</category>
     <arranger>Jeff Taylor</arranger>
     <composer>Traditional French</composer>
     <copies>3</copies>
@@ -1345,7 +1353,7 @@
     <words>So here is my love song</words>
   </song>
   <song id="1119" name="Lida Rose/Will I Ever Tell You">
-    <category>PoleCatII</category>
+    <category>PoleCat</category>
     <arranger>Mo Rector/Nancy Bergman</arranger>
     <composer>Meredith Willson</composer>
     <copyright>Frank Music Corp and Meredith Willson Music</copyright>
@@ -1407,7 +1415,7 @@
     <sheet gdid="0Bxd7i2Hm5BiPMDBBUFJVeVRUbjA" sheet="LittleStreet.pdf" />
   </song>
   <song id="1179" name="Longest Time, The">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Tom Gentry</arranger>
     <composer>Billy Joel</composer>
     <copies>30</copies>
@@ -1421,7 +1429,10 @@
     <source>BHS</source>
     <stockID>8631</stockID>
     <words>woh-oh-oh</words>
-    <tracks><voice gdid="14_ZW7Kue-Lf4OCN10a2zqhOhFXsPauqT" mods="Bass" path="bass/Longest Time, The - Bass.mp3" voice="bass" />
+    <tracks>
+      <voice gdid="1ChESlhfsCTqwRztevn8o1CPsYeEEBS-b" mods="Bass predominant" path="For The Longest Time - Bass predominant.mp3" voice="bass" />
+      <voice gdid="1CMWbDuzc6vgHCherapuVUywewDVA9qX6" mods="Bass right" path="For The Longest Time - Bass right.mp3" voice="bass" />
+      <voice gdid="1_UFiNbBuRD8DvkP28f5aPyR_8DdRoNc4" mods="Bass solo" path="bass/For The Longest Time - Bass solo.mp3" voice="bass" />
       <voice gdid="1CBa2BC6zvd4GZNWXmFMQJtAlySJJiJIg" mods="Baritone predominant" path="bari/Longest Time, The - Baritone predominant.mp3" voice="bari" />
       <voice gdid="1Y7sDxE1m6JzuKS6-f7sNz-dRBJjA74cj" mods="Baritone right" path="bari/Longest Time, The - Baritone right.mp3" voice="bari" />
       <voice gdid="18GrMpa-53tmGOFsBr__CpfsOkT4J2Wcq" mods="Baritone solo" path="bari/Longest Time, The - Baritone solo.mp3" voice="bari" />
@@ -1465,7 +1476,7 @@
     </tracks>
   </song>
   <song id="1152" name="Lullaby In Ragtime">
-    <category>Other</category>
+    <category>Old</category>
     <arranger>Boston Common et al</arranger>
     <composer>Sylvia Fine</composer>
     <copyright>DENA Music, Inc</copyright>
@@ -1651,7 +1662,7 @@
     </tracks>
   </song>
   <song id="1163" name="O Danny Boy">
-    <category>Show</category>
+    <category>Current</category>
     <key>Eb</key>
     <learn_by>2019-11-04</learn_by>
     <words>O Danny Boy</words>
@@ -1663,8 +1674,8 @@
     </tracks>
     <sheet gdid="1EtrZ__V_PwmAOKyn5W38Lqd60nrRZwJN" sheet="O Danny Boy.pdf" />
   </song>
+  <song id="1225" name="Pretty Woman" aliasfor="1193"/>
   <song id="1193" name="Oh, Pretty Woman">
-    <alias>Pretty Woman</alias>
     <category>Current</category>
     <composer>Roy Orbison, Bill Dees</composer>
     <copyright>Roy Orbison Music Company</copyright>
@@ -1686,7 +1697,7 @@
     <sheet gdid="1P5YwK772cJWVYypKt4YF5jZRcGSvhYTS" sheet="Pretty Womanpdf - Score (1).pdf" />
   </song>
   <song id="1147" name="Old Devil Moon">
-    <category>Other</category>
+    <category>Old</category>
     <arranger>Aaron Dale</arranger>
     <composer>Burton Lane</composer>
     <copyright>Chappell &amp; Co. Inc and Glocca Morra Music</copyright>
@@ -1718,6 +1729,13 @@
     <key>Bb</key>
     <lyricist>Geoffrey O'Hara</lyricist>
     <words>The old songs</words>
+    <tracks>
+      <voice gdid="14br7s53Xoe4rOYbVZ9kivFCW7SNgr4Ys" mods="bari" path="bari/04-The-Old-Songs-Bari.mp3" voice="bari" />
+      <voice gdid="14izz2uTeQD95XgJEZK43zgBaxjirTEqT" mods="bass" path="bass/05-The-Old-Songs-Bass.mp3" voice="bass" />
+      <voice gdid="14A0LxDWFcGyPW3ukYhd5yRhGxqM6JoZ_" mods="mix" path="mix/01-The-Old-Songs-Full-Mix.mp3" voice="mix" />
+      <voice gdid="14O5YIWoe1nJGaMSmP45ahs3ALXUj8LBm" mods="lead" path="lead/03-The-Old-Songs-Lead.mp3" voice="lead" />
+      <voice gdid="14BOEstbE7hWt3b4irJe9lEw7fkfbEfG1" mods="tenor" path="tenor/02-The-Old-Songs-Tenor.mp3" voice="tenor" />
+    </tracks>
     <sheet gdid="1TocYtKifQWG0Cg_GZgpoDduUZN56AjW7" sheet="Old Songs.pdf" />
   </song>
   <song id="1049" name="On The Sunny Side of the Street">
@@ -1758,7 +1776,7 @@
   </song>
   <song id="1120" name="Over The Rainbow">
     <category>Current</category>
-    <category>PoleCatII</category>
+    <category>PoleCat</category>
     <arranger>Ed Waesche</arranger>
     <composer>Harold Arlen</composer>
     <copyright>EMI Feist Catalog Inc</copyright>
@@ -1791,7 +1809,7 @@
     <words>bmm bmm bmm won't</words>
   </song>
   <song id="1154" name="Pray For Sunshine">
-    <category>Other</category>
+    <category>Old</category>
     <arranger>Tom Gentry</arranger>
     <copyright>Tom Gentry</copyright>
     <crdate>1997-12-31</crdate>
@@ -1863,7 +1881,7 @@
     <sheet gdid="1S-dzHE_oUwteBE8KfXScReLITLa_VBnu" sheet="The Rose.pdf" />
   </song>
   <song id="1188" name="Route 66">
-    <category>Other</category>
+    <category>Old</category>
     <words>??</words>
     <tracks><voice gdid="1q3qg4dyWYT9I0ZDeMDgpwQVh58_BZF__" mods="Bass" path="bass/Route 66 - Bass.mp3" voice="bass" />
       <voice gdid="1KpaHEKk-KoT3K_wtaFtg0zpIZZHas8Qv" mods="Bari" path="bari/Route 66 - Bari.mp3" voice="bari" />
@@ -1900,7 +1918,7 @@
     <sheet gdid='134dLQUBlVkjiAKHIoKjaveXertY6G4Jf' sheet='Sentimental Journey.pdf' />
   </song>
   <song id="1178" name="Seven Bridges Road">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Jeremy Johnson</arranger>
     <composer>Steve Young</composer>
     <copies>30</copies>
@@ -1925,7 +1943,7 @@
     <sheet gdid="13_YF9HREw0VgsjThJt2n5dSEWpcs6Bnn" sheet="Seven Bridges Road.pdf" />
   </song>
   <song id="1148" name="Seventy-Six Trombones">
-    <category>Other</category>
+    <category>Old</category>
     <arranger>John Peterson</arranger>
     <composer>Meredith Willson</composer>
     <key>C</key>
@@ -2002,7 +2020,7 @@
     <sheet gdid='136SPTMJVmVjdqgzoEZu1InJmuNIvbovS' sheet='Sixteen Tons.pdf' />
   </song>
   <song id="1189" name="Smilin Through">
-    <category>Other</category>
+    <category>Old</category>
     <words>??</words>
     <tracks><voice gdid="136I0TFy8-sAalRjKk2a0JzhZo_tGEhin" mods="Bass" path="bass/Smilin Through - Bass.mp3" voice="bass" />
       <voice gdid="1Hr3TXrEvFNdhCYbVI8KyoTnJ4v5xznWJ" mods="Bari" path="bari/Smilin Through - Bari.mp3" voice="bari" />
@@ -2012,7 +2030,7 @@
     </tracks>
   </song>
   <song id="1183" name="Stand By Me">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Steve Delehanty</arranger>
     <composer>King/Leiber/Stoller</composer>
     <copies>25</copies>
@@ -2086,8 +2104,8 @@
       <voice gdid="1NRH83jAl7AREdcbZBLmKwQDe1whAcqkP" mods="All" path="mix/Steamin' Down The River - All.mp3" voice="mix" />
     </tracks>
   </song>
+  <song id="1226" name="Heart Of My Heart" aliasfor="1052"/>
   <song id="1052" name="Story Of The Rose">
-    <alias>Heart Of My Heart</alias>
     <category>PoleCat</category>
     <arranger>SPEBSQSA</arranger>
     <composer>Andrew Mack</composer>
@@ -2104,7 +2122,7 @@
     <sheet gdid='12czXRobuKY4eA_8mTjxvFsCbBZHYnRhn' sheet='Heart of My Heart.pdf' />
   </song>
   <song id="1153" name="Sunshine of Your Smile, The">
-    <category>Other</category>
+    <category>Old</category>
     <arranger>Tom Gentry</arranger>
     <composer>Lilian Ray</composer>
     <copyright>Tom Gentry</copyright>
@@ -2144,7 +2162,7 @@
     <sheet gdid='12N2l7Kg3kLf9HoOQFz5MwCOBh57SoAIr' sheet='Sweet Sweet Roses of Morn.pdf' />
   </song>
   <song id="1190" name="Teddy Bear">
-    <category>Other</category>
+    <category>Old</category>
     <words>??</words>
     <tracks><voice gdid="1GMPi-Ky6d6ltjEKYhgclOj39LvrUs0Ri" mods="Bass" path="bass/Teddy Bear - Bass.mp3" voice="bass" />
       <voice gdid="1ZiOA-bH6zYmuYCk__xUEW7nKJmU_fJUG" mods="Bari" path="bari/Teddy Bear - Bari.mp3" voice="bari" />
@@ -2162,7 +2180,7 @@
     <words>Oh,  tee-idle dum dum</words>
   </song>
   <song id="1130" name="The First Noel">
-    <category>YF2</category>
+    <category>Christmas</category>
     <arranger>Wayne M Grimmer</arranger>
     <composer>Traditional English</composer>
     <copies>3</copies>
@@ -2177,7 +2195,7 @@
     <words>Noel Noel</words>
   </song>
   <song id="1155" name="There's a Vacant Chair at Home Sweet Home">
-    <category>Other</category>
+    <category>Old</category>
     <arranger>Paul Olguin</arranger>
     <composer>James F. Hanley</composer>
     <copyright>Paul Olguin</copyright>
@@ -2323,7 +2341,7 @@
     <tracks><voice gdid="10uINtALGay-h0HsqxPefNrcBLLu-N87F" mods="mix" path="mix/We Need a Little Christmas.mp3" voice="mix"/></tracks>
   </song>
   <song id="1138" name="We Three Kings of Orient Are">
-    <category>YF2</category>
+    <category>Christmas</category>
     <arranger>Joe Johnson</arranger>
     <composer>Traditional German</composer>
     <copies>3</copies>
@@ -2355,7 +2373,7 @@
     <sheet gdid="1NlBDmM04BAal2sD5m4frftfNEvRfMvv9" sheet="Wells Fargo Wagon.pdf" />
   </song>
   <song id="1139" name="What Child is This?">
-    <category>YF2</category>
+    <category>Christmas</category>
     <arranger>Burt Szabo</arranger>
     <composer>Traditional English</composer>
     <copies>3</copies>
@@ -2398,7 +2416,7 @@
     <tracks><voice gdid="10mQJfX0XlAj0wyQh908DJeOZxqLGwZpk" mods="mix" path="mix/WHite Christmas.mp3" voice="mix" /></tracks>
   </song>
   <song id="1184" name="Who Put the Bomp">
-    <category>Show</category>
+    <category>Current</category>
     <arranger>Janne Olsson</arranger>
     <composer>BARRY MANN/GERRY GOFFIN</composer>
     <copyright>Screen Gems/EMI</copyright>
@@ -2559,8 +2577,8 @@
       <voice gdid="13JJQeiereNgSxTIzs80Mwxb-9AGUEI2s" mods="All" path="mix/You're Just In Love - All.mp3" voice="mix" />
     </tracks>
   </song>
+  <song id="1227" name="Sweet Adeline" aliasfor="1110"/>
   <song id="1110" name="You're The Flower Of My Heart, Sweet Adeline">
-    <alias>Sweet Adeline</alias>
     <category>PoleCat</category>
     <arranger>SPEBSQSA</arranger>
     <composer>Harry Armstrong</composer>
@@ -2594,8 +2612,8 @@
     <key>G</key>
     <learn_by>2015-03-01</learn_by>
   </song>
+  <song id="1228" name="Up On the Housetop" aliasfor="1202"/>
   <song id="1202" name="Up on the Housetop">
-    <alias>Up On the Housetop</alias>
     <category>Christmas</category>
     <arranger>SPEBSQSA</arranger>
     <composer>B. R. Hanby</composer>
