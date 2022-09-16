@@ -2,8 +2,14 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    $Id:$
-    $Log:$
+    $Id: evtplay.html,v 1.2 2022/09/15 22:58:27 dfm Exp $
+    $Log: evtplay.html,v $
+    Revision 1.2  2022/09/15 22:58:27  dfm
+    show mix track for missing part track
+
+    Revision 1.1  2022/09/15 22:55:32  dfm
+    Initial revision
+
 
     build playlist for an event with google drive links to the mp3s
     this version uses musiclib.xml and eventlist.xml
@@ -301,7 +307,7 @@ function nextsong(dir) {
     numelcalls = 0;
 }
 
-// listeners for the buttons
+// listeners for the voice-part buttons
 function havepart(el) {
     // if music is playing when a voice part is selected, shut it down.
     if (audel) {
@@ -390,8 +396,16 @@ function playlist() {
             nam += " [" + song.location + "]";
         }
         if (song.hasOwnProperty('tracks')) {
+            let v;
             if (song['tracks'].hasOwnProperty(voice)) {
-                for (let vtr of song['tracks'][voice]) {
+                v = voice;
+            } else if (song['tracks'].hasOwnProperty('mix')) {
+                v = 'mix';
+            } else {
+                v = None;
+            }
+            if (song['tracks'].hasOwnProperty(v)) {
+                for (let vtr of song['tracks'][v]) {
                     trkno++;
                     let gdid = vtr['gdid'];
                     let mods = vtr['mods'];

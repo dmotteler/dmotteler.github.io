@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <!--
 
-    $Id: ch.html,v 1.5 2022/09/12 00:16:54 dfm Exp $
+    $Id: ch.html,v 1.6 2022/09/16 19:41:19 dfm Exp $
     $Log: ch.html,v $
+    Revision 1.6  2022/09/16 19:41:19  dfm
+    if we have a mix track for a song with a missing part track, link to the mix
+
     Revision 1.5  2022/09/12 00:16:54  dfm
     corrected the list of places ch.html is called from (in 2 places)
     went back to onclick on the radio button input elements, removed the addEventListener call[B
@@ -173,19 +176,31 @@ function makelist() {
         if (song.hasOwnProperty("tracks")) {
             for (let voice of voices) {
                 let choices = [];
+                if (voice == "none") {
+                    choices.push(songTitle);
+                } else {
+                    let v;
+                    if (song['tracks'].hasOwnProperty(voice)) {
+                        v = voice;
+                    } else if (song['tracks'].hasOwnProperty('mix')) {
+                        v = 'mix';
+                    } else {
+                        v = null;
+                    }
+                    if (song['tracks'].hasOwnProperty(v)) {
+                        for (let vtrk of song['tracks'][v]) {
+                            let gdid = vtrk['gdid'];
+                            let mods = vtrk['mods'];
+                            choices.push(`<a href='https://drive.google.com/open?id=${gdid}'>${songTitle} : ${mods}</a>`);
+                        }
+                    } else { 
+                        // no tracks for this voice
+                        choices.push(songTitle);
+                    }
+                }
                 let ancclass = voice;
                 if (voice != showVoice) {
                     ancclass += " hidden";
-                }
-                if (song['tracks'].hasOwnProperty(voice)) {
-                    for (let vtrk of song['tracks'][voice]) {
-                        let gdid = vtrk['gdid'];
-                        let mods = vtrk['mods'];
-                        choices.push(`<a href='https://drive.google.com/open?id=${gdid}'>${songTitle} : ${mods}</a>`);
-                    }
-                } else { 
-                    // no tracks for this voice
-                    choices.push(songTitle);
                 }
                 picks += `<div class='${ancclass}'>` + choices.join("<br/>\n") + "\n</div>";
             }
