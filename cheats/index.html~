@@ -5,7 +5,7 @@
   </head>
   <body>
     <script>
-      let url = "/dmotteler.github.io/musiclib/";
+      let url = "../musiclib/index.html";
       window.location.href = url;
     </script>
   </body>
