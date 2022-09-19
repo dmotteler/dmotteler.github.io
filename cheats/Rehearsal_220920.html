@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id="doctitle">Rehearsal - September 20, 2022 06:00PM</title>
+<style>
+table { border: 5px solid black; border-spacing: 0px;
+    font-family: Arial; font-size: 18px; font-weight: bold; }
+td { border: 1px solid black; padding: 6px; }
+tr:nth-child(even) { background: #CCC }
+tr:nth-child(odd) { background: #FFF }
+.tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
+.key, .pitch { text-align: center; }
+.hidden { display: none; }
+.qtet { background-color: blue !important; color: white !important; }
+.qtet a { background-color: blue !important; color: white !important; }
+.partsel { text-align: center; background: lightgreen; }
+@media print {
+  @page { size: letter portrait; margin: .5in; }
+  body { max-width: 5.5in; }
+  table { font-size: 12px; }
+  td { padding: 4px; }
+  .tabletitle { font-size: 18px; }
+}
+</style>
+
+<script>
+var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none'];
+var showVoice;
+function clickVoice() {
+    // set showVoice, then emulate clicking that voice selection
+    // to get the tracks showing or hidden. this is the init function
+    // when a downloaded cheat is executed.
+
+    let showVoice = localStorage.getItem("defaultVoice");
+    if (! showVoice) { showVoice = "mix"; }
+    let buttonId = "#sel" + showVoice;
+    let butt = document.querySelector(buttonId);
+    butt.click();
+}
+function setvoice(el) {
+    let voice = el.value;
+    let clr = "." + voice;
+    // show the class we were called with (i.e., remove "hidden")
+    document.querySelectorAll(clr).forEach(node => { node.classList.remove("hidden") });
+    let others = new Set(voices);
+    others.delete(voice);
+    // don't show the rest of the classes
+    for (let v of others) {
+        let cla = "." + v;
+        document.querySelectorAll(cla).forEach(node => { node.classList.add("hidden") });
+    }
+    if (voice != "none") {
+        localStorage.setItem("defaultVoice", voice);
+    }
+}
+</script>
+
+</head>
+<body onload="clickVoice()">
+    <table>
+        <tbody id="main_table"><tr><td colspan="3" class="tabletitle">Rehearsal - September 20, 2022 06:00PM</td></tr><tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=14izz2uTeQD95XgJEZK43zgBaxjirTEqT">Old Songs, The : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=14br7s53Xoe4rOYbVZ9kivFCW7SNgr4Ys">Old Songs, The : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=14O5YIWoe1nJGaMSmP45ahs3ALXUj8LBm">Old Songs, The : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=14BOEstbE7hWt3b4irJe9lEw7fkfbEfG1">Old Songs, The : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=14A0LxDWFcGyPW3ukYhd5yRhGxqM6JoZ_">Old Songs, The : mix</a>
+</div><div class="none hidden">Old Songs, The
+</div></td><td>The old songs</td></tr>
+<tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1-4Bc1JG0gYtvP2VhqZ5NNS8zygBHfuUX">Down Our Way [Polecat I pg 8] : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1YuMJWikBp40mWA1DpASDm4_q8DnAp1lD">Down Our Way [Polecat I pg 8] : bari left</a>
+</div><div class="lead hidden">Down Our Way [Polecat I pg 8]
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=11SA87C1syv-XTVlmysvT3gwYswyZPAYf">Down Our Way [Polecat I pg 8] : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=198g_jL0Z2BBYX-RBQ_DUAYsEhmEXkgNT">Down Our Way [Polecat I pg 8] : mix</a>
+</div><div class="none hidden">Down Our Way [Polecat I pg 8]
+</div></td><td>Down our way</td></tr>
+<tr class="song"><td class="key">F</td><td>Dona Nobis Pacem
+</td><td>Do-na no-bis</td></tr>
+<tr class="song"><td class="key">Ab</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=13HMMiJrp_dX0uG91x-N_fr-JX7MT2P3y">Wait Till The Sun Shines, Nellie [Polecat I pg 4] : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=19DLSxn_SdW1Tn4JmLPzklxYWOSUUX1ua">Wait Till The Sun Shines, Nellie [Polecat I pg 4] : bari left</a>
+</div><div class="lead hidden">Wait Till The Sun Shines, Nellie [Polecat I pg 4]
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=11CrCJdd35eUNCMqVWnHnh9zQVdRZWJdl">Wait Till The Sun Shines, Nellie [Polecat I pg 4] : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1aaehICSdJdWKhQO6Vd9IqTtyUmfPHByl">Wait Till The Sun Shines, Nellie [Polecat I pg 4] : mix</a>
+</div><div class="none hidden">Wait Till The Sun Shines, Nellie [Polecat I pg 4]
+</div></td><td>On a Sunday morn</td></tr>
+<tr class="song"><td class="key">C</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=11SGx1eb4fSAdRPNUvNS32gffUuuPP47H">Edelweiss : Bass hybrid</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1y64mj8voTLOg9h4MitvzXVzvpuRe-xa9">Edelweiss : Baritone hybrid</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1TLcHcY3GYFEXEeCtfwxoKAGeXCTbtL3D">Edelweiss : Lead hybrid</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1e_Nim85FkNgkNlGKvb1d23Tk5V1hOP58">Edelweiss : Tenor hybrid</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1WzpvGgx-h3-1wHSfIAFRX3HwEGwTZtYB">Edelweiss : Full Mix hybrid</a>
+</div><div class="none hidden">Edelweiss
+</div></td><td>Loo Loo Loo</td></tr>
+<tr class="song"><td class="pitch">blow E</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1CSlwvN4Nm8sgYHtiC169abj_1fsTkBEJ">Oh, Pretty Woman : Bass Missing</a><br>
+<a href="https://drive.google.com/open?id=1igPYYUI9h430ZQwoECXyAnW4qe0_tSm_">Oh, Pretty Woman : Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1FYKIBhnyIw96Ep6Gxl-8e8i8loftTcGw">Oh, Pretty Woman : Baritone</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1FrwfA9ZRpbSZjLDMyXYW9GQGGCvCWZeH">Oh, Pretty Woman : Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=10WyCyGiRBfCWPWhfSjm9GWeaJwZESE6u">Oh, Pretty Woman : Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1QIaQkniaccO5AfPCrQlHWDLMjf0LypfD">Oh, Pretty Woman : Full Mixdown</a>
+</div><div class="none hidden">Oh, Pretty Woman
+</div></td><td> "(bass) dm ba dm ba doo"</td></tr>
+<tr class="song"><td class="key">Cm</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1i4-A8QT7Jedj88VSFRO0kBhi2v8fADLW">California Dreamin' : bass missing</a><br>
+<a href="https://drive.google.com/open?id=1VyCRp6s12njby5kaRTR_hKFCoPZ3mQGC">California Dreamin' : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1HjqKLX9TgV7S92r6wtsScK7jM816Svtt">California Dreamin' : bari missing</a><br>
+<a href="https://drive.google.com/open?id=1klG6MH3UtK2BZoElP6pAJ8aam7-L_uH5">California Dreamin' : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1G9Ll8Welf2vsPNcyaepyJNmFUhAiE0v7">California Dreamin' : lead missing</a><br>
+<a href="https://drive.google.com/open?id=1eJt1CgOWquEP4Oo4A3kv_yDEKBwwUwWX">California Dreamin' : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1OqMyVJFMrqi8trHBhW2BfFV5939EVT6N">California Dreamin' : tenor missing</a><br>
+<a href="https://drive.google.com/open?id=10uh4MVKUuCQai_b62aNqoQ33zb8iptmW">California Dreamin' : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1oFt0Gw5HujvfN64ki9TNylH76EQd05Zi">California Dreamin' : mix</a>
+</div><div class="none hidden">California Dreamin'
+</div></td><td>California Dreamin'</td></tr>
+<tr class="song"><td class="pitch">blow Ab</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1gSETIiivQx6_EL83VNPqixDW4KlqbVPx">Consider Yourself : Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1_g9QRy3I-tWRlf6mF7qT5xan7tnb-MBL">Consider Yourself : Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=110OuOwJK4W8dR9SADc-DRykAsmC1bkIb">Consider Yourself : Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=11Td0y6d1oxykBMZvRF8A_sL1THbustyd">Consider Yourself : Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1p0oQKvqGW-SWIfpzq8ClvIACC9mqbLMA">Consider Yourself : Mix</a>
+</div><div class="none hidden">Consider Yourself
+</div></td><td>When you start in to frown</td></tr>
+<tr class="song"><td class="pitch">blow Db</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1ChESlhfsCTqwRztevn8o1CPsYeEEBS-b">Longest Time, The : Bass predominant</a><br>
+<a href="https://drive.google.com/open?id=1CMWbDuzc6vgHCherapuVUywewDVA9qX6">Longest Time, The : Bass right</a><br>
+<a href="https://drive.google.com/open?id=1_UFiNbBuRD8DvkP28f5aPyR_8DdRoNc4">Longest Time, The : Bass solo</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1CBa2BC6zvd4GZNWXmFMQJtAlySJJiJIg">Longest Time, The : Baritone predominant</a><br>
+<a href="https://drive.google.com/open?id=1Y7sDxE1m6JzuKS6-f7sNz-dRBJjA74cj">Longest Time, The : Baritone right</a><br>
+<a href="https://drive.google.com/open?id=18GrMpa-53tmGOFsBr__CpfsOkT4J2Wcq">Longest Time, The : Baritone solo</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1d42y_FOE2lYJD41z_CVTrYFUl5k2mdjz">Longest Time, The : Lead predominant</a><br>
+<a href="https://drive.google.com/open?id=1mrlpYh_eRqDS9NGhjv05uEPP7bKtClHe">Longest Time, The : Lead right</a><br>
+<a href="https://drive.google.com/open?id=1ZQHPGuyyb9gIfQ0auAUZ14tE1gTfKfg9">Longest Time, The : Lead solo</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1v71TPlEwEXGO_s7YDryxlGXVAjrkuB35">Longest Time, The : Tenor predominant</a><br>
+<a href="https://drive.google.com/open?id=1EUrikzdoSInsxdtINspbL0vlyh77J4bb">Longest Time, The : Tenor right</a><br>
+<a href="https://drive.google.com/open?id=1diSl0F6MfKAp1pI2tQxEpcmcQvACbMCB">Longest Time, The : Tenor solo</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1UOKi8BtB_rSOnhvEr31gKCNoQkQiQaxg">Longest Time, The : Full</a>
+</div><div class="none hidden">Longest Time, The
+</div></td><td>woh-oh-oh</td></tr>
+<tr class="song"><td class="key">Em</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1CQ-UR6hU6LCuMBA0y-riFJNJBDWGSFDh">Happy Together : Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1qe9wgJk56HH-Vd6_et3va_olwH03d1yB">Happy Together : Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1bghfYI2NTp-4ZI5McLaXrn8uQnl-7XbZ">Happy Together : Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1yG8zvNqizZYdxEAgs3UXWAmSI2B-2jFA">Happy Together : Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1pSbPJLrNsjWA5CKJx-golMWBHExS1a9q">Happy Together : Mix</a>
+</div><div class="none hidden">Happy Together
+</div></td><td>doot so happy</td></tr>
+<tr class="song"><td class="key">G</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1LWihlubyIGX9-V2YeK0ll4_2XcTlHZp9">Bad, Bad Leroy Brown : Bass Fixed</a><br>
+<a href="https://drive.google.com/open?id=1lp-uMmgw-sZjtZTd6lTXxLkYRrAvF7ZK">Bad, Bad Leroy Brown : Bass</a><br>
+<a href="https://drive.google.com/open?id=1iWcpYA9rxrOxlX_OAWWZCYHYTqsxnKTw">Bad, Bad Leroy Brown : no Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1ME0nDM7pScyk-qf8ipKgkxxp47QFLvhx">Bad, Bad Leroy Brown : Bari fixed</a><br>
+<a href="https://drive.google.com/open?id=1P1DJYfJMD0-IOPao_C2wi2MFBJxQJWOY">Bad, Bad Leroy Brown : Bari</a><br>
+<a href="https://drive.google.com/open?id=1AFzbbRe3QEzegHvBfznATU_QhaK1yshe">Bad, Bad Leroy Brown : no Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=134HTN7gZSN8kiV3BTFuwsGLSh_yKvpe_">Bad, Bad Leroy Brown : Lead fixed</a><br>
+<a href="https://drive.google.com/open?id=1-svG8-Ns-YGWOLhWHCd1YBUgzIznhibs">Bad, Bad Leroy Brown : Lead</a><br>
+<a href="https://drive.google.com/open?id=14u5n4wjd3V4yK6hQ4cHb_cICu_KME0af">Bad, Bad Leroy Brown : no Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1iqXrllpoT_nAH4h2y2iLvDkUyGOWtwuH">Bad, Bad Leroy Brown : Tenor</a><br>
+<a href="https://drive.google.com/open?id=15MSaWGxllj9Slx0O1O2LNSWkWOsZY9lG">Bad, Bad Leroy Brown : fixed Tenor</a><br>
+<a href="https://drive.google.com/open?id=1pukUQ64EoXFlfx2gQiIIHi1g9vGPW6l_">Bad, Bad Leroy Brown : no Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1NSq9f7TzShd0EP_qb8_3ignlCEEBjD75">Bad, Bad Leroy Brown : mix</a>
+</div><div class="none hidden">Bad, Bad Leroy Brown
+</div></td><td>Now, you could try the east</td></tr>
+<tr class="song"><td class="key">Cm</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1UlAIeuY-GOtTk5bw8shB7c2HepV-Kera">Riders In The Sky : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1dJkbWLSB8TO-9Nmm5MaEbr1QDPIi6fBS">Riders In The Sky : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1-99Cn7QJAjbeNNgsATsid_GNJhcHsDQx">Riders In The Sky : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1lXTHabHMJzjoEB33lvsrP_fZUCu5eQkc">Riders In The Sky : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1rWP71pdujvG6K_K0fbHgWrAw-qGzFDSD">Riders In The Sky : mix</a>
+</div><div class="none hidden">Riders In The Sky
+</div></td><td>Oo-oo-oo-oo-oo</td></tr>
+<tr class="song"><td class="key">Ab</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1oHUuDHYQhbkoJV9cvHAG4aSuCJBytCb1">It's the Music That Brings Us Together : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1Xcd21yHDCMKLeoJ84l_xZM4y6qtmDAT5">It's the Music That Brings Us Together : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1AMqb5fytfEFZXqwU1UQSbE9wfOR_6ANT">It's the Music That Brings Us Together : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1NSigi4jKrxxeId0Hu-DuD751pVvXxvSS">It's the Music That Brings Us Together : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1yEMyrIF_OmY-Z1TEen4BB8m1MXhywr1S">It's the Music That Brings Us Together : mix</a>
+</div><div class="none hidden">It's the Music That Brings Us Together
+</div></td><td>It's the music that brings us together</td></tr>
+</tbody>
+
+
+    <tfoot>
+    <tr>
+        
+        <td colspan="99">
+        <fieldset class="partsel">
+        <legend>Show voice</legend>
+         <input type="radio" id="seltenor" name="part" value="tenor" onclick="setvoice(this)">tenor
+         <input type="radio" id="sellead" name="part" value="lead" onclick="setvoice(this)">lead
+         <input type="radio" id="selbari" name="part" value="bari" onclick="setvoice(this)">bari
+         <input type="radio" id="selbass" name="part" value="bass" onclick="setvoice(this)">bass
+         <input type="radio" id="selmix" name="part" value="mix" onclick="setvoice(this)">mix
+         <input type="radio" id="selnone" name="part" value="none" onclick="setvoice(this)">none
+        </fieldset>
+        </td>
+     </tr>
+    </tfoot>
+</table>
+
+
+</body></html>
