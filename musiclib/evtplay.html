@@ -2,7 +2,7 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    $Id: evtplay.html,v 1.2 2022/09/15 22:58:27 dfm Exp $
+    $Id: evtplay.html,v 1.2 2022/09/15 22:58:27 dfm Exp dfm $
     $Log: evtplay.html,v $
     Revision 1.2  2022/09/15 22:58:27  dfm
     show mix track for missing part track
@@ -21,7 +21,7 @@
 .hidden { display: none; }
 .paused { background-image: linear-gradient(to right, yellow, yellow); }
 .playing { background-color: lightgreen; }
-#wrapper { width: 530px; }
+#wrapper { width: 600px; }
 .events, .player, .parts, .songs { width: 100%; }
 .events, .parts { margin-bottom: 12px; }
 .plcapt { border: 2px solid black; text-align: center; font: bold 20px Arial; background-color: lightgreen; }
@@ -33,7 +33,7 @@ div[id^='vtrk'], #setclr { font: bold 20px Arial; padding: 3px; }
 fieldset { border: 3px solid black; }
 label { font-family: Arial; font-size: 1.2em; }
 legend { font-family: Arial; font-size: 1.4em; font-weight: bold; }
-select { width: 530px; height: auto; }
+select { width: 600px; height: auto; }
 [id^='vtrk']:nth-child(even) { background: white; }
 [id^='vtrk']:nth-child(odd) { background: lightblue; }
 img { width:40px; height:40px; }
@@ -46,6 +46,7 @@ h3 { font-size: xx-large; }
 <script src="formatDate.js"></script>
 <script src="getMusicLib.js"></script>
 <script src="getEventList.js"></script>
+<script src="getqv.js"></script>
 <script>
 
 var activesongel;
@@ -383,9 +384,19 @@ function playlist() {
 
     html += `<div id="setclr"><input type="checkbox" checked onclick="setclear(this)">Set/Clear All</div>\n`;
     let trkno = 0;
+    // ?q on url means include quartet songs, ?o means qtet only, no search means no qtet
+    var wantQtet = window.location.search != "";
     for (let sid of songlist) {
         if (qtetSongs.includes(sid)) {
-            continue;
+            // this sid is to be performed by a quartet -  include it in playlist?
+            if (window.location.search == "") {
+                continue;
+            }
+        } else {
+            // not a quartet song - if quartet-only requested, skip it
+            if (window.location.search == "?o") {
+                continue;
+            }
         }
         let song = musiclib[sid];
         let nam = song.name;
@@ -402,7 +413,7 @@ function playlist() {
             } else if (song['tracks'].hasOwnProperty('mix')) {
                 v = 'mix';
             } else {
-                v = None;
+                v = null;
             }
             if (song['tracks'].hasOwnProperty(v)) {
                 for (let vtr of song['tracks'][v]) {
