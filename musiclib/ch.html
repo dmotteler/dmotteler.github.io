@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <!--
 
-    $Id: ch.html,v 1.6 2022/09/16 19:41:19 dfm Exp $
+    $Id: ch.html,v 1.7 2022/10/03 17:51:02 dfm Exp $
     $Log: ch.html,v $
+    Revision 1.7  2022/10/03 17:51:02  dfm
+    apply resource key to drive refs
+
     Revision 1.6  2022/09/16 19:41:19  dfm
     if we have a mix track for a song with a missing part track, link to the mix
 
@@ -191,7 +194,14 @@ function makelist() {
                         for (let vtrk of song['tracks'][v]) {
                             let gdid = vtrk['gdid'];
                             let mods = vtrk['mods'];
-                            choices.push(`<a href='https://drive.google.com/open?id=${gdid}'>${songTitle} : ${mods}</a>`);
+                            let anc;
+                            if (vtrk.hasOwnProperty('resource_key')) {
+                                let rk = vtrk['resource_key'];
+                                anc = `<a href='https://drive.google.com/open?id=${gdid}&resourcekey=${rk}'>${songTitle} : ${mods}</a>`;
+                            } else {
+                                anc = `<a href='https://drive.google.com/open?id=${gdid}'>${songTitle} : ${mods}</a>`;
+                            }
+                            choices.push(anc);
                         }
                     } else { 
                         // no tracks for this voice

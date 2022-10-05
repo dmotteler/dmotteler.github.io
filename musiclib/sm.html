@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+<!--
+
+    $Id: sm.html,v 1.2 2022/10/03 17:21:42 dfm Exp $
+    $Log: sm.html,v $
+    Revision 1.2  2022/10/03 17:21:42  dfm
+    add resource key to drive references
+
+    Revision 1.1  2022/10/03 17:20:37  dfm
+    Initial revision
+
+
+    build song matrix
+-->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title class="doctitle">Song Matrix Generator</title>
 <link rel="stylesheet" href="xmlsm.css" />
@@ -87,19 +100,25 @@ function loadDoc() {
                 // console.log(song);
                 if (song.hasOwnProperty('tracks')) {
                     for (let voice of colnames.slice(1, -1)) {
-                        let anc = "";
+                        let anc = "", ancs = "";
                         if (song['tracks'].hasOwnProperty(voice)) {
                             for (let vtrk of song['tracks'][voice]) {
                                 let gdid = vtrk['gdid'];
                                 let mods = vtrk['mods'];
                                 // let path = vtrk['path'];
-                                if (anc == "") {
-                                    anc = `<a href='https://drive.google.com/open?id=${gdid}'>${mods}</a>`;
+                                if (vtrk.hasOwnProperty('resource_key')) {
+                                    let rk = vtrk['resource_key'];
+                                    anc = `<a href='https://drive.google.com/open?id=${gdid}&resourcekey=${rk}'>${mods}</a>`;
                                 } else {
-                                    anc += `<br/><a href='https://drive.google.com/open?id=${gdid}'>${mods}</a>`;
+                                    anc = `<a href='https://drive.google.com/open?id=${gdid}'>${mods}</a>`;
+                                }
+                                if (ancs == "") {
+                                    ancs = anc;
+                                } else {
+                                    ancs += "<br/>" + anc;
                                 }
                             }
-                            songrow.push(anc);
+                            songrow.push(ancs);
                             // console.log(`  ${voice}: ${anc}`);
                         } else {
                             songrow.push("&nbsp;");
@@ -114,7 +133,13 @@ function loadDoc() {
                 }
                 if (song.hasOwnProperty('sheet')) {
                     let gdid = song['sheet']['gdid'];
-                    let anc = `<a href='https://drive.google.com/open?id=${gdid}'>sheet</a><br/>`;
+                    let anc;
+                    if (song['sheet'].hasOwnProperty("resource_key")) {
+                        let rk = song['sheet']['resource_key'];
+                        anc = `<a href='https://drive.google.com/open?id=${gdid}&resourcekey=${rk}'>sheet</a><br/>`;
+                    } else {
+                        anc = `<a href='https://drive.google.com/open?id=${gdid}'>sheet</a><br/>`;
+                    }
                     songrow.push(anc);
                 } else {
                     songrow.push("&nbsp;");
