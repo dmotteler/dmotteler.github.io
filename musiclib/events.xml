@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Rehearsal" when="October 11, 2022 06:00PM" dtndx="202210111800" songlist="1102 1055 1175 1163 1178 1192 1103 1020 1194 1073 1179 1193 1115 1035" />
+  <event where="Chehalis West" when="October 06, 2022 06:00PM" dtndx="202210061800" songlist="1178 1179 1195 1180 1007 1182 1157 1198 1011 1073 1124 1181 1196 1103" qtetSongs="1157 1198" />
+  <event where="Rehearsal" when="October 04, 2022 06:00PM" dtndx="202210041800" songlist="1102 1055 1182 1196 1178 1195 1192 1179 1007 1124 1181 1073 1103 1011 1035" />
+  <event where="Rehearsal" when="September 27, 2022 06:00PM" dtndx="202209271800" songlist="1102 1055 1196 1195 1178 1076 1193 1192 1007 1179 1115 1035" />
+  <event where="Rehearsal" when="September 20, 2022 06:00PM" dtndx="202209201800" songlist="1102 1055 1175 1054 1182 1193 1192 1143 1179 1181 1185 1073 1197" />
+  <event where="Vintage" when="September 15, 2022 06:15PM" dtndx="202209151815" songlist="1011 1194 1116 1195 1184 1124 1032 1117 1103 1180 1100 1028 1183 1016" qtetSongs="1032 1117" />
+  <event where="Rehearsal" when="September 13, 2022 06:00PM" dtndx="202209131800" songlist="1102 1055 1016 1124 1100 1194 1195 1116 1183 1184 1103 1180 1028 1011 1035" />
+  <event where="harbor days list" when="September 03, 2022 01:00PM" dtndx="202209031300" songlist="1011 1028 1116 1195 1124 1103" />
+  <event where="Rehearsal" when="August 30, 2022 06:00PM" dtndx="202208301800" songlist="1102 1052 1182 1124 1196 1028 1116 1195 1011 1103 1197 1035" />
+  <event where="Garlic Fest" when="August 27, 2022 11:00AM" dtndx="202208271100" songlist="1011 1194 1116 1195 1157 1198 1184 1124 1103 1180 1117 1160 1100 1028 1183 1016" qtetSongs="1157 1198 1117 1160" />
+  <event where="Rehearsal" when="August 23, 2022 06:00PM" dtndx="202208231800" songlist="1102 1055 1016 1124 1100 1194 1195 1116 1183 1184 1103 1180 1028 1011 1035" />
+  <event where="SWW Fair, 530 meet" when="August 19, 2022 06:00PM" dtndx="202208191800" songlist="1011 1194 1116 1195 1184 1124 1032 1117 1103 1180 1100 1028 1183 1016" qtetSongs="1032 1117" />
+  <event where="woodland village" when="August 18, 2022 06:15PM" dtndx="202208181815" songlist="1011 1194 1116 1195 1184 1124 1032 1117 1103 1180 1100 1028 1183 1016" qtetSongs="1032 1117" />
+  <event where="Rehearsal" when="August 16, 2022 06:00PM" dtndx="202208161800" songlist="1102 1055 1016 1124 1100 1194 1195 1116 1183 1184 1103 1180 1028 1011 1035" />
+  <event where="Rehearsal" when="August 09, 2022 06:00PM" dtndx="202208091800" songlist="1102 1055 1054 1182 1193 1180 1194 1179 1181 1185 1073 1124 1035" />
+  <event where="Sharon Care" when="August 04, 2022 06:15PM" dtndx="202208041815" songlist="1011 1195 1007 1183 1196 1032 1117 1103 1120 1100 1030 1184 1016" qtetSongs="1032 1117" />
+  <event where="Rehearsal" when="August 02, 2022 06:00PM" dtndx="202208021800" songlist="1102 1055 1053 1007 1183 1178 1196 1120 1100 1030 1184 1195 1016 1035" />
+  <event where="Rehearsal" when="July 26, 2022 06:00PM" dtndx="202207261800" songlist="1102 1110 1197 1028 1124 1116 1195 1011 1194 1016 1103 1035" />
+  <event where="Rehearsal" when="July 19, 2022 06:00PM" dtndx="202207191800" songlist="1102 1058 1182 1197 1178 1180 1192 1143 1020 1194 1181 1035" />
+  <event where="Rehearsal" when="July 12, 2022 06:00PM" dtndx="202207121800" songlist="1102 1057 1032 1196 1124 1192 1100 1181 1183 1184 1179 1035" />
+  <event where="Veterans' Museum 100th Birthday" when="July 09, 2022 12:30PM" dtndx="202207091230" songlist="1011 1195 1007 1183 1196 1032 1117 1103 1120 1100 1030 1184 1016" qtetSongs="1032 1117" />
+  <event where="Chehalis West" when="July 07, 2022 06:15PM" dtndx="202207071815" songlist="1011 1195 1007 1183 1196 1032 1117 1103 1120 1100 1030 1184 1016" qtetSongs="1032 1117" />
+  <event where="Rehearsal" when="July 05, 2022 06:00PM" dtndx="202207051800" songlist="1102 1196 1195 1007 1100 1183 1120 1184 1016 1030 1103 1035" />
+  <event where="Rehearsal" when="June 28, 2022 06:00PM" dtndx="202206281800" songlist="1102 1112 1032 1196 1195 1192 1100 1181 1183 1184 1030 1035" />
+  <event where="Rehearsal" when="June 21, 2022 06:00PM" dtndx="202206211800" songlist="1102 1053 1196 1197 1178 1182 1163 1194 1124 1192 1195 1035" />
   <event where="Sharon Care" when="June 16, 2022 06:15PM" dtndx="202206161815" songlist="1192 1185 1100 1181 1163 1073 1109 1113 1194 1183 1184 1030 1120 1103" qtetSongs="1109 1113" />
   <event where="Rehearsal" when="June 14, 2022 06:00PM" dtndx="202206141800" songlist="1102 1175 1163 1194 1192 1030 1193 1073 1185 1100 1181 1120 1183 1184 1103 1035" />
   <event where="Rehearsal" when="June 07, 2022 06:00PM" dtndx="202206071800" songlist="1102 1050 1182 1196 1193 1192 1073 1185 1100 1181 1183 1197 1035" />
