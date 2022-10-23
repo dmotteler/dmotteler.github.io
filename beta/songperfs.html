@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<!-- $Id: songperfs.html,v 1.4 2022/09/12 16:45:07 dfm Exp $
+<!-- $Id: songperfs.html,v 1.5 2022/10/22 19:38:11 dfm Exp $
      $Log: songperfs.html,v $
+     Revision 1.5  2022/10/22 19:38:11  dfm
+     if sid is for an alias, map to the "real" song
+
      Revision 1.4  2022/09/12 16:45:07  dfm
      reworked handling of categories reflecting musiclib changes
 
@@ -280,6 +283,10 @@ function summary(el) {
                 // don't include qtet songs in summary.
                 if (! qtetSongs.includes(sid)) {
                     let song = musiclib[sid];
+                    if (song.hasOwnProperty("aliasfor")) {
+                        let msid = song["aliasfor"];
+                        song = musiclib[msid];
+                    }
                     let nam = song['name'];
                     for (let cat of song['category']) {
                         if (thesecats.includes(cat)) {

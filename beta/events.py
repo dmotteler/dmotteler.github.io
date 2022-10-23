@@ -1,7 +1,12 @@
 #! env python
 '''
-    $Id: events.py,v 1.5 2022/07/18 22:54:38 dfm Exp $
+    $Id: events.py,v 1.6 2022/10/22 19:39:38 dfm Exp $
     $Log: events.py,v $
+    Revision 1.6  2022/10/22 19:39:38  dfm
+    implement -f and -u options
+    fix the handling of obsolete gdids
+    improve the messages listed
+
     Revision 1.5  2022/07/18 22:54:38  dfm
     print fn in cdir loop
 
@@ -28,20 +33,26 @@ from xml.etree import ElementTree as ET
 import getopt
 import zipfile
 
+musiclib = {}
+
+obsgdid = {}
+# map an obsolete "Hooked On a Feeling" to new gdid
+obsgdid['11UAeZ_daHsV9o3xbnFdWhqwWDsAW0EaB'] = '1mhAEkLgnF5j961Xu8yRwuxYCS5BjU1aC'
+obsgdid['13HKMvOdPHLs5KucEMBp9ZtbO6Z4p80ML'] = '1z3l_MzhNZfRJmR-Fw1f9pgTeyIHckMfO'
+obsgdid['1aBW5TB252TnbRQ2k9PFRYH4g68VC5T5O'] = '1DhoyC44LHKmtYAM-B5apepo-ZNsRD9eU'
+obsgdid['1duAJGNwzNhISspBiBd9pZMNjYQ4N9y_G'] = '1ov-2cPna48g5vr8O_JbCkWS3ud6PzZ1K'
+obsgdid['1mVE9mHlOHaLiyDIBfoxoAuCHu_2J17RN'] = '1eLF-3U8iXbddBIBFYo1sXdQF94-XOrjY'
+
+# map an obs version of Longest Time - Bass
+obsgdid['14_ZW7Kue-Lf4OCN10a2zqhOhFXsPauqT'] = '1ChESlhfsCTqwRztevn8o1CPsYeEEBS-b'
+
 def loadlib(lib_xml):
-    musiclib = {}
+    global musiclib
+
     musiclib['cats'] = {}
     musiclib['songs'] = {}
     musiclib['bygdid'] = {} # map gdid to the sid it belongs to (several gdids to an sid)
     musiclib['byname'] = {} # map name to the sid(s) it belongs to
-
-    # load some pseudos - first is an obsolete "Hooked On a Feeling"
-    musiclib['songs']['100'] = { 'name': 'Hooked On a Feeling' }
-    musiclib['bygdid']['11UAeZ_daHsV9o3xbnFdWhqwWDsAW0EaB'] = '100'
-    musiclib['bygdid']['13HKMvOdPHLs5KucEMBp9ZtbO6Z4p80ML'] = '100'
-    musiclib['bygdid']['1aBW5TB252TnbRQ2k9PFRYH4g68VC5T5O'] = '100'
-    musiclib['bygdid']['1duAJGNwzNhISspBiBd9pZMNjYQ4N9y_G'] = '100'
-    musiclib['bygdid']['1mVE9mHlOHaLiyDIBfoxoAuCHu_2J17RN'] = '100'
 
     with open(lib_xml, "r") as lib:
         xml = lib.read()
@@ -231,23 +242,31 @@ def parsecheat(lines, fn, musiclib):
 
             # print("{} tracks".format(len(trax)))
             for track in trax:
-                # track starts with gdid.
-                n = track.find("'>")
+                # track starts with gdid. find its end.
+                n = track.find('&amp;res')
+                if n < 0:
+                    n = track.find("'>")
                 if n < 0:
                     n = track.find('">')
                 if n < 0:
                     sys.exit("couldn't find end of gdid in {} (row {} of {})".format(track, rownum, fn))
             
                 # isolate it, and get the associated song name
+                sid = None
                 gdid = track[:n]
                 if gdid in musiclib['bygdid']:
                     sid = musiclib['bygdid'][gdid]
+                elif gdid in obsgdid:
+                    gdid = obsgdid[gdid]
+                    if gdid in musiclib['bygdid']:
+                        sid = musiclib['bygdid'][gdid]
                 else:
-                    print("gdid {} not in bygdid, from {} row {}".format(gdid, fn, rownum))
+                    if not "fid" in gdid:
+                        print("gdid {} not in bygdid, from {} row {}".format(gdid, fn, rownum))
                     continue
 
                 # add the song id to the song list, if it's not there
-                if not sid in songlist:
+                if sid and not sid in songlist:
                     songlist.append(sid)
 
                     if isqtet:
@@ -413,12 +432,12 @@ def eventxml(xfile, evlist, musiclib, brief):
         for l in lines:
             xo.write(l)
 
-    print("Created {}".format(xfile))
+    print("Wrote {} events to {}".format(len(evlist), xfile))
 
 def loadxml(fn):
-    global evlist, evmtime
+    global evlist, evmtime, musiclib
 
-    print("loading {}".format(fn))
+    nadd = 0
     with open(fn, "r") as elist:
         xml = elist.read()
         tree = ET.XML(xml)
@@ -449,11 +468,14 @@ def loadxml(fn):
             if dtndx not in evlist or mtim > evmtime[dtndx]:
                 evlist[dtndx] = ev
                 evmtime[dtndx] = mtim 
+                nadd += 1
+
+    print("Added {} events from {}".format(nadd, fn))
 
 def loadzip(zfn):
-    global evlist, evmtime
+    global evlist, evmtime, musiclib
 
-    print("loading {}".format(zfn))
+    print("Loading {}".format(zfn))
 
     zf = zipfile.ZipFile(zfn, "r")
     # for each archive element...
@@ -467,28 +489,43 @@ def loadzip(zfn):
         # read the element and parse it 
         if not fn.endswith(".html"):
             continue
+        if fn == "index.html":
+            continue
         lines = zf.read(info).decode()
         mtim = datetime(*info.date_time)
+        # print("read {} lines from zfn {}".format(len(lines), fn))
         dtndx, ev = parsecheat(lines, fn, musiclib)
 
         if dtndx not in evlist or mtim > evmtime[dtndx]:
             evlist[dtndx] = ev
             evmtime[dtndx] = mtim
 
+            print("  added {}".format(fn))
+
+def expanduser(pat):
+    rv = pat
+    if pat.startswith("~/"):
+        home = os.environ["HOME"].replace("\\", "/")
+        rv = "{}/{}".format(home, rv[2:])
+    return rv
+
 def usage(msg=None):
     if msg is not None:
         print("\n{}".format(msg))
 
-    print("""\nUsage: {} [-c cat][-d dir][-h][-l lfile][-n][-q qopt][-s sheet][-v venue[,n]][-x xfile][file]
+    print("""\nUsage: {} [-c cat][-d dir][-f][-h][-l lfile][-n][-q qopt][-s sheet][-u][-v venue[,n]][-x xfile][file]
    where:
       -c cat     => name of a category to list. may be given more than once. default is all cats in music lib.
       -d dir     => directory containing cheats. default is github cheats.
+      -f         => do full load. new events.xml will be created from cheats in cheatscache,
+                    cheatscache/cheats.zip, and cheatscache/gaevents.xml (dev only!)
       -h         => show this help and exit.
       -l lfile   => use lfile for musiclib xml. default is musiclib.xml in current folder.
       -n         => "not brief" songlist is replaced by song subelements including name in xml.
       -q qopt    => quartet song handling. inc => include, only => quartet only. default is skip quartet songs.
       -s sheet   => name of a cheat sheet to process. may be given more than once.
                     default is all html in cheats folder.
+      -u         => do normal update (i.e., add new cheat from d dir)
       -v venue[,n] => display most recent event at places matching venue. add , and a number to 
                     show that many most recent events there, default 1.
       -x xfile   => write xml of events list to xfile. default is no xml file.
@@ -506,6 +543,8 @@ def main():
     global evlist, evmtime
 
     brief = True
+    allevents = False
+    doupdate = False
     docats = []
     ddir = "C:/cygwin64/home/Del/trygitpages/dmotteler.github.io/cheats"
     # lfile = "C:/cygwin64/home/Del/trygitpages/dmotteler.github.io/musiclib/musiclib.xml"
@@ -519,10 +558,13 @@ def main():
     prezip = []
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "c:d:hj:l:nq:s:v:x:")
+        opts, args = getopt.getopt(sys.argv[1:], "c:d:fhj:l:nq:s:uv:x:")
     except getopt.GetoptError as err:
         # print help information and exit:
         usage(str(err)) # will print something like "option -a not recognized"
+
+    if len(opts) == 0 and len(args) == 0:
+        usage()
 
     for o, a in opts:
         if o == "-h":
@@ -531,6 +573,8 @@ def main():
             docats.append(a)
         elif o == "-d":
             ddir = a
+        elif o == "-f":
+            allevents = True
         elif o == "-l":
             lfile = a
         elif o == "-n":
@@ -542,6 +586,8 @@ def main():
                 usage("unrecognized option {} given with -q".format(a))
         elif o == "-s":
             docheats.append(a)
+        elif o == "-u":
+            doupdate = True
         elif o == "-v":
             n = a.find(",")
             if n > 0:
@@ -564,12 +610,38 @@ def main():
         else:
             sys.exit("I don't know what you meant by {}".format(a))
 
+    if not os.path.exists(ddir):
+        usage("default cheats folder {} does not exist.".format(ddir))
+
     predir.append(ddir)
 
     musiclib = loadlib(lfile)
 
     if len(musiclib) < 2:
         sys.exit("lib not set up")
+
+    if allevents and doupdate:
+        usage("don't give -f and -u together.")
+
+    if allevents or doupdate:
+        cdir = expanduser("~/cheatscache")
+        if not os.path.exists(cdir):
+            usage("cheatscache not found.")
+
+        if len(prezip) > 0 or len(prexml) > 0 or len(docheats) > 0 or len(predir) > 1:
+            usage("files/folders must not be given when -f or -u is given.")
+
+        if not xfile:
+            xfile = "events.xml"
+
+    if doupdate:
+        prexml = ["events.xml"]
+
+    if allevents:
+        prezip = ["{}/cheats.zip".format(cdir)]
+        prexml = ["{}/gaevents.xml".format(cdir)]
+        predir = [cdir, ddir]
+        docheats = []
 
     for z in prezip:
         loadzip(z)
@@ -578,7 +650,7 @@ def main():
         loadxml(x)
 
     for d in predir:
-        print("loading {}".format(d))
+        print("Loading {}".format(d))
         _, _, files = next(os.walk(d))
 
         for fn in files:
@@ -589,7 +661,6 @@ def main():
 
             pat = "{}/{}".format(d, fn)
             with open(pat, "r") as fo:
-                print("\n{}".format(fn))
                 when = ""
                 lines = fo.read()
                 dtndx, ev = parsecheat(lines, fn, musiclib)
@@ -598,6 +669,7 @@ def main():
                 if dtndx not in evlist or mtim > evmtime[dtndx]:
                     evlist[dtndx] = ev
                     evmtime[dtndx] = mtim
+                    print("  added {}".format(fn))
 
     for fn in docheats:
         when = ""
@@ -611,7 +683,10 @@ def main():
             evlist[dtndx] = ev
             evmtime[dtndx] = mtim
 
-    print("{} events".format(len(evlist)))
+            print("Added {}".format(fn))
+
+    if not xfile:
+        print("{} events".format(len(evlist)))
 
     if False: # set True to list composite input and quit
         for dt in evlist:

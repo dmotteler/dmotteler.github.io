@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Id: musiclib.xml,v 1.1 2022/09/13 00:38:30 dfm Exp $ -->
+<!-- $Id: musiclib.xml,v 1.2 2022/10/03 17:58:26 dfm Exp $ -->
 <?xml-stylesheet type="text/xsl" href="musiclib.xsl"?>
-<musiclib name="Tuners Music Library">
+<musiclib name="Tuners Music Library" rev="1.1">
   <song id="1101" name="After Dark">
     <category>Old</category>
     <arranger>SPEBSQSA</arranger>
@@ -10,7 +10,7 @@
     <crdate>1958-12-31</crdate>
     <key>Bb</key>
     <words>After dark, when ev'rything is still</words>
-    <sheet gdid='0Bxd7i2Hm5BiPdkxMYmNUTUhBR28' sheet='AfterDark.pdf' />
+    <sheet gdid="0Bxd7i2Hm5BiPdkxMYmNUTUhBR28" resource_key="0-1QmyyTFeNDY40WhSofTphQ" sheet="AfterDark.pdf" />
   </song>
   <song id="1109" name="After You've Gone">
     <category>Current</category>
@@ -75,7 +75,8 @@
     <location>YF pg 5</location>
     <lyricist>James Montgomery</lyricist>
     <words>Angels, from the realms</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPbG5fX3g5bUViNVU" mods="mix" path="mix/Angels, From The Realms of Glory.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPbG5fX3g5bUViNVU" mods="mix" path="mix/Angels, From The Realms of Glory.mp3" resource_key="0-o2ScVLKgG4wj-htYPSGGHw" voice="mix" />
+    </tracks>
   </song>
   <song id="1064" name="Armed Forces Medley">
     <category>Old</category>
@@ -104,7 +105,8 @@
     <location>YF pg 9</location>
     <lyricist>William C Dix</lyricist>
     <words>As with gladness men of old</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPa3o2ZFJCeHpwTlk" mods="mix" path="mix/As With Gladness Men Of Old.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPa3o2ZFJCeHpwTlk" mods="mix" path="mix/As With Gladness Men Of Old.mp3" resource_key="0-gh_HNITEgxrwhdoIu1hXQQ" voice="mix" />
+    </tracks>
   </song>
   <song id="1126" name="Auld Lang Syne">
     <category>Christmas</category>
@@ -130,7 +132,8 @@
     <location>YF pg 13</location>
     <lyricist>Unknown</lyricist>
     <words>Away in a manger</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPTmRDMnY5REtlWnM" mods="mix" path="mix/Away In A Manger.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPTmRDMnY5REtlWnM" mods="mix" path="mix/Away In A Manger.mp3" resource_key="0-enCrwMK6fl2OgsytZzLQ7w" voice="mix" />
+    </tracks>
   </song>
   <song id="1069" name="Baby Face">
     <category>Old</category>
@@ -241,7 +244,7 @@
       <voice gdid="1zgf2t4CqH3OCy8ezD5R6cxwnJ_jc5DeI" mods="Tenor pred" path="tenor/Beyond the Sea - Tenor pred.mp3" voice="tenor" />
       <voice gdid="1YkTDdqPXiPtMhCVZ2L5YDNEsjFO502iJ" mods="mix" path="mix/Beyond the Sea.mp3" voice="mix" />
     </tracks>
-    <sheet gdid="0Bxd7i2Hm5BiPQWpVWnU1MW93bTQ" sheet="Beyond the Sea (La Mer).pdf" />
+    <sheet gdid="0Bxd7i2Hm5BiPQWpVWnU1MW93bTQ" resource_key="0-xIFZJG-eVlPIeQLTKt6qew" sheet="Beyond the Sea (La Mer).pdf" />
   </song>
   <song id="1150" name="Blue Skies">
     <category>Old</category>
@@ -268,7 +271,7 @@
       <voice gdid="1KaZF3nadALkCmNSEm5fkptWqDfBI36UR" mods="tenor" path="tenor/Breaking Up Is Hard To Do - tenor.mp3" voice="tenor" />
       <voice gdid="18mepGeWU6rQWw3NW6vlJ2MZ6cXlD-8F1" mods="all" path="mix/Breaking Up Is Hard To Do - all.mp3" voice="mix" />
     </tracks>
-    <sheet gdid='12qDcDk0ALICZvafzTWRZsaYumjasqMDG' sheet='Breaking Up Is Hard To Do.pdf' />
+    <sheet gdid="12qDcDk0ALICZvafzTWRZsaYumjasqMDG" sheet="Breaking Up Is Hard To Do.pdf" />
   </song>
   <song id="1111" name="Bright Was The Night">
     <category>PoleCat</category>
@@ -440,8 +443,8 @@
     <stockID>210494</stockID>
     <words>Come, Thou Long-Expected Jesus</words>
   </song>
-  <song id="1220" name="Goodbye, My Coney Island Baby" aliasfor="1032"/>
-  <song id="1221" name="Coney Island" aliasfor="1032"/>
+  <song aliasfor="1032" id="1220" name="Goodbye, My Coney Island Baby" />
+  <song aliasfor="1032" id="1221" name="Coney Island" />
   <song id="1032" name="Coney Island Baby">
     <category>Current</category>
     <category>PoleCat</category>
@@ -601,7 +604,7 @@
       <voice gdid="1UbRuGZgUNh-tQleqfx9nIIMFG0hm7EHr" mods="mix" path="mix/Down By the Old Mill Stream.mp3" voice="mix" />
       <voice gdid="115mpmgtvRVVGSZHsSHHJuHUaZ5FkESqS" mods="tenor" path="tenor/Down By the Old Mill Stream - Tenor Left.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='12iurK5N73oZrTH2S69-LQvl5YslgDBwC' sheet='Down By the Old Mill Stream.pdf' />
+    <sheet gdid="12iurK5N73oZrTH2S69-LQvl5YslgDBwC" sheet="Down By the Old Mill Stream.pdf" />
   </song>
   <song id="1055" name="Down Our Way">
     <category>PoleCat</category>
@@ -616,7 +619,7 @@
       <voice gdid="198g_jL0Z2BBYX-RBQ_DUAYsEhmEXkgNT" mods="mix" path="mix/Down Our Way.mp3" voice="mix" />
       <voice gdid="11SA87C1syv-XTVlmysvT3gwYswyZPAYf" mods="tenor" path="tenor/Down Our Way - Tenor Left.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='120mTHkSy81g4q9gVJC7j3OfrZMqbOwkG' sheet='Down Our Way.pdf' />
+    <sheet gdid="120mTHkSy81g4q9gVJC7j3OfrZMqbOwkG" sheet="Down Our Way.pdf" />
   </song>
   <song id="1040" name="Dream">
     <category>Old</category>
@@ -719,7 +722,7 @@
       <voice gdid="1jnoYgz4aBfoYDWq4C1BaLp4QZf6fDOmv" mods="All" path="mix/Firefly - All.mp3" voice="mix" />
     </tracks>
   </song>
-  <song id="1222" name="From The First Hello" aliasfor="1115"/>
+  <song aliasfor="1115" id="1222" name="From The First Hello" />
   <song id="1115" name="From The First Hello To The Last Goodbye">
     <category>PoleCat</category>
     <arranger>Lou Perry</arranger>
@@ -908,7 +911,7 @@
       <voice gdid="1TFiw0WaI32IO03k2jxMiAJ9QfDSO3dAA" mods="mix" path="mix/Honey-Little Lize Medley.mp3" voice="mix" />
       <voice gdid="11Qxvsxx3P9ATkVRgtJ5PoVJx7nSxz00w" mods="tenor" path="tenor/Honey-Little Lize Medley - Tenor Left.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='1274WW3ccH_bDmkRxM318riUlA15D8887' sheet='Honey Little Lize Medley.pdf' />
+    <sheet gdid="1274WW3ccH_bDmkRxM318riUlA15D8887" sheet="Honey Little Lize Medley.pdf" />
   </song>
   <song id="1180" name="Hooked On a Feeling">
     <category>Current</category>
@@ -1013,9 +1016,10 @@
     <location>Coll p11</location>
     <lyricist>Gannon/Kent</lyricist>
     <words>My home's the place</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPSmozVDFjT25GTnM" mods="mix" path="mix/I'll Be Home For Christmas.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPSmozVDFjT25GTnM" mods="mix" path="mix/I'll Be Home For Christmas.mp3" resource_key="0-zQlu7g6o19VadzfkEBX1NQ" voice="mix" />
+    </tracks>
   </song>
-  <song id="1223" name="Gonna Live Till I Die" aliasfor="1160"/>
+  <song aliasfor="1160" id="1223" name="Gonna Live Till I Die" />
   <song id="1160" name="I'm Gonna Live Till I Die">
     <category>Quartet</category>
     <arranger>Western Continentals/Greg Volk</arranger>
@@ -1105,7 +1109,7 @@
       <voice gdid="1kwW8n1Ulxdpd82eMtr2JQ90XrsGAX9AS" mods="lead" path="lead/In My Room - lead.mp3" voice="lead" />
       <voice gdid="1w2dltbwOtNUm8rJ9d2AVpVX2CewhCFKH" mods="tenor" path="tenor/In My Room - tenor.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='130laHfzcMzUd_p7AKtCPbgZJwLzdFPsn' sheet='In My Room.pdf' />
+    <sheet gdid="130laHfzcMzUd_p7AKtCPbgZJwLzdFPsn" sheet="In My Room.pdf" />
   </song>
   <song id="1134" name="In the Bleak Midwinter">
     <category>Christmas</category>
@@ -1151,7 +1155,7 @@
       <voice gdid="1TEqAjSpIu7g46q61ExRjphGIZcytE5dX" mods="Tenor" path="tenor/Irish Blessing - Tenor.mp3" voice="tenor" />
       <voice gdid="15V0v25rrBGg_OXDb2ncuBHQAl6Of7yWk" mods="All" path="mix/Irish Blessing - All.mp3" voice="mix" />
     </tracks>
-    <sheet gdid="0Bxd7i2Hm5BiPdDZUeEE4Q1hqbFk" sheet="IrishBlessing.pdf" />
+    <sheet gdid="0Bxd7i2Hm5BiPdDZUeEE4Q1hqbFk" resource_key="0-sFOiyikBO5YoUZF2CayXTw" sheet="IrishBlessing.pdf" />
   </song>
   <song id="1003" name="It Had To Be You">
     <category>Old</category>
@@ -1179,9 +1183,10 @@
     <location>Coll p14</location>
     <lyricist>Meredith Willson</lyricist>
     <words>It's beginning to look a lot like Christmas</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPODFYY3NYVFRjdzg" mods="mix" path="mix/It's Beginning To Look Like Christmas.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPODFYY3NYVFRjdzg" mods="mix" path="mix/It's Beginning To Look Like Christmas.mp3" resource_key="0-YMKThRldvQPpYODKlpb3fQ" voice="mix" />
+    </tracks>
   </song>
-  <song id="1224" name="It's the Music That Brings Us Together" aliasfor="1197"/>
+  <song aliasfor="1197" id="1224" name="It's the Music That Brings Us Together" />
   <song id="1197" name="It's the Music">
     <category>Current</category>
     <arranger>Clay Hine</arranger>
@@ -1250,8 +1255,7 @@
     <category>Current</category>
     <key>Eb</key>
     <words>Keep the whole world singing</words>
-    <tracks>
-      <voice gdid="14h7c_X47gjGQ_yPUfxVD_DjAqdndNALe" mods="bari" path="bari/04-Keep-the-Whole-World-Singing-Bari.mp3" voice="bari" />
+    <tracks><voice gdid="14h7c_X47gjGQ_yPUfxVD_DjAqdndNALe" mods="bari" path="bari/04-Keep-the-Whole-World-Singing-Bari.mp3" voice="bari" />
       <voice gdid="14zfjyCRN_O_YiodHCstwQESUWcSfRzY7" mods="bass" path="bass/05-Keep-the-Whole-World-Singing-Bass.mp3" voice="bass" />
       <voice gdid="143VSt94ovb15p56Ia_UHJm7yaru1qC6G" mods="mix" path="mix/01-Keep-the-Whole-World-Singing-Full-Mix.mp3" voice="mix" />
       <voice gdid="14SLQlkcwWP3uT7bv1u6a1yNgNxS7Zuei" mods="lead" path="lead/03-Keep-the-Whole-World-Singing-Lead.mp3" voice="lead" />
@@ -1331,7 +1335,7 @@
       <voice gdid="1NCt7rwOzOiUVUAOi7wfZTRAs-I7jUKYw" mods="mix" path="mix/Let Me Call You Sweetheart.mp3" voice="mix" />
       <voice gdid="11QLZW4DhlzrWKQEwglG-Tcoh0uevJDq7" mods="tenor" path="tenor/Let Me Call You Sweetheart - Tenor Left.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='12IoEpEZUyG4GJwntNeu0W2w2wxA_RDuX' sheet='Let Me Call You Sweetheart.pdf' />
+    <sheet gdid="12IoEpEZUyG4GJwntNeu0W2w2wxA_RDuX" sheet="Let Me Call You Sweetheart.pdf" />
   </song>
   <song id="1035" name="Let's Get Together Again">
     <category>Current</category>
@@ -1398,7 +1402,8 @@
     <location>Coll p28</location>
     <lyricist>Wilson/Love</lyricist>
     <words>ba dm ba dm ba dm</words>
-    <tracks><voice gdid="10yTH6wR12RBAjoPfWrR5_5K1OaBRv7w-" mods="mix" path="mix/Little Saint Nick.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="10yTH6wR12RBAjoPfWrR5_5K1OaBRv7w-" mods="mix" path="mix/Little Saint Nick.mp3" voice="mix" />
+    </tracks>
   </song>
   <song id="1066" name="Little Street Where Old Friends Meet, A">
     <category>Old</category>
@@ -1412,7 +1417,7 @@
       <voice gdid="1moXE9Iq_Avrb0xmse6icWuqFMiH5qTWn" mods="Tenor" path="tenor/Little Street Where Old Friends Meet - Tenor.mp3" voice="tenor" />
       <voice gdid="1UJar1IooSAR89oM3BnimH2PtM-YcV3g-" mods="All" path="mix/Little Street Where Old Friends Meet - All.mp3" voice="mix" />
     </tracks>
-    <sheet gdid="0Bxd7i2Hm5BiPMDBBUFJVeVRUbjA" sheet="LittleStreet.pdf" />
+    <sheet gdid="0Bxd7i2Hm5BiPMDBBUFJVeVRUbjA" resource_key="0-NhxhmYr_dNHMciipOuy0RA" sheet="LittleStreet.pdf" />
   </song>
   <song id="1179" name="Longest Time, The">
     <category>Current</category>
@@ -1429,8 +1434,7 @@
     <source>BHS</source>
     <stockID>8631</stockID>
     <words>woh-oh-oh</words>
-    <tracks>
-      <voice gdid="1ChESlhfsCTqwRztevn8o1CPsYeEEBS-b" mods="Bass predominant" path="For The Longest Time - Bass predominant.mp3" voice="bass" />
+    <tracks><voice gdid="1ChESlhfsCTqwRztevn8o1CPsYeEEBS-b" mods="Bass predominant" path="For The Longest Time - Bass predominant.mp3" voice="bass" />
       <voice gdid="1CMWbDuzc6vgHCherapuVUywewDVA9qX6" mods="Bass right" path="For The Longest Time - Bass right.mp3" voice="bass" />
       <voice gdid="1_UFiNbBuRD8DvkP28f5aPyR_8DdRoNc4" mods="Bass solo" path="bass/For The Longest Time - Bass solo.mp3" voice="bass" />
       <voice gdid="1CBa2BC6zvd4GZNWXmFMQJtAlySJJiJIg" mods="Baritone predominant" path="bari/Longest Time, The - Baritone predominant.mp3" voice="bari" />
@@ -1581,7 +1585,7 @@
       <voice gdid="1hvYOeyvyyCZ2iODCurPyPdnS0i82D8iN" mods="Tenor" path="tenor/My Girl - Tenor.mp3" voice="tenor" />
       <voice gdid="1GcU-8Nw-zTGeNrhMFEHHDYTuQFTt6Rnu" mods="Mix" path="mix/My Girl - Mix.mp3" voice="mix" />
     </tracks>
-    <sheet gdid='133otuTJeoP8US6V1NUHTygk7FDdcvDX7' sheet='My Girl.pdf' />
+    <sheet gdid="133otuTJeoP8US6V1NUHTygk7FDdcvDX7" sheet="My Girl.pdf" />
   </song>
   <song id="1191" name="My Old Kentucky Home Goodnight">
     <category>Old</category>
@@ -1592,7 +1596,7 @@
       <voice gdid="1monyh98Ao_EdbU7snyUf9FKynFknjB_g" mods="tenor" path="tenor/My Old Kentucky Home Goodnight - tenor.mp3" voice="tenor" />
       <voice gdid="1fYBNObsEipO9VsF0zSNQbeTCHUubmURx" mods="mix" path="mix/My Old Kentucky Home Goodnight - mix.mp3" voice="mix" />
     </tracks>
-    <sheet gdid="0Bxd7i2Hm5BiPeDZLSWZrWkxyb3M" sheet="My Old Kentucky Home Goodnight.pdf" />
+    <sheet gdid="0Bxd7i2Hm5BiPeDZLSWZrWkxyb3M" resource_key="0-dlHo97HkmzzZDz3XwV2eJA" sheet="My Old Kentucky Home Goodnight.pdf" />
   </song>
   <song id="1053" name="My Wild Irish Rose">
     <category>PoleCat</category>
@@ -1607,7 +1611,7 @@
       <voice gdid="1xnXkOtLCzEWdadrR0w0i_7FuSUZdRlHl" mods="mix" path="mix/My Wild Irish Rose.mp3" voice="mix" />
       <voice gdid="11Ovsck4h82qiM60gyq7jr89F6RSouPYN" mods="tenor" path="tenor/My Wild Irish Rose - Tenor Left.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='11y-Xz8bDOyszpRZAm1V6_Pc43xADDCOi' sheet='My Wild Irish Rose.pdf' />
+    <sheet gdid="11y-Xz8bDOyszpRZAm1V6_Pc43xADDCOi" sheet="My Wild Irish Rose.pdf" />
   </song>
   <song id="1048" name="Naughty Lady Of Shady Lane">
     <category>Old</category>
@@ -1648,7 +1652,7 @@
   <song id="1121" name="O Canada!">
     <category>Old</category>
     <arranger>SPEBSQSA</arranger>
-    <composer>C. Lavallée</composer>
+    <composer>C. LavallÃ©e</composer>
     <copyright>unknown</copyright>
     <key>Eb</key>
     <lyricist>The 1975 CorpusAlmanac of Canada</lyricist>
@@ -1674,7 +1678,7 @@
     </tracks>
     <sheet gdid="1EtrZ__V_PwmAOKyn5W38Lqd60nrRZwJN" sheet="O Danny Boy.pdf" />
   </song>
-  <song id="1225" name="Pretty Woman" aliasfor="1193"/>
+  <song aliasfor="1193" id="1225" name="Pretty Woman" />
   <song id="1193" name="Oh, Pretty Woman">
     <category>Current</category>
     <composer>Roy Orbison, Bill Dees</composer>
@@ -1729,8 +1733,7 @@
     <key>Bb</key>
     <lyricist>Geoffrey O'Hara</lyricist>
     <words>The old songs</words>
-    <tracks>
-      <voice gdid="14br7s53Xoe4rOYbVZ9kivFCW7SNgr4Ys" mods="bari" path="bari/04-The-Old-Songs-Bari.mp3" voice="bari" />
+    <tracks><voice gdid="14br7s53Xoe4rOYbVZ9kivFCW7SNgr4Ys" mods="bari" path="bari/04-The-Old-Songs-Bari.mp3" voice="bari" />
       <voice gdid="14izz2uTeQD95XgJEZK43zgBaxjirTEqT" mods="bass" path="bass/05-The-Old-Songs-Bass.mp3" voice="bass" />
       <voice gdid="14A0LxDWFcGyPW3ukYhd5yRhGxqM6JoZ_" mods="mix" path="mix/01-The-Old-Songs-Full-Mix.mp3" voice="mix" />
       <voice gdid="14O5YIWoe1nJGaMSmP45ahs3ALXUj8LBm" mods="lead" path="lead/03-The-Old-Songs-Lead.mp3" voice="lead" />
@@ -1915,7 +1918,7 @@
     <tracks><voice gdid="1bGmXNssrzyw6x4EMEoI3pH5WPXAAbFxN" mods="tenor" path="tenor/Sentimental Journey.mp3" voice="tenor" />
       <voice gdid="1bzBbFNyT0mGw_hzDZmwXR9UnBeNJp0y3" mods="mix" path="mix/Sentimental Journey Mix.mp3" voice="mix" />
     </tracks>
-    <sheet gdid='134dLQUBlVkjiAKHIoKjaveXertY6G4Jf' sheet='Sentimental Journey.pdf' />
+    <sheet gdid="134dLQUBlVkjiAKHIoKjaveXertY6G4Jf" sheet="Sentimental Journey.pdf" />
   </song>
   <song id="1178" name="Seven Bridges Road">
     <category>Current</category>
@@ -1932,13 +1935,13 @@
     <source>BHS</source>
     <stockID>213021</stockID>
     <words>There are stars in the southern sky</words>
-    <tracks><voice gdid="0B5zMEaROa1AvaGIxVl9Td2FXTUM3LThHV1BtVkM1aGdscmpr" mods="mix" path="mix/Seven Bridges Road in C - Full Mix.mp3" voice="mix" />
-      <voice gdid="0B5zMEaROa1AvRTBQZS15dUtkTV83cHNQZFFoUzkxQ3JPcmNj" mods="bari" path="bari/Seven Bridges Road in C - Bari.mp3" voice="bari" />
+    <tracks><voice gdid="0B5zMEaROa1AvaGIxVl9Td2FXTUM3LThHV1BtVkM1aGdscmpr" mods="mix" path="mix/Seven Bridges Road in C - Full Mix.mp3" resource_key="0-WUz2TldELUfnAj0BMi4GnQ" voice="mix" />
+      <voice gdid="0B5zMEaROa1AvRTBQZS15dUtkTV83cHNQZFFoUzkxQ3JPcmNj" mods="bari" path="bari/Seven Bridges Road in C - Bari.mp3" resource_key="0-9mypez12MuApYWb1kHtnkA" voice="bari" />
       <voice gdid="1geUgov9m0Qxz291ZBP0lKrWEipIy4PJX" mods="bass SLOWer" path="bass/Seven Bridges Road in C - SLOWer Bass.mp3" voice="bass" />
       <voice gdid="1zN1Hhcy7pdDCn9tMAxxnYuJUaJI5qwZN" mods="bass slow" path="bass/Seven Bridges Road in C - slow Bass.mp3" voice="bass" />
-      <voice gdid="0B5zMEaROa1AvYmU3QTNpM0tiWmVEV3d1ZWNNakdfWldkelVz" mods="bass" path="bass/Seven Bridges Road in C - Bass.mp3" voice="bass" />
-      <voice gdid="0B5zMEaROa1Avc3BhTDAzdVpEa1NWZzkwQWk4bnFycDlPZUxZ" mods="lead" path="lead/Seven Bridges Road in C - Lead.mp3" voice="lead" />
-      <voice gdid="0B5zMEaROa1AvOXBfbWk5REMyWExUaTNUM2xJUXlBZV9EZXpB" mods="tenor" path="tenor/Seven Bridges Road in C - Tenor.mp3" voice="tenor" />
+      <voice gdid="0B5zMEaROa1AvYmU3QTNpM0tiWmVEV3d1ZWNNakdfWldkelVz" mods="bass" path="bass/Seven Bridges Road in C - Bass.mp3" resource_key="0-6I0V1zYq3G-h7AW0WXgivw" voice="bass" />
+      <voice gdid="0B5zMEaROa1Avc3BhTDAzdVpEa1NWZzkwQWk4bnFycDlPZUxZ" mods="lead" path="lead/Seven Bridges Road in C - Lead.mp3" resource_key="0-U9HhAQGj2tCPPOMW5VUV-Q" voice="lead" />
+      <voice gdid="0B5zMEaROa1AvOXBfbWk5REMyWExUaTNUM2xJUXlBZV9EZXpB" mods="tenor" path="tenor/Seven Bridges Road in C - Tenor.mp3" resource_key="0-_YSWHSEbdrnuMXC4FGH8HA" voice="tenor" />
     </tracks>
     <sheet gdid="13_YF9HREw0VgsjThJt2n5dSEWpcs6Bnn" sheet="Seven Bridges Road.pdf" />
   </song>
@@ -1982,7 +1985,7 @@
       <voice gdid="1ctMqwjEte_cFiRd4P3yWakyTNkOkh8Mi" mods="mix" path="mix/Shine On Me.mp3" voice="mix" />
       <voice gdid="11JzbLbitsrewuZCf8abQEJxfucdPmkWM" mods="tenor" path="tenor/Shine On Me - Tenor Left.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='12NEPx6Y9qjf4ykVfVtEw-PuKLNEJtk9W' sheet='Shine On Me.pdf' />
+    <sheet gdid="12NEPx6Y9qjf4ykVfVtEw-PuKLNEJtk9W" sheet="Shine On Me.pdf" />
   </song>
   <song id="1103" name="Shut De Do">
     <category>Current</category>
@@ -2002,7 +2005,7 @@
     <tracks><voice gdid="12UBFJQhJeJusxUEdbkvpCSlL0OZ-dXWj" mods="mix" path="mix/Shut De Do - All.mp3" voice="mix" />
       <voice gdid="1HG5PWeB8JuMB5ZVCeUl61eDA9wJhObDh" mods="Tenor L Final" path="tenor/Shut De Do Tenor L Final.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='135FY0ulKfh4H1GOCBiEvFHWaee8yQmYT' sheet='Shut De Do.pdf' />
+    <sheet gdid="135FY0ulKfh4H1GOCBiEvFHWaee8yQmYT" sheet="Shut De Do.pdf" />
   </song>
   <song id="1095" name="Sixteen Tons">
     <category>Current</category>
@@ -2017,7 +2020,7 @@
       <voice gdid="11cssWUcFJF_4TpGqdaNqBZGQTpiGj6h5" mods="lead" path="lead/Sixteen Tons - lead.mp3" voice="lead" />
       <voice gdid="1qeMiiNNde2cRHw-5zCyT4ErnKSBMViB0" mods="tenor" path="tenor/Sixteen Tons - tenor.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='136SPTMJVmVjdqgzoEZu1InJmuNIvbovS' sheet='Sixteen Tons.pdf' />
+    <sheet gdid="136SPTMJVmVjdqgzoEZu1InJmuNIvbovS" sheet="Sixteen Tons.pdf" />
   </song>
   <song id="1189" name="Smilin Through">
     <category>Old</category>
@@ -2104,7 +2107,7 @@
       <voice gdid="1NRH83jAl7AREdcbZBLmKwQDe1whAcqkP" mods="All" path="mix/Steamin' Down The River - All.mp3" voice="mix" />
     </tracks>
   </song>
-  <song id="1226" name="Heart Of My Heart" aliasfor="1052"/>
+  <song aliasfor="1052" id="1226" name="Heart Of My Heart" />
   <song id="1052" name="Story Of The Rose">
     <category>PoleCat</category>
     <arranger>SPEBSQSA</arranger>
@@ -2119,7 +2122,7 @@
       <voice gdid="14U6sW_QDGQaNkZ36aXQ31Rr9uRQNjhaR" mods="mix" path="mix/Heart of My Heart.mp3" voice="mix" />
       <voice gdid="11R9hdLafqGFd87sDmVYV3knfkV80NRnZ" mods="tenor" path="tenor/Heart of My Heart - Tenor Left.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='12czXRobuKY4eA_8mTjxvFsCbBZHYnRhn' sheet='Heart of My Heart.pdf' />
+    <sheet gdid="12czXRobuKY4eA_8mTjxvFsCbBZHYnRhn" sheet="Heart of My Heart.pdf" />
   </song>
   <song id="1153" name="Sunshine of Your Smile, The">
     <category>Old</category>
@@ -2144,7 +2147,7 @@
       <voice gdid="1Fb2mYHMThDcg3WferghLP_TZNDHB1ltl" mods="mix" path="mix/Sweet and Lovely.mp3" voice="mix" />
       <voice gdid="11I4n9T_LaYAUra7lfO7dmG2e8DYoeM-2" mods="tenor" path="tenor/Sweet and Lovely - Tenor Left.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='12-S2gqDApFJJASwLL6O4MnLTuiHXCM6W' sheet='Sweet and Lovely.pdf' />
+    <sheet gdid="12-S2gqDApFJJASwLL6O4MnLTuiHXCM6W" sheet="Sweet and Lovely.pdf" />
   </song>
   <song id="1057" name="Sweet, Sweet Roses of Morn">
     <category>PoleCat</category>
@@ -2159,7 +2162,7 @@
       <voice gdid="1p2cNzepJX-5Jbn0RMrN_ojsUyi5JFn2G" mods="mix" path="mix/Sweet Sweet Roses of Morn.mp3" voice="mix" />
       <voice gdid="11DRRzwGh3cW6egerKrEiNnKb1ab2jGyE" mods="tenor" path="tenor/Sweet Sweet Roses of Morn - Tenor Left.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='12N2l7Kg3kLf9HoOQFz5MwCOBh57SoAIr' sheet='Sweet Sweet Roses of Morn.pdf' />
+    <sheet gdid="12N2l7Kg3kLf9HoOQFz5MwCOBh57SoAIr" sheet="Sweet Sweet Roses of Morn.pdf" />
   </song>
   <song id="1190" name="Teddy Bear">
     <category>Old</category>
@@ -2310,7 +2313,7 @@
       <voice gdid="1OU5QefdzbsOP9SzTwGSjkNcJwFImz_8e" mods="tenor" path="tenor/Under The Boardwalk - tenor.mp3" voice="tenor" />
       <voice gdid="1Z1aFNYeH69Yuoesag9CqpSwwRHfhLTFX" mods="mix - faster" path="mix/Under the boardwalk mix-faster9.mp3" voice="mix" />
     </tracks>
-    <sheet gdid='139LgNbmst02dQKyh8c4CPeWMEDHgMVIv' sheet='Under the Boardwalk.pdf' />
+    <sheet gdid="139LgNbmst02dQKyh8c4CPeWMEDHgMVIv" sheet="Under the Boardwalk.pdf" />
   </song>
   <song id="1054" name="Wait Till The Sun Shines, Nellie">
     <category>PoleCat</category>
@@ -2325,7 +2328,7 @@
       <voice gdid="1aaehICSdJdWKhQO6Vd9IqTtyUmfPHByl" mods="mix" path="mix/Wait Til The Sun Shines Nellie.mp3" voice="mix" />
       <voice gdid="11CrCJdd35eUNCMqVWnHnh9zQVdRZWJdl" mods="tenor" path="tenor/Wait Til The Sun Shines Nellie - Tenor Left.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='11zODkV-5x0o8mCQpdONR9_HREJ4Bb7mn' sheet='Wait Til the Sun Shines, Nellie.pdf' />
+    <sheet gdid="11zODkV-5x0o8mCQpdONR9_HREJ4Bb7mn" sheet="Wait Til the Sun Shines, Nellie.pdf" />
   </song>
   <song id="1170" name="We Need a Little Christmas">
     <category>Christmas</category>
@@ -2338,7 +2341,8 @@
     <lyricist>Jerry Herman</lyricist>
     <pitch>G</pitch>
     <words>Oh, we need a little</words>
-    <tracks><voice gdid="10uINtALGay-h0HsqxPefNrcBLLu-N87F" mods="mix" path="mix/We Need a Little Christmas.mp3" voice="mix"/></tracks>
+    <tracks><voice gdid="10uINtALGay-h0HsqxPefNrcBLLu-N87F" mods="mix" path="mix/We Need a Little Christmas.mp3" voice="mix" />
+    </tracks>
   </song>
   <song id="1138" name="We Three Kings of Orient Are">
     <category>Christmas</category>
@@ -2413,7 +2417,8 @@
     <location>Coll p24</location>
     <lyricist>Irving Berlin</lyricist>
     <words>Far away from home</words>
-    <tracks><voice gdid="10mQJfX0XlAj0wyQh908DJeOZxqLGwZpk" mods="mix" path="mix/WHite Christmas.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="10mQJfX0XlAj0wyQh908DJeOZxqLGwZpk" mods="mix" path="mix/WHite Christmas.mp3" voice="mix" />
+    </tracks>
   </song>
   <song id="1184" name="Who Put the Bomp">
     <category>Current</category>
@@ -2494,7 +2499,8 @@
     <source>BHS</source>
     <stockID>7629</stockID>
     <words>Over the ground lies a mantle of white</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPYUlCeU1oSDF0VlE" mods="mix" path="mix/Winter Wonderland.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPYUlCeU1oSDF0VlE" mods="mix" path="mix/Winter Wonderland.mp3" resource_key="0-Eio12Vff33i1FGmC-IVYSA" voice="mix" />
+    </tracks>
   </song>
   <song id="1029" name="Yes Sir, That's My Baby">
     <category>Old</category>
@@ -2519,7 +2525,7 @@
       <voice gdid="1MYeuyH0zcYb24anti2IYD-_kxs5tTtRs" mods="Tenor" path="tenor/Yesterday - Tenor.mp3" voice="tenor" />
       <voice gdid="1-3iufDoOvu69UqB0pvFvq6pF8xQ95kLL" mods="mix" path="mix/Yesterday.mp3" voice="mix" />
     </tracks>
-    <sheet gdid='1391pzshslFWRg03EC9vOpGmowiNfIdmt' sheet='Yesterday.pdf' />
+    <sheet gdid="1391pzshslFWRg03EC9vOpGmowiNfIdmt" sheet="Yesterday.pdf" />
   </song>
   <song id="1031" name="Yona From Arizona">
     <category>Old</category>
@@ -2560,7 +2566,7 @@
       <voice gdid="1QisQkU5vXzulCmnQETnBIAlbMTmIZohK" mods="mix" path="mix/You Tell Me Your Dream.mp3" voice="mix" />
       <voice gdid="11CJgVog1Df--Ok0wTkhUnyXBcRYBc7rf" mods="tenor" path="tenor/You Tell Me Your Dream - Tenor Left.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='12lfYdDLPZEAZUmrKGmYXS7qeW1wEGayh' sheet='You Tell Me Your Dream.pdf' />
+    <sheet gdid="12lfYdDLPZEAZUmrKGmYXS7qeW1wEGayh" sheet="You Tell Me Your Dream.pdf" />
   </song>
   <song id="1008" name="You're Just In Love">
     <category>Old</category>
@@ -2577,7 +2583,7 @@
       <voice gdid="13JJQeiereNgSxTIzs80Mwxb-9AGUEI2s" mods="All" path="mix/You're Just In Love - All.mp3" voice="mix" />
     </tracks>
   </song>
-  <song id="1227" name="Sweet Adeline" aliasfor="1110"/>
+  <song aliasfor="1110" id="1227" name="Sweet Adeline" />
   <song id="1110" name="You're The Flower Of My Heart, Sweet Adeline">
     <category>PoleCat</category>
     <arranger>SPEBSQSA</arranger>
@@ -2593,7 +2599,7 @@
       <voice gdid="1GnG1puNKCpUs7NW8QD83sHY2Yn1Xo9c4" mods="mix" path="mix/Sweet Adeline.mp3" voice="mix" />
       <voice gdid="11IYS7amZUqQrhXBFC2bLLnNdMzKg6KN8" mods="tenor" path="tenor/Sweet Adeline - Tenor Left.mp3" voice="tenor" />
     </tracks>
-    <sheet gdid='12iZ3--EfLjKKRLasV08wIZdYRKYMlFx9' sheet='Sweet Adeline.pdf' />
+    <sheet gdid="12iZ3--EfLjKKRLasV08wIZdYRKYMlFx9" sheet="Sweet Adeline.pdf" />
   </song>
   <song id="1004" name="Zip-a-Dee Doo-Dah">
     <category>Old</category>
@@ -2612,7 +2618,7 @@
     <key>G</key>
     <learn_by>2015-03-01</learn_by>
   </song>
-  <song id="1228" name="Up On the Housetop" aliasfor="1202"/>
+  <song aliasfor="1202" id="1228" name="Up On the Housetop" />
   <song id="1202" name="Up on the Housetop">
     <category>Christmas</category>
     <arranger>SPEBSQSA</arranger>
@@ -2622,7 +2628,8 @@
     <location>YF pg 2</location>
     <lyricist>B. R. Hanby</lyricist>
     <words>Up on the house-top</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPcXA1ZVpDa21PRmM" mods="mix" path="mix/Children's Medley.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPcXA1ZVpDa21PRmM" mods="mix" path="mix/Children's Medley.mp3" resource_key="0-AV-V4mIZ5EszlhgVl0GumQ" voice="mix" />
+    </tracks>
   </song>
   <song id="1203" name="Coventry Carol">
     <category>Christmas</category>
@@ -2633,7 +2640,8 @@
     <location>YF pg 21</location>
     <lyricist>Traditional</lyricist>
     <words>Lul-lay, thou little tiny child</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPU1BXdVZoMUNqQms" mods="mix" path="mix/Coventry Carol.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPU1BXdVZoMUNqQms" mods="mix" path="mix/Coventry Carol.mp3" resource_key="0-IjVMA7S6Ozv09HyvvS6tDQ" voice="mix" />
+    </tracks>
   </song>
   <song id="1204" name="God Rest Ye Merry, Gentlemen">
     <category>Christmas</category>
@@ -2644,7 +2652,8 @@
     <location>YF pg 8</location>
     <lyricist>Traditional</lyricist>
     <words>God rest ye merry, gentlemen</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPWUFMNVE4ZzBmZTQ" mods="mix" path="mix/God Rest Ye Merry, Gentlemen.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPWUFMNVE4ZzBmZTQ" mods="mix" path="mix/God Rest Ye Merry, Gentlemen.mp3" resource_key="0-uNhibmZ3876M4z37XVkpiQ" voice="mix" />
+    </tracks>
   </song>
   <song id="1205" name="O Christmas Tree">
     <category>Christmas</category>
@@ -2654,7 +2663,8 @@
     <key>G</key>
     <location>YF pg 22</location>
     <words>O Christmas tree</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPcElBU19CaFdpOHc" mods="mix" path="mix/O Christmas Tree.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPcElBU19CaFdpOHc" mods="mix" path="mix/O Christmas Tree.mp3" resource_key="0-BTY7GAjznQ0XQhg-tYLR5g" voice="mix" />
+    </tracks>
   </song>
   <song id="1206" name="O Little Town of Bethlehem">
     <category>Christmas</category>
@@ -2665,7 +2675,8 @@
     <location>YF pg 14</location>
     <lyricist>Phillips Brooks</lyricist>
     <words>O little town of Bethlehem</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPU05PcHl3b0kxX1E" mods="mix" path="mix/O Little Town Of Bethlehem.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPU05PcHl3b0kxX1E" mods="mix" path="mix/O Little Town Of Bethlehem.mp3" resource_key="0-nFlc1SUsX-A1MAJquV4zSw" voice="mix" />
+    </tracks>
   </song>
   <song id="1207" name="Angels We Have Heard On High">
     <category>Christmas</category>
@@ -2676,7 +2687,8 @@
     <location>YF pg 15</location>
     <lyricist>Traditional French</lyricist>
     <words>Angels we have heard on high</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPNF9FVEthU3BtejQ" mods="mix" path="mix/Angels We Have Heard On High.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPNF9FVEthU3BtejQ" mods="mix" path="mix/Angels We Have Heard On High.mp3" resource_key="0-DEG0EnmNEhSqnVq50TVe7Q" voice="mix" />
+    </tracks>
   </song>
   <song id="1208" name="Hark! The Herald Angels Sing">
     <category>Christmas</category>
@@ -2687,7 +2699,8 @@
     <location>YF pg 4</location>
     <lyricist>Wesley/Cummings</lyricist>
     <words>Hark! The herald angels sing</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPRVVnclVtYWM1dEE" mods="mix" path="mix/Hark! The Herald Angels Sing.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPRVVnclVtYWM1dEE" mods="mix" path="mix/Hark! The Herald Angels Sing.mp3" resource_key="0-QNWq_8Jamkq32lCQYdISlQ" voice="mix" />
+    </tracks>
   </song>
   <song id="1209" name="I Heard The Bells On Christmas Day">
     <category>Christmas</category>
@@ -2698,7 +2711,8 @@
     <location>YF pg 17</location>
     <lyricist>Henry W Longfellow</lyricist>
     <words>I heard the bells on Christmas day</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPeGRXX3lvYjZfNDA" mods="mix" path="mix/I Heard The Bells On Christmas Day.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPeGRXX3lvYjZfNDA" mods="mix" path="mix/I Heard The Bells On Christmas Day.mp3" resource_key="0-Mt0I3U834GpTKvrWJFq4xg" voice="mix" />
+    </tracks>
   </song>
   <song id="1210" name="It Came Upon The Midnight Clear">
     <category>Christmas</category>
@@ -2709,7 +2723,8 @@
     <location>YF pg 6</location>
     <lyricist>Edmund H Sears</lyricist>
     <words>It came upon the midnight clear</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPTzhVeVNZNHZ4Q28" mods="mix" path="mix/It Came Upon The Midnight Clear.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPTzhVeVNZNHZ4Q28" mods="mix" path="mix/It Came Upon The Midnight Clear.mp3" resource_key="0-6lG03uMwI49p9yg0KtMyNQ" voice="mix" />
+    </tracks>
   </song>
   <song id="1211" name="Jingle Bells">
     <category>Christmas</category>
@@ -2721,7 +2736,8 @@
     <location>YF pg 18</location>
     <lyricist>James Pierpont</lyricist>
     <words>Jingle, jingle, jingle, jingle</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPOWFRXzF4dlgzX28" mods="mix" path="mix/Jingle Bells.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPOWFRXzF4dlgzX28" mods="mix" path="mix/Jingle Bells.mp3" resource_key="0-XhV3ZwiFj8fRQx27hBSRRw" voice="mix" />
+    </tracks>
   </song>
   <song id="1212" name="Lo, How A Rose E'er Blooming">
     <category>Christmas</category>
@@ -2732,7 +2748,8 @@
     <location>YF pg 24</location>
     <lyricist>Theodore Baker</lyricist>
     <words>Lo, How A Rose E'er Blooming</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPZ0F6bU1EYWJSbVk" mods="mix" path="mix/Lo, How A Rose E'er Blooming.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPZ0F6bU1EYWJSbVk" mods="mix" path="mix/Lo, How A Rose E'er Blooming.mp3" resource_key="0-yTqg5ftZhjs1G5x_yhvvFg" voice="mix" />
+    </tracks>
   </song>
   <song id="1213" name="O Come, All Ye Faithful">
     <category>Christmas</category>
@@ -2743,7 +2760,8 @@
     <location>YF pg 12</location>
     <lyricist>Frederick Oakeley</lyricist>
     <words>O Come, All Ye Faithful</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPY1g3VmZCV1pld2M" mods="mix" path="mix/O Come, All Ye Faithful.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPY1g3VmZCV1pld2M" mods="mix" path="mix/O Come, All Ye Faithful.mp3" resource_key="0-K2fQkaKOU1YuxZV_2flsOg" voice="mix" />
+    </tracks>
   </song>
   <song id="1214" name="O Holy Night">
     <category>Christmas</category>
@@ -2754,7 +2772,8 @@
     <location>YF pg 10</location>
     <lyricist>Cappeau/Dwight</lyricist>
     <words>O Holy Night</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPMV9pREdQUDRwZVE" mods="mix" path="mix/O Holy Night.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPMV9pREdQUDRwZVE" mods="mix" path="mix/O Holy Night.mp3" resource_key="0-K8Xj0jCoRdD-xidmFCGLxw" voice="mix" />
+    </tracks>
   </song>
   <song id="1215" name="Silent Night">
     <category>Christmas</category>
@@ -2765,7 +2784,8 @@
     <location>YF pg 7</location>
     <lyricist>Mohr/Young</lyricist>
     <words>Silent night, Holy night</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPQzZhd2Yzd0xkazQ" mods="mix" path="mix/Silent Night.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPQzZhd2Yzd0xkazQ" mods="mix" path="mix/Silent Night.mp3" resource_key="0-dJ7NHfPGY8-4DtURJdqumg" voice="mix" />
+    </tracks>
   </song>
   <song id="1216" name="Silver Bells">
     <category>Christmas</category>
@@ -2775,7 +2795,8 @@
     <key>Bb</key>
     <lyricist>Livingston/Evans</lyricist>
     <words>Silver Bells</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPNXNhQkIwV0I2T3c" mods="mix" path="mix/Silver Bells.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPNXNhQkIwV0I2T3c" mods="mix" path="mix/Silver Bells.mp3" resource_key="0-DNa6EVHzkAPyVzwphGNQAw" voice="mix" />
+    </tracks>
   </song>
   <song id="1217" name="We Wish You A Merry Christmas">
     <category>Christmas</category>
@@ -2786,7 +2807,8 @@
     <location>YF pg 16</location>
     <lyricist>Traditional English</lyricist>
     <words>We Wish You A Merry Christmas</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPNUNMY0xSTy0tcWc" mods="mix" path="mix/We Wish You A Merry Christmas.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPNUNMY0xSTy0tcWc" mods="mix" path="mix/We Wish You A Merry Christmas.mp3" resource_key="0-rgJwsybeC3vE8F3XxqX7wA" voice="mix" />
+    </tracks>
   </song>
   <song id="1218" name="While By My Sheep">
     <category>Christmas</category>
@@ -2797,6 +2819,7 @@
     <location>YF pg 23</location>
     <lyricist>Traditional German</lyricist>
     <words>While By My Sheep</words>
-    <tracks><voice gdid="0Bxd7i2Hm5BiPUnRTSkU4d2IzQVE" mods="mix" path="mix/While By My Sheep.mp3" voice="mix" /></tracks>
+    <tracks><voice gdid="0Bxd7i2Hm5BiPUnRTSkU4d2IzQVE" mods="mix" path="mix/While By My Sheep.mp3" resource_key="0-5DP3ugQStE3oYfsk31PcNw" voice="mix" />
+    </tracks>
   </song>
 </musiclib>

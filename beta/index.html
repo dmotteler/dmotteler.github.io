@@ -2,8 +2,11 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    $Id: index.html,v 1.4 2022/09/12 00:15:35 dfm Exp dfm $
+    $Id: index.html,v 1.5 2022/09/16 19:37:38 dfm Exp $
     $Log: index.html,v $
+    Revision 1.5  2022/09/16 19:37:38  dfm
+    put all of the events in the display table, improve the display
+
     Revision 1.4  2022/09/12 00:15:35  dfm
     added size='12' to the select to improve visual on startup, and removed a dangling ;
 
@@ -22,7 +25,7 @@
     build newest-first select list of cheat sheets,
     calls ch.html to display cheat sheet when event is selected.
 -->
-<title id="doctitle">Select cheat sheets</title>
+<title id="doctitle">Select a cheat sheet</title>
 <style>
 #selev { width: 650px; }
 table { width: 100%; border: 2px solid black; border-collapse: collapse; 
@@ -31,7 +34,7 @@ tr, td { text-align: center; }
 th { font-size: 24px; text-align: center; background-color: lightgreen; border-bottom: 2px solid black; }
 tr:nth-child(even) { background: white; }
 tr:nth-child(odd) { background: lightblue; }
-.scrollable { height: 300px; overflow-y: scroll; border-bottom: 1px solid green; }
+.scrollable { height: 336px; overflow-y: scroll; border-bottom: 1px solid green; }
 th { position: sticky; background-color: lightgreen; z-index: 2; top: 0; }
 </style>
 <script src="getEventList.js"></script>
