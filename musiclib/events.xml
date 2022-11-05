@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Rehearsal" when="November 01, 2022 06:00PM" dtndx="202211011800" songlist="1102 1055 1052 1103 1181 1073 1202 1213 1207 1217 1209 1035 1211 1218 1212 1178" />
   <event where="Rehearsal" when="October 25, 2022 06:00PM" dtndx="202210251800" songlist="1102 1055 1175 1073 1178 1181 1103 1202 1210 1214 1213 1207 1217 1209 1035" />
   <event where="Rehearsal" when="October 18, 2022 06:00PM" dtndx="202210181800" songlist="1102 1055 1182 1163 1178 1103 1192 1193 1073 1194 1185 1181 1195 1179 1035" />
   <event where="Rehearsal" when="October 11, 2022 06:00PM" dtndx="202210111800" songlist="1102 1055 1175 1163 1178 1192 1103 1020 1194 1073 1179 1193 1115 1035" />
