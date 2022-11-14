@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <!--
 
-    $Id: ch.html,v 1.7 2022/10/03 17:51:02 dfm Exp $
+    $Id: ch.html,v 1.8 2022/11/11 18:37:44 dfm Exp $
     $Log: ch.html,v $
+    Revision 1.8  2022/11/11 18:37:44  dfm
+    add the "sheet" capability
+
     Revision 1.7  2022/10/03 17:51:02  dfm
     apply resource key to drive refs
 
@@ -60,14 +63,14 @@ tr:nth-child(odd) { background: #FFF }
 </style>
 <script src="getMusicLib.js"></script>
 <script>
-var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none'];
+var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none', 'sheet'];
 var showVoice;
 function clickVoice() {
     // set showVoice, then emulate clicking that voice selection
     // to get the tracks showing or hidden. this is the init function
     // when a downloaded cheat is executed.
 
-    let showVoice = localStorage.getItem("defaultVoice");
+    showVoice = localStorage.getItem("defaultVoice");
     if (! showVoice) { showVoice = "mix"; }
     let buttonId = "#sel" + showVoice;
     let butt = document.querySelector(buttonId);
@@ -78,6 +81,7 @@ function setvoice(el) {
     let clr = "." + voice;
     // show the class we were called with (i.e., remove "hidden")
     document.querySelectorAll(clr).forEach(node => { node.classList.remove("hidden") });
+
     let others = new Set(voices);
     others.delete(voice);
     // don't show the rest of the classes
@@ -85,7 +89,7 @@ function setvoice(el) {
         let cla = "." + v;
         document.querySelectorAll(cla).forEach(node => { node.classList.add("hidden") });
     }
-    if (voice != "none") {
+    if (voice != "none" && voice != "sheet") {
         localStorage.setItem("defaultVoice", voice);
     }
 }
@@ -144,10 +148,16 @@ function init() {
     });
 }
 function makelist() {
+    // create the html for the songlist display. 
+    // each row has key, song title, starting words
+    // for all songs from the songlist.
+    // the song title td has a div for each voice, with class "hidden" 
+    // for all except the current voice being displayed.
+
     let title = `${venue} - ${evdate}`;
     document.title = title;
 
-    let showVoice = localStorage.getItem("defaultVoice");
+    showVoice = localStorage.getItem("defaultVoice");
     if (! showVoice) { showVoice = "mix"; }
 
     let html = `<tbody id='main_table'><tr><td colspan='3' class='tabletitle'>${title}</td></tr>`;
@@ -176,19 +186,45 @@ function makelist() {
             songTitle += ` [${song['location']}]`;
         }
         let picks = "";
-        if (song.hasOwnProperty("tracks")) {
-            for (let voice of voices) {
-                let choices = [];
-                if (voice == "none") {
-                    choices.push(songTitle);
+        // if we have any tracks for this song, add a div
+        // for each track to the song title td, with class "hidden"
+        // for all but the active voice
+        for (let voice of voices) {
+            let ancclass = voice == showVoice ? voice : voice + " hidden";
+
+            if (voice == "none") {
+                picks += `<div class='${ancclass}'>${songTitle}</div>\n`;
+
+            } else if (voice == "sheet") {
+                if (song.hasOwnProperty("sheet")) {
+                    // song has a sheet - all sheets have gdid, may have res. key
+                    let anc;
+                    let gdid = song['sheet']['gdid'];
+                    if (song['sheet'].hasOwnProperty('resource_key')) {
+                        let rk = song['sheet']['resource_key'];
+                        anc = `<a href='https://drive.google.com/open?id=${gdid}&resourcekey=${rk}'>${songTitle} [sheet]</a>`;
+                    } else {
+                        anc = `<a href='https://drive.google.com/open?id=${gdid}'>${songTitle} [sheet]</a>`;
+                    }
+                    picks += `<div class='${ancclass}'>${anc}</div>\n`;
                 } else {
+                    // no sheet for this song - sheet entry is just song title
+                    picks += `<div class='${ancclass}'>${songTitle}</div>\n`;
+                }
+            } else {
+                // voice is one that may have tracks
+
+                // choices is a list of tracks for this voice (part or mix)
+                let choices = [];
+
+                if (song.hasOwnProperty("tracks")) {
                     let v;
                     if (song['tracks'].hasOwnProperty(voice)) {
                         v = voice;
                     } else if (song['tracks'].hasOwnProperty('mix')) {
                         v = 'mix';
                     } else {
-                        v = null;
+                        v = 'notrack';
                     }
                     if (song['tracks'].hasOwnProperty(v)) {
                         for (let vtrk of song['tracks'][v]) {
@@ -204,17 +240,18 @@ function makelist() {
                             choices.push(anc);
                         }
                     } else { 
-                        // no tracks for this voice
+                        // no tracks for this voice - just show the song title
                         choices.push(songTitle);
                     }
-                }
-                let ancclass = voice;
-                if (voice != showVoice) {
-                    ancclass += " hidden";
+                } else {
+                    // no tracks for this song - just show the song title
+                    choices.push(songTitle);
                 }
                 picks += `<div class='${ancclass}'>` + choices.join("<br/>\n") + "\n</div>";
             }
-        } else {
+        }
+        if ((! song.hasOwnProperty("tracks") && ! song.hasOwnProperty("sheet"))) {
+            // no tracks or sheet - just display song title
             picks = songTitle + "\n";
         }
 
@@ -338,6 +375,7 @@ function calledit() {
          <input type="radio" id="selbari" name="part" value="bari" onclick="setvoice(this)">bari</input>
          <input type="radio" id="selbass" name="part" value="bass" onclick="setvoice(this)">bass</input>
          <input type="radio" id="selmix" name="part" value="mix" onclick="setvoice(this)">mix</input>
+         <input type="radio" id="selsheet" name="part" value="sheet" onclick="setvoice(this)">sheet</input>
          <input type="radio" id="selnone" name="part" value="none" onclick="setvoice(this)">none</input>
         </fieldset>
         </td>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- $Id: ps.html,v 1.6 2022/09/12 19:10:20 dfm Exp $
+<!-- $Id: ps.html,v 1.6 2022/09/12 19:10:20 dfm Exp dfm $
      Log:$
 
      provide song list for cheat-sheet song selection
@@ -295,9 +295,13 @@ function useprev(el) {
     // check the songlist for songs not in the current library, and for
     // songs in the library but in un-selected categories. Think "Christmas".
     for (let sid of songlist) {
-        let song = musiclib[sid];
-        let songnam = song['name'];
+        let songnam = musiclib[sid].name;
+
+        let msid = musiclib[sid].hasOwnProperty('aliasfor') ?  musiclib[sid].aliasfor : sid;
+
+        let song = musiclib[msid];
         let songactive = false;
+
         for (let cat of song['category']) {
             if (cat in catSelected && catSelected[cat]) {
                 songactive = true;

@@ -1,6 +1,12 @@
 <!DOCTYPE html>
-<!-- $Id: songperfs.html,v 1.5 2022/10/22 19:38:11 dfm Exp $
+<!-- $Id: songperfs.html,v 1.7 2022/10/25 00:44:24 dfm Exp $
      $Log: songperfs.html,v $
+     Revision 1.7  2022/10/25 00:44:24  dfm
+     set min/max dates to those of eventlist
+
+     Revision 1.6  2022/10/25 00:06:51  dfm
+     set date range min/max to first/last dates from eventlist
+
      Revision 1.5  2022/10/22 19:38:11  dfm
      if sid is for an alias, map to the "real" song
 
@@ -146,21 +152,33 @@ function loads() {
             catfs.appendChild(lab);
         }
 
-        /*
-        // get the datalist element for the search
-        let sel = document.getElementById("prevev");
+        // find the smallest dtndx from eventlist
+        let e0 = Object.keys(eventlist).reduce((a, b) => b < a ? b : a);
+        e0 = e0.substring(0, 4) + "-" + e0.substring(4, 6) + "-" + e0.substring(6, 8);
 
-        let sortedbydate = Object.keys(eventlist).sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
+        let d0 = new Date(e0);
+        let mindate = formatDate(d0, "%Y-%m-%d");
 
-        for (let ndx of sortedbydate) {
-            let ev = eventlist[ndx];
+        // find the largest dtndx from eventlist, set maxdate to next day's date
+        let en = Object.keys(eventlist).reduce((a, b) => b > a ? b : a);
+        en = en.substring(0, 4) + "-" + en.substring(4, 6) + "-" + en.substring(6, 8) + " 12:00";
 
-            let opt = document.createElement("option");
-            opt.dataset.dtndx = ndx;
-            opt.value = `${ev['where']} - ${ev['when']}`;
-            sel.append(opt);
-        }
-        */
+        let dn = new Date(en);
+        dn.setDate(dn.getDate() + 1);
+        let maxdate = formatDate(dn, "%Y-%m-%d");
+
+        dn.setFullYear(dn.getFullYear(dn) - 1);
+        let strtdate = formatDate(dn, "%Y-%m-%d");
+
+        console.log(`mindate ${mindate} strtdate ${strtdate} maxdate ${maxdate}`);
+
+        document.querySelector("#begindate").min = mindate;
+        document.querySelector("#begindate").max = maxdate;
+        document.querySelector("#begindate").value = strtdate;
+
+        document.querySelector("#enddate").min = mindate;
+        document.querySelector("#enddate").max = maxdate;
+        document.querySelector("#enddate").value = maxdate;
     });
 }
 function getMatches() {

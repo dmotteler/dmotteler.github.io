@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Id: musiclib.xml,v 1.2 2022/10/03 17:58:26 dfm Exp $ -->
+<!-- $Id: musiclib.xml,v 1.4 2022/11/14 05:15:12 dfm Exp $ -->
 <?xml-stylesheet type="text/xsl" href="musiclib.xsl"?>
 <musiclib name="Tuners Music Library" rev="1.1">
   <song id="1101" name="After Dark">
@@ -193,6 +193,7 @@
     <arranger>Mel Knight</arranger>
     <key>Eb</key>
     <words>Ba ba ba, ba ba b'ran</words>
+    <sheet gdid="158E60G9Vx1uTDDRrbRq30dBwy6isC3IB" sheet="Barbara Ann.pdf" />
   </song>
   <song id="1176" name="Barbersprach Zarathustra">
     <category>Old</category>
@@ -389,6 +390,7 @@
       <voice gdid="1HQPElEMMzlxaozt43T3JwmbjIsXgomYz" mods="lead" path="lead/Chances Are (lead predominant).mp3" voice="lead" />
       <voice gdid="1m3q4PNIXPIEq_AdOWr5dQWl4Bw7IXmiq" mods="mix" path="mix/Chances Are (full mix).mp3" voice="mix" />
     </tracks>
+    <sheet gdid='1vJWTPbT1yYhR8UmdQAo_aAWgSqnmIJaO' sheet='Chances Are.pdf' />
   </song>
   <song id="1127" name="Chanukah, Chanukah">
     <category>Christmas</category>
@@ -570,6 +572,10 @@
     <location>Coll pg 4</location>
     <lyricist>Regney/Shayne</lyricist>
     <words>Oh, Oh, Said the night wind</words>
+    <tracks>
+        <voice gdid='1FvGCm2Zefl0VL_8b4W3uWD9dI6ZBl_5m' mods='mix' path='Do You Hear What I Hear.mp3' voice='mix' />
+    </tracks>
+    <sheet gdid='15P1Y6I2aprkA0TGeg4HPMaBshA8BYboY' sheet='Do You Hear What I Hear.pdf' />
   </song>
   <song id="1042" name="Don't Sit Under The Apple Tree">
     <category>Old</category>
@@ -698,6 +704,11 @@
     <key>B</key>
     <lyricist>Lennon/McCartney</lyricist>
     <words>na na na na na na na na</words>
+    <tracks>
+        <voice gdid='0Bxd7i2Hm5BiPdkQ2R0xCa1JNV0E' mods='mix' path='01 Eight Days A Week mini - Men - Full Mix.mp3' voice='mix' />
+        <voice gdid='0Bxd7i2Hm5BiPM2wxZUtDbG5lZG8' mods='Bass Left' path='15 Eight Days A Week mini - Men - Bass Left.mp3' voice='bass' />
+    </tracks>
+    <sheet sheet='Eight-Days-Mini-For-Men_593309b43a7d7_e.pdf' gdid='0Bxd7i2Hm5BiPZlhsTnVzeW1COUU' />
   </song>
   <song id="1043" name="Embraceable You">
     <category>Old</category>
@@ -814,6 +825,21 @@
     <lyricist>Ray Stevens</lyricist>
     <stockID>203480</stockID>
     <words>Lately I have noticed all my friends</words>
+    <tracks>
+        <voice gdid='0Bxd7i2Hm5BiPMXVqSmVkY29OM2x4eTFiYUR1M2pXOXN4ekhF' mods='Mix in F'
+            path='F - Have a Little Talk with Myself - Demo.mp3' voice='mix' />
+        <voice gdid='0Bxd7i2Hm5BiPMHNqTFhqc0NHQms' mods='Tenor' reskey='0-qTRKLek42co4Z_Hd4uQCRQ'
+            path='01 Have a Little Talk with Myself - Tenor.mp3' voice='tenor' />
+        <voice gdid='0Bxd7i2Hm5BiPVFhKeG1SR3NPQk0' mods='Lead' reskey='0-hkKcTYLrQvGOCoFAMYNPIg'
+            path='02 Have a Little Talk with Myself - Lead.mp3' voice='lead' />
+        <voice gdid='0Bxd7i2Hm5BiPa0lkNmlSM2xzQTA' mods='Bari' reskey='0-fMtOp22JPPHawD_BuVRm9g'
+            path='03 Have a Little Talk with Myself - Bari.mp3' voice='bari' />
+        <voice gdid='0Bxd7i2Hm5BiPSlQ5aHdhQUVVU3M' mods='Bass' reskey='0-v2Jy-400sr8aCVpmGot9ow'
+            path='04 Have a Little Talk with Myself - Bass.mp3' voice='bass' />
+        <voice gdid='0Bxd7i2Hm5BiPdXhzNG1TREo3UFk1RUVjeFRzQ1ZXRkE4Y0Vr' mods='Slow mix'
+            reskey='0-sl5g-wu7ySVKRQh_e3LuuA' path='Slow - Have a Little Talk with Myself - Demo.mp3' voice='mix' />
+    </tracks>
+    <sheet gdid='1f3SRk-61TQ1nP05fqtFCD4qry3ck9C_W' sheet='Have A Little Talk.pdf' />
   </song>
   <song id="1017" name="Hello Mary Lou">
     <category>Old</category>
@@ -897,6 +923,10 @@
     <location>Coll pg 8</location>
     <lyricist>Stillman/Allen</lyricist>
     <words>Christmas comes but once a year</words>
+    <tracks>
+        <voice gdid='1IUclr77JYETp1np_mE81Xswl8TauXTTS' mods='mix' path='Home For the Holidays.mp3' voice='mix' />
+    </tracks>
+    <sheet gdid='15PooKD9ghRvTh7sydAV5MOor5csaJ_m2' sheet='Home For the Holidays.pdf' />
   </song>
   <song id="1056" name="Honey/Little 'Lize - Medley">
     <category>PoleCat</category>
@@ -1018,6 +1048,7 @@
     <words>My home's the place</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPSmozVDFjT25GTnM" mods="mix" path="mix/I'll Be Home For Christmas.mp3" resource_key="0-zQlu7g6o19VadzfkEBX1NQ" voice="mix" />
     </tracks>
+    <sheet gdid='1I5Gp1dJynSEGKvzcKCXP-7BHHfFP6-qF' sheet='I&apos;ll Be Home For Christmas.pdf' />
   </song>
   <song aliasfor="1160" id="1223" name="Gonna Live Till I Die" />
   <song id="1160" name="I'm Gonna Live Till I Die">
@@ -1039,6 +1070,7 @@
       <voice gdid="1r66-dcvyjNfJgS-tCyeZcb3SniCeaQ0N" mods="Bass" path="bass/Live Til I Die - Bass.mp3" voice="bass" />
       <voice gdid="15N4upHpw2PiCQIL8BM2U3gVSXRsUVG81" mods="No Bass" path="bass/Live Til I Die - No Bass.mp3" voice="bass" />
     </tracks>
+    <sheet gdid='15U-V9EraHHYZaWlDC3ukAF7mhECD7Bcj' sheet='ImGonnaLiveTillIDie.pdf' />
   </song>
   <song id="1118" name="I've Been Working On The Railroad">
     <category>PoleCat</category>
@@ -1185,6 +1217,7 @@
     <words>It's beginning to look a lot like Christmas</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPODFYY3NYVFRjdzg" mods="mix" path="mix/It's Beginning To Look Like Christmas.mp3" resource_key="0-YMKThRldvQPpYODKlpb3fQ" voice="mix" />
     </tracks>
+    <sheet gdid='15QXT_bW3wIFsKSOPLDvSsg-WFp92leyI' sheet='It&apos;s Beginning To Look Like Christmas.pdf' />
   </song>
   <song aliasfor="1197" id="1224" name="It's the Music That Brings Us Together" />
   <song id="1197" name="It's the Music">
@@ -1321,6 +1354,10 @@
     <location>Coll p16</location>
     <lyricist>Sammy Cahn</lyricist>
     <words>doo doo doo doo doo doo</words>
+    <tracks>
+        <voice gdid='1CdPpW0LIBOsvwwZddJdCrKay608wyF4t' mods='mix' path='Let It Snow.mp3' voice='mix' />
+    </tracks>
+    <sheet gdid='15SoSnUxGffyxrvxj4uJqfJkm9eVTxmj0' sheet='Let It Snow.pdf' />
   </song>
   <song id="1050" name="Let Me Call You Sweetheart">
     <category>PoleCat</category>
@@ -1402,8 +1439,12 @@
     <location>Coll p28</location>
     <lyricist>Wilson/Love</lyricist>
     <words>ba dm ba dm ba dm</words>
-    <tracks><voice gdid="10yTH6wR12RBAjoPfWrR5_5K1OaBRv7w-" mods="mix" path="mix/Little Saint Nick.mp3" voice="mix" />
+    <tracks>
+        <voice gdid='1iCwLjYana2x18IZhcYmBNoTGaJe2VwcG' mods='mix slowww' path='Little Saint Nick sloowww.mp3' voice='mix' />
+        <voice gdid='1ZXIeLnEURTuxzqwSK87jBrv7NG5ZkJBl' mods='mix 75' path='Little Saint Nick.75.mp3' voice='mix' />
+        <voice gdid='1Uxso3i3R-1f1DHVnYOTHc4HKBOUesYb5' mods='mix' path='Little Saint Nick.mp3' voice='mix' />
     </tracks>
+    <sheet gdid='1WPYKVItdjgQW3WYipqmraogTP8er2_GG' sheet='Little Saint Nick.pdf' />
   </song>
   <song id="1066" name="Little Street Where Old Friends Meet, A">
     <category>Old</category>
@@ -2341,8 +2382,10 @@
     <lyricist>Jerry Herman</lyricist>
     <pitch>G</pitch>
     <words>Oh, we need a little</words>
-    <tracks><voice gdid="10uINtALGay-h0HsqxPefNrcBLLu-N87F" mods="mix" path="mix/We Need a Little Christmas.mp3" voice="mix" />
+    <tracks>
+        <voice gdid='139pVVVucRhbCs51ADm6afMjVmztRwEHP' mods='mix' path='We Need a Little Christmas.mp3' voice='mix' />
     </tracks>
+    <sheet gdid='1xrqQT06dGP7vuJs8Xwr2NQuJfNHE4aiM' sheet='We Need a Little Christmas.pdf' />
   </song>
   <song id="1138" name="We Three Kings of Orient Are">
     <category>Christmas</category>
@@ -2417,8 +2460,10 @@
     <location>Coll p24</location>
     <lyricist>Irving Berlin</lyricist>
     <words>Far away from home</words>
-    <tracks><voice gdid="10mQJfX0XlAj0wyQh908DJeOZxqLGwZpk" mods="mix" path="mix/WHite Christmas.mp3" voice="mix" />
+    <tracks>
+        <voice gdid='1mJ6qc67sz-l3uk7ddDJqawMDwDnPH4ha' mods='mix' path='White Christmas.mp3' voice='mix' />
     </tracks>
+    <sheet gdid='1E9sbyR866DP8S0P7YK22BkY2F5ba2F8P' sheet='White Christmas.pdf' />
   </song>
   <song id="1184" name="Who Put the Bomp">
     <category>Current</category>

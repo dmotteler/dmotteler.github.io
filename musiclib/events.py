@@ -89,9 +89,13 @@ def loadlib(lib_xml):
 
                 elif subel.tag == "sheet":
                     song['sheet'] = {}
-                    for att in sorted(subel.keys()):
+                    atts = dict(subel.items())
+                    for att in atts:
                         val = subel.get(att)
                         song['sheet'][att] = val
+
+                    gdid = atts['gdid']
+                    musiclib['bygdid'][gdid] = sid
 
                 elif subel.tag == "tracks":
                     song['tracks'] = {}
