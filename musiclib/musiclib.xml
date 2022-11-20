@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Id: musiclib.xml,v 1.4 2022/11/14 05:15:12 dfm Exp $ -->
+<!-- $Id: musiclib.xml,v 1.5 2022/11/20 20:26:13 dfm Exp $ -->
 <?xml-stylesheet type="text/xsl" href="musiclib.xsl"?>
 <musiclib name="Tuners Music Library" rev="1.1">
   <song id="1101" name="After Dark">
@@ -77,6 +77,7 @@
     <words>Angels, from the realms</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPbG5fX3g5bUViNVU" mods="mix" path="mix/Angels, From The Realms of Glory.mp3" resource_key="0-o2ScVLKgG4wj-htYPSGGHw" voice="mix" />
     </tracks>
+    <sheet gdid='15xMXHj2j9I3FzB8VlvFWDdm2-FblqG0f' sheet='Tuners Music/Xmas sheets/Angels From the Realms of Glory.pdf' />
   </song>
   <song id="1064" name="Armed Forces Medley">
     <category>Old</category>
@@ -107,6 +108,7 @@
     <words>As with gladness men of old</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPa3o2ZFJCeHpwTlk" mods="mix" path="mix/As With Gladness Men Of Old.mp3" resource_key="0-gh_HNITEgxrwhdoIu1hXQQ" voice="mix" />
     </tracks>
+    <sheet gdid='15v_qjh47m-3GdaXt6PR0XYObCY6fHqs1' sheet='Tuners Music/Xmas sheets/As With Gladness Men of Old.pdf' />
   </song>
   <song id="1126" name="Auld Lang Syne">
     <category>Christmas</category>
@@ -134,6 +136,7 @@
     <words>Away in a manger</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPTmRDMnY5REtlWnM" mods="mix" path="mix/Away In A Manger.mp3" resource_key="0-enCrwMK6fl2OgsytZzLQ7w" voice="mix" />
     </tracks>
+    <sheet gdid='15qQoYxrRNQ1afYLvLlOCYqJfYJA6GYr2' sheet='Tuners Music/Xmas sheets/Away In a Manger.pdf' />
   </song>
   <song id="1069" name="Baby Face">
     <category>Old</category>
@@ -295,6 +298,7 @@
     <arranger>PDB</arranger>
     <key>F</key>
     <words>doo doo doo doo</words>
+    <sheet gdid='0Bxd7i2Hm5BiPSVE4TTFFZnFEa2s' resource_key='0-zWRWefASPsxjE3A8FvjqUw' sheet='Tuners Music/Finale/Bury Me Out/BuryMeOut.pdf' />
   </song>
   <song id="1005" name="Bye Bye Blues">
     <category>Old</category>
@@ -413,6 +417,7 @@
     <composer>Anonymous</composer>
     <key>C</key>
     <words>Twas the night before Christmas</words>
+    <sheet gdid='15Vp3a5uGcK9fkHsyD-iSOFkHegRrxqlK' sheet='Tuners Music/Xmas sheets/ChristmasChopsticks.pdf' />
   </song>
   <song id="1141" name="Circle Of Life, The">
     <category>Old</category>
@@ -545,6 +550,7 @@
     <category>Christmas</category>
     <key>Eb</key>
     <words>Deck the halls with boughs of holly</words>
+    <sheet gdid='1g4cl7bwrt37UxBfXeEgI3CXlbrZiKjWC' sheet='Tuners Music/Xmas sheets/Deck the Halls.pdf' />
   </song>
   <song id="1129" name="Deck the Halls">
     <category>Christmas</category>
@@ -649,6 +655,7 @@
       <voice gdid="1GpTdChicvJKsBylPJeDlEPLW73Z9-B9Y" mods="Tenor" path="tenor/Dream Lover - Tenor.mp3" voice="tenor" />
       <voice gdid="10u7Eoq9FqYHDfBx3cLLG-7AFt0czFUML" mods="mix" path="mix/Dream Lover.mp3" voice="mix" />
     </tracks>
+    <sheet gdid='1_E24mHer_Ib9uAm85Bpm4lQ8BCFgUkxo' sheet='Tuners Music/Finale/Dream Lover/Dream Lover.pdf' />
   </song>
   <song id="1114" name="Drivin' Me Crazy">
     <category>PoleCat</category>
@@ -792,6 +799,17 @@
     <source>BHS</source>
     <stockID>210494</stockID>
     <words>Good Christian men, rejoice</words>
+  </song>
+  <song id="1230" name="Happy Birthday">
+    <category>Current</category>
+    <arranger>Joe Liles</arranger>
+    <composer>Traditional</composer>
+    <lyricist>Mildred and Patty Hill</lyricist>
+    <copyright>Joe Liles</copyright>
+    <crdate>2017</crdate>
+    <key>Bb</key>
+    <words>Happy birthday to you</words>
+    <sheet gdid='152T8-JPmQXC2QwdH2EFtF9Qkac_5l_OU' sheet='Tuners Music/sheet music/Happy-Birthday-to-You-3-TTBB-LILES.pdf' />
   </song>
   <song id="1181" name="Happy Together">
     <category>Current</category>
@@ -1263,11 +1281,13 @@
     <lyricist>Joe Beal and Jim Boothe</lyricist>
     <stockID>7690</stockID>
     <words>Jingle Bell, Jingle Bell, Jingle Bell Rock</words>
+    <sheet gdid='1HGnugOkF4YA_vaMj3REfRag0EVjEpBsS' sheet='Tuners Music/Xmas sheets/Jingle-bell Rock.pdf' />
   </song>
   <song id="1174" name="Joy to the World">
     <category>Christmas</category>
     <key>C</key>
     <words>Joy to the world, the Lord is come!</words>
+    <sheet gdid='16xxzZBbyIwVz6YRIHMP46t_y8pC6dxtz' sheet="Tuners Music/Xmas sheets/Joy to the World (words).pdf" />
   </song>
   <song id="1136" name="Joy to the World!">
     <category>Christmas</category>
@@ -1409,6 +1429,7 @@
       <voice gdid="1pHrk5mtXXZh3N4xah5lvMSMhyxTPPYXN" mods="Tenor" path="tenor/Lida Rose - Will I Ever Tell You - Tenor.mp3" voice="tenor" />
       <voice gdid="1PPKHf3XDUUDgKhUoF1CWzaj7xvOQlzdN" mods="All" path="mix/Lida Rose - Will I Ever Tell You - All.mp3" voice="mix" />
     </tracks>
+    <sheet gdid='0Bxd7i2Hm5BiPY0lYMHU2N0RqMUU' resource_key='0-yRsYdiEWvlamkTgfv4QqeQ' sheet='Tuners Music/Finale/Lida Rose/LidaRose_Combined.pdf' />
   </song>
   <song id="1194" name="Lion Sleeps Tonight">
     <category>Current</category>
@@ -1502,7 +1523,8 @@
     <ordered>2017-06-04</ordered>
     <source>BHS</source>
     <stockID>8525</stockID>
-    <words>??</words>
+    <words>Our Father</words>
+    <sheet gdid='0Bxd7i2Hm5BiPN1RkWXR3dGZKcnc' resource_key='0-E0InIp0r5UosU78W1-WLCQ' sheet="Tuners Music/Finale/Lord's Prayer/LordsPrayer.pdf" />
   </song>
   <song id="1106" name="Lost In The Stars">
     <category>Old</category>
@@ -1544,6 +1566,7 @@
     <key>Ab</key>
     <learn_by>2014-07-28</learn_by>
     <words>doo doo doo, doo doo doo</words>
+    <sheet gdid='1vUvXf5q30ztkqh1GL3pv_d6DEIQ_Ze2E' sheet='Tuners Music/Finale/Mansions Of The Lord/Mansions Of The Lord.pdf' />
   </song>
   <song id="1037" name="Mary, You're a Little Bit Old-Fashioned">
     <category>Old</category>
@@ -1705,6 +1728,7 @@
       <voice gdid="1w0EbeeudUaLA6_oK7YIm7om_qlqsuLkA" mods="Tenor" path="tenor/O Canada - Tenor.mp3" voice="tenor" />
       <voice gdid="1SEewkHP-C7c0mU_3xKwZCGG4e-CwNn4b" mods="Mix" path="mix/O Canada - Mix.mp3" voice="mix" />
     </tracks>
+    <sheet gdid='0Bxd7i2Hm5BiPRDNrY1lhb1Y3VDA' resource_key='0-k-kYXGw5-UpsXoFLTDy9dw' sheet='Tuners Music/Finale/O Canada/O_Canada.pdf' />
   </song>
   <song id="1163" name="O Danny Boy">
     <category>Current</category>
@@ -2255,6 +2279,7 @@
     <copyright>1940</copyright>
     <key>Eb</key>
     <words>This is my country</words>
+    <sheet gdid='1L8EMnvRtVg7APsexQI7XHWbzakzpsp7k' sheet='Tuners Music/This Is My Country.pdf' />
   </song>
   <song id="1105" name="This Land Is Your Land">
     <category>Old</category>
@@ -2268,6 +2293,7 @@
     <ordered>2015-09-23</ordered>
     <stockID>208615</stockID>
     <words>This land is your land</words>
+    <sheet gdid='1egR8tziemjCyymPCaWDveX3Aak1s5i5A' sheet='Tuners Music/This Land Is Your Land.pdf' />
   </song>
   <song id="1075" name="This Little Light Of Mine / Do Lord Medley">
     <category>Old</category>
@@ -2579,6 +2605,7 @@
     <copyright>1979 SPEBSQSA, Inc</copyright>
     <key>Bb</key>
     <words>Ev'ry night by the light</words>
+    <sheet gdid='0Bxd7i2Hm5BiPV3RRSG9tRnRrZ0E' resource_key='0-TuXOfxVEBlZ_jkdHzRBzag' sheet='Tuners Music/Finale/Yona from Arizona/Yona.pdf' />
   </song>
   <song id="1125" name="You Must Have Been A Beautiful Baby">
     <category>Old</category>
@@ -2597,6 +2624,7 @@
     <tracks><voice gdid="1nGqNcNg8jMpuWEGVhTlhLU6ViBv9vk3E" mods="Bass" path="bass/You Must Have Been A Beautiful Baby - Bass.mp3" voice="bass" />
       <voice gdid="1syPUBJg-ifv0HBHpYli3PmaMAt39VwEM" mods="Mix" path="mix/You Must Have Been A Beautiful Baby - Mix.mp3" voice="mix" />
     </tracks>
+    <sheet gdid='0Bxd7i2Hm5BiPaExVQzhxMlNJQ28' resource_key='0-kIvrIP1MrhoCirMEOWRUWQ' sheet='Tuners Music/Finale/You Must Have Been A Beautiful Baby/You Must Have Been A Beautiful Baby_v3.pdf' />
   </song>
   <song id="1060" name="You Tell Me Your Dream">
     <category>PoleCat</category>
@@ -2675,6 +2703,7 @@
     <words>Up on the house-top</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPcXA1ZVpDa21PRmM" mods="mix" path="mix/Children's Medley.mp3" resource_key="0-AV-V4mIZ5EszlhgVl0GumQ" voice="mix" />
     </tracks>
+    <sheet gdid='162tef8D0E1yTeFlRBr0pEiQ6lCATEKQI' sheet='Tuners Music/Xmas sheets/Up On the Housetop.pdf' />
   </song>
   <song id="1203" name="Coventry Carol">
     <category>Christmas</category>
@@ -2687,6 +2716,7 @@
     <words>Lul-lay, thou little tiny child</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPU1BXdVZoMUNqQms" mods="mix" path="mix/Coventry Carol.mp3" resource_key="0-IjVMA7S6Ozv09HyvvS6tDQ" voice="mix" />
     </tracks>
+    <sheet gdid='15g_oHhqQTwcB_GKAZvPZEUuQN62c4mF5' sheet='Tuners Music/Xmas sheets/Coventry Carol.pdf' />
   </song>
   <song id="1204" name="God Rest Ye Merry, Gentlemen">
     <category>Christmas</category>
@@ -2699,6 +2729,7 @@
     <words>God rest ye merry, gentlemen</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPWUFMNVE4ZzBmZTQ" mods="mix" path="mix/God Rest Ye Merry, Gentlemen.mp3" resource_key="0-uNhibmZ3876M4z37XVkpiQ" voice="mix" />
     </tracks>
+    <sheet gdid='15dN_4ismhgh9wwspcFLf9pKOB0PxqjOp' sheet='Tuners Music/Xmas sheets/God Rest Ye Merry, Gentlemen.pdf' />
   </song>
   <song id="1205" name="O Christmas Tree">
     <category>Christmas</category>
@@ -2710,6 +2741,7 @@
     <words>O Christmas tree</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPcElBU19CaFdpOHc" mods="mix" path="mix/O Christmas Tree.mp3" resource_key="0-BTY7GAjznQ0XQhg-tYLR5g" voice="mix" />
     </tracks>
+    <sheet gdid='167VqeJauBG1LVChbKg1K5hhl2k_TjImp' sheet='Tuners Music/Xmas sheets/O Christmas Tree.pdf' />
   </song>
   <song id="1206" name="O Little Town of Bethlehem">
     <category>Christmas</category>
@@ -2722,6 +2754,7 @@
     <words>O little town of Bethlehem</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPU05PcHl3b0kxX1E" mods="mix" path="mix/O Little Town Of Bethlehem.mp3" resource_key="0-nFlc1SUsX-A1MAJquV4zSw" voice="mix" />
     </tracks>
+    <sheet gdid='164KMs286DnOspKc1TYSSK8tPiEcDqVqP' sheet='Tuners Music/Xmas sheets/O Little Town of Bethlehem.pdf' />
   </song>
   <song id="1207" name="Angels We Have Heard On High">
     <category>Christmas</category>
@@ -2734,6 +2767,7 @@
     <words>Angels we have heard on high</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPNF9FVEthU3BtejQ" mods="mix" path="mix/Angels We Have Heard On High.mp3" resource_key="0-DEG0EnmNEhSqnVq50TVe7Q" voice="mix" />
     </tracks>
+    <sheet gdid='15xGSSfipTjxovu51AqOKvdFHz01YpsyR' sheet='Tuners Music/Xmas sheets/Angels We Have Heard On High.pdf' />
   </song>
   <song id="1208" name="Hark! The Herald Angels Sing">
     <category>Christmas</category>
@@ -2746,6 +2780,7 @@
     <words>Hark! The herald angels sing</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPRVVnclVtYWM1dEE" mods="mix" path="mix/Hark! The Herald Angels Sing.mp3" resource_key="0-QNWq_8Jamkq32lCQYdISlQ" voice="mix" />
     </tracks>
+    <sheet gdid='15bOulhs2unEpwYjHPH7N37n57Lfjniha' sheet='Tuners Music/Xmas sheets/Hark the Herald Angels Sing.pdf' />
   </song>
   <song id="1209" name="I Heard The Bells On Christmas Day">
     <category>Christmas</category>
@@ -2758,6 +2793,7 @@
     <words>I heard the bells on Christmas day</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPeGRXX3lvYjZfNDA" mods="mix" path="mix/I Heard The Bells On Christmas Day.mp3" resource_key="0-Mt0I3U834GpTKvrWJFq4xg" voice="mix" />
     </tracks>
+    <sheet gdid='15UNqE8ugxiUewVpB2jo4_5yjyZKJ8dgp' sheet='Tuners Music/Xmas sheets/IHeardTheBells.pdf' />
   </song>
   <song id="1210" name="It Came Upon The Midnight Clear">
     <category>Christmas</category>
@@ -2770,6 +2806,7 @@
     <words>It came upon the midnight clear</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPTzhVeVNZNHZ4Q28" mods="mix" path="mix/It Came Upon The Midnight Clear.mp3" resource_key="0-6lG03uMwI49p9yg0KtMyNQ" voice="mix" />
     </tracks>
+    <sheet gdid='15bHFUyvuL5DIT5Ajt3RXiW8FfCmAIH8S' sheet='Tuners Music/Xmas sheets/It Came Upon the Midnight Clear.pdf' />
   </song>
   <song id="1211" name="Jingle Bells">
     <category>Christmas</category>
@@ -2783,6 +2820,7 @@
     <words>Jingle, jingle, jingle, jingle</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPOWFRXzF4dlgzX28" mods="mix" path="mix/Jingle Bells.mp3" resource_key="0-XhV3ZwiFj8fRQx27hBSRRw" voice="mix" />
     </tracks>
+    <sheet gdid='15Xb93qojXlrhSYWReZVDXzwo7Ymgaz8B' sheet='Tuners Music/Xmas sheets/Jingle Bells.pdf' />
   </song>
   <song id="1212" name="Lo, How A Rose E'er Blooming">
     <category>Christmas</category>
@@ -2795,6 +2833,7 @@
     <words>Lo, How A Rose E'er Blooming</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPZ0F6bU1EYWJSbVk" mods="mix" path="mix/Lo, How A Rose E'er Blooming.mp3" resource_key="0-yTqg5ftZhjs1G5x_yhvvFg" voice="mix" />
     </tracks>
+    <sheet gdid='169ila8Dzp3zqpmaZvkgEO__2jSWl1T-2' sheet="Tuners Music/Xmas sheets/Lo How a Rose E'er Blooming.pdf" />
   </song>
   <song id="1213" name="O Come, All Ye Faithful">
     <category>Christmas</category>
@@ -2807,6 +2846,7 @@
     <words>O Come, All Ye Faithful</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPY1g3VmZCV1pld2M" mods="mix" path="mix/O Come, All Ye Faithful.mp3" resource_key="0-K2fQkaKOU1YuxZV_2flsOg" voice="mix" />
     </tracks>
+    <sheet gdid='166QLVK7LlapBWQRx6pAPbLmqacBlcEEq' sheet='Tuners Music/Xmas sheets/O Come All Ye Faithful.pdf' />
   </song>
   <song id="1214" name="O Holy Night">
     <category>Christmas</category>
@@ -2819,6 +2859,7 @@
     <words>O Holy Night</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPMV9pREdQUDRwZVE" mods="mix" path="mix/O Holy Night.mp3" resource_key="0-K8Xj0jCoRdD-xidmFCGLxw" voice="mix" />
     </tracks>
+    <sheet gdid='1658DxaWdyCUZO_GdG95wHn7aHE1f-5ng' sheet='Tuners Music/Xmas sheets/O Holy Night.pdf' />
   </song>
   <song id="1215" name="Silent Night">
     <category>Christmas</category>
@@ -2831,6 +2872,7 @@
     <words>Silent night, Holy night</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPQzZhd2Yzd0xkazQ" mods="mix" path="mix/Silent Night.mp3" resource_key="0-dJ7NHfPGY8-4DtURJdqumg" voice="mix" />
     </tracks>
+    <sheet gdid='163nBsBaXla47w9cOdbNnvulKtV3-Y6WC' sheet='Tuners Music/Xmas sheets/Silent Night.pdf' />
   </song>
   <song id="1216" name="Silver Bells">
     <category>Christmas</category>
@@ -2842,6 +2884,7 @@
     <words>Silver Bells</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPNXNhQkIwV0I2T3c" mods="mix" path="mix/Silver Bells.mp3" resource_key="0-DNa6EVHzkAPyVzwphGNQAw" voice="mix" />
     </tracks>
+    <sheet gdid='16HFWA_xLPiv5fuB8iAk7AcDGGrRo0k-C' sheet='Tuners Music/Xmas sheets/Silver Bells.pdf' />
   </song>
   <song id="1217" name="We Wish You A Merry Christmas">
     <category>Christmas</category>
@@ -2854,6 +2897,7 @@
     <words>We Wish You A Merry Christmas</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPNUNMY0xSTy0tcWc" mods="mix" path="mix/We Wish You A Merry Christmas.mp3" resource_key="0-rgJwsybeC3vE8F3XxqX7wA" voice="mix" />
     </tracks>
+    <sheet gdid='1610AcNGxDBWvWnLrR_cTSkzCSO3Ldhpf' sheet='Tuners Music/Xmas sheets/We Wish You a Merry Christmas.pdf' />
   </song>
   <song id="1218" name="While By My Sheep">
     <category>Christmas</category>
@@ -2866,5 +2910,6 @@
     <words>While By My Sheep</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPUnRTSkU4d2IzQVE" mods="mix" path="mix/While By My Sheep.mp3" resource_key="0-5DP3ugQStE3oYfsk31PcNw" voice="mix" />
     </tracks>
+    <sheet gdid='16-owRMqO2u6YHq9rtjoB9P_9vxqGpOZw' sheet='Tuners Music/Xmas sheets/While By My Sheep.pdf' />
   </song>
 </musiclib>
