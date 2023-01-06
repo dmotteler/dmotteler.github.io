@@ -550,7 +550,7 @@ def main():
     allevents = False
     doupdate = False
     docats = []
-    ddir = "/mnt/c/Apache24/htdocs/gitpages/cheats"
+    ddir = "../cheats"
     # lfile = "C:/cygwin64/home/Del/trygitpages/dmotteler.github.io/musiclib/musiclib.xml"
     lfile = "musiclib.xml"
     qtopt = None

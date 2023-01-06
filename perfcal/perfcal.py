@@ -8,6 +8,7 @@
 '''
 
 import os, sys
+sys.dont_write_bytecode = True # don't mess up git repo with __pycache__ files
 from datetime import datetime, timedelta
 
 import pytz
@@ -66,8 +67,7 @@ def usage(msg="", error=0):
 infiles = {}
 # establish default input file
 infiles['e'] = "SingoutInfo.xlsx"
-# infiles['e'] = "/mnt/c/Users/dmott/Dropbox/Tuners Misc/SingoutInfo.xlsx"
-infiles['i'] = "/mnt/c/Users/dmott/Downloads/del.motteler@gmail.com.ical.zip"
+infiles['i'] = "tuners2023.ics"
 calnames = []
 
 def main():
