@@ -292,6 +292,7 @@
       <voice gdid="1aqyCEZDNKWd5rzUFjC42c9a84DN79cRz" mods="lead" path="lead/Bright Was The Night - lead.mp3" voice="lead" />
       <voice gdid="1sPq40WmFJu4rXRROte09Qq8Vn02C0SCs" mods="tenor" path="tenor/Bright Was The Night - tenor.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='1_0YpRkvYOsbtSl7oCyrs56W-C_ZBy7dv' sheet='Tuners Music/sheet music/Bright Was the Night.pdf' />
   </song>
   <song id="1012" name="Bury Me Out On The Lone Prairie">
     <category>Old</category>
@@ -672,6 +673,7 @@
       <voice gdid="1Hrt4w3ScFnxGd8OZQbuJbsUdKMOpsLe5" mods="lead" path="lead/Drivin' Me Crazy - lead.mp3" voice="lead" />
       <voice gdid="1aefYg2Ss4FM1qXZBcRLuaz5TRlRjEqJo" mods="tenor" path="tenor/Drivin' Me Crazy - tenor.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='1iOiobSHJOc35CexsD_TMJr4djadWb-vi' sheet="Tuners Music/sheet music/Drivin' Me Crazy.pdf" />
   </song>
   <song id="1187" name="Each Time I Fall In Love">
     <category>Old</category>
@@ -1038,6 +1040,7 @@
       <voice gdid="1fJEJIl0J-dOUOncRs1a5ZOv-lFFzI2Sp" mods="lead" path="lead/I Don't Know Why.mp3" voice="lead" />
       <voice gdid="1hDKZ-fe2PnfkotGPIwtb3XjRr5005fGI" mods="tenor" path="tenor/I Don't Know Why.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='1J7zTyYSxfvpYPc5ARZf3dT0aL9oMt1fK' sheet="Tuners Music/sheet music/I Don't Know Why.pdf" />
   </song>
   <song id="1018" name="I Love To Hear That Old Barbershop Style">
     <category>Old</category>
@@ -1105,6 +1108,7 @@
       <voice gdid="1JEWoZPDch_GLCXkWoX4fEZlpSL629dTS" mods="lead" path="lead/I've Been Working On The Railroad - lead.mp3" voice="lead" />
       <voice gdid="1uXx0VzOPg8r1uKUy0xyRbeV86bq_tb0W" mods="tenor" path="tenor/I've Been Working On The Railroad - tenor.mp3" voice="tenor" />
     </tracks>
+    <sheet gdid='1a3ov6g6WiroV_abiBfI7WT6lseei7-bg' sheet="Tuners Music/sheet music/I've Been Working on the Railroad.pdf" />
   </song>
   <song id="1151" name="I've Got the World on a String">
     <category>Old</category>
