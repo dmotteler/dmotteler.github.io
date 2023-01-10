@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>sunrise/sunset</title>
+<meta http-equiv="Content-Type" content="text/html";charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="suncalc.css" />
+<script src="formatDate.js"></script>
+<script src="suncalc/suncalc.js"></script>
+<script>
+function formatmsecsm(ms, threeam, tzctrl) {
+    // ms is millisec since threeam. adjust for tz and dst,
+    // make ms since midnite, then format and return HH:MM:SS
+    let myms = ms + tzctrl['tzoff'] + 3 * 60 * 60 * 1000;
+
+    if (threeam < tzctrl['ondate'].getTime()) {
+    } else if (threeam >= tzctrl['offdate'].getTime()) {
+    } else if (tzctrl['obs'] == 0) {
+    } else {
+        myms = myms + 60000;
+    }
+    let hms = formathms(myms);
+    return hms;
+}
+function formathms(ms) {
+    // return ms milliseconds as HH:MM:SS string
+    let secs = Math.trunc(ms / 1000);
+    let hrs = Math.trunc(secs / 3600);
+    secs -= 3600 * hrs;
+    let mins = Math.trunc(secs / 60);
+    secs -= Math.trunc(60 * mins);
+    let minstr = mins.toString().padStart(2, "0");
+    let secstr = secs.toString().padStart(2, "0");
+    let rv = `${hrs}:${minstr}:${secstr}`;
+    return rv;
+}
+function fmtlatlon(degs, latorlon) {
+    // degs is E if pos, W if neg
+    let dir = latorlon == "lon" ? degs < 0.0 ? "W" : "E" : degs < 0.0 ? "S" : "N" ;
+    let v = degs < 0.0 ? -degs : degs;
+    let deg = Math.trunc(v);
+    let frac = v - deg;
+    let mins = 60.0 * frac;
+    let minut = Math.trunc(mins);
+    let secs = 60.0 * (mins - minut);
+    let rv = `${dir}${deg}&deg; ${minut}&apos; ${secs.toFixed(2)}&quot;`;
+    return(rv);
+}
+var locdict = {};
+function parseLatLon(coord) {
+    // lat="N42:12.199" lon="W87:49.126"
+    let dir = coord.charAt(0);
+    let [degs, mins] = coord.substring(1).split(":");
+    let deg = parseFloat(degs);
+    let min = parseFloat(mins);
+
+    deg = deg + min/60.0;
+    if (dir == "S" || dir == "W") {
+        deg = -deg;
+    }
+    // console.log(`parseLatLon returning ${deg} for ${coord}`);
+    return(deg);
+}
+function getLocations(url) {
+    // start load of locations, return promise
+    return fetch(url)
+    .then(response => response.text())
+    .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+    .then(data => {
+        let listel = data.children[0];
+        for (let locn of listel.children) {
+            let whose = locn.attributes['for'].value;
+            let lat = parseLatLon(locn.attributes['lat'].value);
+            let lon = parseLatLon(locn.attributes['lon'].value);
+            let tz = locn.attributes['tz'].value;
+            // default "observed" (DST observed) to true. obs=0 in locations file if false
+            let obs = locn.attributes.hasOwnProperty('obs') ? locn.attributes['obs'].value : 1;
+
+            locdict[whose] = {'lat': lat, 'lon': lon, 'tz': tz, 'obs': obs}
+        }
+        console.log(`loaded ${Object.keys(locdict).length} locations.`);
+
+        let sel = document.querySelector("#atloc");
+        // wrap the opts into a group so we can style them
+        optg = document.createElement("optgroup");
+        sel.append(optg);
+
+        for (let whose in locdict) {
+            opt = document.createElement("option");
+            opt.textContent = whose;
+            opt.dataset.lat = locdict[whose]['lat'];
+            opt.dataset.lon = locdict[whose]['lon'];
+            opt.dataset.tz = locdict[whose]['tz'];
+            optg.append(opt);
+        }
+    })
+    .catch(err => alert(err)); // TypeError: failed to fetch (the text may vary)
+}
+var where;
+var lat, lon, tz;
+function buildTable() {
+    // Go button pressed. get location attributes, build and display the table
+    let sel = document.querySelector("#atloc");
+    let whichop = sel.options[sel.selectedIndex];
+    where = whichop.value;
+
+    lat = locdict[where]['lat'];
+    lon = locdict[where]['lon'];
+    tz = locdict[where]['tz'];
+    // tz is minutes before UTC during Standard time - convert to milliseconds
+    // formatDate will adjust for Saving time.
+    tzoff = (new Date().getTimezoneOffset() - parseInt(tz)) * 60 * 1000;
+    obs = locdict[where]['obs'];
+
+    let startdate = document.querySelector("#begindate").value;
+    let [sdyr, sdmo, sdda] = startdate.split("-");
+    let startyr = parseInt(sdyr);
+    let startmo = parseInt(sdmo);
+    let startda = parseInt(sdda);
+
+    let enddate = document.querySelector("#enddate").value;
+    let [edyr, edmo, edda] = enddate.split("-");
+    let endyr = parseInt(edyr);
+    let endmo = parseInt(edmo);
+    let endda = parseInt(edda);
+
+    let startmdy = `${startmo}/${startda}/${startyr}`;
+    let endmdy   = `${endmo}/${endda}/${endyr}`;
+    console.log(`in buildTable for ${where} ${lat.toFixed(5)} ${lon.toFixed(5)} ${tz} from ${startmdy} to ${endmdy}`);
+        
+    let lats = fmtlatlon(lat, "lat");
+    let lons = fmtlatlon(lon, "lon");
+    let capt = `from ${startmdy} to ${endmdy}<br/>at ${where} (${lats} ${lons})`;
+    let captel = document.querySelector("caption");
+    captel.innerHTML = capt;
+
+    // get ms since 1970 at three am today
+    let todms = new Date().setHours(3, 0, 0, 0);
+
+    let timesfordate = {};
+    let minrisedate = 0; maxrisedate = 0; minsetdate = 0; maxsetdate = 0; longestdate = 0; shortestdate = 0;
+
+    for (let yr = startyr; yr <= endyr; yr++) {
+        let firstmo = yr == startyr ? startmo-1 : 0;
+        let lastmo = yr == endyr ? endmo-1 : 11;
+        let ondate, offdate;
+        if (obs == 0) {
+            // DST not observed - set ondate = offdate = jan 1 next year
+            // so no date this year will be >= ondate
+            ondate = new Date(yr+1, 0, 1);
+            offdate = ondate;
+        } else {
+            // DST is observed - ondate is 2nd Sunday in March, offdate is 1st Sunday in November.
+            ondate = new Date(yr, 2, 1);
+            let dow = ondate.getDay(); // sun 0 - sat 6
+            let MarSun2 = dow == 0 ? 8 : 15 - dow;
+            ondate.setDate(MarSun2);
+            offdate = new Date(yr, 10, 1);
+            dow = offdate.getDay();
+            let NovSun1 = dow == 0 ? 1 : 8 - dow;
+            offdate.setDate(NovSun1);
+        }
+        tzctrl = {'tzoff':tzoff, 'ondate':ondate, 'offdate':offdate, 'obs':obs }
+
+        for (let mo = firstmo; mo <= lastmo; mo++) {
+            // days in month mo of year yr. JS Date uses 0-based month,
+            // and day 0 is the last day of the previous month.
+            var ndim = new Date(yr, mo+1, 0).getDate()
+
+            let firstda = yr == startyr && mo == firstmo ? startda : 1;
+            let lastda = yr == endyr && mo == lastmo ? endda : ndim;
+            for (let da = firstda; da <= lastda; da++) {
+                // get timestamp with ms for this date
+                let threeam = new Date(yr, mo, da).setHours(3, 0, 0, 0);
+
+                let fordate = new Date(threeam);
+                // fordate.setTime(fordate.valueOf() + tzoff);
+
+                // get day's sunlight times for user's location
+                let times = SunCalc.getTimes(fordate, lat, lon);
+
+                // get position of the sun (azimuth and altitude) at today's sunrise
+                let sunrisePos = SunCalc.getPosition(times.sunrise, lat, lon);
+
+                // get sunrise azimuth in degrees (0 = South)
+                let sunriseAzimuth = (180.0 + sunrisePos.azimuth * 180 / Math.PI).toFixed(3);
+
+                // get position of the sun (azimuth and altitude) at today's sunset
+                let sunsetPos = SunCalc.getPosition(times.sunset, lat, lon);
+
+                // get sunset azimuth in degrees (0 = South)
+                let sunsetAzimuth = (180.0 + sunsetPos.azimuth * 180 / Math.PI).toFixed(3);
+
+                timesfordate[threeam] = [];
+                timesfordate[threeam]['sunrise'] = times['sunrise'].valueOf() - threeam.valueOf();
+                timesfordate[threeam]['riseAz'] = sunriseAzimuth;
+                timesfordate[threeam]['sunset'] = times['sunset'].valueOf() - threeam.valueOf();
+                timesfordate[threeam]['setAz'] = sunsetAzimuth;
+                timesfordate[threeam]['daylength'] = times['sunset'].valueOf() - times['sunrise'].valueOf();
+
+                if (minrisedate == 0) {
+                    minrisedate = threeam;
+                } else if (timesfordate[minrisedate]['sunrise'] > timesfordate[threeam]['sunrise']) {
+                    minrisedate = threeam;
+                }
+
+                if (maxrisedate == 0) {
+                    maxrisedate = threeam;
+                } else if (timesfordate[maxrisedate]['sunrise'] < timesfordate[threeam]['sunrise']) {
+                    maxrisedate = threeam;
+                }
+
+                if (minsetdate == 0) {
+                    minsetdate = threeam;
+                } else if (timesfordate[minsetdate]['sunset'] > timesfordate[threeam]['sunset']) {
+                    minsetdate = threeam;
+                }
+
+                if (maxsetdate == 0) {
+                    maxsetdate = threeam;
+                } else if (timesfordate[maxsetdate]['sunset'] < timesfordate[threeam]['sunset']) {
+                    maxsetdate = threeam;
+                }
+
+                if (longestdate == 0) {
+                    longestdate = threeam;
+                } else if (timesfordate[longestdate]['daylength'] < timesfordate[threeam]['daylength']) {
+                    longestdate = threeam;
+                }
+
+                if (shortestdate == 0) {
+                    shortestdate = threeam;
+                } else if (timesfordate[shortestdate]['daylength'] > timesfordate[threeam]['daylength']) {
+                    shortestdate = threeam;
+                }
+            }
+        }
+
+        let sorted = Object.keys(timesfordate).sort((a, b) => a == b ? 0 : a < b ? -1 : 1);
+
+        let html = `<thead>
+  <tr><th>date</th><th>Sunrise</th><th>Rise AZ</th><th>Sunset</th><th>Set AZ</th><th>Sun Hours</th></tr>
+</thead><tbody>
+`;
+        for (threeam of sorted) {
+            threeam = parseInt(threeam);
+            if (threeam == todms) {
+                html += "<tr class='today'>";
+            } else {
+                html += "<tr>";
+            }
+
+            let thisdat = new Date(threeam);
+            let datestr = formatTZDate(thisdat, tzctrl, "%b %d, %Y");
+            html += "<td>" + datestr + "</td>";
+
+            // format sunrise time
+            let sunriseTime = formatmsecsm(timesfordate[threeam]['sunrise'], threeam, tzctrl);
+            if (threeam == minrisedate) {
+                html += "<td class='good'>";
+            } else if (threeam == maxrisedate) {
+                html += "<td class='bad'>";
+            } else {
+                html += "<td>";
+            }
+            html += sunriseTime + "</td>";
+            let sunriseAzimuth = timesfordate[threeam]['riseAz'];
+            html += "<td>" + sunriseAzimuth + "</td>";
+
+            // format sunset time
+            let sunsetTime = formatmsecsm(timesfordate[threeam]['sunset'], threeam, tzctrl);
+            if (threeam == maxsetdate) {
+                html += "<td class='good'>";
+            } else if (threeam == minsetdate) {
+                html += "<td class='bad'>";
+            } else {
+                html += "<td>";
+            }
+            html += sunsetTime + "</td>";
+            let sunsetAzimuth = timesfordate[threeam]['setAz'];
+            html += "<td>" + sunsetAzimuth + "</td>";
+
+            if (threeam == longestdate) {
+                html += "<td class='good'>";
+            } else if (threeam == shortestdate) {
+                html += "<td class='bad'>";
+            } else {
+                html += "<td>";
+            }
+            let daylength = timesfordate[threeam]['daylength'];
+            daylenstr = formathms(daylength);
+            html += daylenstr + "</td>";
+
+            html += "</tr>\n";
+        }
+        html += "</tbody>\n";
+        document.querySelector("#tablehere").innerHTML = html;
+    }
+    let el = document.querySelector('.today');
+    if (el) {
+        el.scrollIntoView({block: "center"});
+    }
+}
+function init() {
+    // start loading the locations
+    let locurl = "locations.xml";
+    let glocpromise = getLocations(locurl);
+
+    // we don't need to force a wait on the promise,
+    // because the promised load is what sets the "at"
+    // select, and the user can't proceed until that shows up.
+    // let promises = [glocpromise];
+
+    // set up the date-pickers and the location selector
+    var curdat = new Date();
+
+    // default start date is 1/1 of current year
+    let startmo = 0;
+    let startda = 1;
+    let startyr = curdat.getFullYear();
+    let sd = new Date(startyr, startmo, startda);
+    let startdate = formatDate(sd, "%Y-%m-%d");
+
+    // default end date is 12/31 of current year
+    let endmo = 11;
+    let endda = 31;
+    let endyr = curdat.getFullYear();
+    let ed = new Date(endyr, endmo, endda);
+    let enddate = formatDate(ed, "%Y-%m-%d");
+
+    console.log(`from ${startdate} to ${enddate}`);
+
+    document.querySelector("#begindate").value = startdate;
+    document.querySelector("#enddate").value = enddate;
+
+    // Promise.all(promises).then(values => {
+        // all promises complete. values is list of values returned 
+        // by the promises, in the same order.
+    // });
+}
+</script>
+</head>
+<body onload="init()">
+    <table class="outer">
+        <caption class="Caption"></caption>
+        <tr><td>
+      <fieldset class="datesel">
+        <legend>Choose Location and Date Range:</legend>
+    <label for="atloc">at <select class="date-css" id="atloc"></select></label>
+    <label for="begindate">From <input type="date" id="begindate" class="date-css" value="2020-01-01" min="2015-01-01" max=""></input></label>
+    <label for="enddate">to <input type="date" id="enddate" class="date-css" value="" min="2015-01-01" max=""></input></label>
+    <input type="button" value="Go" onClick="buildTable()"/>
+      </fieldset>
+    </td></tr>
+    <tr><td>
+      <table id="tablehere"></table>
+    </td></tr>
+    </table>
+</body>
+</html>
