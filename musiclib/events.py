@@ -521,8 +521,9 @@ def usage(msg=None):
    where:
       -c cat     => name of a category to list. may be given more than once. default is all cats in music lib.
       -d dir     => directory containing cheats. default is github cheats.
-      -f         => do full load. new events.xml will be created from cheats in cheatscache,
-                    cheatscache/cheats.zip, and cheatscache/gaevents.xml (dev only!)
+      -f         => do full load. new xml (default: events.xml) will be created from cheats in cheatscache,
+                    cheatscache/cheats.zip, and cheatscache/gaevents.xml (dev only!) Note: events.xml
+                    has all events we know about. -f should only be needed if events.xml was trashed.
       -h         => show this help and exit.
       -l lfile   => use lfile for musiclib xml. default is musiclib.xml in current folder.
       -n         => "not brief" songlist is replaced by song subelements including name in xml.
@@ -628,10 +629,6 @@ def main():
         usage("don't give -f and -u together.")
 
     if allevents or doupdate:
-        cdir = "/mnt/d/cheatscache"
-        if not os.path.exists(cdir):
-            usage("cheatscache not found.")
-
         if len(prezip) > 0 or len(prexml) > 0 or len(docheats) > 0 or len(predir) > 1:
             usage("files/folders must not be given when -f or -u is given.")
 
@@ -642,9 +639,16 @@ def main():
         prexml = ["events.xml"]
 
     if allevents:
-        prezip = ["{}/cheats.zip".format(cdir)]
-        prexml = ["{}/gaevents.xml".format(cdir)]
-        predir = [cdir, ddir]
+        cdir = "/mnt/d/cheatscache"
+        if os.path.exists(cdir):
+            prezip = ["{}/cheats.zip".format(cdir)]
+            prexml = ["{}/gaevents.xml".format(cdir)]
+            predir = [cdir, ddir]
+        else:
+            prezip = []
+            prexml = ["events.xml"]
+            predir = [ddir]
+
         docheats = []
 
     for z in prezip:
