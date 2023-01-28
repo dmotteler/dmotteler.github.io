@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 '''
     started with
     $Id: singouts.py,v 1.11 2022/04/04 03:31:55 dfm Exp dfm $
