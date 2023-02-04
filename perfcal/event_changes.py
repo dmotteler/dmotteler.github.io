@@ -21,18 +21,24 @@ class event_changes():
         self.venue_addrs = complist[0].venue_addrs
         self.complist = complist
 
+        # we always have the "current" class, but "old" class is optional
         self.class1 = complist[0].event_class
-        self.class2 = complist[1].event_class
+        if complist[1]:
+            self.class2 = complist[1].event_class
+        else:
+            self.class2 = None
 
         self.show_detail = show_detail
 
     def add(self, s_e, event):
+        # event in current but not old, add it
         self.events[s_e] = event
         if self.show_detail:
             evfrom, evto = s_e
             print("New event: {} from {:%b %d, %Y at %I:%M%p} to {:%b %d, %Y at %I:%M%p}".format(event['title'], evfrom, evto))
     
     def drop(self, s_e, event):
+        # event in old but not current, drop it
         if 'uid' in event and event['uid'].endswith('google.com'):
             (evstrt, evend) = s_e
             dt = evend - evstrt
@@ -50,6 +56,7 @@ class event_changes():
             print("Deleted event: {} from {:%b %d, %Y at %I:%M%p} to {:%b %d, %Y at %I:%M%p}".format(self.class2.events[s_e]['title'], evstrt, evend))
 
     def modify(self, s_e, event, field):
+        # event in both old and current, modify it
         self.events[s_e] = event
         self.events[s_e]['status'] = 'MODIFIED'
         if self.show_detail:
@@ -128,12 +135,14 @@ class event_changes():
             cal.add_component(event)
             nev += 1
 
-        f = open(ofn, 'w', newline='')
-        # icalendar has no way to specify linesep - always uses "\r\n".
-        # RFC 2554 says always use "\r\n". importing that into Google calendar
-        # says no items imported. Changing to "\n" fixes the problem. BAH!
-        f.write(cal.to_ical().decode('utf-8').replace("\r\n", "\n"))
-        f.close()
+        if nev > 0:
+            f = open(ofn, 'w', newline='')
+            # icalendar has no way to specify linesep - always uses "\r\n".
+            # RFC 2554 says always use "\r\n". importing that into Google calendar
+            # says no items imported. Changing to "\n" fixes the problem. BAH!
+
+            f.write(cal.to_ical().decode('utf-8').replace("\r\n", "\n"))
+            f.close()
 
         return nev
 
@@ -142,20 +151,22 @@ class event_changes():
             return
 
         (_, ext) = splitext(ofn)
+        nev = 0
         if ext == ".ics":
             nev = self.cal_events(ofn)
         elif ext == ".csv":
             nev = self.csv_events(ofn)
 
-        print("Wrote %d events to %s" % (nev, ofn))
+        if nev > 0:
+            print("Wrote %d events to %s" % (nev, ofn))
         
     def comp_events(self, list_changes=True):
-        ''' compare evenevents '''
+        ''' compare events '''
 
         for s_e in sorted(self.class1.events):
             ev = self.class1.events[s_e]
 
-            if s_e not in self.class2.events:
+            if self.class2 is None or s_e not in self.class2.events:
                 # class1 event is new
                 self.add(s_e, ev)
 
@@ -171,11 +182,12 @@ class event_changes():
 
         pfmt = "%b %d, %Y at %I:%M%p"
 
-        for s_e in sorted(self.class2.events):
-            if s_e not in self.class1.events:
-                print(s_e)
-                # event from class1 not in class2 - dropped (or moved?? or manually added to calendar)
-                self.drop(s_e, self.class2.events[s_e])
+        if self.class2 is not None:
+            for s_e in sorted(self.class2.events):
+                if s_e not in self.class1.events:
+                    # print("dropping {}".format(s_e))
+                    # event from class1 not in class2 - dropped (or moved?? or manually added to calendar)
+                    self.drop(s_e, self.class2.events[s_e])
 
         if list_changes:
             # list the events to be changed
@@ -226,7 +238,7 @@ class event_changes():
             ven = ev['venue']
 
             if ven and ven != '':
-                if self.complist[1].event_source == "none":
+                if self.class2 is None:
                     # output is to new csv - use input venues
                     a1, a2 = self.class1.venue_addrs[ven]
                 else:
