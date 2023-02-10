@@ -1,0 +1,138 @@
+/*   $Id: suncalc.css,v 1.2 2020/10/12 23:11:18 dfm Exp $
+     $Log: suncalc.css,v $
+     Revision 1.2  2020/10/12 23:11:18  dfm
+     more fiddling with table widths
+     add D (down all day) and U (up all day) row class formats
+     use class selectors (#) for pickers and sundata tables
+
+     Revision 1.1  2020/10/08 03:57:48  dfm
+     Initial revision
+
+    styling for sunrise
+*/
+
+body {
+    -webkit-print-color-adjust:exact;
+}
+
+hr {
+  height: 5px;
+  border: 3px solid white;
+}
+
+optgroup {
+    font-size: 20px;
+    text-align: center;
+}
+input {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+	padding: .3em 1.0em .2em .2em;
+}
+
+/*
+table.outer {
+    width: 1000px;
+    height: 900px;
+}
+*/
+
+#pickers {
+    width: 100%;
+}
+
+#sundata {
+    width: 100%;
+    /* display: block; overflow: auto; */
+}
+
+table {
+    border-width:9px;
+    padding: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+caption {
+    padding: 4px;
+    color: white;
+    background-color: Green;
+    text-align: center;
+    font-weight: bold;
+}
+
+tr { page-break-inside: avoid; }
+tr.cur { background-color : #0bf5f8; display : '' }
+tr.D { background-color : lightgray; display : '' }
+tr.U { background-color : lightyellow; display : '' }
+
+td, th { text-align : center; padding: 4px 8px; border-collapse: collapse; }
+table, th, td { border-style: solid; border-width: 2px; }
+.gap { padding: 0px }
+
+th { background-color:lightgreen;
+    font-weight: bold;
+}
+
+.daterow {
+    background-color: mediumseagreen;
+    text-align: center;
+    font-weight: bold;
+}
+
+.gobutt { font-weight: bold; background-color: yellow; }
+
+caption {
+    padding: 4px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+label {
+    font-weight: bold;
+}
+
+/* modeled on select-css from https://www.filamentgroup.com/lab/select-css.html */
+.date-css {
+	display: inline-block; width: auto;
+    text-align: center;
+    font-size: 20px; font-family: sans-serif; font-weight: 700;
+	color: #444;
+	line-height: 1.1;
+	padding: .3em .3em .2em .3em;
+	box-sizing: border-box;
+	margin: 0;
+	border: 1px solid #aaa;
+	box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+	border-radius: .5em;
+	/* -moz-appearance: none; */
+	/* -webkit-appearance: none; */
+	/* appearance: none; */
+	background-color:  #fff;
+	background-repeat: no-repeat, repeat;
+	background-position: right .7em top 50%, 0 0;
+	background-size: .9em auto, 100%;
+}
+
+.date-css::-ms-expand {
+	display: none;
+}
+.date-css:hover {
+	border-color: #888;
+}
+.date-css:focus {
+	border-color: #aaa;
+	box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+	box-shadow: 0 0 0 3px -moz-mac-focusring;
+	color: #222;
+	outline: none;
+}
+
+/*
+.bad { background-color: Yellow; }
+.good { background-color: LimeGreen; }
+*/
+.today { background-color : aqua; }
+#tablehere { width: 100% }

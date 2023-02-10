@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="locations.xsl"?>
+<locations>
+ <location for="Del" lat="N46:41.77812" lon="W122:54.68586" tz="480" />
+ <location for="Bellevue" lat="N47:34.769" lon="W122:07.868" tz="480" />
+ <location for="Bergs" lat="N48:12.082" lon="W116:22.153" tz="480" />
+ <location for="Big Jer" lat="N47:19.480" lon="W122:15.561" tz="480" />
+ <location for="Ed" lat="N45:28.3545" lon="W122:45.01452" tz="480" />
+ <location for="Honolulu" lat="N21:18.55" lon="W157:51.96" tz="600" obs="0" />
+ <location for="Lori" lat="N40:50.0" lon="W111:53.67" tz="420" />
+ <location for="Phil and Janet" lat="N42:12.199" lon="W87:49.126" tz="360" />
+ <location for="Phil" lat="N47:10.288" lon="W122:15.619" tz="480" />
+ <location for="Randle" lat="N46:32.137" lon="W121:57.656" tz="480" />
+ <location for="Renton" lat="N47:27.928" lon="W122:13.344" tz="480" />
+ <location for="St. Croix" lat="N17:45" lon="W64:42" tz="240" obs="0" />
+ <location for="Tom" lat="N33:13.455" lon="W111:51.036" tz="420" obs="0" />
+ <location for="Wendy" lat="N32:45.308" lon="W116:58.621" tz="480" />
+</locations>
