@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
   <event where="Sharon Care" when="February 16, 2023 06:15PM" dtndx="202302161815" songlist="1178 1179 1195 1180 1007 1182 1198 1032 1143 1073 1124 1181 1196 1103" qtetSongs="1198 1032" />
-  <event where="Rehearsal" when="February 15, 2023 06:00PM" dtndx="202302151800" songlist="1102 1055 1182 1195 1178 1143 1181 1179 1180 1007 1073 1124 1196 1103 1035" />
+  <event where="Rehearsal" when="February 15, 2023 06:00PM" dtndx="202302151800" songlist="1102 1055 1112 1197 1117 1194 1193 1163 1120 1095 1192 1183 1143 1035" />
   <event where="Rehearsal" when="February 07, 2023 06:00PM" dtndx="202302071800" songlist="1102 1055 1196 1143 1178 1181 1179 1195 1180 1007 1073 1124 1103 1035" />
   <event where="Woodland Village" when="February 02, 2023 06:15PM" dtndx="202302021815" songlist="1178 1179 1195 1180 1007 1182 1198 1032 1143 1073 1124 1181 1196 1103" qtetSongs="1198 1032" />
   <event where="Olympia Country Club" when="February 01, 2023 12:00PM" dtndx="202302011200" songlist="1116 1110 1157 1053 1028 1011 1030 1182 1180 1052 1179 1183 1050 1124 1184" />
