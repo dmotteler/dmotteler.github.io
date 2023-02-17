@@ -50,7 +50,7 @@
     </tracks>
   </song>
   <song id="1093" name="All I Do Is Dream Of You">
-    <category>Old</category>
+    <category>Current</category>
     <arranger>David Wallace</arranger>
     <composer>Nacio Herb Brown</composer>
     <copyright>MGM</copyright>
@@ -65,6 +65,7 @@
       <voice gdid="1uZ69aBRqlcCa8fU8-l6tst2VhN34_IIk" mods="Lead" path="lead/All I Do Is Dream Of You - Lead.mp3" voice="lead" />
       <voice gdid="1ogLyBzziK4o1qOyFuxTkxCHRpvvYyugz" mods="all" path="mix/All I Do Is Dream Of You - all.mp3" voice="mix" />
     </tracks>
+    <sheet gdid="1EajxZS_4tsJ6xdVfUnrAqNmW6EDaSRoO" sheet="All I Do.pdf" />
   </song>
   <song id="1199" name="Angels, From the Realms of Glory">
     <category>Christmas</category>

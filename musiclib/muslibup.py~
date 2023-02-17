@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#! env python
 '''
     $Id: muslibup.py,v 1.2 2022/09/01 03:51:02 dfm Exp dfm $
     $Log: muslibup.py,v $
@@ -24,7 +24,7 @@ def usage(msg=None):
     print('''\nUsage: {} [git|dev][dump]
     where:
         if 'git' appears on the command, load musiclib from github, else
-           if 'dev' appears, load from from /home/dfm/devel/musiclib
+           if 'dev' appears, load from from php_ws/musiclib
         if 'dump' appears on the command, list the tracks and sheets data.
 
 '''.format(sys.argv[0]))
