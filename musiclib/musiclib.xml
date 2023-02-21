@@ -1951,6 +1951,13 @@
     <lyricist>Amanda McBroom</lyricist>
     <stockID>112361</stockID>
     <words>Doo doo doo doo</words>
+    <tracks>
+      <voice gdid='10ArF7TYzp0OzAE3-oP7hzLn95ZzS35A_' mods='bari' path='Tuners Music/Tracks/bari/The Rose - bari.mp3' voice='bari'/>
+      <voice gdid='1X2asVALTAHjZYkjJSV3v0rYvBOlnX6Bb' mods='bass' path='Tuners Music/Tracks/bass/The Rose - bass.mp3' voice='bass'/>
+      <voice gdid='1IbRVvfD3Ir3vP4M_ROsTQwtSf5hTp3vG' mods='lead' path='Tuners Music/Tracks/lead/The Rose - lead.mp3' voice='lead'/>
+      <voice gdid='1b3mtFeu7BL7mqYZMMbBHoyk5e-hbJ2eV' mods='mix' path='Tuners Music/Tracks/mix/The Rose - mix.mp3' voice='mix'/>
+      <voice gdid='1IRYrgRlzgbcyQ7hu1xfWc2lkg7NrdoX6' mods='tenor' path='Tuners Music/Tracks/tenor/The Rose - tenor.mp3' voice='tenor'/>
+    </tracks>
     <sheet gdid="1S-dzHE_oUwteBE8KfXScReLITLa_VBnu" sheet="The Rose.pdf" />
   </song>
   <song id="1188" name="Route 66">
