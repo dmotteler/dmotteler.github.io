@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where=" Olympics West 929 Trosper Rd SW Tumwater" when="March 02, 2023 06:10PM" dtndx="202303021810" songlist="1178 1179 1195 1180 1007 1182 1198 1032 1143 1073 1124 1181 1196 1103" qtetSongs="1198 1032" />
+  <event where="Rehearsal" when="February 28, 2023 06:00PM" dtndx="202302281800" songlist="1102 1055 1197 1182 1196 1178 1195 1180 1007 1179 1143 1073 1124 1181 1103 1093 1193 1061 1035" />
   <event where="Rehearsal" when="February 21, 2023 06:00PM" dtndx="202302211800" songlist="1102 1055 1175 1113 1194 1193 1142 1032 1145 1185 1115 1093 1095 1076 1075 1163 1120 1192 1020 1060 1035" />
   <event where="Sharon Care" when="February 16, 2023 06:15PM" dtndx="202302161815" songlist="1178 1179 1195 1180 1007 1182 1198 1032 1143 1073 1124 1181 1196 1103" qtetSongs="1198 1032" />
   <event where="Rehearsal" when="February 15, 2023 06:00PM" dtndx="202302151800" songlist="1102 1055 1112 1197 1117 1194 1193 1163 1120 1095 1192 1183 1143 1035" />
