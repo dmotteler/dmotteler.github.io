@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Woodland Village" when="April 06, 2023 06:30PM" dtndx="202304061830" songlist="1178 1179 1195 1180 1007 1182 1198 1032 1011 1143 1073 1124 1196 1103" qtetSongs="1198 1032" />
+  <event where="Rehearsal" when="April 04, 2023 06:00PM" dtndx="202304041800" songlist="1102 1055 1182 1196 1178 1179 1195 1053 1180 1007 1143 1073 1124 1011 1103 1192 1093 1035" />
   <event where="Chehalis West" when="March 30, 2023 06:15PM" dtndx="202303301815" songlist="1178 1179 1195 1180 1007 1182 1198 1032 1011 1143 1073 1124 1196 1103" qtetSongs="1198 1032" />
   <event where="Rehearsal" when="March 28, 2023 06:00PM" dtndx="202303281800" songlist="1102 1055 1182 1196 1178 1179 1195 1053 1180 1007 1143 1073 1124 1011 1103 1192 1093 1035" />
   <event where="Rehearsal" when="March 21, 2023 06:00PM" dtndx="202303211800" songlist="1102 1055 1020 1163 1181 1178 1194 1073 1192 1095 1193 1093 1076 1185 1120 1035" />
