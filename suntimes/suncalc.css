@@ -129,10 +129,9 @@ label {
 	color: #222;
 	outline: none;
 }
+.spacer { display: inline-block; width: 100px; }
 
-/*
-.bad { background-color: Yellow; }
-.good { background-color: LimeGreen; }
-*/
+.bad { background-color: LightGray; }
+.good { background-color: #fff200; }
 .today { background-color : aqua; }
 #tablehere { width: 100% }

@@ -6,20 +6,6 @@
 <script src="/formatDate.js"></script>
 <script src="suncalc/suncalc.js"></script>
 <script>
-function formatmsecsm(ms, threeam, tzctrl) {
-    // ms is millisec since threeam. adjust for tz and dst,
-    // make ms since midnite, then format and return HH:MM:SS
-    let myms = ms + tzctrl['tzoff'] + 3 * 60 * 60 * 1000;
-
-    if (threeam < tzctrl['ondate'].getTime()) {
-    } else if (threeam >= tzctrl['offdate'].getTime()) {
-    } else if (tzctrl['obs'] == 0) {
-    } else {
-        myms = myms + 60000;
-    }
-    let hms = formathms(myms);
-    return hms;
-}
 function formathms(ms) {
     // return ms milliseconds as HH:MM:SS string
     let secs = Math.trunc(ms / 1000);
@@ -27,6 +13,15 @@ function formathms(ms) {
     secs -= 3600 * hrs;
     let mins = Math.trunc(secs / 60);
     secs -= Math.trunc(60 * mins);
+    let minstr = mins.toString().padStart(2, "0");
+    let secstr = secs.toString().padStart(2, "0");
+    let rv = `${hrs}:${minstr}:${secstr}`;
+    return rv;
+}
+function formathmsl(hmsl) {
+    // return HH:MM:SS string for [h,m,s] list
+    let [hrs, mins, secs] = hmsl;
+
     let minstr = mins.toString().padStart(2, "0");
     let secstr = secs.toString().padStart(2, "0");
     let rv = `${hrs}:${minstr}:${secstr}`;
@@ -72,7 +67,7 @@ function getLocations(url) {
             let lon = parseLatLon(locn.attributes['lon'].value);
             let tz = locn.attributes['tz'].value;
             // default "observed" (DST observed) to true. obs=0 in locations file if false
-            let obs = locn.attributes.hasOwnProperty('obs') ? locn.attributes['obs'].value : 1;
+            let obs = locn.attributes.hasOwnProperty('obs') ? parseInt(locn.attributes['obs'].value) : 1;
 
             locdict[whose] = {'lat': lat, 'lon': lon, 'tz': tz, 'obs': obs}
         }
@@ -105,10 +100,10 @@ function buildTable() {
     lat = locdict[where]['lat'];
     lon = locdict[where]['lon'];
     tz = locdict[where]['tz'];
-    // tz is minutes before UTC during Standard time - convert to milliseconds
-    // formatDate will adjust for Saving time.
-    tzoff = (new Date().getTimezoneOffset() - parseInt(tz)) * 60 * 1000;
-    obs = locdict[where]['obs'];
+    // tz is minutes before UTC during Standard time - convert to hours
+    // relative to my offset.
+    let tzoffh = (parseInt(locdict['Del']['tz']) - parseInt(tz)) / 60.0;
+    let obs = locdict[where]['obs'];
 
     let startdate = document.querySelector("#begindate").value;
     let [sdyr, sdmo, sdda] = startdate.split("-");
@@ -133,7 +128,7 @@ function buildTable() {
     captel.innerHTML = capt;
 
     // get ms since 1970 at three am today
-    let todms = new Date().setHours(3, 0, 0, 0);
+    let todms = new Date().setHours(5, 0, 0, 0);
 
     let timesfordate = {};
     let minrisedate = 0; maxrisedate = 0; minsetdate = 0; maxsetdate = 0; longestdate = 0; shortestdate = 0;
@@ -143,23 +138,18 @@ function buildTable() {
         let firstmo = yr == startyr ? startmo-1 : 0;
         let lastmo = yr == endyr ? endmo-1 : 11;
         let ondate, offdate;
-        if (obs == 0) {
-            // DST not observed - set ondate = offdate = jan 1 next year
-            // so no date this year will be >= ondate
-            ondate = new Date(yr+1, 0, 1);
-            offdate = ondate;
-        } else {
-            // DST is observed - ondate is 2nd Sunday in March, offdate is 1st Sunday in November.
-            ondate = new Date(yr, 2, 1);
-            let dow = ondate.getDay(); // sun 0 - sat 6
-            let MarSun2 = dow == 0 ? 8 : 15 - dow;
-            ondate.setDate(MarSun2);
-            offdate = new Date(yr, 10, 1);
-            dow = offdate.getDay();
-            let NovSun1 = dow == 0 ? 1 : 8 - dow;
-            offdate.setDate(NovSun1);
-        }
-        tzctrl = {'tzoff':tzoff, 'ondate':ondate, 'offdate':offdate, 'obs':obs }
+
+        // DST is observed on my system - ondate is 2nd Sunday in March,
+        //   offdate is 1st Sunday in November.
+        ondate = new Date(yr, 2, 1, 5, 0, 0);
+        let dow = ondate.getDay(); // sun 0 - sat 6
+        let MarSun2 = dow == 0 ? 8 : 15 - dow;
+        ondate.setDate(MarSun2);
+
+        offdate = new Date(yr, 10, 1, 5, 0, 0);
+        dow = offdate.getDay();
+        let NovSun1 = dow == 0 ? 1 : 8 - dow;
+        offdate.setDate(NovSun1);
 
         for (let mo = firstmo; mo <= lastmo; mo++) {
             // days in month mo of year yr. JS Date uses 0-based month,
@@ -169,14 +159,27 @@ function buildTable() {
             let firstda = yr == startyr && mo == firstmo ? startda : 1;
             let lastda = yr == endyr && mo == lastmo ? endda : ndim;
             for (let da = firstda; da <= lastda; da++) {
-                // get timestamp with ms for this date
-                let threeam = new Date(yr, mo, da).setHours(3, 0, 0, 0);
+                // get timestamp with ms for this date, set hour to 3AM
+                let threeam = new Date(yr, mo, da).setHours(5, 0, 0, 0);
 
                 let fordate = new Date(threeam);
-                // fordate.setTime(fordate.valueOf() + tzoff);
+                // dst offset is only needed when I am using dst and
+                // location is not. need to subtract an hour in that case.
+                let dstoffset = 0;
+                if (obs == 0 && fordate >= ondate && fordate < offdate) {
+                    dstoffset = 1;
+                }
 
                 // get day's sunlight times for user's location
                 let times = SunCalc.getTimes(fordate, lat, lon);
+
+                let t = times.sunrise;
+                let sunrise = [t.getHours()+tzoffh-dstoffset, t.getMinutes(), t.getSeconds()];
+                // console.log(`fordate ${fordate}, sunrise ${sunrise}`);
+
+                t = times.sunset;
+                let sunset = [t.getHours()+tzoffh-dstoffset, t.getMinutes(), t.getSeconds()];
+                // console.log(`fordate ${fordate}, sunset ${sunset}`);
 
                 // get position of the sun (azimuth and altitude) at today's sunrise
                 let sunrisePos = SunCalc.getPosition(times.sunrise, lat, lon);
@@ -191,9 +194,9 @@ function buildTable() {
                 let sunsetAzimuth = (180.0 + sunsetPos.azimuth * 180 / Math.PI).toFixed(3);
 
                 timesfordate[threeam] = [];
-                timesfordate[threeam]['sunrise'] = times['sunrise'].valueOf() - threeam.valueOf();
+                timesfordate[threeam]['sunrise'] = formathmsl(sunrise);
                 timesfordate[threeam]['riseAz'] = sunriseAzimuth;
-                timesfordate[threeam]['sunset'] = times['sunset'].valueOf() - threeam.valueOf();
+                timesfordate[threeam]['sunset'] = formathmsl(sunset);
                 timesfordate[threeam]['setAz'] = sunsetAzimuth;
                 timesfordate[threeam]['daylength'] = times['sunset'].valueOf() - times['sunrise'].valueOf();
 
@@ -330,15 +333,24 @@ function buildTable() {
             }
 
             let thisdat = new Date(threeam);
-            let datestr = formatTZDate(thisdat, tzctrl, "%b %d, %Y");
+            let datestr = formatDate(thisdat, "%b %d, %Y");
             html += "<td>" + datestr + "</td>";
 
             // format sunrise time
-            let sunriseTime = formatmsecsm(timesfordate[threeam]['sunrise'], threeam, tzctrl);
-            if (threeam == minrisedate) {
-                html += "<td class='good'>";
-            } else if (threeam == maxrisedate) {
-                html += "<td class='bad'>";
+            let sunriseTime = timesfordate[threeam]['sunrise'];
+            // sanity check - be sure hours part of sunrise makes sense!
+            let h = parseInt(sunriseTime);
+            if (h < 5 || h > 8) {
+                console.log(`sunrise at ${sunriseTime} on ${datestr}???`);
+            }
+            if (sorted.length > 31) {
+                if (threeam == minrisedate) {
+                    html += "<td class='good'>";
+                } else if (threeam == maxrisedate) {
+                    html += "<td class='bad'>";
+                } else {
+                    html += "<td>";
+                }
             } else {
                 html += "<td>";
             }
@@ -347,22 +359,36 @@ function buildTable() {
             html += "<td>" + sunriseAzimuth + "</td>";
 
             // format sunset time
-            let sunsetTime = formatmsecsm(timesfordate[threeam]['sunset'], threeam, tzctrl);
-            if (threeam == maxsetdate) {
-                html += "<td class='good'>";
-            } else if (threeam == minsetdate) {
-                html += "<td class='bad'>";
+            let sunsetTime = timesfordate[threeam]['sunset'];
+            // sanity check - be sure hours part of sunset makes sense!
+            h = parseInt(sunsetTime);
+            if (h < 16 || h > 21) {
+                console.log(`sunset at ${sunsetTime} on ${datestr}???`);
+            }
+            if (sorted.length > 31) {
+                if (threeam == maxsetdate) {
+                    html += "<td class='good'>";
+                } else if (threeam == minsetdate) {
+                    html += "<td class='bad'>";
+                } else {
+                    html += "<td>";
+                }
             } else {
                 html += "<td>";
             }
+
             html += sunsetTime + "</td>";
             let sunsetAzimuth = timesfordate[threeam]['setAz'];
             html += "<td>" + sunsetAzimuth + "</td>";
 
-            if (threeam == longestdate) {
-                html += "<td class='good'>";
-            } else if (threeam == shortestdate) {
-                html += "<td class='bad'>";
+            if (sorted.length > 31) {
+                if (threeam == longestdate) {
+                    html += "<td class='good'>";
+                } else if (threeam == shortestdate) {
+                    html += "<td class='bad'>";
+                } else {
+                    html += "<td>";
+                }
             } else {
                 html += "<td>";
             }
@@ -377,13 +403,18 @@ function buildTable() {
                 let moonriseTime, moonriseAzimuth;
                 if (timesfordate[threeam]['moonrise'] != 0) {
                     moonriseTime = formatmsecsm(timesfordate[threeam]['moonrise'], threeam, tzctrl);
-                    if (threeam == minmoonrise) {
-                        html += "<td class='good'>";
-                    } else if (threeam == maxmoonrise) {
-                        html += "<td class='bad'>";
+                    if (sorted.length > 31) {
+                        if (threeam == minmoonrise) {
+                            html += "<td class='good'>";
+                        } else if (threeam == maxmoonrise) {
+                            html += "<td class='bad'>";
+                        } else {
+                            html += "<td>";
+                        }
                     } else {
                         html += "<td>";
                     }
+
                     moonriseAzimuth = timesfordate[threeam]['moonriseaz'];
                 } else {
                     html += "<td>";
@@ -397,10 +428,14 @@ function buildTable() {
                 let moonsetTime, moonsetAzimuth;
                 if (timesfordate[threeam]['moonset'] != 0) {
                     moonsetTime = formatmsecsm(timesfordate[threeam]['moonset'], threeam, tzctrl);
-                    if (threeam == maxmoonset) {
-                        html += "<td class='good'>";
-                    } else if (threeam == minmoonset) {
-                        html += "<td class='bad'>";
+                    if (sorted.length > 31) {
+                        if (threeam == maxmoonset) {
+                            html += "<td class='good'>";
+                        } else if (threeam == minmoonset) {
+                            html += "<td class='bad'>";
+                        } else {
+                            html += "<td>";
+                        }
                     } else {
                         html += "<td>";
                     }
@@ -414,10 +449,14 @@ function buildTable() {
                 html += "<td>" + moonsetAzimuth + "</td>";
 
                 if (timesfordate[threeam]['moonlength'] != 0) {
-                    if (threeam == longestmoon) {
-                        html += "<td class='good'>";
-                    } else if (threeam == shortestmoon) {
-                        html += "<td class='bad'>";
+                    if (sorted.length > 31) {
+                        if (threeam == longestmoon) {
+                            html += "<td class='good'>";
+                        } else if (threeam == shortestmoon) {
+                            html += "<td class='bad'>";
+                        } else {
+                            html += "<td>";
+                        }
                     } else {
                         html += "<td>";
                     }
@@ -462,6 +501,16 @@ function init() {
     document.querySelector("#begindate").value = startdate;
     document.querySelector("#enddate").value = enddate;
 }
+function allyear() {
+    // "all year" radio button clicked - set date range
+    // to all of current year
+    let curyr = new Date().getFullYear();
+    let Jan1 = `${curyr}-01-01`;
+    let Dec31 = `${curyr}-12-31`;
+
+    document.querySelector("#begindate").value = Jan1;
+    document.querySelector("#enddate").value = Dec31;
+}
 </script>
 </head>
 <body onload="init()">
@@ -470,10 +519,13 @@ function init() {
         <tr><td>
       <fieldset class="datesel">
         <legend>Choose Location and Date Range:</legend>
-    <label for="atloc">at <select class="date-css" id="atloc"></select></label>
+    <label for="atloc">location <select class="date-css" id="atloc"></select></label>
+    <div class="spacer"></div>
+    <input type="button" value="Go" onClick="buildTable()"/>
+    <br/>
     <label for="begindate">From <input type="date" id="begindate" class="date-css" value="2020-01-01" min="2015-01-01" max=""></input></label>
     <label for="enddate">to <input type="date" id="enddate" class="date-css" value="" min="2015-01-01" max=""></input></label>
-    <input type="button" value="Go" onClick="buildTable()"/>
+    <label for="allyear">year <input type="radio" id="allyear" onClick="allyear()"></input></label>
       </fieldset>
     </td></tr>
     <tr><td>
