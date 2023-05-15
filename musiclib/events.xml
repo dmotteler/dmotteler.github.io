@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Stillwaters Estates" when="May 18, 2023 06:15PM" dtndx="202305181815" songlist="1179 1195 1143 1194 1181 1061 1157 1198 1192 1028 1180 1196 1184 1103" qtetSongs="1157 1198" />
+  <event where="Rehearsal" when="May 16, 2023 06:00PM" dtndx="202305161800" songlist="1102 1055 1196 1028 1195 1194 1181 1120 1179 1143 1192 1180 1184 1103 1035" />
   <event where="Rehearsal" when="May 09, 2023 06:00PM" dtndx="202305091800" songlist="1102 1055 1032 1059 1163 1109 1181 1120 1183 1142 1194 1185 1193 1197 1035 1095 1192 1115 1093" />
   <event where="Sharon Care" when="May 04, 2023 06:15PM" dtndx="202305041815" songlist="1076 1179 1180 1007 1182 1195 1157 1198 1143 1192 1028 1196 1184 1103" qtetSongs="1157 1198" />
   <event where="Rehearsal" when="May 02, 2023 06:00PM" dtndx="202305021800" songlist="1102 1055 1175 1196 1192 1076 1028 1184 1007 1179 1180 1182 1143 1195 1103 1193 1035" />
