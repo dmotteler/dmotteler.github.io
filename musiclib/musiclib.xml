@@ -1336,6 +1336,18 @@
       <voice gdid="1x0RNWgNJa5pxQXLC0nADz0G8uqgTky60" mods="mix" path="mix/Kentucky Babe.mp3" voice="mix" />
     </tracks>
   </song>
+  <song id="1080" name="King of the Road">
+    <arranger>Scott Kitzmiller</arranger>
+    <category>Current</category>
+    <composer>Roger Miller</composer>
+    <copyright>Sony/ATV Music</copyright>
+    <crdate>1964</crdate>
+    <key>C</key>
+    <lyricist>Roger Miller</lyricist>
+    <stockID>211578</stockID>
+    <words>(bass) ba-bum</words>
+    <sheet gdid="18ZZixqH07WB-evIEgZtq1SWNtIo7CPEk" sheet="King of the Road.pdf" />
+  </song>
   <song id="1195" name="Kokomo">
     <category>Current</category>
     <arranger>Don Reckenbeil</arranger>
