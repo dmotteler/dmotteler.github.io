@@ -24,7 +24,7 @@ def usage(msg=None):
     print('''\nUsage: {} [git|dev][dump]
     where:
         if 'git' appears on the command, load musiclib from github, else
-           if 'dev' appears, load from from /home/dfm/devel/musiclib
+           if 'dev' appears, load from from ./musiclib
         if 'dump' appears on the command, list the tracks and sheets data.
 
 '''.format(sys.argv[0]))
@@ -60,7 +60,8 @@ if fromgit:
 
     mlib = url
 else:
-    mlib = "C:/cygwin64/home/Del/php_ws/musiclib/musiclib.xml"
+    # use the development musiclib
+    mlib = "/var/www/html/musiclib/musiclib.xml"
     with open(mlib, "r") as fo:
         lib_xml = fo.read()
 
@@ -111,7 +112,7 @@ if dumps:
     for pat in sorted(libsheets):
         print("  {}".format(pat))
 
-tsxml = "C:/cygwin64/home/Del/src/devel/mydrive.xml"
+tsxml = "/home/dfm/devel/mydrive.xml"
 
 with open(tsxml, "r") as fo:
     tands_xml = fo.read()
