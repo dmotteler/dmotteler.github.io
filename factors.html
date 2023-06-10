@@ -1,0 +1,127 @@
+<!--
+
+    $Id:$
+    $Log:$
+
+    display factors of numbers
+-->
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Factors</title>
+<style>
+::placeholder { color: fuchsia; opacity: .5; }
+body, input[type=text], table, td, th { font: bold 24px Arial, sans-serif; }
+table, td, th {
+    border: 2px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 2px 12px;
+}
+</style>
+<script>
+function factors(num) {
+    // find factors of num
+    let facts = {};
+    let num0 = num;
+
+    let tryfac = 2;
+    while (tryfac * tryfac <= num) {
+        while (tryfac < num && num % tryfac == 0) {
+            if (! facts.hasOwnProperty(tryfac)) {
+                facts[tryfac] = 0;
+            }
+
+            facts[tryfac] += 1;
+            num = num / tryfac;
+            num0 = num;
+        }
+
+        tryfac += 1;
+    }
+
+    if (num == num0) {
+        if (! facts.hasOwnProperty(num)) {
+            facts[num] = 0;
+        }
+
+        facts[num] += 1;
+    }
+    return facts;
+}
+function formatans(facts) {
+	let factlist = [];
+
+	for (let prime in facts) {
+		if (facts[prime] > 1) {
+			factlist.push(`${prime}^${facts[prime]}`);
+		} else {
+            factlist.push(`${prime}`);
+		}
+	}
+
+	let mul = factlist.join(" * ");
+    return mul;
+}
+function getthefacts (numel) {
+    let req = numel.value;
+
+    if (req[0] == "t") {
+        // do test
+        let numiter;
+        if (req == "t") {
+            numiter = 100000;
+        } else {
+            numiter = parseInt(req.substring(1));
+        }
+		let numerr = 0;
+        let t0 = window.performance.now();
+        for (let num = 2; num < numiter; num++) {
+            let facts = factors(num);
+            let tot = 1;
+            for (let prime in facts) {
+                tot *= prime ** facts[prime];
+			}
+            if (tot != num) {
+                console.log(`ERROR: ${tot} != ${num}`);
+				numerr += 1;
+			}
+		}
+        let tn = window.performance.now();
+        let tdiff = tn - t0;
+        let tper = tdiff/numiter * 1000.0;
+        let msg;
+		if (numerr > 0) {
+			msg = "ERRORS! See console.log";
+		} else {
+            msg = `${numiter} tests of factors in ${tdiff.toFixed(3)} ms (${tper.toFixed(3)} μs per) OK!`;
+		}		
+        document.querySelector("#tout").innerHTML = msg;
+    } else if (req.includes("-")) {
+        let ft = req.split("-");
+        let from = parseInt(ft[0]);
+        let to = parseInt(ft[1]);
+        let tabl = "<table><tr><th>number</th><th>factors</th></tr>\n";
+        for (let num = from; num <= to; num++) {
+            let facts = factors(num);
+            let ans = formatans(facts);
+            tabl += `<tr><td>${num}</td><td>${ans}</td></tr>\n`;
+        }
+        tabl += "</table>\n";
+        document.querySelector("#tout").innerHTML = tabl;
+    } else {
+        let from = parseInt(req);
+        let facts = factors(from);
+        let ans = formatans(facts);
+        let tabl = "<table><tr><th>number</th><th>factors</th></tr>\n";
+        tabl += `<tr><td>${from}</td><td>${ans}</td></tr>\n`;
+        tabl += "</table>\n";
+        document.querySelector("#tout").innerHTML = tabl;
+    }
+}
+</script>
+<body>
+    <input type="text" id="tin" onchange="getthefacts(this)" placeholder="enter m or m-n or t[nnn]"/>
+    <hr>
+    <div id="tout"></div>
+</body>
+</html>
