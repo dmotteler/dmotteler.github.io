@@ -1,10 +1,7 @@
 <!--
 
-    $Id: factors.html,v 1.1 2023/06/10 03:50:52 dfm Exp $
-    $Log: factors.html,v $
-    Revision 1.1  2023/06/10 03:50:52  dfm
-    Initial revision
-
+    $Id:$
+    $Log:$
 
     display factors of numbers
 -->
@@ -121,11 +118,8 @@ function getthefacts (numel) {
         document.querySelector("#tout").innerHTML = tabl;
     }
 }
-function init() {
-    document.querySelector("#tin").focus();
-}
 </script>
-<body onload="init()">
+<body>
     <input type="text" id="tin" onchange="getthefacts(this)" placeholder="enter m or m-n or t[nnn]"/>
     <hr>
     <div id="tout"></div>
