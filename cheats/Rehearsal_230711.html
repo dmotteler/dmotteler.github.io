@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id="doctitle">Rehearsal - July 11, 2023 06:00PM</title>
+<style>
+table { border: 5px solid black; border-spacing: 0px;
+    font-family: Arial; font-size: 18px; font-weight: bold; }
+td { border: 1px solid black; padding: 6px; }
+tr:nth-child(even) { background: #CCC }
+tr:nth-child(odd) { background: #FFF }
+.tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
+.key, .pitch { text-align: center; }
+.hidden { display: none; }
+.qtet { background-color: blue !important; color: white !important; }
+.qtet a { background-color: blue !important; color: white !important; }
+.partsel { text-align: center; background: lightgreen; }
+@media print {
+  @page { size: letter portrait; margin: .5in; }
+  body { max-width: 5.5in; }
+  table { font-size: 12px; }
+  td { padding: 4px; }
+  .tabletitle { font-size: 18px; }
+}
+</style>
+
+<script>
+var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none', 'sheet'];
+var showVoice;
+function clickVoice() {
+    // set showVoice, then emulate clicking that voice selection
+    // to get the tracks showing or hidden. this is the init function
+    // when a downloaded cheat is executed.
+
+    showVoice = localStorage.getItem("defaultVoice");
+    if (! showVoice) { showVoice = "mix"; }
+    let buttonId = "#sel" + showVoice;
+    let butt = document.querySelector(buttonId);
+    butt.click();
+}
+function setvoice(el) {
+    let voice = el.value;
+    let clr = "." + voice;
+    // show the class we were called with (i.e., remove "hidden")
+    document.querySelectorAll(clr).forEach(node => { node.classList.remove("hidden") });
+
+    let others = new Set(voices);
+    others.delete(voice);
+    // don't show the rest of the classes
+    for (let v of others) {
+        let cla = "." + v;
+        document.querySelectorAll(cla).forEach(node => { node.classList.add("hidden") });
+    }
+    if (voice != "none" && voice != "sheet") {
+        localStorage.setItem("defaultVoice", voice);
+    }
+}
+</script>
+
+</head>
+<body onload="clickVoice()">
+    <table>
+        <tbody id="main_table"><tr><td colspan="3" class="tabletitle">Rehearsal - July 11, 2023 06:00PM</td></tr><tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=14izz2uTeQD95XgJEZK43zgBaxjirTEqT">Old Songs, The : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=14br7s53Xoe4rOYbVZ9kivFCW7SNgr4Ys">Old Songs, The : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=14O5YIWoe1nJGaMSmP45ahs3ALXUj8LBm">Old Songs, The : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=14BOEstbE7hWt3b4irJe9lEw7fkfbEfG1">Old Songs, The : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=14A0LxDWFcGyPW3ukYhd5yRhGxqM6JoZ_">Old Songs, The : mix</a>
+</div><div class="none hidden">Old Songs, The</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1TocYtKifQWG0Cg_GZgpoDduUZN56AjW7">Old Songs, The [sheet]</a></div>
+</td><td>The old songs</td></tr>
+<tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1-4Bc1JG0gYtvP2VhqZ5NNS8zygBHfuUX">Down Our Way [Polecat I pg 8] : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1YuMJWikBp40mWA1DpASDm4_q8DnAp1lD">Down Our Way [Polecat I pg 8] : bari left</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=198g_jL0Z2BBYX-RBQ_DUAYsEhmEXkgNT">Down Our Way [Polecat I pg 8] : mix</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=11SA87C1syv-XTVlmysvT3gwYswyZPAYf">Down Our Way [Polecat I pg 8] : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=198g_jL0Z2BBYX-RBQ_DUAYsEhmEXkgNT">Down Our Way [Polecat I pg 8] : mix</a>
+</div><div class="none hidden">Down Our Way [Polecat I pg 8]</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=120mTHkSy81g4q9gVJC7j3OfrZMqbOwkG">Down Our Way [Polecat I pg 8] [sheet]</a></div>
+</td><td>Down our way</td></tr>
+<tr class="song"><td class="key">F</td><td><div class="bass hidden">Dona Nobis Pacem
+</div><div class="bari hidden">Dona Nobis Pacem
+</div><div class="lead hidden">Dona Nobis Pacem
+</div><div class="tenor hidden">Dona Nobis Pacem
+</div><div class="mix">Dona Nobis Pacem
+</div><div class="none hidden">Dona Nobis Pacem</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1wVn9dDqhBZnR5u2hg5ofVASavIfdG9D3">Dona Nobis Pacem [sheet]</a></div>
+</td><td>Do-na no-bis</td></tr>
+<tr class="song"><td class="key">Ab</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1J69Of7TXuUlv1jNClR1jVPzOnyxo0veX">Turn Your Radio On! : bass</a><br>
+<a href="https://drive.google.com/open?id=1DapPFj4NlVYDsT6q3LoKpRVPFoz2ef9s">Turn Your Radio On! : bass slower</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1vm5PjL1P03WJ7ZNRmTq7f92eKCpIZGJN">Turn Your Radio On! : bari</a><br>
+<a href="https://drive.google.com/open?id=1XhwflrFafAe_esaXtgaBuzERxXgN1rer">Turn Your Radio On! : bari slower</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1BNqmqlbwslOTAUfLeRzCjAl1_abIsEWF">Turn Your Radio On! : lead</a><br>
+<a href="https://drive.google.com/open?id=1Oz3-pzz6wGyOTFjxj6sfnfKKLdP24a0S">Turn Your Radio On! : lead slower</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1dEqebk7gcsfkMOUUzmqkvvbwfBWpQ_J-">Turn Your Radio On! : tenor</a><br>
+<a href="https://drive.google.com/open?id=1L0iHCAxfF6UXA9ZQYBM2zWxHUeOALdrf">Turn Your Radio On! : tenor slower</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1jy4_Ck_UZgXolPgJxQhZccRLd86u_MGk">Turn Your Radio On! : mix</a><br>
+<a href="https://drive.google.com/open?id=1Dao-2gmndztfHbTHFBW7mM3U7w8xZgK6">Turn Your Radio On! : mix slower</a>
+</div><div class="none hidden">Turn Your Radio On!</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1-9b8QO4Oi7yxZpNYN6W7Lno0i9aeDEc0">Turn Your Radio On! [sheet]</a></div>
+</td><td>Well, come and listen in</td></tr>
+<tr class="song"><td class="key">F</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1l7741eRAmVRRj5SX3IiV-yUacclsZdwP">Stand By Me : Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1NNPZGY0slqGbzxzh4ucNmreVOjkyYF71">Stand By Me : Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=11ezoNqYrlYnx2VMJFLSoFENYDSU6d1Zn">Stand By Me : Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1gYTuRzr7O2WjbQfP-yQ38xJk-6kBT0FF">Stand By Me : Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=16jt4ypuoBOpAf_RAM9ahHYzpojrnsN5c">Stand By Me : Mix</a>
+</div><div class="none hidden">Stand By Me</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1Mb4B7ZoHZTCt1bdAp9KFyhYY6VY6zHt4">Stand By Me [sheet]</a></div>
+</td><td>dm ba da da</td></tr>
+<tr class="song"><td class="key">G</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1LWihlubyIGX9-V2YeK0ll4_2XcTlHZp9">Bad, Bad Leroy Brown : Bass Fixed</a><br>
+<a href="https://drive.google.com/open?id=1lp-uMmgw-sZjtZTd6lTXxLkYRrAvF7ZK">Bad, Bad Leroy Brown : Bass</a><br>
+<a href="https://drive.google.com/open?id=1iWcpYA9rxrOxlX_OAWWZCYHYTqsxnKTw">Bad, Bad Leroy Brown : no Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1ME0nDM7pScyk-qf8ipKgkxxp47QFLvhx">Bad, Bad Leroy Brown : Bari fixed</a><br>
+<a href="https://drive.google.com/open?id=1P1DJYfJMD0-IOPao_C2wi2MFBJxQJWOY">Bad, Bad Leroy Brown : Bari</a><br>
+<a href="https://drive.google.com/open?id=1AFzbbRe3QEzegHvBfznATU_QhaK1yshe">Bad, Bad Leroy Brown : no Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=134HTN7gZSN8kiV3BTFuwsGLSh_yKvpe_">Bad, Bad Leroy Brown : Lead fixed</a><br>
+<a href="https://drive.google.com/open?id=1-svG8-Ns-YGWOLhWHCd1YBUgzIznhibs">Bad, Bad Leroy Brown : Lead</a><br>
+<a href="https://drive.google.com/open?id=14u5n4wjd3V4yK6hQ4cHb_cICu_KME0af">Bad, Bad Leroy Brown : no Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1iqXrllpoT_nAH4h2y2iLvDkUyGOWtwuH">Bad, Bad Leroy Brown : Tenor</a><br>
+<a href="https://drive.google.com/open?id=15MSaWGxllj9Slx0O1O2LNSWkWOsZY9lG">Bad, Bad Leroy Brown : fixed Tenor</a><br>
+<a href="https://drive.google.com/open?id=1pukUQ64EoXFlfx2gQiIIHi1g9vGPW6l_">Bad, Bad Leroy Brown : no Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1NSq9f7TzShd0EP_qb8_3ignlCEEBjD75">Bad, Bad Leroy Brown : mix</a>
+</div><div class="none hidden">Bad, Bad Leroy Brown</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1dn0UOXnZTHidwYlrjhgXQR6x7Ux3sgFY">Bad, Bad Leroy Brown [sheet]</a></div>
+</td><td>Now, you could try the east</td></tr>
+<tr class="song"><td class="pitch">blow E</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1DbDTK7eLMlsQUMVFYjHPlRN6QV2bcw8s">Yesterday : Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1U_RsE2ANxixsOOjHiqIsBWf32vhZOZ_c">Yesterday : Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=19vxtWw5rJmB6aigDiWLIJ78pbC1_KHEx">Yesterday : Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1MYeuyH0zcYb24anti2IYD-_kxs5tTtRs">Yesterday : Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1-3iufDoOvu69UqB0pvFvq6pF8xQ95kLL">Yesterday : mix</a>
+</div><div class="none hidden">Yesterday</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1391pzshslFWRg03EC9vOpGmowiNfIdmt">Yesterday [sheet]</a></div>
+</td><td>oo oo oo oo oo</td></tr>
+<tr class="song"><td class="key">G</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1gu4oljYkYmPEid5OxbCXdJE1UvSJBrAr">My Girl : Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1tdzx0PpMTugXdLQQJ4EEvbzbfjCYyvaZ">My Girl : Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1fHJqhAxURDfRYX9tZzLPxSC0IU6IRMZH">My Girl : Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1hvYOeyvyyCZ2iODCurPyPdnS0i82D8iN">My Girl : Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1GcU-8Nw-zTGeNrhMFEHHDYTuQFTt6Rnu">My Girl : Mix</a>
+</div><div class="none hidden">My Girl</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=133otuTJeoP8US6V1NUHTygk7FDdcvDX7">My Girl [sheet]</a></div>
+</td><td>doo doo doo doo doo doo</td></tr>
+<tr class="song"><td class="key">F</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1xxyA9kli5kzisKh7YVRT8jEihm0Q35x_">Irish Blessing : Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1AW3l6Bv3HhPlSBpUV6tFh9QDJRlNrvTF">Irish Blessing : Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=13Pi-m8H_7dEgoh0f7xzrYhrlkdK7W0p6">Irish Blessing : Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1TEqAjSpIu7g46q61ExRjphGIZcytE5dX">Irish Blessing : Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=15V0v25rrBGg_OXDb2ncuBHQAl6Of7yWk">Irish Blessing : All</a>
+</div><div class="none hidden">Irish Blessing</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPdDZUeEE4Q1hqbFk&amp;resourcekey=0-sFOiyikBO5YoUZF2CayXTw">Irish Blessing [sheet]</a></div>
+</td><td>May the road rise to meet you</td></tr>
+<tr class="song"><td class="key">Em</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1CQ-UR6hU6LCuMBA0y-riFJNJBDWGSFDh">Happy Together : Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1qe9wgJk56HH-Vd6_et3va_olwH03d1yB">Happy Together : Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1bghfYI2NTp-4ZI5McLaXrn8uQnl-7XbZ">Happy Together : Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1yG8zvNqizZYdxEAgs3UXWAmSI2B-2jFA">Happy Together : Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1pSbPJLrNsjWA5CKJx-golMWBHExS1a9q">Happy Together : Mix</a>
+</div><div class="none hidden">Happy Together</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=110FaozNqA9GzpY1DQu9idtwI6EqeFVQo">Happy Together [sheet]</a></div>
+</td><td>doot so happy</td></tr>
+<tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1A4BsG4vMKBnj6TP68BnYWjZofsE7XJsD">Hello Mary Lou (Goodbye Heart) [Polecat II pg 34] : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1NEnKvWZ5JpmyO9Cf1SqFPZKFHU3_5sIT">Hello Mary Lou (Goodbye Heart) [Polecat II pg 34] : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1j5QIse3zpk-cix5RpiG-J9hsDW7PfJlY">Hello Mary Lou (Goodbye Heart) [Polecat II pg 34] : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=10opf_mDgFfA-zHGpWp0AmaUHpbGbJIUY">Hello Mary Lou (Goodbye Heart) [Polecat II pg 34] : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1FPHFbyQq0-aISgCdJr0r0zSB_zB3Ndqi">Hello Mary Lou (Goodbye Heart) [Polecat II pg 34] : all</a>
+</div><div class="none hidden">Hello Mary Lou (Goodbye Heart) [Polecat II pg 34]</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1-fvobnxXGe2__NpiQ7YZzSVTyxloWgna">Hello Mary Lou (Goodbye Heart) [Polecat II pg 34] [sheet]</a></div>
+</td><td>Passed me by</td></tr>
+<tr class="song"><td class="key">F</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1jbkK1gq9Oopb5k-YUMFMFCsZBWdEjAF7">From The First Hello To The Last Goodbye [Polecat II pg 26] : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1F0WYtcMLQzidxPKuozDrVFtbh0yYVWls">From The First Hello To The Last Goodbye [Polecat II pg 26] : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=120zEr5-7CTv7WZxqbyDDOLKiDTn0y_FZ">From The First Hello To The Last Goodbye [Polecat II pg 26] : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1lF6M6zVVG8XPpjQU4lT9QS5MMZSIA_tr">From The First Hello To The Last Goodbye [Polecat II pg 26] : tenor</a>
+</div><div class="mix">From The First Hello To The Last Goodbye [Polecat II pg 26]
+</div><div class="none hidden">From The First Hello To The Last Goodbye [Polecat II pg 26]</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1-ZuKCouJsF1OQhB61ARDu4hSwiJNmv77">From The First Hello To The Last Goodbye [Polecat II pg 26] [sheet]</a></div>
+</td><td>Our song was a song</td></tr>
+<tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1Y4Zp9F0at05CuSwgkbpxhZlfr4I2Gjw1">Let's Get Together Again : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1Tx4VIXt4Hf8GBu_m1CMUMWMvB59SR1NC">Let's Get Together Again : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1eqpHDhm4m4oLaaLEeW21PeyQOGSi747L">Let's Get Together Again : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1k5Jo6nZ3R6N1Clf2oK9b7jsEOdJIxOGK">Let's Get Together Again : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1yRewM1J7nYcQo_IEGH9G5UA5FvW7TWW2">Let's Get Together Again : mix</a>
+</div><div class="none hidden">Let's Get Together Again</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=19GaQR8UblmC7nkfeeqj4GuhAXzlsc6Xz">Let's Get Together Again [sheet]</a></div>
+</td><td>Let's get together again</td></tr>
+</tbody>
+
+    <tfoot>
+    <tr>
+        
+        <td colspan="99">
+        <fieldset class="partsel">
+        <legend>Show voice</legend>
+         <input type="radio" id="seltenor" name="part" value="tenor" onclick="setvoice(this)">tenor
+         <input type="radio" id="sellead" name="part" value="lead" onclick="setvoice(this)">lead
+         <input type="radio" id="selbari" name="part" value="bari" onclick="setvoice(this)">bari
+         <input type="radio" id="selbass" name="part" value="bass" onclick="setvoice(this)">bass
+         <input type="radio" id="selmix" name="part" value="mix" onclick="setvoice(this)">mix
+         <input type="radio" id="selsheet" name="part" value="sheet" onclick="setvoice(this)">sheet
+         <input type="radio" id="selnone" name="part" value="none" onclick="setvoice(this)">none
+        </fieldset>
+        </td>
+     </tr>
+    </tfoot>
+</table>
+
+
+</body></html>
