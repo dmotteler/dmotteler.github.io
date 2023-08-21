@@ -170,7 +170,7 @@ def parsecheat(lines, fn, musiclib):
         # print("from <title> {}".format(title))
         tflds = title.replace("_", "").replace(":", "").replace(" @ ", " ").split(" - ")
         ven = tflds[0]
-        tim = tflds[1]
+        tim = tflds[-1]
         if not tim.endswith("PM") and not tim.endswith("AM"):
             tim += " 0700PM"
 

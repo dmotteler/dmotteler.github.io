@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Harbor Days" when="September 02, 2023 01:00PM" dtndx="202309021300" songlist="1011 1116 1180 1195 1194 1124 1103 1028" />
+  <event where="Harbor Days- Friday" when="September 01, 2023 06:30PM" dtndx="202309011830" songlist="1011 1116 1180 1195 1194 1124 1103 1028" />
+  <event where="Rehearsal" when="August 29, 2023 06:00PM" dtndx="202308291800" songlist="1102 1055 1175 1142 1194 1180 1195 1116 1011 1028 1103 1163 1197 1035" />
+  <event where="Garlic Festival" when="August 26, 2023 01:15PM" dtndx="202308261315" songlist="1178 1195 1180 1020 1032 1028 1179 1194 1124 1143 1157 1160 1198 1116 1076 1120 1103" qtetSongs="1032 1028 1157 1160 1198" />
+  <event where="Rehearsal" when="August 22, 2023 06:00PM" dtndx="202308221800" songlist="1102 1055 1020 1124 1178 1116 1076 1194 1143 1120 1180 1195 1179 1103 1035" />
   <event where="SWW Fair" when="August 18, 2023 04:45PM" dtndx="202308181645" songlist="1178 1195 1180 1020 1032 1028 1179 1194 1124 1143 1157 1160 1116 1076 1120 1103" qtetSongs="1032 1028 1157 1160" />
   <event where="Rehearsal" when="August 15, 2023 06:00PM" dtndx="202308151800" songlist="1102 1055 1124 1116 1178 1076 1143 1103 1120 1180 1195 1194 1179 1035" />
   <event where="Rehearsal" when="August 08, 2023 06:00PM" dtndx="202308081800" songlist="1102 1055 1020 1178 1180 1195 1194 1179 1120 1028 1193 1035" />
