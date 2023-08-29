@@ -104,6 +104,7 @@ var elcancel; // set true/false by el.html on exit
 var venue;
 var songlist;
 var qtetSongs;
+var psCatSelected; // categories displayed in ps, passed thru to el
 
 function init() {
     let mlurl = "musiclib.xml";
@@ -119,6 +120,7 @@ function init() {
         chevt = opener.newevent;
         venue = chevt['where'];
         evdate = chevt['when'];
+        psCatSelected = opener.psCatSelected;
 
         songlist = chevt['songlist'];
 
@@ -295,6 +297,10 @@ function down() {
     document.body.appendChild(pom);
     pom.click();
     document.body.removeChild(pom);
+
+    // save/replace downloaded event in localStorage
+    localStorage.setItem(opener.evndx, JSON.stringify(chevt))
+    // alert(`saved ${opener.evndx} to localStorage`);
 }
 function togqtet(ev) {
     // right-click will do the context menu when we leave

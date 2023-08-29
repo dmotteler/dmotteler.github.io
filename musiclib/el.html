@@ -15,6 +15,8 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title class="doctitle">${title}</title>
 <style>
+.alerts { animation: blink 1s; animation-iteration-count: 3; }
+@keyframes blink { 50% { background-color:pink; }  }
 #wrapper { width: 500px; }
 #playlist { width: 100%;  }
 .footer { text-align: center; background: lightgreen; }
@@ -29,6 +31,7 @@ caption { background-color: lightgreen; text-align: center;
     font-size: 24px; border-bottom: solid 5px; padding: 5px; }
 .selimg { width: 40px; }
 .hidden { display: none; }
+.mult { background-color: pink; color: white; }
 .qtet { background-color: blue; color: white; }
 .song:not(.slctd):not(.qtet):nth-child(even) { background-color: silver; }
 .song:not(.slctd):not(.qtet):nth-child(odd) { background-color: white; }
@@ -54,11 +57,11 @@ function sledit(el) {
 
     let songrow = document.querySelector(".slctd");
     if (! songrow) {
-        document.getElementById("editmenu").innerHTML = "<p>Select a song first!</p>";
+        document.getElementById("editmenu").innerHTML = "<p class='alerts'>Select a song first!</p>";
         return;
     }
     let cursong = songrow.children[0].innerText;
-    let cursid = songrow.children[2].innerText;
+    let cursid = songrow.children[1].dataset.sid;
     let songndx = songrow.rowIndex;
 
     // build select for current songlist. default option 0
@@ -155,8 +158,8 @@ function makelist() {
         let song = musiclib[sid];
         let cl = qtetSongs.includes(sid) ? "class='qtet song'" : "class='song'"
         html += `<tr onclick="selsong(this)" ${cl}><td>${song['name']}</td>
-<td class="selimg"><img src=""/></td>
-<td class="hidden">${sid}</td></tr>`;
+<td class="selimg" data-sid='${sid}'><img src=""/></td>
+</tr>`;
     }
     document.getElementById("putithere").innerHTML = html;
     let chkimgs = document.querySelectorAll("img");
@@ -165,6 +168,7 @@ function makelist() {
     }
 }
 var aliasfor = []; // gives main sid for an alias sid
+var psCatSelected = []; // selected categories from ps via ch 
 var evdate;
 var qtetSongs = [];
 var songlib = [];
@@ -197,14 +201,31 @@ function init() {
         // all promises complete. values is list of values returned 
         // by the promises, in the same order.
         musiclib = values[0];
+
+        // get the dict of categories from the caller
+        psCatSelected = Object.assign(opener.psCatSelected);
         
         for (let sid in musiclib) {
             let song = musiclib[sid];
             let nam = song['name'];
-            if (! songlib.hasOwnProperty(nam)) {
-                songlib[nam] = [];
+
+            let keepit = false;
+            if (song.hasOwnProperty('category')) {
+                for (let cat of song['category']) {
+                    if (psCatSelected.hasOwnProperty(cat)) {
+                        if(psCatSelected[cat] == true) {
+                            keepit = true;
+                        }
+                    }
+                }
             }
-            songlib[nam].push(sid);
+
+            if (keepit) {
+                if (! songlib.hasOwnProperty(nam)) {
+                    songlib[nam] = [];
+                }
+                songlib[nam].push(sid);
+            }
         }
 
         let sortedSongs = Object.keys(songlib).sort();
@@ -212,8 +233,23 @@ function init() {
         libsel = "<select id='libel'>";
         libsel += `<option style="display:none">`
         for (let s of sortedSongs) {
-            let sid = songlib[s][0];
-            libsel += `<option value="${sid}">${s}</option>\n`;
+            let nsids = songlib[s].length;
+            // for each song named s, if we've kept more than one
+            // add the categories in () to the song name. highlight if 
+            // categories include Old
+            for (let sid of songlib[s]) {
+                let sname = s;
+                if (nsids > 1) {
+                    sname += ` (${musiclib[sid]['category']})`;
+                    if (musiclib[sid]['category'].includes('Old')) {
+                        libsel += `<option class="mult" value="${sid}">${sname}</option>\n`;
+                    } else {
+                        libsel += `<option value="${sid}">${sname}</option>\n`;
+                    }
+                } else {
+                    libsel += `<option value="${sid}">${sname}</option>\n`;
+                }
+            }
         }
         libsel += "</select>\n";
 
@@ -242,14 +278,14 @@ function init() {
 function selsong(el) {
     // el is the row where the left-click was done, or
     // the table where a right-click was done.
-    let cursong = "";
+    let cursid = "";
     if (el.id == "playlist") {
         // right-click will do the context menu when we leave
         // if we don't prevent it.
         event.preventDefault();
         let td = event.target;
-        // get sid from hidden last column of row
-        cursong = td.parentNode.lastElementChild.textContent;
+        // get sid from last column of row
+        cursid = td.parentNode.lastElementChild.dataset.sid;
 
         // get the row element from the parent of the
         // td where the right-click was done.
@@ -258,15 +294,15 @@ function selsong(el) {
         // toggle qtet class for the song
         if (el.classList.contains("qtet")) {
             el.classList.remove("qtet");
-            let index = qtetSongs.indexOf(cursong);
+            let index = qtetSongs.indexOf(cursid);
             if (index > -1) {
                 qtetSongs.splice(index, 1);
             }
-            console.log(`${cursong} not a quartet song.`);
+            console.log(`${cursid} not a quartet song.`);
         } else {
             el.classList.add("qtet");
-            qtetSongs.push(cursong);
-            console.log(`${cursong} is now a quartet song.`);
+            qtetSongs.push(cursid);
+            console.log(`${cursid} is now a quartet song.`);
         }
         return;
     }
@@ -290,6 +326,13 @@ function selsong(el) {
     document.getElementById("editmenu").innerHTML = `<p>Choose an action for <span class="u">${cursong}</span></p>`;
 }
 function done() {
+    // "Done" pressed - see if there's selected song (i.e., selected
+    //  but not acted on)
+    let songrow = document.querySelector(".slctd");
+    if (songrow) {
+        document.getElementById("editmenu").innerHTML = "<p class='alerts'>Finish action for song first!</p>";
+        return;
+    }
     // go back to caller after passing back a replacement event.
     let newevent = {'when': evdate, 'where': venue, 'songlist': songlist, 'qtetSongs': qtetSongs };
     console.log(`leaving with songlist ${songlist}, qtetSongs ${qtetSongs}`);

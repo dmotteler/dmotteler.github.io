@@ -25,6 +25,8 @@ getqv.js    - parses the query string (url args after ?)
 
 index.html  - allow selection of "any" event, displays the cheat sheet for the event.
 
+mlids.html  - displays range of songids in musiclib, and lists those available for use.
+
 muslibup.py  - compares paths to track files from musiclib.xml and mydrive.xml, displays
                 needed xml to update the library. mydrive.xml requires Google Drive access
                 and needs permissions that only Del currently (9/2022) has.

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+
+    $Id:$
+    $Log:$
+
+    display range of songids from musiclib, and
+    list those in range that are not used.
+
+-->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Musiclib Song IDs</title>
+<style>
+p { font: bold 20px Arial; }
+</style>
+<script src="getMusicLib.js"></script>
+<script>
+function init() {
+    let mlurl = "musiclib.xml";
+    let gmlpromise = getMusicLib(mlurl);
+
+    let promises = [gmlpromise];
+
+    Promise.all(promises).then(values => {
+        // musiclib load complete.
+        musiclib = values[0];
+        // musiclib is indexed by songid. first, determine the range.
+        let sids = [];
+        for (let ssid in musiclib) {
+            sids.push(parseInt(ssid));
+        }
+        let firstsid = Math.min(...sids);
+        let lastsid = Math.max(...sids);
+
+        let missing = [];
+        for (let n = firstsid; n <= lastsid; n++) {
+            if (! sids.includes(n)) {
+                missing.push(`${n}`);
+            }
+        }
+
+        let msg = `<p>Musiclib song ids range from ${firstsid} to ${lastsid}.<br/>`;
+        let sp2 = "&nbsp;&nbsp;";
+        if (missing.length > 0) {
+            msg += `These are missing:<br/>`;
+        }
+        let nperline = 6;
+        let sep = "," + sp2;
+        let last = 0;
+        for (let n = 0; n < missing.length; n += nperline) {
+            if (n + nperline > missing.length) {
+                last = missing.length;
+                msg += sp2 + missing.slice(n, last).join(sep) + "<br/>";
+            } else {
+                last = n + nperline;
+                msg += sp2 + missing.slice(n, last).join(sep) + ",<br/>";
+            }
+        }
+        msg += "</p>";
+        document.querySelector("#disp").innerHTML = msg;
+    });
+}
+</script>
+</head>
+<body onload='init()'>
+  <div id="disp"> </div>
+</body>
+</html>
