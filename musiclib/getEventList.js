@@ -12,7 +12,7 @@
 */
 
 function getEventList(url) {
-    return fetch(url)
+    return fetch(url, {cache: "no-cache"})
     .then(response => response.text())
     .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
     .then(data => {
