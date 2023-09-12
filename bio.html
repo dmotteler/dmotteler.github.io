@@ -15,6 +15,7 @@ body { font-family: sans-serif; font-size: 16px; margin: 50px; max-width: 800px;
 <script>
 var oneday = 24.0 * 60.0 * 60.0 * 1000.0; // day worth of millisecs
 function bio(bday, doi) {
+    // cycle length in days for physical, emotional, intellectual
     let cyclen = {p: 23, e: 28, i: 33};
     let twopi = 2.0 * Math.PI;
 
@@ -69,11 +70,14 @@ $(function () {
 
     let data = [];
 
+    let cumage = 0;
     for (let who of names) {
         let bds = bdays.shift();
         let bday = new Date(bds);
-        let age = ((doi - bday)/(365.25 * oneday)).toFixed(2);
-        console.log(`${who} is ${age} years old!`);
+        let age = Math.round((doi - bday)/oneday);
+        cumage += age;
+        let ageyr = (age / 365.25).toFixed(2);
+        console.log(`${who} is ${age} days (${ageyr} years) old!`);
 
         let bdata = bio(bday, doi);
         for (let m of apei) {
@@ -81,7 +85,7 @@ $(function () {
                 let series = {};
                 if (m == 'a') {
                     let bdays = formatDate(bday, "%b %d, %Y")
-                    series.label = `${who}: ${bdays} ${age} years old!`;
+                    series.label = `${who} was born ${bdays}, ${age} days (${ageyr} years) ago!`;
                 } else {
                     series.label = `${who}_${m}`;
                 }
@@ -95,6 +99,8 @@ $(function () {
             }
         }
     }
+    let avgage = names.length > 0 ? Math.round(cumage / names.length) : 0;
+
     if (group != '') {
         let groupdata = [];
         let nser = 0;
@@ -119,7 +125,8 @@ $(function () {
         }
 
         let series = {};
-        series.label = `${group}`;
+        let avgyrs = (avgage / 365.25).toFixed(2);
+        series.label = `${group} avg. age is ${avgage} days (${avgyrs} years).`;
         series.data = groupdata;
         data.push(series);
     }
