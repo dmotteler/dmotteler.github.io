@@ -42,8 +42,16 @@ function bio(bday, doi) {
     return bdata;
 }
 $(function () {
-    let names = getQueryVariable('name', []);
-    let bdays = getQueryVariable('bday', []);
+    let names = getQueryVariable('name', ['']);
+    if (names[0] == '') {
+        alert("Name(s) missing or invalid");
+        return;
+    }
+    let bdays = getQueryVariable('bday', ['']);
+    if (names.length != bdays.length || bdays[0] == '') {
+        alert(`Birthday (bday=) missing`);
+        return;
+    }
     let group = getQueryVariable('group', [''])[0];
     let dois = getQueryVariable('doi', [''])[0];
     let doi = dois != '' ? new Date(dois) : new Date();
@@ -74,6 +82,10 @@ $(function () {
     for (let who of names) {
         let bds = bdays.shift();
         let bday = new Date(bds);
+        if (! bday) {
+            alert(`Invalid date ${bds} given.`);
+            return;
+        }
         let age = Math.round((doi - bday)/oneday);
         cumage += age;
         let ageyr = (age / 365.25).toFixed(2);
@@ -85,6 +97,7 @@ $(function () {
                 let series = {};
                 if (m == 'a') {
                     let bdays = formatDate(bday, "%b %d, %Y")
+                    // change the label.endswith if this is changed!
                     series.label = `${who} was born ${bdays}, ${age} days (${ageyr} years) ago!`;
                 } else {
                     series.label = `${who}_${m}`;
@@ -105,7 +118,7 @@ $(function () {
         let groupdata = [];
         let nser = 0;
         for (let s of data) {
-            if (s.label.endsWith('old!')) {
+            if (s.label.endsWith(' ago!')) {
                 nser += 1;
                 if(groupdata.length < 1) {
                     for (let n = 0; n < s.data.length; n++) {
