@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Colonial" when="September 21, 2023 06:15PM" dtndx="202309211815" songlist="1116 1076 1195 1179 1020 1028 1180 1196 1143 1124 1120 1182 1011" />
+  <event where="Rehearsal" when="September 19, 2023 06:00PM" dtndx="202309191800" songlist="1116 1102 1055 1182 1076 1195 1179 1020 1028 1180 1196 1143 1124 1120 1011 1035" />
   <event where="Rehearsal" when="September 12, 2023 06:00PM" dtndx="202309121800" songlist="1102 1055 1112 1182 1142 1073 1193 1120 1095 1183 1184 1196 1197 1035" />
   <event where="Chehalis West" when="September 07, 2023 06:15PM" dtndx="202309071815" songlist="1178 1195 1180 1020 1032 1028 1179 1194 1124 1143 1157 1160 1198 1116 1076 1120 1103" qtetSongs="1032 1028 1157 1160 1198" />
   <event where="Harbor Days" when="September 02, 2023 01:00PM" dtndx="202309021300" songlist="1011 1116 1180 1195 1194 1124 1103 1028" />
