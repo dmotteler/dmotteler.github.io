@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Biorhythms</title>
 <style>
-body { font-family: sans-serif; font-size: 16px; margin: 50px; max-width: 800px; }
+body { font-family: sans-serif; font-size: 16px; max-width: 800px; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.js"></script>
@@ -14,12 +14,199 @@ body { font-family: sans-serif; font-size: 16px; margin: 50px; max-width: 800px;
 <script src="/formatDate.js"></script>
 <script>
 var oneday = 24.0 * 60.0 * 60.0 * 1000.0; // day worth of millisecs
-function bio(bday, doi) {
+var plot;
+var doi;
+function makesvg() {
+    let poff = plot.getPlotOffset();
+    let poffx = poff.left + 35;
+    let poffy = poff.top - 2;
+
+    let can = plot.getCanvas();
+    let cw = can.width + poffx;
+    let ch = can.height;
+
+    let plopt = plot.getOptions();
+
+    let data = plot.getData();
+
+    let svg = `<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/11009/xlink" width="${cw}" height="${ch}">
+`;
+
+    // get plot-to-canvas converters
+    let xp2c = data[0].xaxis.p2c;
+    let yp2c = data[0].yaxis.p2c;
+
+    // get canvas x of left plot edge
+    let x0 = xp2c(data[0].data[0][0]);
+
+    for (let series of data) {
+
+        let firstpoint = true;
+        svg += `<path d="`;
+        for (let p of series.data) {
+            let x = (poffx + xp2c(p[0])).toFixed(2);
+            let y = (poffy + yp2c(p[1])).toFixed(2);
+            if (firstpoint) {
+                svg += `M ${x} ${y}`;
+                firstpoint = false;
+            } else {
+                svg += ` L ${x} ${y}`;
+            }
+        }
+        let lw = series.lines.lineWidth;
+        let sc = series.color;
+        svg += `" fill="transparent" stroke-width="${lw}" stroke="${sc}"/>\n`;
+
+        if (series.points.show) {
+            let pointfill = series.points.fillColor;
+            let pointlw = series.points.lineWidth;
+            svg += `<g fill="${pointfill}" stroke-width="${pointlw}" stroke="${sc}" >\n`;
+            if (series.points.symbol == "circle") {
+                let rad = series.points.radius;
+                for (let p of series.data) {
+                    let x = (poffx + xp2c(p[0])).toFixed(2);
+                    let y = (poffy + yp2c(p[1])).toFixed(2);
+                    svg += `<circle cx="${x}" cy="${y}" r="${rad}" />\n`;
+                }
+                svg += "</g>\n";
+            } else {
+                console.log(`>>> Ignoring point symbol ${series.points.symbol} <<<`);
+            }
+        }
+    }
+
+    if (plopt.grid.show) {
+        // draw box around plot area
+        let grcolor = plopt.grid.borderColor;
+        let grwid = plopt.grid.borderWidth;
+        let xl = poffx + xp2c(plopt.xaxis.min);
+        let xr = poffx + xp2c(plopt.xaxis.max);
+        let yb = poffy + yp2c(plopt.yaxis.min);
+        let yt = poffy + yp2c(plopt.yaxis.max);
+        svg += `<rect x="${xl}" y="${yt}" width="${xr-xl}" height="${yb-yt}" stroke="${grcolor}" stroke-width="${grwid}" fill = "transparent" />\n`;
+
+        let xticks = document.querySelectorAll(".xAxis .tickLabel");
+        svg += `<g stroke-width="1" stroke="${grcolor}">\n`;
+        for (let tick of xticks) {
+            let x = poffx + tick.offsetLeft;
+            if (x >= xl && x <= xr) {
+                x = x.toFixed(2);
+                let y = (poffy + tick.offsetTop).toFixed(2);
+                let lab = tick.innerText;
+                svg += `<text font-size="smaller" text-anchor="middle" x="${x}" y="${y}">${lab}</text>\n`;
+                svg += `<path d="M ${x} ${yb} V ${yt}" stroke-dasharray="1"/>\n`;
+            }
+        }
+        svg += `</g>\n`;
+
+        let yticks = document.querySelectorAll(".yAxis .tickLabel");
+        svg += `<g stroke-width="1" stroke="${grcolor}">\n`;
+        for (let tick of yticks) {
+            let y = poffy + tick.offsetTop;
+            if (y >= yt && y <= yb) {
+                let x = (poffx - 4).toFixed(2);
+                y = y.toFixed(2);
+                let lab = tick.innerText;
+                svg += `<text font-size="smaller" text-anchor="end" x="${x}" y="${y}">${lab}</text>\n`;
+                svg += `<path d="M ${xl} ${y} H ${xr}" stroke-dasharray="1"/>\n`;
+            }
+        }
+        svg += `</g>\n`;
+    }
+
+    // legend is in a table. each row has pairs of color box, text
+    let legrows = document.querySelectorAll(".legend tr");
+    let basey;
+    for (let tr of legrows) {
+        let tds = tr.querySelectorAll("td");
+        for (let td of tds) {
+            // console.log(`top ${tdt} left ${tdl} width ${tdw} height ${tdh}`);
+            if (td.children.length < 1) {
+                // td has no children - text
+                let dbb = td.getBoundingClientRect();
+                let lab = td.innerText;
+                let x = dbb.left - 8 + 35;
+                let xs = x.toFixed(3);
+                let ys = basey.toFixed(3);
+                svg += `<text x="${xs}" y="${ys}" font-size="smaller">${lab}</text>\n`;
+            } else {
+                let divs = td.querySelectorAll("div");
+                for (let div of divs) {
+                    if (div.children.length < 1) {
+                        // no children - inner of the nested box divs
+                        let dbb = div.getBoundingClientRect();
+                        let x = dbb.left - 8 + 35;
+                        let xs = x.toFixed(3);
+                        let y = dbb.top - 8 - 26;
+                        let ys = y.toFixed(3);
+                        basey = y + dbb.height;
+                        let ws = dbb.width.toFixed(3);
+                        let hs = dbb.height.toFixed(3);
+                        let divc = div.style.borderLeftColor;
+                        svg += `<rect x="${xs}" y="${ys}" width="${ws}" height="${hs}" fill = "${divc}" />\n`;
+                    } else {
+                        // has children - outer of the nested box divs
+                        let dbb = div.getBoundingClientRect();
+                        let x = dbb.left - 8 + 35;
+                        let xs = x.toFixed(3);
+                        let y = dbb.top - 8 - 26;
+                        let ys = y.toFixed(3);
+                        let ws = dbb.width.toFixed(3);
+                        let hs = dbb.height.toFixed(3);
+                        svg += `<rect x="${xs}" y="${ys}" width="${ws}" height="${hs}" stroke="rgb(204,204,204)" stroke-width="1" fill = "transparent" />\n`;
+                    }
+                }
+            }
+        }
+    }
+
+    let doil = document.querySelector("#doitxt")
+    // let doilx = doil.style.left;
+
+    let doix = doi.getTime();
+    let doilx = poffx + xp2c(doix);
+    let doily = poffy + yp2c(1.03);
+    let doist = doil.innerText;
+    let doicolor = doil.style.color;
+    svg += `<text text-anchor="middle" x="${doilx}" y="${doily}" stroke="${doicolor}">${doist}</text>\n`;
+
+    svg += "</svg>\n";
+    return svg;
+}
+function down() {
+    let svg = makesvg();
+    // open a window and write the svg to it.
+    // let win = window.open();
+    // win.document.write(svg);
+    // return;
+    let names = getQueryVariable('name', ['']);
+    let group = getQueryVariable('group', [''])[0];
+    let dois = formatDate(doi, "%m/%d/%Y");
+    let dlfn;
+    if (group != '') {
+        dlfn = `${group}_${dois}.svg`;
+    } else {
+        dlfn = `${names.join("_")}_${dois}.svg`;
+    }
+    let pom = document.createElement('a');
+    pom.style.display = 'none';
+
+    let h = "<!DOCTYPE html>\n";
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(svg));
+    pom.setAttribute('download', dlfn);
+    document.body.appendChild(pom);
+    pom.click();
+    document.body.removeChild(pom);
+    document.querySelector("#message").innerText = "download successful!";
+}
+function bio(bday) {
     // cycle length in days for physical, emotional, intellectual
     let cyclen = {p: 23, e: 28, i: 33};
     let twopi = 2.0 * Math.PI;
 
-    let day1 = doi.getTime() - 12 * oneday;
+    let day1 = doi.getTime() - 14 * oneday;
     let dayn = doi.getTime() + 16 * oneday;
 
     let dates = [], pdata = [], edata = [], idata = [], adata = [];
@@ -54,7 +241,18 @@ $(function () {
     }
     let group = getQueryVariable('group', [''])[0];
     let dois = getQueryVariable('doi', [''])[0];
-    let doi = dois != '' ? new Date(dois) : new Date();
+    // doi is global var
+    if (dois == '') {
+        doi = new Date();
+        dois = formatDate(doi, "%m/%d/%Y");
+    } else {
+        doi = new Date(dois);
+    }
+    doi.setHours(0);
+    doi.setMinutes(0);
+    doi.setSeconds(0);
+    doi.setMilliseconds(0);
+
     let vstr = getQueryVariable('v', [''])[0];
     let verbose = vstr != '';
 
@@ -65,8 +263,9 @@ $(function () {
         legend: { show: true, noColumns: 4, position: "nw", margin: 10 },
         xaxis: {
             mode: "time", labelHeight: 20,
-            timeBase: "milliseconds", timezone: "utc",
-            timeformat: "%b %d", tickSize: [7, "day"]
+            timeBase: "milliseconds", timezone: "browser",
+            timeformat: "%b %d", tickSize: [7, "day"],
+            min: doi.getTime() -14 * oneday, max: doi.getTime() + 15 * oneday,
         },
         yaxis: { min: -1.25, max: 1.75, autoScale: "none" },
     };
@@ -74,9 +273,8 @@ $(function () {
     plot_options.legend.noColumns = verbose ? 4 : 1;
     plot_options.yaxis.max = 1.1 + 0.1 * names.length;
 
-    var apei = "apei".split("");
-
-    let data = [];
+    var data = [];
+    var apei = {a:"average", p:"physical", e:"emotional", i:"intellectual"};
 
     let cumage = 0;
     for (let who of names) {
@@ -86,13 +284,17 @@ $(function () {
             alert(`Invalid date ${bds} given.`);
             return;
         }
+        bday.setHours(0);
+        bday.setMinutes(0);
+        bday.setSeconds(0);
+        bday.setMilliseconds(0);
         let age = Math.round((doi - bday)/oneday);
         cumage += age;
         let ageyr = (age / 365.25).toFixed(2);
         console.log(`${who} is ${age} days (${ageyr} years) old!`);
 
-        let bdata = bio(bday, doi);
-        for (let m of apei) {
+        let bdata = bio(bday);
+        for (let m in apei) {
             if (verbose || m == 'a') {
                 let series = {};
                 if (m == 'a') {
@@ -100,7 +302,7 @@ $(function () {
                     // change the label.endswith if this is changed!
                     series.label = `${who} was born ${bdays}, ${age} days (${ageyr} years) ago!`;
                 } else {
-                    series.label = `${who}_${m}`;
+                    series.label = `${who} ${apei[m]}`;
                 }
                 let sdata = [];
                 for (let n = 0; n < bdata[m].length; n++) {
@@ -118,7 +320,7 @@ $(function () {
         let groupdata = [];
         let nser = 0;
         for (let s of data) {
-            if (s.label.endsWith(' ago!')) {
+            if (s.label && s.label.endsWith(' ago!')) {
                 nser += 1;
                 if(groupdata.length < 1) {
                     for (let n = 0; n < s.data.length; n++) {
@@ -139,10 +341,23 @@ $(function () {
 
         let series = {};
         let avgyrs = (avgage / 365.25).toFixed(2);
-        series.label = `${group} avg. age is ${avgage} days (${avgyrs} years).`;
+        series.label = `${group} average age is ${avgage} days (${avgyrs} years).`;
         series.data = groupdata;
         data.push(series);
     }
+
+    // make a series with vertical line at day-of-interest.
+    let series = {};
+    let sdata = [];
+    let doitime = doi.getTime();
+    let doicolor = $.color.parse("brown");
+    sdata.push([doitime, -1]);
+    sdata.push([doitime, 1]);
+    series.data = sdata;
+    series.label = "day of interest";
+    series.color = doicolor;
+    series.lines = { lineWidth: 6 }
+    data.push(series);
 
     var placeholder = $("#placeholder");
 
@@ -155,9 +370,32 @@ $(function () {
         let w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
         let h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
         $("#placeholder").css({ width: .95 * w, height: .90 * h })
+        let doioff = plot.pointOffset({ x: doitime-oneday/2, y: 1.07});
+        $("#doitxt").css({ left: doioff.left, top: doioff.top })
+        plot.draw();
+    });
+
+    // The plugin includes a jQuery plugin for adding resize events to any
+    // element.  Add a callback so we can display the placeholder size.
+
+    placeholder.resize(function () {
+        $("#message").text("Placeholder is now "
+            + $(this).width() + "x" + $(this).height()
+            + " pixels");
     });
 
     plot = $.plot(placeholder, data, plot_options);
+    // get the last series (the doi vertical line), set width to 6
+    // let s = plot.getData()[data.length - 1];
+    // s.lines.lineWidth = 6;
+
+    // get point above and left of top of doi line
+    let doioff = plot.pointOffset({ x: doitime-oneday/2, y: 1.07});
+    // Append a div showing doi to the placeholder that Flot already uses for positioning
+    placeholder.append($(`<div id="doitxt">${dois}</div>`).css({ position: 'absolute',
+            fontWeight: 'bold', color: doicolor, left: doioff.left, top: doioff.top }));
+
+    plot.draw();
 
     function showTooltip(x, y, contents) {
         $('<div id="tooltip">' + contents + '</div>').css( {
@@ -183,11 +421,23 @@ $(function () {
                 
                 $("#tooltip").remove();
                 var d = new Date(item.datapoint[0]),
-                    v = item.datapoint[1].toFixed(2);
-                sdat = (d.getUTCMonth() + 1) + "/" + d.getUTCDate() + "/" + (d.getUTCFullYear());
+                    v = item.datapoint[1].toFixed(2),
+                    l = item.series.label;
 
-                showTooltip(item.pageX, item.pageY,
-                            item.series.label + " " + sdat + " = " + v);
+                sdat = formatUTCDate(d, "%m/%d/%Y");
+
+                let tip;
+                if (l == "day of interest") {
+                    tip = sdat;
+                } else if (l.includes("was born")) {
+                    let lab = l.split(" ");
+                    tip = `${lab[0]} average on ${sdat} = ${v}`;
+                } else {
+                    let [ nam, typ ] = l.split(" ");
+                    tip = `${nam} ${apei[typ[0]]} on ${sdat} = ${v}`;
+                }
+
+                showTooltip(item.pageX, item.pageY, tip);
             }
         }
         else {
@@ -199,11 +449,12 @@ $(function () {
 </script>
 </head>
 <body>
- <div id="content>
-  <div class="phparent">
-   <div id="placeholder"></div>
-  </div>
-  <p class="message"></p>
+    <button id="download" onclick="down()">Save</button>
+ <div id="content">
+   <div id="phparent">
+     <div id="placeholder"></div>
+   </div>
  </div>
+  <p id="message"></p>
 </body>
 </html>
