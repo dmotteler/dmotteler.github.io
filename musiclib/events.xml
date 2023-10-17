@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Sharon Care" when="October 19, 2023 06:15PM" dtndx="202310191815" songlist="1116 1194 1195 1180 1020 1160 1198 1028 1179 1124 1143 1076 1103" qtetSongs="1160 1198" />
+  <event where="Rehearsal" when="October 17, 2023 06:00PM" dtndx="202310171800" songlist="1102 1055 1182 1197 1207 1080 1142 1193 1095 1183 1073 1035" />
   <event where="Rehearsal" when="October 10, 2023 06:00PM" dtndx="202310101800" songlist="1102 1055 1182 1142 1073 1207 1193 1095 1183 1197 1035" />
   <event where="Woodland Village" when="October 05, 2023 06:15PM" dtndx="202310051815" songlist="1178 1195 1180 1020 1032 1028 1179 1194 1124 1143 1157 1160 1198 1116 1076 1120 1103" qtetSongs="1032 1028 1157 1160 1198" />
   <event where="Rehearsal" when="October 03, 2023 06:00PM" dtndx="202310031800" songlist="1102 1055 1020 1195 1178 1180 1179 1194 1124 1143 1116 1076 1120 1103 1035" />
