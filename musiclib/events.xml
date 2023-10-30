@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Prestige Care" when="November 02, 2023 06:15PM" dtndx="202311021815" songlist="1116 1194 1195 1180 1020 1160 1198 1028 1179 1124 1143 1076 1103" qtetSongs="1160 1198" />
+  <event where="Rehearsal" when="October 31, 2023 06:00PM" dtndx="202310311800" songlist="1102 1055 1112 1163 1207 1080 1142 1193 1095 1183 1073 1035" />
   <event where="Rehearsal" when="October 24, 2023 06:00PM" dtndx="202310241800" songlist="1102 1055 1112 1163 1207 1080 1142 1193 1095 1183 1073 1035" />
   <event where="Sharon Care" when="October 19, 2023 06:15PM" dtndx="202310191815" songlist="1116 1194 1195 1180 1020 1160 1198 1028 1179 1124 1143 1076 1103" qtetSongs="1160 1198" />
   <event where="Rehearsal" when="October 17, 2023 06:00PM" dtndx="202310171800" songlist="1102 1055 1182 1197 1207 1080 1142 1193 1095 1183 1073 1035" />
