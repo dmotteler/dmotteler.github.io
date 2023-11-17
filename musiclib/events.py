@@ -46,6 +46,15 @@ obsgdid['1mVE9mHlOHaLiyDIBfoxoAuCHu_2J17RN'] = '1eLF-3U8iXbddBIBFYo1sXdQF94-XOrj
 # map an obs version of Longest Time - Bass
 obsgdid['14_ZW7Kue-Lf4OCN10a2zqhOhFXsPauqT'] = '1ChESlhfsCTqwRztevn8o1CPsYeEEBS-b'
 
+# map an obs version of "The Rose"
+obsgdid['10ArF7TYzp0OzAE3-oP7hzLn95ZzS35A_'] = '1Xih2IXL1WRbwL-WMFMBj2qF7nR7ymHJ_'
+obsgdid['15lUnLOufLPuMq7tlHhNVa_EAx_CaPZOX'] = '1XmL-hpi-mWcjXq7C9c9jEhckLT4s5FTF'
+obsgdid['1b3mtFeu7BL7mqYZMMbBHoyk5e-hbJ2eV'] = '1XmL-hpi-mWcjXq7C9c9jEhckLT4s5FTF'
+obsgdid['1IbRVvfD3Ir3vP4M_ROsTQwtSf5hTp3vG'] = '1tvZaFONkGXQ_lmx-NbyfjEEHEshdfkzu'
+obsgdid['1IRYrgRlzgbcyQ7hu1xfWc2lkg7NrdoX6'] = '1YKD1c-oxbkr2lLA28atGUmK8jkltwyZR'
+obsgdid['1S-dzHE_oUwteBE8KfXScReLITLa_VBnu'] = '13lhzUmdn3nhfB2uQS6Glf3hUtn3SqYMN'
+obsgdid['1X2asVALTAHjZYkjJSV3v0rYvBOlnX6Bb'] = '1d7c_d9KjgWZTOXPJfn8SIGIrCudWQxBV'
+
 def loadlib(lib_xml):
     global musiclib
 

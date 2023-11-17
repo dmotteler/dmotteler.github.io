@@ -421,6 +421,22 @@
     <words>Twas the night before Christmas</words>
     <sheet gdid='15Vp3a5uGcK9fkHsyD-iSOFkHegRrxqlK' sheet='Tuners Music/Xmas sheets/ChristmasChopsticks.pdf' />
   </song>
+  <song id="1088" name="Christmas Song, The">
+    <category>Christmas</category>
+    <arranger>Joe Liles</arranger>
+    <composer>Mel Torme and Robert Wells</composer>
+    <lyricist>Mel Torme and Robert Wells</lyricist>
+    <key>Eb</key>
+    <words>Chestnuts roasting on an open fire</words>
+    <tracks>
+    <voice gdid="1zn9WIKf6F8IUokW699w79KVFG8-l8aXu" mods="Bass" path="bass/ChestnutsRoasting.mp3" voice="bass" />
+      <voice gdid="1jt0qTMGrolo6SoeJtaK1R57iYAGmAGA-" mods="Bari" path="bari/ChestnutsRoasting.mp3" voice="bari" />
+      <voice gdid="1Yknh83VnmaRm6o4gTjDdCjGvwyQri-VO" mods="Lead" path="lead/ChestnutsRoasting.mp3" voice="lead" />
+      <voice gdid="1gdDfinicU5DwY0_p3EHllYsCjYbWZ9zv" mods="Tenor" path="tenor/ChestnutsRoasting.mp3" voice="tenor" />
+      <voice gdid="1EHdTnYDuzVt2fNyvjVpfLgfhKHkx_s9T" mods="Mix" path="mix/ChestnutsRoasting.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid='1uv1gs7QF-Q0jQU5hyZd5i0nfJkzOg9FC' sheet='Tuners Music/Xmas sheets/ChestnutsRoasting.pdf' />
+  </song>
   <song id="1141" name="Circle Of Life, The">
     <category>Old</category>
     <arranger>Chuck B Roegiers</arranger>
@@ -2596,6 +2612,7 @@
     <words>Over the ground lies a mantle of white</words>
     <tracks><voice gdid="0Bxd7i2Hm5BiPYUlCeU1oSDF0VlE" mods="mix" path="mix/Winter Wonderland.mp3" resource_key="0-Eio12Vff33i1FGmC-IVYSA" voice="mix" />
     </tracks>
+    <sheet gdid="15cgXrnz1PoC4cnhoi-HHqnDWZ3YbVLkS" sheet="Winter Wonderland.pdf" />
   </song>
   <song id="1029" name="Yes Sir, That's My Baby">
     <category>Old</category>
