@@ -2836,6 +2836,13 @@
     </tracks>
     <sheet gdid='15UNqE8ugxiUewVpB2jo4_5yjyZKJ8dgp' sheet='Tuners Music/Xmas sheets/IHeardTheBells.pdf' />
   </song>
+  <song id="1231" name="It Came Upon The Midnight Clear/Silent Night">
+    <category>Christmas</category>
+    <key>Bb</key>
+    <pitch>B</pitch>
+    <location>YF pg 6, 7</location>
+    <words>It came upon the midnight clear</words>
+  </song>
   <song id="1210" name="It Came Upon The Midnight Clear">
     <category>Christmas</category>
     <arranger>SPEBSQSA</arranger>
