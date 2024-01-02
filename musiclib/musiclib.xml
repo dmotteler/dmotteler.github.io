@@ -2336,7 +2336,7 @@
     <sheet gdid='1egR8tziemjCyymPCaWDveX3Aak1s5i5A' sheet='Tuners Music/This Land Is Your Land.pdf' />
   </song>
   <song id="1075" name="This Little Light Of Mine / Do Lord Medley">
-    <category>Old</category>
+    <category>Current</category>
     <arranger>Val Hicks</arranger>
     <composer>Traditional</composer>
     <copyright>1999 Val Hicks, ASCAP</copyright>
@@ -2349,6 +2349,7 @@
       <voice gdid="1ks7ugJ9EbMvDIdPhIk-rK-nXTb_HiE1Y" mods="Tenor" path="tenor/Do Lord - Tenor.mp3" voice="tenor" />
       <voice gdid="1bWXy3qqqUSLHWKCfByCFv6twjN4S6JmF" mods="All" path="mix/Do Lord - All.mp3" voice="mix" />
     </tracks>
+    <sheet gdid='1Xyk_FGg6zE597UMH2PU4O9eB-qwUa80L' sheet='Tuners Music/sheet music/This Little Light.pdf' />
   </song>
   <song id="1177" name="Three Blind Mice">
     <category>Old</category>
