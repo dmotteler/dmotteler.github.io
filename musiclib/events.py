@@ -637,7 +637,7 @@ def main():
         usage("don't give -f and -u together.")
 
     if allevents or doupdate:
-        cdir = "/mnt/d/cheatscache"
+        cdir = "/cygdrive/d/cheatscache"
         if not os.path.exists(cdir):
             usage("cheatscache not found.")
 
