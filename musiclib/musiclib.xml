@@ -2269,6 +2269,22 @@
     </tracks>
     <sheet gdid="12N2l7Kg3kLf9HoOQFz5MwCOBh57SoAIr" sheet="Sweet Sweet Roses of Morn.pdf" />
   </song>
+  <song id="1229" name="Swing Down Chariot">
+    <category>Current</category>
+    <arranger>The Vagabonds</arranger>
+    <composer>Traditional</composer>
+    <copyright>2004, SPEBSQSA</copyright>
+    <key>F</key>
+    <words>Swing low</words>
+    <tracks>
+    <voice gdid="12lEZrUepExGXhUKQHklpLzqZ8Cn-pPFY" mods="bari left" path="bari/Swing Down Chariot - bari left.mp3" voice="bari" />
+    <voice gdid="1MOM59h0YhCWk3O3vHSLbVz6vQMjusw8N" mods="bass" path="bass/Swing Down Chariot - bass left.mp3" voice="bass" />
+    <voice gdid="1U92iMVIIdgi94nqUdIPi4YpCBOLR6NZf" mods="lead" path="lead/Swing Down Chariot - lead left.mp3" voice="lead" />
+    <voice gdid="1axUNJcr7tTLSGJzaUI8dHnGalshjD5KK" mods="tenor" path="tenor/Swing Down Chariot - tenor left.mp3" voice="tenor" />
+    </tracks>
+    <sheet gdid="1ZBxWy-zYfR54HYUGU1Sa7baHwcGc5YWn" sheet="Swing Down Chariot.pdf" />
+
+  </song>
   <song id="1190" name="Teddy Bear">
     <category>Old</category>
     <words>??</words>
