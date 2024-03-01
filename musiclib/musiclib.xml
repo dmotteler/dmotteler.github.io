@@ -1362,6 +1362,9 @@
     <lyricist>Roger Miller</lyricist>
     <stockID>211578</stockID>
     <words>(bass) ba-bum</words>
+    <tracks>
+      <voice gdid="1QAeFRLooBYVrW6PEmokKgjrSqrKtmxU3" mods="mix" path="bass/KingOfTheRoad.mp3" voice="mix" />
+    </tracks>
     <sheet gdid="18ZZixqH07WB-evIEgZtq1SWNtIo7CPEk" sheet="King of the Road.pdf" />
   </song>
   <song id="1195" name="Kokomo">
