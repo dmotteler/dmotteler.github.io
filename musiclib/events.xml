@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Rehearsal" when="May 14, 2024 06:00PM" dtndx="202405141800" songlist="1102 1055 1113 1103 1142 1193 1117 1143 1028 1229 1195 1080 1179 1035" />
   <event where="Rehearsal" when="May 07, 2024 06:00PM" dtndx="202405071800" songlist="1102 1055 1032 1143 1028 1229 1195 1080 1193 1142 1179 1117 1103 1035" />
   <event where="Woodland Village" when="May 02, 2024 06:15PM" dtndx="202405021815" songlist="1011 1116 1143 1028 1198 1180 1229 1080 1032 1160 1195 1179 1117 1103" qtetSongs="1198 1160" />
   <event where="Rehearsal" when="April 30, 2024 06:00PM" dtndx="202404301800" songlist="1102 1055 1032 1143 1028 1080 1229 1195 1163 1103 1180 1179" />
