@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Rehearsal" when="May 28, 2024 06:00PM" dtndx="202405281800" songlist="1102 1055 1175 1142 1193 1080 1117 1229 1028 1143 1195 1179 1103 1035" />
   <event where="Stillwaters Clubhouse" when="May 23, 2024 06:15PM" dtndx="202405231815" songlist="1011 1179 1193 1117 1095 1080 1180 1028 1116 1198 1143 1229 1195 1103" qtetSongs="1095 1198" />
   <event where="Rehearsal" when="May 21, 2024 06:00PM" dtndx="202405211800" songlist="1102 1055 1011 1179 1193 1117 1080 1180 1028 1116 1143 1229 1195 1103 1016 1035" />
   <event where="Rehearsal" when="May 14, 2024 06:00PM" dtndx="202405141800" songlist="1102 1055 1113 1103 1142 1193 1117 1143 1028 1229 1195 1080 1179 1035" />
