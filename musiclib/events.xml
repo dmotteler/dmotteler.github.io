@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Sharon Care" when="July 11, 2024 06:15PM" dtndx="202407111815" songlist="1116 1179 1124 1196 1095 1080 1180 1028 1007 1198 1229 1195 1117 1103" qtetSongs="1095 1198" />
+  <event where="Rehearsal" when="July 09, 2024 06:00PM" dtndx="202407091800" songlist="1102 1055 1053 1196 1195 1103 1124 1028 1179 1117 1038 1016 1080 1229 1116 1180 1007 1035" />
   <event where="Rehearsal" when="June 25, 2024 06:00PM" dtndx="202406251800" songlist="1102 1055 1175 1142 1193 1016 1103 1080 1117 1229 1028 1195 1179 1035" />
   <event where="Vintage" when="June 20, 2024 06:15PM" dtndx="202406201815" songlist="1116 1179 1124 1196 1095 1080 1180 1028 1007 1198 1229 1195 1117 1103" qtetSongs="1095 1198" />
   <event where="Rehearsal" when="June 17, 2024 05:30PM" dtndx="202406171730" songlist="1102 1055 1053 1196 1195 1103 1124 1028 1179 1117 1080 1229" />
