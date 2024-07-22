@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id="doctitle">Rehearsal - July 23, 2024 06:00PM</title>
+<style>
+table { border: 5px solid black; border-spacing: 0px;
+    font-family: Arial; font-size: 18px; font-weight: bold; }
+td { border: 1px solid black; padding: 6px; }
+tr:nth-child(even) { background: #CCC }
+tr:nth-child(odd) { background: #FFF }
+.tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
+.key, .pitch { text-align: center; }
+.hidden { display: none; }
+.qtet { background-color: blue !important; color: white !important; }
+.qtet a { background-color: blue !important; color: white !important; }
+.partsel { text-align: center; background: lightgreen; }
+@media print {
+  @page { size: letter portrait; margin: .5in; }
+  body { max-width: 5.5in; }
+  table { font-size: 12px; }
+  td { padding: 4px; }
+  .tabletitle { font-size: 18px; }
+}
+</style>
+
+<script>
+var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none', 'sheet'];
+var showVoice;
+function clickVoice() {
+    // set showVoice, then emulate clicking that voice selection
+    // to get the tracks showing or hidden. this is the init function
+    // when a downloaded cheat is executed.
+
+    showVoice = localStorage.getItem("defaultVoice");
+    if (! showVoice) { showVoice = "mix"; }
+    let buttonId = "#sel" + showVoice;
+    let butt = document.querySelector(buttonId);
+    butt.click();
+}
+function setvoice(el) {
+    let voice = el.value;
+    let clr = "." + voice;
+    // show the class we were called with (i.e., remove "hidden")
+    document.querySelectorAll(clr).forEach(node => { node.classList.remove("hidden") });
+
+    let others = new Set(voices);
+    others.delete(voice);
+    // don't show the rest of the classes
+    for (let v of others) {
+        let cla = "." + v;
+        document.querySelectorAll(cla).forEach(node => { node.classList.add("hidden") });
+    }
+    if (voice != "none" && voice != "sheet") {
+        localStorage.setItem("defaultVoice", voice);
+    }
+}
+</script>
+
+</head>
+<body onload="clickVoice()">
+    <table>
+        <tbody id="main_table"><tr><td colspan="3" class="tabletitle">Rehearsal - July 23, 2024 06:00PM</td></tr><tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=14izz2uTeQD95XgJEZK43zgBaxjirTEqT">Old Songs, The : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=14br7s53Xoe4rOYbVZ9kivFCW7SNgr4Ys">Old Songs, The : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=14O5YIWoe1nJGaMSmP45ahs3ALXUj8LBm">Old Songs, The : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=14BOEstbE7hWt3b4irJe9lEw7fkfbEfG1">Old Songs, The : tenor</a>
+</div><div class="mix hidden"><a href="https://drive.google.com/open?id=14A0LxDWFcGyPW3ukYhd5yRhGxqM6JoZ_">Old Songs, The : mix</a>
+</div><div class="none">Old Songs, The</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1TocYtKifQWG0Cg_GZgpoDduUZN56AjW7">Old Songs, The [sheet]</a></div>
+</td><td>The old songs</td></tr>
+<tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1-4Bc1JG0gYtvP2VhqZ5NNS8zygBHfuUX">Down Our Way [Polecat I pg 8] : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1YuMJWikBp40mWA1DpASDm4_q8DnAp1lD">Down Our Way [Polecat I pg 8] : bari left</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=198g_jL0Z2BBYX-RBQ_DUAYsEhmEXkgNT">Down Our Way [Polecat I pg 8] : mix</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=11SA87C1syv-XTVlmysvT3gwYswyZPAYf">Down Our Way [Polecat I pg 8] : tenor</a>
+</div><div class="mix hidden"><a href="https://drive.google.com/open?id=198g_jL0Z2BBYX-RBQ_DUAYsEhmEXkgNT">Down Our Way [Polecat I pg 8] : mix</a>
+</div><div class="none">Down Our Way [Polecat I pg 8]</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=120mTHkSy81g4q9gVJC7j3OfrZMqbOwkG">Down Our Way [Polecat I pg 8] [sheet]</a></div>
+</td><td>Down our way</td></tr>
+<tr class="song"><td class="key">C</td><td><div class="bass hidden">Joy to the World
+</div><div class="bari hidden">Joy to the World
+</div><div class="lead hidden">Joy to the World
+</div><div class="tenor hidden">Joy to the World
+</div><div class="mix hidden">Joy to the World
+</div><div class="none">Joy to the World</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=16xxzZBbyIwVz6YRIHMP46t_y8pC6dxtz">Joy to the World [sheet]</a></div>
+</td><td>Joy to the world, the Lord is come!</td></tr>
+<tr class="song"><td class="key">Eb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPcXA1ZVpDa21PRmM&amp;resourcekey=0-AV-V4mIZ5EszlhgVl0GumQ">Up on the Housetop [YF pg 2] : mix</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPcXA1ZVpDa21PRmM&amp;resourcekey=0-AV-V4mIZ5EszlhgVl0GumQ">Up on the Housetop [YF pg 2] : mix</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPcXA1ZVpDa21PRmM&amp;resourcekey=0-AV-V4mIZ5EszlhgVl0GumQ">Up on the Housetop [YF pg 2] : mix</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPcXA1ZVpDa21PRmM&amp;resourcekey=0-AV-V4mIZ5EszlhgVl0GumQ">Up on the Housetop [YF pg 2] : mix</a>
+</div><div class="mix hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPcXA1ZVpDa21PRmM&amp;resourcekey=0-AV-V4mIZ5EszlhgVl0GumQ">Up on the Housetop [YF pg 2] : mix</a>
+</div><div class="none">Up on the Housetop [YF pg 2]</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=162tef8D0E1yTeFlRBr0pEiQ6lCATEKQI">Up on the Housetop [YF pg 2] [sheet]</a></div>
+</td><td>Up on the house-top</td></tr>
+<tr class="song"><td class="key">Eb</td><td><div class="bass hidden">Deck the Halls
+</div><div class="bari hidden">Deck the Halls
+</div><div class="lead hidden">Deck the Halls
+</div><div class="tenor hidden">Deck the Halls
+</div><div class="mix hidden">Deck the Halls
+</div><div class="none">Deck the Halls</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1g4cl7bwrt37UxBfXeEgI3CXlbrZiKjWC">Deck the Halls [sheet]</a></div>
+</td><td>Deck the halls with boughs of holly</td></tr>
+<tr class="song qtet"><td class="pitch">blow G</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=139pVVVucRhbCs51ADm6afMjVmztRwEHP">We Need a Little Christmas [Coll p20] : mix</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=139pVVVucRhbCs51ADm6afMjVmztRwEHP">We Need a Little Christmas [Coll p20] : mix</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=139pVVVucRhbCs51ADm6afMjVmztRwEHP">We Need a Little Christmas [Coll p20] : mix</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=139pVVVucRhbCs51ADm6afMjVmztRwEHP">We Need a Little Christmas [Coll p20] : mix</a>
+</div><div class="mix hidden"><a href="https://drive.google.com/open?id=139pVVVucRhbCs51ADm6afMjVmztRwEHP">We Need a Little Christmas [Coll p20] : mix</a>
+</div><div class="none">We Need a Little Christmas [Coll p20]</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1xrqQT06dGP7vuJs8Xwr2NQuJfNHE4aiM">We Need a Little Christmas [Coll p20] [sheet]</a></div>
+</td><td>Oh, we need a little</td></tr>
+<tr class="song"><td class="key">C</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPMV9pREdQUDRwZVE&amp;resourcekey=0-K8Xj0jCoRdD-xidmFCGLxw">O Holy Night [YF pg 10] : mix</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPMV9pREdQUDRwZVE&amp;resourcekey=0-K8Xj0jCoRdD-xidmFCGLxw">O Holy Night [YF pg 10] : mix</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPMV9pREdQUDRwZVE&amp;resourcekey=0-K8Xj0jCoRdD-xidmFCGLxw">O Holy Night [YF pg 10] : mix</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPMV9pREdQUDRwZVE&amp;resourcekey=0-K8Xj0jCoRdD-xidmFCGLxw">O Holy Night [YF pg 10] : mix</a>
+</div><div class="mix hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPMV9pREdQUDRwZVE&amp;resourcekey=0-K8Xj0jCoRdD-xidmFCGLxw">O Holy Night [YF pg 10] : mix</a>
+</div><div class="none">O Holy Night [YF pg 10]</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1658DxaWdyCUZO_GdG95wHn7aHE1f-5ng">O Holy Night [YF pg 10] [sheet]</a></div>
+</td><td>O Holy Night</td></tr>
+<tr class="song"><td class="key">C</td><td><div class="bass hidden">Jingle Bell Rock
+</div><div class="bari hidden">Jingle Bell Rock
+</div><div class="lead hidden">Jingle Bell Rock
+</div><div class="tenor hidden">Jingle Bell Rock
+</div><div class="mix hidden">Jingle Bell Rock
+</div><div class="none">Jingle Bell Rock</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1HGnugOkF4YA_vaMj3REfRag0EVjEpBsS">Jingle Bell Rock [sheet]</a></div>
+</td><td>Jingle Bell, Jingle Bell, Jingle Bell Rock</td></tr>
+<tr class="song"><td class="key">Ab</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1U9iC65_3UepjA7gSaXEfmOQ84EkH7nw9">In My Room : BS</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1jteY1DQX_ricidkzeMygSK4t1djOMp2b">In My Room : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1kwW8n1Ulxdpd82eMtr2JQ90XrsGAX9AS">In My Room : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1w2dltbwOtNUm8rJ9d2AVpVX2CewhCFKH">In My Room : tenor</a>
+</div><div class="mix hidden">In My Room
+</div><div class="none">In My Room</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=130laHfzcMzUd_p7AKtCPbgZJwLzdFPsn">In My Room [sheet]</a></div>
+</td><td>There's a room</td></tr>
+<tr class="song qtet"><td class="key">F</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1iCwLjYana2x18IZhcYmBNoTGaJe2VwcG">Little Saint Nick [Coll p28] : mix slowww</a><br>
+<a href="https://drive.google.com/open?id=1ZXIeLnEURTuxzqwSK87jBrv7NG5ZkJBl">Little Saint Nick [Coll p28] : mix 75</a><br>
+<a href="https://drive.google.com/open?id=1Uxso3i3R-1f1DHVnYOTHc4HKBOUesYb5">Little Saint Nick [Coll p28] : mix</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1iCwLjYana2x18IZhcYmBNoTGaJe2VwcG">Little Saint Nick [Coll p28] : mix slowww</a><br>
+<a href="https://drive.google.com/open?id=1ZXIeLnEURTuxzqwSK87jBrv7NG5ZkJBl">Little Saint Nick [Coll p28] : mix 75</a><br>
+<a href="https://drive.google.com/open?id=1Uxso3i3R-1f1DHVnYOTHc4HKBOUesYb5">Little Saint Nick [Coll p28] : mix</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1iCwLjYana2x18IZhcYmBNoTGaJe2VwcG">Little Saint Nick [Coll p28] : mix slowww</a><br>
+<a href="https://drive.google.com/open?id=1ZXIeLnEURTuxzqwSK87jBrv7NG5ZkJBl">Little Saint Nick [Coll p28] : mix 75</a><br>
+<a href="https://drive.google.com/open?id=1Uxso3i3R-1f1DHVnYOTHc4HKBOUesYb5">Little Saint Nick [Coll p28] : mix</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1iCwLjYana2x18IZhcYmBNoTGaJe2VwcG">Little Saint Nick [Coll p28] : mix slowww</a><br>
+<a href="https://drive.google.com/open?id=1ZXIeLnEURTuxzqwSK87jBrv7NG5ZkJBl">Little Saint Nick [Coll p28] : mix 75</a><br>
+<a href="https://drive.google.com/open?id=1Uxso3i3R-1f1DHVnYOTHc4HKBOUesYb5">Little Saint Nick [Coll p28] : mix</a>
+</div><div class="mix hidden"><a href="https://drive.google.com/open?id=1iCwLjYana2x18IZhcYmBNoTGaJe2VwcG">Little Saint Nick [Coll p28] : mix slowww</a><br>
+<a href="https://drive.google.com/open?id=1ZXIeLnEURTuxzqwSK87jBrv7NG5ZkJBl">Little Saint Nick [Coll p28] : mix 75</a><br>
+<a href="https://drive.google.com/open?id=1Uxso3i3R-1f1DHVnYOTHc4HKBOUesYb5">Little Saint Nick [Coll p28] : mix</a>
+</div><div class="none">Little Saint Nick [Coll p28]</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1WPYKVItdjgQW3WYipqmraogTP8er2_GG">Little Saint Nick [Coll p28] [sheet]</a></div>
+</td><td>ba dm ba dm ba dm</td></tr>
+<tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPNXNhQkIwV0I2T3c&amp;resourcekey=0-DNa6EVHzkAPyVzwphGNQAw">Silver Bells : mix</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPNXNhQkIwV0I2T3c&amp;resourcekey=0-DNa6EVHzkAPyVzwphGNQAw">Silver Bells : mix</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPNXNhQkIwV0I2T3c&amp;resourcekey=0-DNa6EVHzkAPyVzwphGNQAw">Silver Bells : mix</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPNXNhQkIwV0I2T3c&amp;resourcekey=0-DNa6EVHzkAPyVzwphGNQAw">Silver Bells : mix</a>
+</div><div class="mix hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPNXNhQkIwV0I2T3c&amp;resourcekey=0-DNa6EVHzkAPyVzwphGNQAw">Silver Bells : mix</a>
+</div><div class="none">Silver Bells</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=16HFWA_xLPiv5fuB8iAk7AcDGGrRo0k-C">Silver Bells [sheet]</a></div>
+</td><td>Silver Bells</td></tr>
+<tr class="song"><td class="pitch">blow Eb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPOWFRXzF4dlgzX28&amp;resourcekey=0-XhV3ZwiFj8fRQx27hBSRRw">Jingle Bells [YF pg 18] : mix</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPOWFRXzF4dlgzX28&amp;resourcekey=0-XhV3ZwiFj8fRQx27hBSRRw">Jingle Bells [YF pg 18] : mix</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPOWFRXzF4dlgzX28&amp;resourcekey=0-XhV3ZwiFj8fRQx27hBSRRw">Jingle Bells [YF pg 18] : mix</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPOWFRXzF4dlgzX28&amp;resourcekey=0-XhV3ZwiFj8fRQx27hBSRRw">Jingle Bells [YF pg 18] : mix</a>
+</div><div class="mix hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPOWFRXzF4dlgzX28&amp;resourcekey=0-XhV3ZwiFj8fRQx27hBSRRw">Jingle Bells [YF pg 18] : mix</a>
+</div><div class="none">Jingle Bells [YF pg 18]</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=15Xb93qojXlrhSYWReZVDXzwo7Ymgaz8B">Jingle Bells [YF pg 18] [sheet]</a></div>
+</td><td>Jingle, jingle, jingle, jingle</td></tr>
+<tr class="song"><td class="key">C</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1GAsWrpbwVc-gaNQNsridTl-WbvG6hLwo">Kokomo : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1t6kXJxigoNrax6B1PBf8mluKynsc6xPo">Kokomo : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1bBFARiRNM-_EplRw5s6AF-faKtjlFlqT">Kokomo : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1WVys6gHawzJC_92dqq8z2r4mgULbvmqP">Kokomo : tenor</a>
+</div><div class="mix hidden"><a href="https://drive.google.com/open?id=1kTwCh0B6NIF7hFnutB3caN6pSU-EqGav">Kokomo : mix</a>
+</div><div class="none">Kokomo</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1KQgpa_XUY0JWy9kKnaQ05EHBWaH_gaP8">Kokomo [sheet]</a></div>
+</td><td>Aruba, Jamaica, ooh I wanna take ya</td></tr>
+<tr class="song qtet"><td class="key">D</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1mJ6qc67sz-l3uk7ddDJqawMDwDnPH4ha">White Christmas [Coll p24] : mix</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1mJ6qc67sz-l3uk7ddDJqawMDwDnPH4ha">White Christmas [Coll p24] : mix</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1mJ6qc67sz-l3uk7ddDJqawMDwDnPH4ha">White Christmas [Coll p24] : mix</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1mJ6qc67sz-l3uk7ddDJqawMDwDnPH4ha">White Christmas [Coll p24] : mix</a>
+</div><div class="mix hidden"><a href="https://drive.google.com/open?id=1mJ6qc67sz-l3uk7ddDJqawMDwDnPH4ha">White Christmas [Coll p24] : mix</a>
+</div><div class="none">White Christmas [Coll p24]</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1E9sbyR866DP8S0P7YK22BkY2F5ba2F8P">White Christmas [Coll p24] [sheet]</a></div>
+</td><td>Far away from home</td></tr>
+<tr class="song"><td class="key">C</td><td><div class="bass hidden">Christmas Chopsticks
+</div><div class="bari hidden">Christmas Chopsticks
+</div><div class="lead hidden">Christmas Chopsticks
+</div><div class="tenor hidden">Christmas Chopsticks
+</div><div class="mix hidden">Christmas Chopsticks
+</div><div class="none">Christmas Chopsticks</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=15Vp3a5uGcK9fkHsyD-iSOFkHegRrxqlK">Christmas Chopsticks [sheet]</a></div>
+</td><td>Twas the night before Christmas</td></tr>
+<tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPNUNMY0xSTy0tcWc&amp;resourcekey=0-rgJwsybeC3vE8F3XxqX7wA">We Wish You A Merry Christmas [YF pg 16] : mix</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPNUNMY0xSTy0tcWc&amp;resourcekey=0-rgJwsybeC3vE8F3XxqX7wA">We Wish You A Merry Christmas [YF pg 16] : mix</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPNUNMY0xSTy0tcWc&amp;resourcekey=0-rgJwsybeC3vE8F3XxqX7wA">We Wish You A Merry Christmas [YF pg 16] : mix</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPNUNMY0xSTy0tcWc&amp;resourcekey=0-rgJwsybeC3vE8F3XxqX7wA">We Wish You A Merry Christmas [YF pg 16] : mix</a>
+</div><div class="mix hidden"><a href="https://drive.google.com/open?id=0Bxd7i2Hm5BiPNUNMY0xSTy0tcWc&amp;resourcekey=0-rgJwsybeC3vE8F3XxqX7wA">We Wish You A Merry Christmas [YF pg 16] : mix</a>
+</div><div class="none">We Wish You A Merry Christmas [YF pg 16]</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1610AcNGxDBWvWnLrR_cTSkzCSO3Ldhpf">We Wish You A Merry Christmas [YF pg 16] [sheet]</a></div>
+</td><td>We Wish You A Merry Christmas</td></tr>
+<tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1Y4Zp9F0at05CuSwgkbpxhZlfr4I2Gjw1">Let's Get Together Again : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1Tx4VIXt4Hf8GBu_m1CMUMWMvB59SR1NC">Let's Get Together Again : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1eqpHDhm4m4oLaaLEeW21PeyQOGSi747L">Let's Get Together Again : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1k5Jo6nZ3R6N1Clf2oK9b7jsEOdJIxOGK">Let's Get Together Again : tenor</a>
+</div><div class="mix hidden"><a href="https://drive.google.com/open?id=1yRewM1J7nYcQo_IEGH9G5UA5FvW7TWW2">Let's Get Together Again : mix</a>
+</div><div class="none">Let's Get Together Again</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=19GaQR8UblmC7nkfeeqj4GuhAXzlsc6Xz">Let's Get Together Again [sheet]</a></div>
+</td><td>Let's get together again</td></tr>
+</tbody>
+
+
+    <tfoot>
+    <tr>
+        
+        <td colspan="99">
+        <fieldset class="partsel">
+        <legend>Show voice</legend>
+         <input type="radio" id="seltenor" name="part" value="tenor" onclick="setvoice(this)">tenor
+         <input type="radio" id="sellead" name="part" value="lead" onclick="setvoice(this)">lead
+         <input type="radio" id="selbari" name="part" value="bari" onclick="setvoice(this)">bari
+         <input type="radio" id="selbass" name="part" value="bass" onclick="setvoice(this)">bass
+         <input type="radio" id="selmix" name="part" value="mix" onclick="setvoice(this)">mix
+         <input type="radio" id="selsheet" name="part" value="sheet" onclick="setvoice(this)">sheet
+         <input type="radio" id="selnone" name="part" value="none" onclick="setvoice(this)">none
+        </fieldset>
+        </td>
+     </tr>
+    </tfoot>
+</table>
+
+
+</body></html>
