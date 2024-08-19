@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Garlic Festival" when="August 23, 2024 01:45PM" dtndx="202408231345" songlist="1011 1179 1194 1180 1157 1080 1124 1028 1195 1160 1193 1020 1116 1016" qtetSongs="1157 1160" />
+  <event where="Rehearsal" when="August 20, 2024 06:00PM" dtndx="202408201800" songlist="1102 1055 1175 1020 1193 1194 1016 1179 1180 1080 1124 1028 1195 1103 1011 1035" />
   <event where="SWW Fair" when="August 16, 2024 06:15PM" dtndx="202408161815" songlist="1011 1179 1194 1180 1157 1080 1124 1028 1195 1160 1193 1020 1116 1016" qtetSongs="1157 1160" />
   <event where="Rehearsal" when="August 13, 2024 06:00PM" dtndx="202408131800" songlist="1102 1055 1060 1020 1193 1194 1016 1179 1180 1080 1124 1028 1195 1103 1011 1035" />
   <event where="Centralia Point" when="August 08, 2024 06:15PM" dtndx="202408081815" songlist="1011 1179 1194 1180 1157 1080 1124 1028 1195 1032 1229 1117 1103 1016" qtetSongs="1157 1032" />
