@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Centralia Point" when="September 05, 2024 06:15PM" dtndx="202409051815" songlist="1011 1179 1194 1180 1157 1080 1124 1028 1195 1032 1193 1229 1020 1103" qtetSongs="1157 1032" />
   <event where="Quartet Harbor Days Sunday" when="September 01, 2024 01:00PM" dtndx="202409011300" songlist="1011 1179 1194 1080 1124 1028 1195 1193 1198 1020 1157 1160 1095 1116 1032 1182 1016 1196 1030" qtetSongs="1198 1157 1095" />
   <event where="Harbor Days 630 Fri, 100 Sat" when="August 30, 2024 06:15PM" dtndx="202408301815" songlist="1011 1179 1194 1180 1080 1124 1028 1195 1193 1020" />
   <event where="Rehearsal" when="August 27, 2024 06:00PM" dtndx="202408271800" songlist="1102 1055 1112 1196 1032 1028 1193 1180 1011 1194 1179 1080 1124 1195 1020 1035" />
