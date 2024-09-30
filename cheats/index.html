@@ -1,17 +1,93 @@
-<html><head><title>Tuners Cheats</title>
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+
+    $Id:$
+    $Log:$
+
+    build newest-first list of events from events.xml
+
+    calls ch.html to display cheat sheet when event is selected.
+
+-->
+<title>Select a cheat sheet</title>
 <style>
-body { font-size: 20px; font-weight: bold; }
+table { font: bold 20px Arial; padding: 3px; }
+td { text-decoration: underline blue 3px; }
 </style>
-</head><body>
-<a href='Centralia Point_240905.html'>Centralia Point - September 05, 2024 06:15PM</a><br/>
-<a href='Quartet Harbor Days Sunday_240901.html'>Quartet Harbor Days Sunday - September 01, 2024 01:00PM</a><br/>
-<a href='Harbor Days 6_30 Fri, 1_00 Sat_240830.html'>Harbor Days 6:30 Fri, 1:00 Sat - August 30, 2024 06:15PM</a><br/>
-<a href='Rehearsal_240827.html'>Rehearsal - August 27, 2024 06:00PM</a><br/>
-<a href='Garlic Festival_240823.html'>Garlic Festival - August 23, 2024 01:45PM</a><br/>
-<a href='Rehearsal_240820.html'>Rehearsal - August 20, 2024 06:00PM</a><br/>
-<a href='SWW Fair_240816 (1).html'>SWW Fair - August 16, 2024 06:15PM</a><br/>
-<a href='Rehearsal_240813.html'>Rehearsal - August 13, 2024 06:00PM</a><br/>
-<a href='Centralia Point_240808 (1).html'>Centralia Point - August 08, 2024 06:15PM</a><br/>
-<a href='Rehearsal_240806.html'>Rehearsal - August 06, 2024 06:00PM</a><br/>
-<a href='Rehearsal_240723.html'>Rehearsal - July 23, 2024 06:00PM</a><br/>
-<a href='Rehearsal_240716.html'>Rehearsal - July 16, 2024 06:00PM</a><br/>
+<script src="../getEventList.js"></script>
+<script src="../formatDate.js"></script>
+<script>
+
+var eventlist = {}; // indexed by dtndx of event, value is event definition
+var evndx, newevent; // event info for ch.html
+
+function loads() {
+    let elurl = "../musiclib/events.xml";
+    getEventList(elurl).then(evl => {
+        // evl has events.xml. get list of date indexes later than now, sorted newest (biggest) first
+        let nevshow = 9; // max number of events to display
+        let nadd = 0;
+        let html = "<table>\n";
+
+        let curr = formatDate(new Date(), "%Y%m%d%H%M");
+        let newestFirst = Object.keys(evl).filter((dat) => { return dat > curr }).sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
+        let nonew = 0;
+        if (newestFirst.length < 1) {
+            if (confirm("No future events found. Do most recent?")) {
+                newestFirst = [Math.max(...Object.keys(evl))];
+                nonew = 1;
+            } else {
+                return;
+            }
+        }
+        for (let ndx of newestFirst) {
+            if (ndx < curr && nonew == 0) {
+                break;
+            }
+            let ev = evl[ndx];
+            html += `<tr><td data-dtndx='dt${ndx}'>${ev['where']} - ${ev['when']}</td></tr>\n`;
+            // clone the event into eventlist
+            eventlist[ndx] = Object.assign(evl[ndx]);
+            nadd += 1;
+            if (nadd >= nevshow) {
+                break;
+            }
+        }
+        html += "</table>\n";
+        document.querySelector("#seltab").innerHTML = html;
+
+        if (newestFirst.length == 1) {
+            // no need to ask if there's only one choice...
+            let td = document.querySelector("td");
+            eventsel(td);
+            return;
+        }
+
+        // listen for click on the table
+        document.querySelector("#seltab").addEventListener('click', ev => eventsel(ev.target));
+
+        // setup complete - user selection will cause cheat sheet to display.
+     });
+}
+
+function eventsel(td) {
+    // user selected an event. 
+
+    // get the dtndx from the data-dtndx attribute of the selected event.
+    let dtndx = td.dataset.dtndx;
+    if (! dtndx || dtndx == '') {
+        alert("got to eventsel without a dtndx?");
+        return;
+    }
+    // remove the "dt" 
+    evndx = dtndx.substring(2);
+    newevent = eventlist[evndx];
+    let chwin = window.open("../musiclib/ch.html");
+}
+</script>
+</head>
+<body onload='loads()'>
+    <div id='seltab'></div>
+</body>
+</html>
