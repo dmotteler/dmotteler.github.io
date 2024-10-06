@@ -1304,11 +1304,46 @@
     <words>Jingle Bell, Jingle Bell, Jingle Bell Rock</words>
     <sheet gdid='1HGnugOkF4YA_vaMj3REfRag0EVjEpBsS' sheet='Tuners Music/Xmas sheets/Jingle-bell Rock.pdf' />
   </song>
-  <song id="1174" name="Joy to the World">
+  <song id="1172" name="Joy to the World ">
+    <category>Christmas</category>
+    <arranger>Joe Johnson</arranger>
+    <composer>George F. Handel</composer>
+    <lyricist>Isaac Watts</lyricist>
+    <key>D</key>
+    <notes>Free</notes>
+    <words>Joy to the world, the Lord is come!</words>
+    <sheet gdid='1egDhcJ-wKPqu80ydRoiQtZtexuVWj7sx' sheet="Tuners Music/Joy/Free/Joy to the World.pdf" />
+    <tracks>
+      <voice voice="bari" mods="bari" gdid="1qGUpNbtSEwUzklE1LlMKyvaRPvLi7kfV" path="Tuners Music/Joy/Free/Joy to the World - bari.mp3" />
+      <voice voice="bass" mods="bass" gdid="1vuGj02x67Osb8D_khQtvaYNfq7n4xWr0" path="Tuners Music/Joy/Free/Joy to the World - bass.mp3" />
+      <voice voice="lead" mods="lead" gdid="1tF2ped-dx5CAd0zfZqs297TfKaNoLGXB" path="Tuners Music/Joy/Free/Joy to the World - lead.mp3" />
+      <voice voice="tenor" mods="tenor" gdid="1BLLPWYtfKf8VPKZgPwyjJch2WRSf7F1H" path="Tuners Music/Joy/Free/Joy to the World - tenor.mp3" />
+      <voice voice="mix" mods="mix" gdid="1bFkErRM41-OmaCR3aqKH-RV87dXesjWf" path="Tuners Music/Joy/Free/Joy to the World - mix.mp3" />
+    </tracks>
+  </song>
+  <song id="1173" name="Joy to the World">
     <category>Christmas</category>
     <key>C</key>
+    <notes>words</notes>
     <words>Joy to the world, the Lord is come!</words>
     <sheet gdid='16xxzZBbyIwVz6YRIHMP46t_y8pC6dxtz' sheet="Tuners Music/Xmas sheets/Joy to the World (words).pdf" />
+  </song>
+  <song id="1174" name="Joy to the World ">
+    <category>Christmas</category>
+    <arranger>hymnal</arranger>
+    <composer>George F. Handel</composer>
+    <lyricist>Isaac Watts</lyricist>
+    <key>D</key>
+    <notes>hymnal</notes>
+    <words>Joy to the world, the Lord is come!</words>
+    <sheet gdid='1v_AuJvqwZA2dZwZtCtJD4uHWCvcPrN6L' sheet="Tuners Music/Joy/Joy to the World.pdf" />
+    <tracks>
+      <voice voice="bari" mods="bari" gdid="1sdZaoCDt0Di4-H6Y2-JoI7lZ7AHYq4Py" path="Tuners Music/Joy/Joy to the World - bari.mp3" />
+      <voice voice="bass" mods="bass" gdid="1HBdMxev1eTIGPYsV_glQabXi7g_4jZhE" path="Tuners Music/Joy/Joy to the World - bass.mp3" />
+      <voice voice="lead" mods="lead" gdid="1P98lH2vRlgRMADt2YT3Wr4VGM_7XFV90" path="Tuners Music/Joy/Joy to the World - lead.mp3" />
+      <voice voice="tenor" mods="tenor" gdid="1FYaEAi1KzvNwso097hzkOSln6FHAueil" path="Tuners Music/Joy/Joy to the World - tenor.mp3" />
+      <voice voice="mix" mods="mix" gdid="1ainf1cH3tcVyjsgxu0HnKlzJCEZsriWE" path="Tuners Music/Joy/Joy to the World - mix.mp3" />
+    </tracks>
   </song>
   <song id="1136" name="Joy to the World!">
     <category>Christmas</category>
@@ -1320,6 +1355,7 @@
     <key>D</key>
     <location>YF2 p2</location>
     <lyricist>Isaac Watts</lyricist>
+    <notes>Liles</notes>
     <ordered>2016-11-15</ordered>
     <source>BHS</source>
     <stockID>210494</stockID>

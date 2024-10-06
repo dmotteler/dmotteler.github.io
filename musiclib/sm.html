@@ -43,6 +43,9 @@ function loadDoc() {
         for (let sid in musiclib) {
             let song = musiclib[sid];
             let nam = song['name'];
+             if (song.hasOwnProperty('notes')) {
+                 nam = `${nam} (${song['notes']})`;
+             }
             if (! songlib.hasOwnProperty(nam)) {
                 songlib[nam] = [];
             }
