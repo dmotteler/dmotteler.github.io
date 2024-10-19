@@ -16,6 +16,14 @@
 // formatTZDate makes a new Date by applying tzoff to the valueOf the given date, 
 // then formats it with formatDate
 
+// next 4 based on
+//   https://stackoverflow.com/questions/76464487/get-localized-short-names-of-days-of-week-from-monday-to-sunday-in-javascript
+var lang = undefined; // use browser lang. like 'en-US'
+var longMonthNames = new Array(12).fill(0).map((x, i) => new Date(1,i,1).toLocaleString(lang, {month:'long'}))
+var shortMonthNames = new Array(12).fill(0).map((x, i) => new Date(1,i,1).toLocaleString(lang, {month:'short'}))
+var shortWeekdayNames = new Array(7).fill(0).map((x, i) => new Date(1,0,i-1).toLocaleString(lang, {weekday:'short'}));
+var longWeekdayNames = new Array(7).fill(0).map((x, i) => new Date(1,0,i-1).toLocaleString(lang, {weekday:'long'}));
+
 function formatDate(d, fmt, monthNames, dayNames) {
 
     if (typeof d.strftime == "function") {
@@ -33,14 +41,6 @@ function formatDate(d, fmt, monthNames, dayNames) {
     var hours = d.getHours();
     var isAM = hours < 12;
 
-    if (monthNames == null) {
-        monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    }
-
-    if (dayNames == null) {
-        dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    }
-
     var hours12;
 
     if (hours > 12) {
@@ -57,8 +57,10 @@ function formatDate(d, fmt, monthNames, dayNames) {
 
         if (escape) {
             switch (c) {
-                case 'a': c = "" + dayNames[d.getDay()]; break;
-                case 'b': c = "" + monthNames[d.getMonth()]; break;
+                case 'a': c = "" + shortWeekdayNames[d.getDay()]; break;
+                case 'A': c = "" + longWeekdayNames[d.getDay()]; break;
+                case 'b': c = "" + shortMonthNames[d.getMonth()]; break;
+                case 'B': c = "" + longMonthNames[d.getMonth()]; break;
                 case 'd': c = leftPad(d.getDate()); break;
                 case 'e': c = leftPad(d.getDate(), " "); break;
                 case 'h':	// For back-compat with 0.7; remove in 1.0
@@ -108,14 +110,6 @@ function formatUTCDate(d, fmt, monthNames, dayNames) {
     var hours = d.getUTCHours();
     var isAM = hours < 12;
 
-    if (monthNames == null) {
-        monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    }
-
-    if (dayNames == null) {
-        dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    }
-
     var hours12;
 
     if (hours > 12) {
@@ -132,8 +126,10 @@ function formatUTCDate(d, fmt, monthNames, dayNames) {
 
         if (escape) {
             switch (c) {
-                case 'a': c = "" + dayNames[d.getUTCDay()]; break;
-                case 'b': c = "" + monthNames[d.getUTCMonth()]; break;
+                case 'a': c = "" + shortWeekdayNames[d.getUTCDay()]; break;
+                case 'A': c = "" + longWeekdayNames[d.getUTCDay()]; break;
+                case 'b': c = "" + shortMonthNames[d.getUTCMonth()]; break;
+                case 'B': c = "" + longMonthNames[d.getUTCMonth()]; break;
                 case 'd': c = leftPad(d.getUTCDate()); break;
                 case 'e': c = leftPad(d.getUTCDate(), " "); break;
                 case 'h':	// For back-compat with 0.7; remove in 1.0

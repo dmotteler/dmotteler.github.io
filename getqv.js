@@ -22,6 +22,9 @@ function getQueryVariable(variable, dflt)
     if (Object.keys(qvdict).length == 0) {
         for (var i=0;i<vars.length;i++) {
             var [k, v] = vars[i].split("=");
+            if (v === undefined) {
+                v = true;
+            }
             if (k in qvdict) {
                 qvdict[k].push(v)
             } else {
@@ -31,8 +34,10 @@ function getQueryVariable(variable, dflt)
     }
     var rv;
     if (variable in qvdict) {
+        // variable is present, with value - return value, or true
         rv = qvdict[variable];
     } else {
+        // variable not present, return default
         rv = [dflt];
     }
 

@@ -12,11 +12,15 @@
 -->
 <title>Select a cheat sheet</title>
 <style>
-table { font: bold 20px Arial; padding: 3px; }
-td { text-decoration: underline blue 3px; }
+table, h3 { font: bold 20px Arial; padding: 3px; }
+.pastev { color: gray }
+.futev { color: black }
+.pastev td { text-decoration: underline lightblue 3px; }
+.futev td { text-decoration: underline blue 3px; }
 </style>
-<script src="getEventList.js"></script>
-<script src="formatDate.js"></script>
+<script src="/getEventList.js"></script>
+<script src="/getqv.js"></script>
+<script src="/formatDate.js"></script>
 <script>
 
 var eventlist = {}; // indexed by dtndx of event, value is event definition
@@ -25,44 +29,103 @@ var evndx, newevent; // event info for ch.html
 function loads() {
     let elurl = "events.xml";
     getEventList(elurl).then(evl => {
-        // evl has events.xml. get list of date indexes later than now, sorted newest (biggest) first
-        let nevshow = 9; // max number of events to display
-        let nadd = 0;
-        let html = "<table>\n";
+        // keys of evl are event date-times. sort descending (newest to oldest)
+        let newestFirst = Object.keys(evl).sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
+        let lastev = newestFirst.length - 1;
 
-        let curr = formatDate(new Date(), "%Y%m%d%H%M");
-        let newestFirst = Object.keys(evl).filter((dat) => { return dat > curr }).sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
-        let nonew = 0;
-        if (newestFirst.length < 1) {
-            if (confirm("No future events found. Do most recent?")) {
-                newestFirst = [Math.max(...Object.keys(evl))];
-                nonew = 1;
-            } else {
+        let wantd = getQueryVariable('d', '');
+        let wantymd = '';
+        let evndx = "";
+        let html = "";
+        let firstlt = -1, lastgt; // event ndx at or after wanted, and the last one before
+        if (wantd != '') {
+            // surprising to me, wantd = yyyy-mm-dd is local time for UTC midnight of wantd
+            // forcing with 00:00 gives local midnight.
+            let wantdo = new Date(wantd + " 00:00");
+            if (isNaN(wantdo)) {
+                html = `<h3>Invalid date given: ${wantd}. Must be mm/dd/yyyy.</h3>`;
+                document.querySelector("#seltab").innerHTML = html;
                 return;
+            } else {
+                wantymd  = formatDate(wantdo, "%Y%m%d");
+
+                // find the first entry in newestFirst (YmdHM) that is smaller than wantymd (Ymd).
+                // then the entry for the wanted date is the previous one, if it exists.
+                firstlt = newestFirst.findIndex(e => e < wantymd);
+                let w = formatDate(wantdo, "%A %B %d, %Y");
+                if (firstlt < 0) {
+                    // no event ndx is < wantymd. see if oldest is a match.
+                    evndx = newestFirst[lastev];
+                    if (evndx.substr(0, 8) != wantymd) {
+                        html = `<h3>No event on ${w}. Closest events are:</h3>`;
+                        evndx = "";
+                    }
+                } else {
+                    // found a date less than wantymd. previous one is lastgt.
+                    lastgt = firstlt - 1;
+                    if (lastgt >= 0) {
+                        evndx = newestFirst[lastgt];
+                        if (evndx.substr(0, 8) != wantymd) {
+                            html = `<h3>No event on ${w}. Closest events are:</h3>`;
+                            evndx = "";
+                        }
+                    } else {
+                        html = `<h3>No event on ${w}. Closest events are:</h3>`;
+                    }
+                }
+                // got a match. set up and call ch.html
+                if (evndx != "") {
+                    // evndx and newevent are referenced in ch.html
+                    newevent = evl[evndx];
+                    let chwin = window.open("ch.html");
+                    return;
+                }
             }
         }
-        for (let ndx of newestFirst) {
-            if (ndx < curr && nonew == 0) {
-                break;
+
+        // if a date was given and it matched, we won't come here. so,
+        // either no "wanted date" was given, or there wasn't an event on that date.
+        // show nevshow events near the wanted date, or the most recent ones.
+        let nevshow = 6, nmid = nevshow/2; // number of events to display
+        html += "<table>\n";
+
+        let curr = formatDate(new Date(), "%Y%m%d%H%M");
+
+        let n0, nn; // position in newestFirst of first, last event dates
+        // if no date requested or it's later than the latest one we have
+        if (wantd == '' || wantymd > newestFirst[0]) {
+            n0 = 0;
+            nn = nevshow - 1;
+        } else if (wantymd < newestFirst[lastev]) {
+            // requested date older than we have
+            nn = lastev;
+            n0 = nn - nevshow + 1;
+        } else {
+            firstlt = newestFirst.findIndex(e => e < wantymd);
+            if (firstlt < nmid) {
+                n0 = 0;
+                nn = nevshow;
+            } else {
+                if (firstlt + nmid > lastev) {
+                    nn = lastev;
+                    n0 = nn - nevshow + 1;
+                } else {
+                    nn = firstlt + nmid;
+                    n0 = nn - nevshow + 1;
+                }
             }
+        }
+
+        for (let n = n0; n <= nn; n++) {
+            let ndx = newestFirst[n];
             let ev = evl[ndx];
-            html += `<tr><td data-dtndx='dt${ndx}'>${ev['where']} - ${ev['when']}</td></tr>\n`;
+            let trcl = ndx < curr ? 'class="pastev"' : 'class="futev"';
+            html += `<tr ${trcl}><td data-dtndx='dt${ndx}'>${ev['where']} - ${ev['when']}</td></tr>\n`;
             // clone the event into eventlist
             eventlist[ndx] = Object.assign(evl[ndx]);
-            nadd += 1;
-            if (nadd >= nevshow) {
-                break;
-            }
         }
         html += "</table>\n";
         document.querySelector("#seltab").innerHTML = html;
-
-        if (newestFirst.length == 1) {
-            // no need to ask if there's only one choice...
-            let td = document.querySelector("td");
-            eventsel(td);
-            return;
-        }
 
         // listen for click on the table
         document.querySelector("#seltab").addEventListener('click', ev => eventsel(ev.target));
