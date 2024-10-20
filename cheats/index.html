@@ -1,93 +1,12 @@
-<!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!--
-
-    $Id:$
-    $Log:$
-
-    build newest-first list of events from events.xml
-
-    calls ch.html to display cheat sheet when event is selected.
-
--->
-<title>Select a cheat sheet</title>
-<style>
-table { font: bold 20px Arial; padding: 3px; }
-td { text-decoration: underline blue 3px; }
-</style>
-<script src="../getEventList.js"></script>
-<script src="../formatDate.js"></script>
+<html><head><title>cheats</title></head>
 <script>
-
-var eventlist = {}; // indexed by dtndx of event, value is event definition
-var evndx, newevent; // event info for ch.html
-
-function loads() {
-    let elurl = "../musiclib/events.xml";
-    getEventList(elurl).then(evl => {
-        // evl has events.xml. get list of date indexes later than now, sorted newest (biggest) first
-        let nevshow = 9; // max number of events to display
-        let nadd = 0;
-        let html = "<table>\n";
-
-        let curr = formatDate(new Date(), "%Y%m%d%H%M");
-        let newestFirst = Object.keys(evl).filter((dat) => { return dat > curr }).sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
-        let nonew = 0;
-        if (newestFirst.length < 1) {
-            if (confirm("No future events found. Do most recent?")) {
-                newestFirst = [Math.max(...Object.keys(evl))];
-                nonew = 1;
-            } else {
-                return;
-            }
-        }
-        for (let ndx of newestFirst) {
-            if (ndx < curr && nonew == 0) {
-                break;
-            }
-            let ev = evl[ndx];
-            html += `<tr><td data-dtndx='dt${ndx}'>${ev['where']} - ${ev['when']}</td></tr>\n`;
-            // clone the event into eventlist
-            eventlist[ndx] = Object.assign(evl[ndx]);
-            nadd += 1;
-            if (nadd >= nevshow) {
-                break;
-            }
-        }
-        html += "</table>\n";
-        document.querySelector("#seltab").innerHTML = html;
-
-        if (newestFirst.length == 1) {
-            // no need to ask if there's only one choice...
-            let td = document.querySelector("td");
-            eventsel(td);
-            return;
-        }
-
-        // listen for click on the table
-        document.querySelector("#seltab").addEventListener('click', ev => eventsel(ev.target));
-
-        // setup complete - user selection will cause cheat sheet to display.
-     });
-}
-
-function eventsel(td) {
-    // user selected an event. 
-
-    // get the dtndx from the data-dtndx attribute of the selected event.
-    let dtndx = td.dataset.dtndx;
-    if (! dtndx || dtndx == '') {
-        alert("got to eventsel without a dtndx?");
-        return;
-    }
-    // remove the "dt" 
-    evndx = dtndx.substring(2);
-    newevent = eventlist[evndx];
-    let chwin = window.open("../musiclib/ch.html");
+function redir() {
+    let h = location.href.split('?');
+    let s = h.length > 1 ? '?'+h[1] : '';
+    let url=`/musiclib${s}`;
+    console.log(url);
+    window.open(url);
 }
 </script>
-</head>
-<body onload='loads()'>
-    <div id='seltab'></div>
-</body>
-</html>
+<body onload="redir()">
+</body></html>
