@@ -5,7 +5,7 @@ function redir() {
     let s = h.length > 1 ? '?'+h[1] : '';
     let url=`/musiclib${s}`;
     console.log(url);
-    window.open(url);
+    window.location.replace(url);
 }
 </script>
 <body onload="redir()">
