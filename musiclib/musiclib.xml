@@ -3017,4 +3017,24 @@
     </tracks>
     <sheet gdid='16-owRMqO2u6YHq9rtjoB9P_9vxqGpOZw' sheet='Tuners Music/Xmas sheets/While By My Sheep.pdf' />
   </song>
+  <song id="1068" name="Have Yourself a Merry Little Christmas">
+    <category>Christmas</category>
+    <arranger>anon</arranger>
+    <composer>Hugh Martin, Ralph Blane</composer>
+    <lyricist>Hugh Martin, Ralph Blane</lyricist>
+    <key>C</key>
+    <words>Have yourself a merry little Christmas</words>
+    <tracks>
+      <voice gdid="1PrkgzEPR_hzjTes7iFJeG0g34AUmaUhj" mods="Bass Only" path="bass/Have Yourself A Merry Little Christmas --Bass Only.mp3" voice="bass" />
+      <voice gdid="1oZAlsO4FopKGi5F-33vnv2FbTQkCARRt" mods="Bass pred" path="bass/Have Yourself A Merry Little Christmas --BASS PREDOMINANT.mp3" voice="bass" />
+      <voice gdid="1tXGmRW0-mvtcpbxqT5o4auxxqWn4-SOe" mods="Bari pred" path="bari/Have Yourself A Merry Little Christmas --BARI PREDOMINANT.mp3" voice="bari" />
+      <voice gdid="1erPS8jaUmDR7jKmnw9IIB5bl4Qn2-Fdl" mods="Bari only" path="bari/Have Yourself A Merry Little Christmas --Baritone only.mp3" voice="bari" />
+      <voice gdid="1jrN_GtkN8IkTuE0lO39RZy2Pp1oR-pmL" mods="Lead Only" path="lead/Have Yourself A Merry Little Christmas --Lead Only.mp3" voice="lead" />
+      <voice gdid="1M6ozU2GJW__iyac6Xduf45ZCNjkjcGay" mods="Lead pred" path="lead/Have Yourself A Merry Little Christmas --LEAD PREDOMINANT.mp3" voice="lead" />
+      <voice gdid="1wu4PZ_z2nGjksTkqX5VVtjsgZdzS03K1" mods="Tenor only" path="tenor/Have Yourself A Merry Little Christmas --Tenor only.mp3" voice="tenor" />
+      <voice gdid="1Do3PvWaLawV9GQB8mcO456e6hgrFSbxa" mods="Tenor pred" path="tenor/Have Yourself A Merry Little Christmas --TENOR PREDOMINANT.mp3" voice="tenor" />
+      <voice gdid="1Uj4_SU8KvI5bN2hOJ6FiRF755p1p_-1s" mods="Mix" path="mix/Have Yourself A Merry Little Christmas --FULL MIX.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid='1z32DCo0Hvt9q7bDi4qyQyPrOg-xcNpHr' sheet='Tuners Music/Xmas sheets/Have Yourself a Merry Little Christmas.pdf' />
+  </song>
 </musiclib>

@@ -24,7 +24,7 @@ var shortMonthNames = new Array(12).fill(0).map((x, i) => new Date(1,i,1).toLoca
 var shortWeekdayNames = new Array(7).fill(0).map((x, i) => new Date(1,0,i-1).toLocaleString(lang, {weekday:'short'}));
 var longWeekdayNames = new Array(7).fill(0).map((x, i) => new Date(1,0,i-1).toLocaleString(lang, {weekday:'long'}));
 
-function formatDate(d, fmt, monthNames, dayNames) {
+function formatDate(d, fmt) {
 
     if (typeof d.strftime == "function") {
         return d.strftime(fmt);
@@ -93,7 +93,7 @@ function formatDate(d, fmt, monthNames, dayNames) {
     return r.join("");
 }
 
-function formatUTCDate(d, fmt, monthNames, dayNames) {
+function formatUTCDate(d, fmt) {
 
     if (typeof d.strftime == "function") {
         return d.strftime(fmt);
@@ -162,7 +162,7 @@ function formatUTCDate(d, fmt, monthNames, dayNames) {
     return r.join("");
 }
 
-function formatTZDate(d, tzctrl, fmt, monthNames, dayNames) {
+function formatTZDate(d, tzctrl, fmt) {
     if (isNaN(d.valueOf())) {
         return ("-NA-");
     } else {
@@ -175,6 +175,6 @@ function formatTZDate(d, tzctrl, fmt, monthNames, dayNames) {
             }
         }
         let tdat = new Date(d.valueOf() + tzoff);
-        return formatDate(tdat, fmt, monthNames, dayNames);
+        return formatDate(tdat, fmt);
     }
 }
