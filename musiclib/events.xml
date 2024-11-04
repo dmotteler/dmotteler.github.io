@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Chehalis West" when="November 07, 2024 06:15PM" dtndx="202411071815" songlist="1011 1179 1229 1076 1095 1080 1196 1032 1124 1198 1193 1116 1016 1010" qtetSongs="1095 1198" />
+  <event where="Rehearsal" when="November 05, 2024 06:00PM" dtndx="202411051800" songlist="1102 1055 1136 1068 1196 1201 1032 1156 1193 1088 1080 1010 1016 1202 1179 1229 1076 1124 1116 1011 1035" />
   <event where="Rehearsal" when="October 29, 2024 06:00PM" dtndx="202410291800" songlist="1102 1055 1156 1088 1207 1201 1089 1219 1209 1231 1122 1211 1174 1213 1214 1216 1202 1217 1218 1035" />
   <event where="Colonial" when="October 24, 2024 06:15PM" dtndx="202410241815" songlist="1011 1179 1229 1076 1196 1080 1157 1095 1032 1124 1193 1116 1016 1010" qtetSongs="1157 1095" />
   <event where="Rehearsal" when="October 22, 2024 06:00PM" dtndx="202410221800" songlist="1102 1055 1196 1010 1174 1088 1156 1179 1229 1076 1080 1032 1124 1193 1116 1016 1011 1035" />
