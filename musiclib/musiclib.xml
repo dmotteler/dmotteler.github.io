@@ -126,6 +126,16 @@
     <stockID>210494</stockID>
     <words>Should old acquaintance be forgot</words>
   </song>
+  <song id="1077" name="Away In a Manger">
+    <category>Christmas</category>
+    <notes>Foreman</notes>
+    <arranger>Bruce Foreman</arranger>
+    <composer>Unknown</composer>
+    <lyricist>Unknown</lyricist>
+    <key>G</key>
+    <words>Away in a manger</words>
+    <sheet gdid='1k-q-JqkIN4FEAwvEpymETUMP55xZG-Ic' sheet='Tuners Music/Xmas sheets/Away In a Manger (Foreman).pdf' />
+  </song>
   <song id="1201" name="Away In a Manger">
     <category>Christmas</category>
     <arranger>SPEBSQSA</arranger>
