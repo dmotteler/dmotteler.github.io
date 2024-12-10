@@ -1,12 +1,290 @@
-<html><head><title>cheats</title></head>
+<!DOCTYPE html>
+<!--
+
+    $Id:$
+    $Log:$
+
+    display cheat sheet for date
+
+-->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id="doctitle"></title>
+<style>
+table { border: 5px solid black; border-spacing: 0px;
+    font-family: Arial; font-size: 18px; font-weight: bold; padding: 5px; }
+td { border: 1px solid black; padding: 6px; }
+tr:nth-child(even) { background: #CCC }
+tr:nth-child(odd) { background: #FFF }
+.tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
+.key, .pitch { text-align: center; }
+.hidden { display: none; }
+.qtet { background-color: blue !important; color: white !important; }
+.qtet a { background-color: blue !important; color: white !important; }
+.partsel { text-align: center; background: lightgreen; }
+@media print {
+  @page { size: letter portrait; margin: .5in; }
+  body { max-width: 5.5in; }
+  table { font-size: 12px; }
+  td { padding: 4px; }
+  .tabletitle { font-size: 18px; }
+}
+</style>
+<base href="https://dmotteler.github.io/" />
+<script src="musiclib/getMusicLib.js"></script>
+<script src="getEventList.js"></script>
+<script src="formatDate.js"></script>
+<script src="getqv.js"></script>
 <script>
-function redir() {
-    let h = location.href.split('?');
-    let s = h.length > 1 ? '?'+h[1] : '';
-    let url=`/musiclib${s}`;
-    console.log(url);
-    window.location.replace(url);
+var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none', 'sheet'];
+var showVoice;
+function clickVoice() {
+    // set showVoice, then emulate clicking that voice selection
+    // to get the tracks showing or hidden. this is the init function
+    // when a downloaded cheat is executed.
+
+    showVoice = localStorage.getItem("defaultVoice");
+    if (! showVoice) { showVoice = "mix"; }
+    let buttonId = "#sel" + showVoice;
+    let butt = document.querySelector(buttonId);
+    butt.click();
+}
+function setvoice(el) {
+    let voice = el.value;
+    let clr = "." + voice;
+    // show the class we were called with (i.e., remove "hidden")
+    document.querySelectorAll(clr).forEach(node => { node.classList.remove("hidden") });
+
+    let others = new Set(voices);
+    others.delete(voice);
+    // don't show the rest of the classes
+    for (let v of others) {
+        let cla = "." + v;
+        document.querySelectorAll(cla).forEach(node => { node.classList.add("hidden") });
+    }
+    if (voice != "none" && voice != "sheet") {
+        localStorage.setItem("defaultVoice", voice);
+    }
+}
+
+function init() {
+    let mlurl = "musiclib/musiclib.xml";
+    let gmlpromise = getMusicLib(mlurl);
+
+    let elurl = "musiclib/events.xml";
+    let gelpromise = getEventList(elurl);
+
+    let promises = [gmlpromise, gelpromise];
+
+    Promise.all(promises).then(values => {
+        // all promises complete. values is list of values returned 
+        // by the promises, in the same order.
+        musiclib = values[0];
+        eventlist = values[1];
+        let newestFirst = Object.keys(eventlist).sort((a, b) => a < b ? 1 : a > b ? -1 : 0);
+
+        let wantd = getQueryVariable('d', '');
+        let wantymd = '';
+        let evndx = "";
+        let html = "";
+        let firstlt = -1, lastgt; // event ndx at or after wanted, and the last one before
+        if (wantd == '') {
+            evndx = newestFirst[0];
+        } else {
+            // surprising to me, wantd = yyyy-mm-dd is local time for UTC midnight of wantd
+            // forcing with 23:59 gives end of local day, so desired event if first <.
+            let wantdo = new Date(wantd + " 23:59");
+            if (isNaN(wantdo)) {
+                html = `<h3>Invalid date given: ${wantd}. Must be mm/dd/yyyy.</h3>`;
+            } else {
+                wantymd  = formatDate(wantdo, "%Y%m%d");
+                // find the first entry in newestFirst (YmdHM) that is smaller than wantymd (Ymd).
+                // then the entry for the wanted date is the previous one, if it exists.
+                firstlt = newestFirst.findIndex(e => e < wantymd);
+                let w = formatDate(wantdo, "%A %B %d, %Y");
+                if (firstlt < 0) {
+                    evndx = newestFirst[lastev];
+                    if (evndx.substr(0, 8) != wantymd) {
+                        html = `<h3>No event on ${w}`;
+                        evndx = "";
+                    }
+                } else {
+                    // found a date less than wantymd. previous one is lastgt.
+                    lastgt = firstlt - 1;
+                    if (lastgt >= 0) {
+                        evndx = newestFirst[lastgt];
+                        if (evndx.substr(0, 8) != wantymd) {
+                            html = `<h3>No event on ${w}.`;
+                            evndx = "";
+                        }
+                    } else {
+                        html = `<h3>No event on ${w}`;
+                        evndx = "";
+                    }
+                }
+            }
+        }
+
+        if (evndx == "") {
+            document.querySelector("table").innerHTML = html;
+            return;
+        }
+
+        let evt = eventlist[evndx];
+
+        clickVoice();
+        makelist(evt);
+    });
+}
+function makelist(ev) {
+    // create the html for the songlist display. 
+    // each row has key, song title, starting words
+    // for all songs from the songlist.
+    // the song title td has a div for each voice, with class "hidden" 
+    // for all except the current voice being displayed.
+
+    let songlist = ev['songlist'];
+    let venue = ev['where'];
+    let evdate = ev['when'];
+
+    qtetSongs = [];
+    if (ev.hasOwnProperty("qtetSongs")) {
+        let qs = ev['qtetSongs'];
+        if (qs[0] == '[') {
+            // got a string - strip off [], split into list
+            console.log(`split quartetSongs ${qs}`);
+            qs = qs.substring(1, qs.length-1).split(", ");
+        }
+        qtetSongs = ev['qtetSongs'];
+    }
+
+    let title = `${venue} - ${evdate}`;
+    document.title = title;
+
+    showVoice = localStorage.getItem("defaultVoice");
+    if (! showVoice) { showVoice = "mix"; }
+
+    let html = `<tbody id='main_table'><tr><td colspan='3' class='tabletitle'>${title}</td></tr>`;
+    console.log(`in makelist, songlist ${songlist}`);
+    for (let sid of songlist) {
+        let song = musiclib[sid];
+        let songTitle = song['name']; // songTitle becomes name (notes) [location]
+        if (song.hasOwnProperty("aliasfor")) {
+            let msid = song["aliasfor"];
+            song = musiclib[msid];
+        }
+        let key = song['key'];
+        let keyclass = "key";
+        if (song.hasOwnProperty('pitch')) {
+            let pit = song['pitch'];
+            if (pit != "") {
+                key = 'blow ' + pit;
+                keyclass = "pitch";
+            }
+        }
+        let words = song['words'];
+        if (song.hasOwnProperty("notes")) {
+            songTitle += ` (${song['notes']})`;
+        }
+        if (song.hasOwnProperty("location")) {
+            songTitle += ` [${song['location']}]`;
+        }
+        let picks = "";
+        // if we have any tracks for this song, add a div
+        // for each track to the song title td, with class "hidden"
+        // for all but the active voice
+        for (let voice of voices) {
+            let ancclass = voice == showVoice ? voice : voice + " hidden";
+
+            if (voice == "none") {
+                picks += `<div class='${ancclass}'>${songTitle}</div>\n`;
+
+            } else if (voice == "sheet") {
+                if (song.hasOwnProperty("sheet")) {
+                    // song has a sheet - all sheets have gdid, may have res. key
+                    let anc;
+                    let gdid = song['sheet']['gdid'];
+                    if (song['sheet'].hasOwnProperty('resource_key')) {
+                        let rk = song['sheet']['resource_key'];
+                        anc = `<a href='https://drive.google.com/open?id=${gdid}&resourcekey=${rk}'>${songTitle} [sheet]</a>`;
+                    } else {
+                        anc = `<a href='https://drive.google.com/open?id=${gdid}'>${songTitle} [sheet]</a>`;
+                    }
+                    picks += `<div class='${ancclass}'>${anc}</div>\n`;
+                } else {
+                    // no sheet for this song - sheet entry is just song title
+                    picks += `<div class='${ancclass}'>${songTitle}</div>\n`;
+                }
+            } else {
+                // voice is one that may have tracks
+
+                // choices is a list of tracks for this voice (part or mix)
+                let choices = [];
+
+                if (song.hasOwnProperty("tracks")) {
+                    let v;
+                    if (song['tracks'].hasOwnProperty(voice)) {
+                        v = voice;
+                    } else if (song['tracks'].hasOwnProperty('mix')) {
+                        v = 'mix';
+                    } else {
+                        v = 'notrack';
+                    }
+                    if (song['tracks'].hasOwnProperty(v)) {
+                        for (let vtrk of song['tracks'][v]) {
+                            let gdid = vtrk['gdid'];
+                            let mods = vtrk['mods'];
+                            let anc;
+                            if (vtrk.hasOwnProperty('resource_key')) {
+                                let rk = vtrk['resource_key'];
+                                anc = `<a href='https://drive.google.com/open?id=${gdid}&resourcekey=${rk}'>${songTitle} : ${mods}</a>`;
+                            } else {
+                                anc = `<a href='https://drive.google.com/open?id=${gdid}'>${songTitle} : ${mods}</a>`;
+                            }
+                            choices.push(anc);
+                        }
+                    } else { 
+                        // no tracks for this voice - just show the song title
+                        choices.push(songTitle);
+                    }
+                } else {
+                    // no tracks for this song - just show the song title
+                    choices.push(songTitle);
+                }
+                picks += `<div class='${ancclass}'>` + choices.join("<br/>\n") + "\n</div>";
+            }
+        }
+        if ((! song.hasOwnProperty("tracks") && ! song.hasOwnProperty("sheet"))) {
+            // no tracks or sheet - just display song title
+            picks = songTitle + "\n";
+        }
+
+        let cl = qtetSongs.includes(sid) ? "class='song qtet'" : "class='song'";
+        html += `<tr ${cl}><td class='${keyclass}'>${key}</td><td>${picks}</td><td>${words}</td></tr>\n`;
+    }
+    html += `</tbody>\n`;
+    document.querySelector("#main_table").outerHTML=html;
 }
 </script>
-<body onload="redir()">
-</body></html>
+</head>
+<body onload='init()'>
+    <table>
+        <tbody id="main_table"> </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="99">
+        <fieldset class="partsel">
+        <legend>Show voice</legend>
+         <input type="radio" id="seltenor" name="part" value="tenor" onclick="setvoice(this)">tenor</input>
+         <input type="radio" id="sellead" name="part" value="lead" onclick="setvoice(this)">lead</input>
+         <input type="radio" id="selbari" name="part" value="bari" onclick="setvoice(this)">bari</input>
+         <input type="radio" id="selbass" name="part" value="bass" onclick="setvoice(this)">bass</input>
+         <input type="radio" id="selmix" name="part" value="mix" onclick="setvoice(this)">mix</input>
+         <input type="radio" id="selsheet" name="part" value="sheet" onclick="setvoice(this)">sheet</input>
+         <input type="radio" id="selnone" name="part" value="none" onclick="setvoice(this)">none</input>
+        </fieldset>
+        </td>
+     </tr>
+    </tfoot>
+</table>
+</body>
+</html>

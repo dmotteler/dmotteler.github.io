@@ -1,0 +1,12 @@
+<html><head><title>cheats</title></head>
+<script>
+function redir() {
+    let h = location.href.split('?');
+    let s = h.length > 1 ? '?'+h[1] : '';
+    let url=`/musiclib${s}`;
+    console.log(url);
+    window.location.replace(url);
+}
+</script>
+<body onload="redir()">
+</body></html>
