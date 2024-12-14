@@ -42,7 +42,7 @@ function selme(el) {
     }
     let tr = el.closest("tr");
     if (! tr.classList.contains("song")) {
-        console.log(`selme called with non-song row ${tr.id}`);
+        // console.log(`selme called with non-song row ${tr.id}`);
         return;
     }
 
@@ -119,12 +119,8 @@ function alldone() {
     // evndx is the index for the eventlist
     evndx = formatDate(evdate, "%Y%m%d%H%M");
 
-    // long-form month names for use by formatDate %b parameter
-    let monthNames = ["January", "February", "March", "April", "May", "June",
-                   "July", "August", "September", "October", "November", "December"];
-
     // fulldate appears on the cheat sheet header
-    fulldate = formatDate(evdate, "%b %d, %Y %I:%M%P", monthNames);
+    fulldate = formatDate(evdate, "%B %d, %Y %I:%M%P");
 
     // careful - names "evndx", "psCatSelected" and "newevent" must match what ch.html is expecting...
     newevent = {'when': fulldate, 'where': venue, 'songlist': seq, 'qtetSongs': qtetSongs };
@@ -470,8 +466,8 @@ function init() {
 <option>Rehearsal</option>
 <option>Chehalis West</option>
 <option>Colonial</option>
-<option>Prestige Care</option>
 <option>Sharon Care</option>
+<option>South Creek</option>
 <option>Vintage</option>
 <option>Woodland Village</option>
 </datalist>

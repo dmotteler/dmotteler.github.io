@@ -156,8 +156,13 @@ function makelist() {
     let html = "";
     for (let sid of songlist) {
         let song = musiclib[sid];
+        let nam = song['name'];
+        let nsids = songlib[nam].length;
+        if (nsids > 1) {
+            nam = `${nam} (${song['notes']})`;
+        }
         let cl = qtetSongs.includes(sid) ? "class='qtet song'" : "class='song'"
-        html += `<tr onclick="selsong(this)" ${cl}><td>${song['name']}</td>
+        html += `<tr onclick="selsong(this)" ${cl}><td>${nam}</td>
 <td class="selimg" data-sid='${sid}'><img src=""/></td>
 </tr>`;
     }
@@ -240,7 +245,7 @@ function init() {
             for (let sid of songlib[s]) {
                 let sname = s;
                 if (nsids > 1) {
-                    sname += ` (${musiclib[sid]['category']})`;
+                    sname += ` (${musiclib[sid]['notes']})`;
                     if (musiclib[sid]['category'].includes('Old')) {
                         libsel += `<option class="mult" value="${sid}">${sname}</option>\n`;
                     } else {

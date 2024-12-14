@@ -577,25 +577,25 @@
   </song>
   <song id="1219" name="Deck the Halls">
     <category>Christmas</category>
+    <notes>words</notes>
     <key>Eb</key>
     <words>Deck the halls with boughs of holly</words>
-    <sheet gdid='1g4cl7bwrt37UxBfXeEgI3CXlbrZiKjWC' sheet='Tuners Music/Xmas sheets/Deck the Halls.pdf' />
+    <sheet gdid='1g4cl7bwrt37UxBfXeEgI3CXlbrZiKjWC' sheet='Tuners Music/Xmas sheets/Deck the Halls (words).pdf' />
   </song>
   <song id="1129" name="Deck the Halls">
     <category>Christmas</category>
-    <category>Old</category>
     <arranger>Burt Szabo</arranger>
     <composer>Old Welsh Air</composer>
+    <lyricist>Old Welsh Air</lyricist>
+    <notes>Szabo</notes>
     <copies>3</copies>
     <copyright>Burt Szabo</copyright>
-    <crdate>2015-12-31</crdate>
     <key>F</key>
-    <location>YF2 p4</location>
-    <lyricist>Old Welsh Air</lyricist>
     <ordered>2016-11-15</ordered>
     <source>BHS</source>
-    <stockID>210494</stockID>
+    <stockID>7692</stockID>
     <words>Deck the halls</words>
+    <sheet gdid='172nPXL-aPIVHC1wLBtOGXjERExKD5GUv' sheet='Tuners Music/Xmas sheets/Deck the Halls.pdf' />
   </song>
   <song id="1164" name="Do You Hear What I Hear">
     <category>Christmas</category>
