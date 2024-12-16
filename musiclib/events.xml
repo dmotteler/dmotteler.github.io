@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Colonial" when="December 19, 2024 06:15PM" dtndx="202412191815" songlist="1174 1202 1231 1219 1170 1214 1122 1213 1077 1169 1207 1216 1156 1218 1164 1211 1068 1088 1089 1217" qtetSongs="1170 1169 1164" />
+  <event where="Rehearsal" when="December 17, 2024 06:00PM" dtndx="202412171800" songlist="1174 1068 1156 1088 1202 1231 1219 1214 1122 1213 1077 1207 1216 1218 1211 1089 1217" />
   <event where="South Creek Post Acute" when="December 12, 2024 06:15PM" dtndx="202412121815" songlist="1174 1202 1231 1219 1170 1214 1122 1213 1077 1169 1207 1216 1156 1218 1164 1211 1089 1217" qtetSongs="1170 1169 1164" />
   <event where="Rehearsal" when="December 10, 2024 06:00PM" dtndx="202412101800" songlist="1174 1068 1156 1088 1202 1231 1219 1214 1122 1213 1077 1207 1216 1218 1211 1089 1217" />
   <event where="Centralia Point" when="December 05, 2024 06:15PM" dtndx="202412051815" songlist="1174 1202 1231 1219 1170 1214 1122 1213 1077 1169 1207 1216 1156 1218 1164 1068 1211 1089 1217" qtetSongs="1170 1169 1164" />
