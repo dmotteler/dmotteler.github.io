@@ -104,7 +104,7 @@ function init() {
                 if (firstlt < 0) {
                     evndx = newestFirst[lastev];
                     if (evndx.substr(0, 8) != wantymd) {
-                        html = `<h3>No event on ${w}`;
+                        html = `<h3>No songlist (yet) for ${w}`;
                         evndx = "";
                     }
                 } else {
@@ -113,11 +113,11 @@ function init() {
                     if (lastgt >= 0) {
                         evndx = newestFirst[lastgt];
                         if (evndx.substr(0, 8) != wantymd) {
-                            html = `<h3>No event on ${w}.`;
+                            html = `<h3>No songlist (yet) for ${w}.`;
                             evndx = "";
                         }
                     } else {
-                        html = `<h3>No event on ${w}`;
+                        html = `<h3>No songlist (yet) for ${w}`;
                         evndx = "";
                     }
                 }
