@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>ical ics</title>
+<link rel="stylesheet" href="idbml/select.css" />
+<style>
+label { font: bold 18px Arial, sans-serif; }
+table { font: bold 18px Arial, sans-serif; }
+tr { height: 35px; }
+.morow { font: bold 20px Arial, sans-serif;
+    border-top: 29px; border-width: 3px; border-color: red;
+    background-color: lightgreen; }
+.pcl { background-color: lightblue; border-radius: 20px; }
+td { text-align: left; }
+td:nth-child(1) { text-align: right; border-radius: 10px; }
+</style>
+<script src="/formatDate.js"></script>
+<script>
+function getics(ics) {
+    return fetch(ics, {cache: "no-cache"})
+    .then(resp => { return resp.text(); })
+    .then(icsstr => {
+        return icsstr;
+    });
+}
+var events = [];
+function parseICalDate(date) {
+    return new Date(date.substr(0, 4), // year
+            parseInt(date.substr(4, 2), 10) - 1, // month
+            date.substr(6, 2), // day
+            date.substr(9, 2), // hour
+            date.substr(11, 2), // minute
+            date.substr(13, 2)) // second
+}
+
+function init() {
+    let icsprom = getics("tuners2025.ics");
+    let promises = [icsprom];
+
+    Promise.all(promises).then(values => {
+        // all promises complete. values is list of values returned 
+        // by the promises, in the same order.
+        ics = values[0];
+        let timefields = ['dtstart', 'dtend', 'created', 'dtstamp', 'last-modified'];
+        let lines = ics.split("\r\n");
+
+        let n = 0, att, val, line, nextline;
+        line = lines.shift();
+        nextline = lines.shift();
+        n += 2;
+
+        let inEvent = false;
+        while (typeof (nextline) !== "undefined") {
+            line = nextline;
+            nextline = lines.shift();
+            n += 1;
+
+            // skip empty lines
+            if (nextline.length < 1) {nextline = lines.shift()};
+
+            while (typeof (nextline) !== "undefined" && nextline[0] == " " && lines.length > 0) {
+                line += nextline.substr(1);
+                nextline = lines.shift();
+            }
+
+            let flds = line.split(":");
+            att = flds.shift().toLowerCase();
+            val = flds.join(":");
+
+            // console.log(`${n} ${att} - ${val}`);
+            if (inEvent == true) {
+                if (line == "END:VEVENT") {
+                    events.push(_ev);
+                    _ev = null;
+                    inEvent = false;
+                } else {
+                    if (timefields.includes(att)) {
+                        _ev[att] = parseICalDate(val);
+                        // console.log(`${val} => ${_ev[att]}`);
+                    } else {
+                        _ev[att] = val;
+                    }
+                }
+            } else if (line == "BEGIN:VEVENT") {
+                _ev = {};
+                inEvent = true;
+            } else if (line == "END:VCALENDAR") {
+                break;
+            }
+        }
+        console.log(`found ${events.length} events!`);
+        function bystrt(a, b) {
+            return a.dtstart == b.dtstart ? 0 : a.dtstart < b.dtstart ? -1 : 1;
+        }
+        events.sort(bystrt);
+
+        makelist();
+    });
+}
+function makelist() {
+    let mo = null, mostr;
+    let detail = document.getElementById('showdet').checked;
+    let html = "<table>";
+    let pcl, summ;
+    for (let _ev of events) {
+        if (_ev.description != "") {
+            let summ = _ev.summary;
+            // pcl = performance class
+            pcl = summ.includes('ehearsal') ? '' : "class='pcl'" ;
+            if (mo == null || _ev.dtstart.getMonth() != mo) {
+                mo = _ev.dtstart.getMonth();
+                mostr = formatDate(_ev.dtstart, "%B %Y");
+                html += `<tr class='morow'><td>${mostr}&nbsp;</td></tr>\n`;
+            }
+
+            let sdat = "&nbsp;".repeat(6) + formatDate(_ev.dtstart, "%d %I:%M%p");
+            if (_ev.dtstart.getDate() == _ev.dtend.getDate()) {
+                sdat += formatDate(_ev.dtend, "- %I:%M%p");
+            } else {
+                sdat += formatDate(_ev.dtend, "- %d %I:%M%p");
+            }
+            sdat += "&nbsp;".repeat(5);
+
+            let loc, desc;
+            if (detail) {
+                loc = _ev.location.split("\\n").join("<br/>");
+            } else {
+                loc = _ev.location.split("\\n")[0];
+            }
+            let descflds = _ev.description.split("\\n");
+            desc = descflds[0];
+            if (descflds.length > 1) {
+                desc += "<br/>" + descflds[descflds.length-1];
+            }
+
+            html += `<tr><td>${sdat}</td><td ${pcl}>${_ev.summary}</td><td>${loc}</td><td>${desc}</tr>\n`;
+        }
+    }
+    document.getElementById("placeholder").innerHTML = html;
+}
+</script>
+</head>
+<body onload="init()">
+    <label for='showdet'>Show detail</label>
+    <input type='checkbox' id='showdet' onchange="makelist()" value="Show detail">
+    <div id="placeholder" style="width:1200px;"></div>
+</body>
+</html>
