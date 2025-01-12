@@ -1037,7 +1037,7 @@
     </tracks>
   </song>
   <song id="1002" name="I Believe">
-    <category>Old</category>
+    <category>Current</category>
     <arranger>SPEBSQSA</arranger>
     <composer>Drake, Graham, Shirl, Stillman</composer>
     <copyright>1981 Hampshire House Publ.</copyright>
@@ -1050,6 +1050,7 @@
       <voice gdid="18sP_vEvMdVIG2kzVEF6PNOpYgk8vsUv5" mods="Tenor" path="tenor/I Believe - Tenor.mp3" voice="tenor" />
       <voice gdid="1eMQzlUIGRb2aHVmCJkQWAOid-OWrpnen" mods="Mix" path="mix/I Believe - Mix.mp3" voice="mix" />
     </tracks>
+    <sheet gdid='18UPTb7c34v1w-zHcQjg7vbmCZN2uddcH' sheet="Tuners Music/sheet music/I Believe.pdf" />
   </song>
   <song id="1117" name="I Don't Know Why">
     <category>Current</category>
@@ -2279,6 +2280,30 @@
       <voice gdid="11R9hdLafqGFd87sDmVYV3knfkV80NRnZ" mods="tenor" path="tenor/Heart of My Heart - Tenor Left.mp3" voice="tenor" />
     </tracks>
     <sheet gdid="12czXRobuKY4eA_8mTjxvFsCbBZHYnRhn" sheet="Heart of My Heart.pdf" />
+  </song>
+  <song id="1081" name="Sunny Side Up">
+    <arranger>Ed Waesche</arranger>
+    <category>Current</category>
+    <composer>DeSylva/Brown/Henderson</composer>
+    <lyricist>DeSylva/Brown/Henderson</lyricist>
+    <copyright>DeSylva, Brown and Henderson</copyright>
+    <crdate>1929</crdate>
+    <key>Eb</key>
+    <stockID>191</stockID>
+    <words>When the world has got you down</words>
+    <sheet gdid="1fOJnzbiJuGiW6YLU35HmjLFQQTnLZ4fF" sheet="Tuners Music/sheet music/Sunny Side Up.pdf" />
+  </song>
+  <song id="1082" name="When You're Smiling">
+    <arranger>SPEBSQSA, Inc.</arranger>
+    <category>Current</category>
+    <composer>Fisher/Goodwin/Shay</composer>
+    <lyricist>Fisher/Goodwin/Shay</lyricist>
+    <copyright>EMI Mills</copyright>
+    <crdate>1928</crdate>
+    <key>Bb</key>
+    <stockID>7331</stockID>
+    <words>It's no use to worry</words>
+    <sheet gdid="1z4GLlFQDuPKr-qZMLzXKn0z2wXIkBLtF" sheet="Tuners Music/sheet music/When You're Smiling.pdf" />
   </song>
   <song id="1153" name="Sunshine of Your Smile, The">
     <category>Old</category>
