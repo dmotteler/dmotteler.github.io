@@ -171,6 +171,7 @@ function makelist(el) {
             }
             let rowdis = strt < curdate ? "disabled" : "";
             html += `<tr ${rowdis}><td>${sdat}</td><td ${pcl}>${_ev.summary}</td><td>${loc}</td><td>${desc}</tr>\n`;
+            console.log(summ);
         }
     }
     document.getElementById("placeholder").innerHTML = html;
