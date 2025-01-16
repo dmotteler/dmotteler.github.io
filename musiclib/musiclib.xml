@@ -2304,6 +2304,13 @@
     <stockID>7331</stockID>
     <words>It's no use to worry</words>
     <sheet gdid="1z4GLlFQDuPKr-qZMLzXKn0z2wXIkBLtF" sheet="Tuners Music/sheet music/When You're Smiling.pdf" />
+    <tracks>
+      <voice gdid="1QsM9LXZAqzUt5JBHhTv3hNTpyQlHlNat" mods="bari" path="bari/When You're Smiling - Baritone.mp3" voice="bari" />
+      <voice gdid="1NNWBS4h46Wh2Gerjs5IE9_NQFhdXHxJ1" mods="bass" path="bass/When You're Smiling - Bass.mp3" voice="bass" />
+      <voice gdid="1-v6Cd5Z-p1yI5tLL-NjqbpBZ7YrU9Bvn" mods="lead" path="lead/When You're Smiling - Lead.mp3" voice="lead" />
+      <voice gdid="1m26Q16lWVWQFZAbEJ626HKYjLPT2G7_e" mods="mix" path="mix/When You're Smiling - Mix.mp3" voice="mix" />
+      <voice gdid="1RbdhojEE-xBnretmcOJybd0lI3rqGxBo" mods="tenor" path="tenor/When You're Smiling - Tenor Left.mp3" voice="tenor" />
+    </tracks>
   </song>
   <song id="1153" name="Sunshine of Your Smile, The">
     <category>Old</category>
