@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head><title>Tuners Calendar</title>
-<link rel="stylesheet" href="idbml/select.css" />
+<link rel="stylesheet" href="musiclib/select.css" />
 <style>
 label { font: bold 18px Arial, sans-serif; }
 table { font: bold 18px Arial, sans-serif; }
@@ -20,6 +20,15 @@ td:nth-child(1) { text-align: right; border-radius: 10px; }
 </style>
 <script src="/formatDate.js"></script>
 <script>
+function htmlspecialchars(str) {
+  if (typeof str !== "string") return str;
+
+  return str.replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+}
 function getics(ics) {
     return fetch(ics, {cache: "no-cache"})
     .then(resp => { return resp.text(); })
@@ -27,16 +36,24 @@ function getics(ics) {
         return icsstr;
     });
 }
-var events = [];
-function parseICalDate(date) {
-    return new Date(date.substr(0, 4), // year
-            parseInt(date.substr(4, 2), 10) - 1, // month
-            date.substr(6, 2), // day
-            date.substr(9, 2), // hour
-            date.substr(11, 2), // minute
-            date.substr(13, 2)) // second
+function parseICalDate(dtin) {
+    let dtss = [[0, 4], [4, 2], [6, 2], [9, 2], [11, 2], [13, 2]];
+    let dtflds = [];
+    for (let mn of dtss) {
+        [m, n] = mn;
+        dtflds.push(dtin.substr(m, n))
+    }
+    dtflds[1] = parseInt(dtflds[1], 10) - 1;
+    utc = dtin.length == 16 && dtin.substr(15, 1) == "Z";
+
+    if (utc) {
+        return new Date(Date.UTC(...dtflds));
+    } else {
+        return new Date(...dtflds);
+    }
 }
 
+var events = [];
 function init() {
     let icsprom = getics("tuners2025.ics");
     let promises = [icsprom];
@@ -136,8 +153,8 @@ function makelist(el) {
         } else if (mo > endmo) {
             break;
         }
-        if (_ev.description != "") {
-            let summ = _ev.summary;
+        if (_ev.hasOwnProperty("summary") && _ev.summary != "") {
+            let summ = htmlspecialchars(_ev.summary);
             // pcl = performance class
             pcl = summ.includes('ehearsal') ? '' : "class='pcl'" ;
             if (mohdr == null || _ev.dtstart.getMonth() != mohdr) {
@@ -157,20 +174,28 @@ function makelist(el) {
             sdat += sixsp;
 
             let loc, desc;
-            let locflds = _ev.location.split("\\n");
-            let ven = locflds.shift();
-            let venaddr = locflds.join(",").replaceAll(" ", "+");
-            loc = `<a href='https://www.google.com/maps/place/${venaddr}'>${ven}</a>`;
-            if (detail) {
-                loc += "<br/>" + locflds.join("<br/>");
+            if (_ev.hasOwnProperty("location") && _ev.location != "") {
+                let locflds = _ev.location.split("\\n");
+                let ven = htmlspecialchars(locflds.shift());
+                let venaddr = htmlspecialchars(locflds.join(",").replaceAll(" ", "+"));
+                loc = `<a href='https://www.google.com/maps/place/${venaddr}'>${ven}</a>`;
+                if (detail) {
+                    loc += "<br/>" + locflds.join("<br/>").replace("\\,", ",");
+                }
+            } else {
+                loc = "";
             }
-            let descflds = _ev.description.split("\\n");
-            desc = descflds[0];
-            if (descflds.length > 1) {
-                desc += "<br/>" + descflds[descflds.length-1];
+            if (_ev.hasOwnProperty("description") && _ev.description != "") {
+                let descflds = _ev.description.split("\\n");
+                desc = descflds[0];
+                if (descflds.length > 1) {
+                    desc += "<br/>" + descflds[descflds.length-1];
+                }
+            } else {
+                desc = "";
             }
             let rowdis = strt < curdate ? "disabled" : "";
-            html += `<tr ${rowdis}><td>${sdat}</td><td ${pcl}>${_ev.summary}</td><td>${loc}</td><td>${desc}</tr>\n`;
+            html += `<tr ${rowdis}><td>${sdat}</td><td ${pcl}>${summ}</td><td>${loc}</td><td>${desc}</tr>\n`;
             console.log(summ);
         }
     }
