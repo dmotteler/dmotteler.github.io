@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="South Creek" when="February 13, 2025 06:15PM" dtndx="202502131815" songlist="1116 1007 1075 1182 1110 1050 1124 1032 1163 1198 1181 1113 1030 1184" qtetSongs="1110 1198" />
+  <event where="Rehearsal" when="February 11, 2025 06:00PM" dtndx="202502111800" songlist="1102 1055 1182 1007 1075 1116 1050 1124 1032 1163 1181 1113 1030 1184 1035" />
   <event where="Rehearsal" when="February 04, 2025 06:00PM" dtndx="202502041800" songlist="1102 1055 1196 1032 1050 1082 1113 1181 1184 1030 1182 1007 1116 1124 1075 1035" />
   <event where="Rehearsal" when="January 28, 2025 06:00PM" dtndx="202501281800" songlist="1102 1055 1032 1050 1082 1113 1181 1184 1030 1182 1007 1116 1124 1075 1035" />
   <event where="Rehearsal" when="January 21, 2025 06:00PM" dtndx="202501211800" songlist="1102 1055 1032 1050 1082 1113 1181 1184 1030 1182 1035" />
