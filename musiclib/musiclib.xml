@@ -2312,6 +2312,20 @@
       <voice gdid="1RbdhojEE-xBnretmcOJybd0lI3rqGxBo" mods="tenor" path="tenor/When You're Smiling - Tenor Left.mp3" voice="tenor" />
     </tracks>
   </song>
+  <song id="1083" name="When I'm Sixty-Four">
+    <arranger>Tom Gentry</arranger>
+    <category>Quartet</category>
+    <composer>Lennon/McCartney</composer>
+    <lyricist>Lennon/McCartney</lyricist>
+    <copyright>Northern Songs</copyright>
+    <crdate>1967</crdate>
+    <key>Bb</key>
+    <words>Doot n doo doot doo  (bum, doom, ah)</words>
+    <sheet gdid="1LmwUDALIQb8Cs_rsir1gIL8wS1xzi8n6" sheet="TTS/music/WhenI'm64.pdf" />
+    <tracks>
+    <voice gdid="17gOkNIUcQweVnmk3-Qf90k5swtr6a3SK" mods="mix" path="TTS/music/When I'm Sixty Four" voice="mix" />
+    </tracks>
+  </song>
   <song id="1153" name="Sunshine of Your Smile, The">
     <category>Old</category>
     <arranger>Tom Gentry</arranger>
