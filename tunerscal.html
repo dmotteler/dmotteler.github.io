@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head><title>Tuners Calendar</title>
-<link rel="stylesheet" href="musiclib/select.css" />
 <style>
 label { font: bold 18px Arial, sans-serif; }
 table { font: bold 18px Arial, sans-serif; }
@@ -176,17 +175,33 @@ function makelist(el) {
             let loc, desc;
             if (_ev.hasOwnProperty("location") && _ev.location != "") {
                 let locflds = _ev.location.split("\\n");
+                if (locflds.length == 1) {
+                    // exported cal has fields separated by \,
+                    locflds = _ev.location.split("\\,");
+                }
                 let ven = htmlspecialchars(locflds.shift());
                 let venaddr = htmlspecialchars(locflds.join(",").replaceAll(" ", "+"));
                 loc = `<a href='https://www.google.com/maps/place/${venaddr}'>${ven}</a>`;
                 if (detail) {
-                    loc += "<br/>" + locflds.join("<br/>").replace("\\,", ",");
+                    // locflds for exported cal has [addr, city, st zip, USA]
+                    if (locflds[locflds.length - 1].includes("USA")) {
+                        locflds.pop();
+                        let addr1 = locflds.shift();
+                        let addr2 = locflds.join(", ");
+                        loc += `<br/>${addr1}}<br/>${addr2}`;
+                    } else {
+                        loc += "<br/>" + locflds.join("<br/>").replace("\\,", ",");
+                    }
                 }
             } else {
                 loc = "";
             }
             if (_ev.hasOwnProperty("description") && _ev.description != "") {
                 let descflds = _ev.description.split("\\n");
+                if (descflds.length == 1) {
+                    // exported cal has modified desc lines separated by <br>
+                    descflds = _ev.description.split("<br>");
+                }
                 desc = descflds[0];
                 if (descflds.length > 1) {
                     desc += "<br/>" + descflds[descflds.length-1];
