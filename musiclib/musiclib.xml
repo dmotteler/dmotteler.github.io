@@ -2326,6 +2326,17 @@
     <voice gdid="17gOkNIUcQweVnmk3-Qf90k5swtr6a3SK" mods="mix" path="TTS/music/When I'm Sixty Four" voice="mix" />
     </tracks>
   </song>
+  <song id="1084" name="When Irish Eyes Are Smiling">
+    <arranger>SPEBSQSA</arranger>
+    <category>Current</category>
+    <composer>Ernest R. Ball</composer>
+    <lyricist>Graff/Olcott</lyricist>
+    <copyright>SPEBSQSA</copyright>
+    <crdate>1988</crdate>
+    <key>D</key>
+    <words>When Irish Eyes Are Smiling</words>
+    <sheet gdid="1kxIFQw1_VtMU1pY27LKHaAcktD3NFwGs" sheet="Free HOH/When Irish Eyes Are Smiling (HOH).pdf" />
+  </song>
   <song id="1153" name="Sunshine of Your Smile, The">
     <category>Old</category>
     <arranger>Tom Gentry</arranger>
