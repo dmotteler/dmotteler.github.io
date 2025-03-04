@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id="doctitle">Rehearsal - March 04, 2025 06:00PM</title>
+<style>
+table { border: 5px solid black; border-spacing: 0px;
+    font-family: Arial; font-size: 18px; font-weight: bold; }
+td { border: 1px solid black; padding: 6px; }
+tr:nth-child(even) { background: #CCC }
+tr:nth-child(odd) { background: #FFF }
+.tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
+.key, .pitch { text-align: center; }
+.hidden { display: none; }
+.qtet { background-color: blue !important; color: white !important; }
+.qtet a { background-color: blue !important; color: white !important; }
+.partsel { text-align: center; background: lightgreen; }
+@media print {
+  @page { size: letter portrait; margin: .5in; }
+  body { max-width: 5.5in; }
+  table { font-size: 12px; }
+  td { padding: 4px; }
+  .tabletitle { font-size: 18px; }
+}
+</style>
+
+<script>
+var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none', 'sheet'];
+var showVoice;
+function clickVoice() {
+    // set showVoice, then emulate clicking that voice selection
+    // to get the tracks showing or hidden. this is the init function
+    // when a downloaded cheat is executed.
+
+    showVoice = localStorage.getItem("defaultVoice");
+    if (! showVoice) { showVoice = "mix"; }
+    let buttonId = "#sel" + showVoice;
+    let butt = document.querySelector(buttonId);
+    butt.click();
+}
+function setvoice(el) {
+    let voice = el.value;
+    let clr = "." + voice;
+    // show the class we were called with (i.e., remove "hidden")
+    document.querySelectorAll(clr).forEach(node => { node.classList.remove("hidden") });
+
+    let others = new Set(voices);
+    others.delete(voice);
+    // don't show the rest of the classes
+    for (let v of others) {
+        let cla = "." + v;
+        document.querySelectorAll(cla).forEach(node => { node.classList.add("hidden") });
+    }
+    if (voice != "none" && voice != "sheet") {
+        localStorage.setItem("defaultVoice", voice);
+    }
+}
+</script>
+
+</head>
+<body onload="clickVoice()">
+    <table>
+        <tbody id="main_table"><tr><td colspan="3" class="tabletitle">Rehearsal - March 04, 2025 06:00PM</td></tr><tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1L_AjV4yRVMz4cqbIo8Roy_r585Y9lFX4">Sweet, Sweet Roses of Morn [Polecat I pg 11] : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1h0WqcAeLeVOjtpYyGkjbBAeHNHD_wZ2i">Sweet, Sweet Roses of Morn [Polecat I pg 11] : bari left</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1p2cNzepJX-5Jbn0RMrN_ojsUyi5JFn2G">Sweet, Sweet Roses of Morn [Polecat I pg 11] : mix</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=11DRRzwGh3cW6egerKrEiNnKb1ab2jGyE">Sweet, Sweet Roses of Morn [Polecat I pg 11] : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1p2cNzepJX-5Jbn0RMrN_ojsUyi5JFn2G">Sweet, Sweet Roses of Morn [Polecat I pg 11] : mix</a>
+</div><div class="none hidden">Sweet, Sweet Roses of Morn [Polecat I pg 11]</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=12N2l7Kg3kLf9HoOQFz5MwCOBh57SoAIr">Sweet, Sweet Roses of Morn [Polecat I pg 11] [sheet]</a></div>
+</td><td>Sweet, sweet roses of morn</td></tr>
+<tr class="song"><td class="key">Eb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=178ZV6EcHXivoDZd_cKbNe7U-MJ8KAwPa">O Danny Boy : Lead L Bass R</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1aSMmCTfCzpf_fJQVMzoioIBGYeVQcTh2">O Danny Boy : Bari pno L</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1XBhIEYE85jqOQw0LU_0e2-10eOKmlUEJ">O Danny Boy : Lead L Tenor R</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1Q-eWy3nxzgKLNu71Tp-_3rxmVKk-IH3b">O Danny Boy : Lead L Tenor R</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1WkIRXPSm4kU1-jsx-GCz3eSp2bPLEa_G">O Danny Boy : mix</a>
+</div><div class="none hidden">O Danny Boy</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1EtrZ__V_PwmAOKyn5W38Lqd60nrRZwJN">O Danny Boy [sheet]</a></div>
+</td><td>O Danny Boy</td></tr>
+<tr class="song"><td class="pitch">blow Ab</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1gSETIiivQx6_EL83VNPqixDW4KlqbVPx">Consider Yourself : Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1_g9QRy3I-tWRlf6mF7qT5xan7tnb-MBL">Consider Yourself : Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=110OuOwJK4W8dR9SADc-DRykAsmC1bkIb">Consider Yourself : Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=11Td0y6d1oxykBMZvRF8A_sL1THbustyd">Consider Yourself : Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1p0oQKvqGW-SWIfpzq8ClvIACC9mqbLMA">Consider Yourself : Mix</a>
+</div><div class="none hidden">Consider Yourself</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1-6uEbvLXXZszAJdvHxcdkLq3IvVt4ZiL">Consider Yourself [sheet]</a></div>
+</td><td>When you start in to frown</td></tr>
+<tr class="song"><td class="pitch">blow E</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1IrETZO9Kb8tQj30x-NeiJL7-Hsrw1a_k">Star-Spangled Banner, The : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1Aw5ELHNZCIAZsGxasilbXMJJvl2I-g8E">Star-Spangled Banner, The : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1urSUtpcbMn7IoRtilVewhz_ytjMreYX3">Star-Spangled Banner, The : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=13-cOJvOF37OOM34bvx4Y4gYIzYoka9DT">Star-Spangled Banner, The : tenor</a>
+</div><div class="mix">Star-Spangled Banner, The
+</div><div class="none hidden">Star-Spangled Banner, The</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1I0nmgz5yvgGlA1lAFe450iFQtgyplmvf">Star-Spangled Banner, The [sheet]</a></div>
+</td><td>Oh, say, can  you see</td></tr>
+<tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1NNWBS4h46Wh2Gerjs5IE9_NQFhdXHxJ1">When You're Smiling : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1QsM9LXZAqzUt5JBHhTv3hNTpyQlHlNat">When You're Smiling : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1-v6Cd5Z-p1yI5tLL-NjqbpBZ7YrU9Bvn">When You're Smiling : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1RbdhojEE-xBnretmcOJybd0lI3rqGxBo">When You're Smiling : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1m26Q16lWVWQFZAbEJ626HKYjLPT2G7_e">When You're Smiling : mix</a>
+</div><div class="none hidden">When You're Smiling</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1z4GLlFQDuPKr-qZMLzXKn0z2wXIkBLtF">When You're Smiling [sheet]</a></div>
+</td><td>It's no use to worry</td></tr>
+<tr class="song"><td class="key">D</td><td><div class="bass hidden">When Irish Eyes Are Smiling
+</div><div class="bari hidden">When Irish Eyes Are Smiling
+</div><div class="lead hidden">When Irish Eyes Are Smiling
+</div><div class="tenor hidden">When Irish Eyes Are Smiling
+</div><div class="mix">When Irish Eyes Are Smiling
+</div><div class="none hidden">When Irish Eyes Are Smiling</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1kxIFQw1_VtMU1pY27LKHaAcktD3NFwGs">When Irish Eyes Are Smiling [sheet]</a></div>
+</td><td>When Irish Eyes Are Smiling</td></tr>
+<tr class="song"><td class="key">Eb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1YpBuq6HJkhDdKRaxhRpab3WlY1qBNCdq">I Believe : Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1cb_cIwqoRBWePlcaYCQWz_FSk5tJKIT8">I Believe : Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=15842lj5Fwig3L8jK5s-NG1qVt6LyX81A">I Believe : Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=18sP_vEvMdVIG2kzVEF6PNOpYgk8vsUv5">I Believe : Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1eMQzlUIGRb2aHVmCJkQWAOid-OWrpnen">I Believe : Mix</a>
+</div><div class="none hidden">I Believe</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=18UPTb7c34v1w-zHcQjg7vbmCZN2uddcH">I Believe [sheet]</a></div>
+</td><td>I believe for ev'ry drop</td></tr>
+<tr class="song"><td class="key">Eb</td><td><div class="bass hidden">This Is My Country
+</div><div class="bari hidden">This Is My Country
+</div><div class="lead hidden">This Is My Country
+</div><div class="tenor hidden">This Is My Country
+</div><div class="mix">This Is My Country
+</div><div class="none hidden">This Is My Country</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1L8EMnvRtVg7APsexQI7XHWbzakzpsp7k">This Is My Country [sheet]</a></div>
+</td><td>This is my country</td></tr>
+</tbody>
+
+
+    <tfoot>
+    <tr>
+        
+        <td colspan="99">
+        <fieldset class="partsel">
+        <legend>Show voice</legend>
+         <input type="radio" id="seltenor" name="part" value="tenor" onclick="setvoice(this)">tenor
+         <input type="radio" id="sellead" name="part" value="lead" onclick="setvoice(this)">lead
+         <input type="radio" id="selbari" name="part" value="bari" onclick="setvoice(this)">bari
+         <input type="radio" id="selbass" name="part" value="bass" onclick="setvoice(this)">bass
+         <input type="radio" id="selmix" name="part" value="mix" onclick="setvoice(this)">mix
+         <input type="radio" id="selsheet" name="part" value="sheet" onclick="setvoice(this)">sheet
+         <input type="radio" id="selnone" name="part" value="none" onclick="setvoice(this)">none
+        </fieldset>
+        </td>
+     </tr>
+    </tfoot>
+</table>
+
+
+</body></html>
