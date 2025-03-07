@@ -2337,11 +2337,11 @@
     <words>When Irish Eyes Are Smiling</words>
     <sheet gdid="1kxIFQw1_VtMU1pY27LKHaAcktD3NFwGs" sheet="Free HOH/When Irish Eyes Are Smiling (HOH).pdf" />
     <tracks>
-    <voice gdid="19-YNCFRKpNzwAEZ17lYt8uwuVxH-EvuX" mods="tenor" path="tenor/wieas" voice="tenor" />
-    <voice gdid="1RYJnUNrvvpjjS4dKH_UcI08elsEg4cVn" mods="bari" path="bari/wieas" voice="bari" />
-    <voice gdid="1TG087O8so-vLmDn9NUYiRHYvY6r74Vc6" mods="bass" path="bass/wieas" voice="bass" />
-    <voice gdid="1GmKMwh6V3N7q5QKh_r6DCBoBqfinahn3" mods="lead" path="lead/wieas" voice="lead" />
-    <voice gdid="1c83XmnuRMZLlJE4NoU2uwkA0Vvz0ViGx" mods="mix" path="mix/wieas" voice="mix" />
+    <voice gdid="1_ENrVorCgFeIVVZgfFy08JbqzHpPf4Vc" mods="tenor" path="tenor/When Irish Eyes Are Smiling - Tenor.mp3" voice="tenor" />
+    <voice gdid="1wp28kUhMcGJbJPn75Ml1G7QIHECbrOu1" mods="bari" path="bari/When Irish Eyes Are Smiling - Baritone.mp3" voice="bari" />
+    <voice gdid="1zKUAQjpfBWIkeDATetExd7OlQ-1n7X88" mods="bass" path="bass/When Irish Eyes Are Smiling -Bass.mp3" voice="bass" />
+    <voice gdid="1HckPJJnWulTer6JeDrXW-wwT2Rn27PQr" mods="lead" path="lead/When Irish Eyes Are Smiling - Lead.mp3" voice="lead" />
+    <voice gdid="1yF-BiCoVg8IR9mldENGd7kH4CU7f_4sS" mods="mix" path="mix/When Irish Eyes Are Smiling - MIX.mp3" voice="mix" />
     </tracks>
   </song>
   <song id="1153" name="Sunshine of Your Smile, The">
