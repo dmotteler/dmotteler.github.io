@@ -2450,6 +2450,13 @@
     <copyright>1940</copyright>
     <key>Eb</key>
     <words>This is my country</words>
+    <tracks>
+    <voice gdid="1hdbdgz2Nx0QDmSMMPPdZjDgz-u8c_Sfm" mods="tenor" path="tenor/This Is My Country - Tenor.mp3" voice="tenor" />
+    <voice gdid="1gNn0h0weCB--a73zgs8vynK7OX5drQma" mods="bari" path="bari/This Is My Country - Baritone.mp3" voice="bari" />
+    <voice gdid="14r_Cv-HX8gjPaniz4MUfkWf-7nsYn8fs" mods="bass" path="bass/This Is My Country - Bass.mp3" voice="bass" />
+    <voice gdid="1Z2fOjC2zECgIXsAXY4SU_WbAgHpGD9OM" mods="lead" path="lead/This Is My Country - Lead.mp3" voice="lead" />
+    <voice gdid="19DJ181UZ2gdxKRg5ey3ClgKGipySkYTz" mods="mix" path="mix/This Is My Country - MIX.mp3" voice="mix" />
+    </tracks>
     <sheet gdid='1L8EMnvRtVg7APsexQI7XHWbzakzpsp7k' sheet='Tuners Music/This Is My Country.pdf' />
   </song>
   <song id="1105" name="This Land Is Your Land">
