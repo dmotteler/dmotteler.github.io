@@ -2457,7 +2457,7 @@
     <voice gdid="1Z2fOjC2zECgIXsAXY4SU_WbAgHpGD9OM" mods="lead" path="lead/This Is My Country - Lead.mp3" voice="lead" />
     <voice gdid="19DJ181UZ2gdxKRg5ey3ClgKGipySkYTz" mods="mix" path="mix/This Is My Country - MIX.mp3" voice="mix" />
     </tracks>
-    <sheet gdid='1L8EMnvRtVg7APsexQI7XHWbzakzpsp7k' sheet='Tuners Music/This Is My Country.pdf' />
+    <sheet gdid='0Bxd7i2Hm5BiPTF9YNFR6ODhGWWM' resource_key='0-o4OAlLZ131X8Si9NfoEEvw' sheet='Tuners Music/sheet music/ThisIsMyCountry.pdf' />
   </song>
   <song id="1105" name="This Land Is Your Land">
     <category>Old</category>
