@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Centralia Point" when="March 20, 2025 06:15PM" dtndx="202503201815" songlist="1143 1007 1075 1182 1083 1116 1124 1084 1196 1160 1181 1163 1184 1010" qtetSongs="1083 1160" />
+  <event where="Rehearsal" when="March 18, 2025 06:00PM" dtndx="202503181800" songlist="1110 1163 1182 1143 1007 1075 1116 1124 1084 1196 1181 1184 1010" />
   <event where="Rehearsal" when="March 11, 2025 06:00PM" dtndx="202503111800" songlist="1057 1163 1193 1026 1038 1084 1143 1082" />
   <event where="Village Concepts" when="March 06, 2025 06:15PM" dtndx="202503061815" songlist="1143 1007 1075 1182 1083 1116 1124 1032 1196 1160 1181 1163 1184 1010" qtetSongs="1083 1160" />
   <event where="Rehearsal" when="March 04, 2025 06:00PM" dtndx="202503041800" songlist="1057 1163 1143 1038 1082 1084 1002 1026" />
