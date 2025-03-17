@@ -55,6 +55,14 @@ obsgdid['1IRYrgRlzgbcyQ7hu1xfWc2lkg7NrdoX6'] = '1YKD1c-oxbkr2lLA28atGUmK8jkltwyZ
 obsgdid['1S-dzHE_oUwteBE8KfXScReLITLa_VBnu'] = '13lhzUmdn3nhfB2uQS6Glf3hUtn3SqYMN'
 obsgdid['1X2asVALTAHjZYkjJSV3v0rYvBOlnX6Bb'] = '1d7c_d9KjgWZTOXPJfn8SIGIrCudWQxBV'
 
+#map an obs version of tenor for Star Spangled Banner
+obsgdid['13-cOJvOF37OOM34bvx4Y4gYIzYoka9DT'] = '1pDkMZOFHUhlwgFVTpQvuUdBETPqTUsoM'
+
+# map an obsolete version of sheet for This Is My Country
+# NOTE: this should have a resource key, '0-o4OAlLZ131X8Si9NfoEEvw'. I'm hoping
+# we don't need it enough to do it "right"
+obsgdid['1L8EMnvRtVg7APsexQI7XHWbzakzpsp7k'] = '0Bxd7i2Hm5BiPTF9YNFR6ODhGWWM'
+
 def loadlib(lib_xml):
     global musiclib
 
@@ -263,7 +271,7 @@ def parsecheat(lines, fn, musiclib):
                     n = track.find('">')
                 if n < 0:
                     sys.exit("couldn't find end of gdid in {} (row {} of {})".format(track, rownum, fn))
-            
+
                 # isolate it, and get the associated song name
                 sid = None
                 gdid = track[:n]
@@ -271,6 +279,7 @@ def parsecheat(lines, fn, musiclib):
                     sid = musiclib['bygdid'][gdid]
                 elif gdid in obsgdid:
                     gdid = obsgdid[gdid]
+
                     if gdid in musiclib['bygdid']:
                         sid = musiclib['bygdid'][gdid]
                 else:
