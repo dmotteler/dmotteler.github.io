@@ -630,6 +630,9 @@
     <category>Current</category>
     <key>F</key>
     <words>Do-na no-bis</words>
+    <tracks>
+      <voice gdid="1CSL2-dOpQLt96rROfiHtaX0K8h47qMmg" mods="MIX" path="mix/Dona Nobis Pacem.mp3" voice="mix" />
+    </tracks>
     <sheet gdid="1wVn9dDqhBZnR5u2hg5ofVASavIfdG9D3" sheet="Dona Nobis Pacem.pdf" />
   </song>
   <song id="1059" name="Down By The Old Mill Stream">
