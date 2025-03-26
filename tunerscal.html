@@ -1,6 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head><title>Tuners Calendar</title>
 <style>
+caption { 
+    font: bold 24px Arial, sans-serif;
+    color: black;
+    background-color: lightgreen;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 label { font: bold 18px Arial, sans-serif; }
 table { font: bold 18px Arial, sans-serif; }
 .dow { font-size: larger; color: red; }
@@ -52,6 +59,9 @@ function parseICalDate(dtin) {
     }
 }
 
+var caldesc = "Tuners Calendar";
+var calmod = "";
+
 var events = [];
 function init() {
     let icsprom = getics("tuners2025.ics");
@@ -84,10 +94,19 @@ function init() {
             }
 
             let flds = line.split(":");
-            att = flds.shift().toLowerCase();
+            att = flds.shift().toLowerCase().split(";");
+            // days-long events have dtstart;value=date:20251004. ditto dtend.
+            // others have dtstart:20250307T023000Z. we don't care about value=date.
+            // the att we want is in att[0]
+            att = att[0];
+
             val = flds.join(":");
 
             // console.log(`${n} ${att} - ${val}`);
+            if (att == "x-wr-caldesc") {
+                caldesc = val;
+            }
+
             if (inEvent == true) {
                 if (line == "END:VEVENT") {
                     events.push(_ev);
@@ -97,6 +116,9 @@ function init() {
                     if (timefields.includes(att)) {
                         _ev[att] = parseICalDate(val);
                         // console.log(`${val} => ${_ev[att]}`);
+                        if (att = "dtstamp") {
+                            calmod = _ev[att];
+                        }
                     } else {
                         _ev[att] = val;
                     }
@@ -141,6 +163,7 @@ function makelist(el) {
     let sixsp = "&nbsp;".repeat(6);
 
     let html = "<table id='evttable'>";
+    html += `<caption>${caldesc}, updated ${formatDate(calmod, "%B %d, %Y at %H:%M")}</caption>`;
     let pcl, summ;
     let mo, strt;
     for (let _ev of events) {
