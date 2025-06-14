@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id="doctitle">Corbet Theater - June 16, 2025 06:00PM</title>
+<style>
+table { border: 5px solid black; border-spacing: 0px;
+    font-family: Arial; font-size: 18px; font-weight: bold; }
+td { border: 1px solid black; padding: 6px; }
+tr:nth-child(even) { background: #CCC }
+tr:nth-child(odd) { background: #FFF }
+.tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
+.key, .pitch { text-align: center; }
+.hidden { display: none; }
+.qtet { background-color: blue !important; color: white !important; }
+.qtet a { background-color: blue !important; color: white !important; }
+.partsel { text-align: center; background: lightgreen; }
+@media print {
+  @page { size: letter portrait; margin: .5in; }
+  body { max-width: 5.5in; }
+  table { font-size: 12px; }
+  td { padding: 4px; }
+  .tabletitle { font-size: 18px; }
+}
+</style>
+
+<script>
+var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none', 'sheet'];
+var showVoice;
+function clickVoice() {
+    // set showVoice, then emulate clicking that voice selection
+    // to get the tracks showing or hidden. this is the init function
+    // when a downloaded cheat is executed.
+
+    showVoice = localStorage.getItem("defaultVoice");
+    if (! showVoice) { showVoice = "mix"; }
+    let buttonId = "#sel" + showVoice;
+    let butt = document.querySelector(buttonId);
+    butt.click();
+}
+function setvoice(el) {
+    let voice = el.value;
+    let clr = "." + voice;
+    // show the class we were called with (i.e., remove "hidden")
+    document.querySelectorAll(clr).forEach(node => { node.classList.remove("hidden") });
+
+    let others = new Set(voices);
+    others.delete(voice);
+    // don't show the rest of the classes
+    for (let v of others) {
+        let cla = "." + v;
+        document.querySelectorAll(cla).forEach(node => { node.classList.add("hidden") });
+    }
+    if (voice != "none" && voice != "sheet") {
+        localStorage.setItem("defaultVoice", voice);
+    }
+}
+</script>
+
+</head>
+<body onload="clickVoice()">
+    <table>
+        <tbody id="main_table"><tr><td colspan="3" class="tabletitle">Corbet Theater - June 16, 2025 06:00PM</td></tr><tr class="song"><td class="key">C</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1GAsWrpbwVc-gaNQNsridTl-WbvG6hLwo">Kokomo : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1t6kXJxigoNrax6B1PBf8mluKynsc6xPo">Kokomo : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1bBFARiRNM-_EplRw5s6AF-faKtjlFlqT">Kokomo : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1WVys6gHawzJC_92dqq8z2r4mgULbvmqP">Kokomo : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1kTwCh0B6NIF7hFnutB3caN6pSU-EqGav">Kokomo : mix</a>
+</div><div class="none hidden">Kokomo</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1KQgpa_XUY0JWy9kKnaQ05EHBWaH_gaP8">Kokomo [sheet]</a></div>
+</td><td>Aruba, Jamaica, ooh I wanna take ya</td></tr>
+<tr class="song"><td class="pitch">blow Ab</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1gSETIiivQx6_EL83VNPqixDW4KlqbVPx">Consider Yourself : Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1_g9QRy3I-tWRlf6mF7qT5xan7tnb-MBL">Consider Yourself : Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=110OuOwJK4W8dR9SADc-DRykAsmC1bkIb">Consider Yourself : Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=11Td0y6d1oxykBMZvRF8A_sL1THbustyd">Consider Yourself : Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1p0oQKvqGW-SWIfpzq8ClvIACC9mqbLMA">Consider Yourself : Mix</a>
+</div><div class="none hidden">Consider Yourself</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1-6uEbvLXXZszAJdvHxcdkLq3IvVt4ZiL">Consider Yourself [sheet]</a></div>
+</td><td>When you start in to frown</td></tr>
+<tr class="song"><td class="key">C</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1QAeFRLooBYVrW6PEmokKgjrSqrKtmxU3">King of the Road : mix</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1QAeFRLooBYVrW6PEmokKgjrSqrKtmxU3">King of the Road : mix</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1QAeFRLooBYVrW6PEmokKgjrSqrKtmxU3">King of the Road : mix</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1QAeFRLooBYVrW6PEmokKgjrSqrKtmxU3">King of the Road : mix</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1QAeFRLooBYVrW6PEmokKgjrSqrKtmxU3">King of the Road : mix</a>
+</div><div class="none hidden">King of the Road</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=18ZZixqH07WB-evIEgZtq1SWNtIo7CPEk">King of the Road [sheet]</a></div>
+</td><td>(bass) ba-bum</td></tr>
+<tr class="song"><td class="key">Ab</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1U9iC65_3UepjA7gSaXEfmOQ84EkH7nw9">In My Room : BS</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1jteY1DQX_ricidkzeMygSK4t1djOMp2b">In My Room : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1kwW8n1Ulxdpd82eMtr2JQ90XrsGAX9AS">In My Room : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1w2dltbwOtNUm8rJ9d2AVpVX2CewhCFKH">In My Room : tenor</a>
+</div><div class="mix">In My Room
+</div><div class="none hidden">In My Room</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=130laHfzcMzUd_p7AKtCPbgZJwLzdFPsn">In My Room [sheet]</a></div>
+</td><td>There's a room</td></tr>
+<tr class="song"><td class="pitch">blow G</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1buYRREwbQ-yRK_TxaGX7bNA1eDX7skdM">Who Put the Bomp : Bass</a><br>
+<a href="https://drive.google.com/open?id=1M-UPhXrYR_RlccN35joGQx3JXZTjj3an">Who Put the Bomp : no Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1OUWKjdVkhUPHu6H1th2Uy_Xjxd_aMgyj">Who Put the Bomp : Bari</a><br>
+<a href="https://drive.google.com/open?id=1H7xDxmuVN60pKz3ICQc1zjf7L1xvdAtF">Who Put the Bomp : no Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=11wIAoooLi8r-VB_iLAi7Ui0qcvbIy_Eq">Who Put the Bomp : Lead</a><br>
+<a href="https://drive.google.com/open?id=1aShvufTVl_CaO0SPxb7RH_fmVPm_pXpz">Who Put the Bomp : no Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1Q_Kk_zFEOYXl5UCJK4OEZM1oKhzQBmkX">Who Put the Bomp : Tenor</a><br>
+<a href="https://drive.google.com/open?id=18K8GPSK5C72zJBjD4FqegnsIdQ2vGSre">Who Put the Bomp : no Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1MwJ64aAqhSCPae5BgYs_evaiccIUEGRJ">Who Put the Bomp : mix</a>
+</div><div class="none hidden">Who Put the Bomp</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1X8I5BP_dmg8ZdCf5TfQbT57MME2v6exd">Who Put the Bomp [sheet]</a></div>
+</td><td>I'd like to thank the guy</td></tr>
+<tr class="song"><td class="key">Ab</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=13fo7gTci-jSCUDbCXv9VHAHzJ3CSARVb">Under The Boardwalk : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1-BD4AzzGMm7fZwBXt1CNfw2inwu5hQMN">Under The Boardwalk : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1NyZqboGqha0yq3VdtH9GQiVR3bBNUqp6">Under The Boardwalk : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1OU5QefdzbsOP9SzTwGSjkNcJwFImz_8e">Under The Boardwalk : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1Z1aFNYeH69Yuoesag9CqpSwwRHfhLTFX">Under The Boardwalk : mix - faster</a>
+</div><div class="none hidden">Under The Boardwalk</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=139LgNbmst02dQKyh8c4CPeWMEDHgMVIv">Under The Boardwalk [sheet]</a></div>
+</td><td>Bm bm bm bm bm bm</td></tr>
+<tr class="song"><td class="pitch">blow E</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=12UBFJQhJeJusxUEdbkvpCSlL0OZ-dXWj">Shut De Do : mix</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=12UBFJQhJeJusxUEdbkvpCSlL0OZ-dXWj">Shut De Do : mix</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=12UBFJQhJeJusxUEdbkvpCSlL0OZ-dXWj">Shut De Do : mix</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1HG5PWeB8JuMB5ZVCeUl61eDA9wJhObDh">Shut De Do : Tenor L Final</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=12UBFJQhJeJusxUEdbkvpCSlL0OZ-dXWj">Shut De Do : mix</a>
+</div><div class="none hidden">Shut De Do</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=135FY0ulKfh4H1GOCBiEvFHWaee8yQmYT">Shut De Do [sheet]</a></div>
+</td><td>oh-oh-oh Shut de do,</td></tr>
+<tr class="song"><td class="key">G</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1gu4oljYkYmPEid5OxbCXdJE1UvSJBrAr">My Girl : Bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1tdzx0PpMTugXdLQQJ4EEvbzbfjCYyvaZ">My Girl : Bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1fHJqhAxURDfRYX9tZzLPxSC0IU6IRMZH">My Girl : Lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1hvYOeyvyyCZ2iODCurPyPdnS0i82D8iN">My Girl : Tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1GcU-8Nw-zTGeNrhMFEHHDYTuQFTt6Rnu">My Girl : Mix</a>
+</div><div class="none hidden">My Girl</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=133otuTJeoP8US6V1NUHTygk7FDdcvDX7">My Girl [sheet]</a></div>
+</td><td>doo doo doo doo doo doo</td></tr>
+<tr class="song"><td class="key">Bb</td><td><div class="bass hidden"><a href="https://drive.google.com/open?id=1NNWBS4h46Wh2Gerjs5IE9_NQFhdXHxJ1">When You're Smiling : bass</a>
+</div><div class="bari hidden"><a href="https://drive.google.com/open?id=1QsM9LXZAqzUt5JBHhTv3hNTpyQlHlNat">When You're Smiling : bari</a>
+</div><div class="lead hidden"><a href="https://drive.google.com/open?id=1-v6Cd5Z-p1yI5tLL-NjqbpBZ7YrU9Bvn">When You're Smiling : lead</a>
+</div><div class="tenor hidden"><a href="https://drive.google.com/open?id=1RbdhojEE-xBnretmcOJybd0lI3rqGxBo">When You're Smiling : tenor</a>
+</div><div class="mix"><a href="https://drive.google.com/open?id=1m26Q16lWVWQFZAbEJ626HKYjLPT2G7_e">When You're Smiling : mix</a>
+</div><div class="none hidden">When You're Smiling</div>
+<div class="sheet hidden"><a href="https://drive.google.com/open?id=1z4GLlFQDuPKr-qZMLzXKn0z2wXIkBLtF">When You're Smiling [sheet]</a></div>
+</td><td>It's no use to worry</td></tr>
+</tbody>
+
+
+
+    <tfoot>
+    <tr>
+        
+        <td colspan="99">
+        <fieldset class="partsel">
+        <legend>Show voice</legend>
+         <input type="radio" id="seltenor" name="part" value="tenor" onclick="setvoice(this)">tenor
+         <input type="radio" id="sellead" name="part" value="lead" onclick="setvoice(this)">lead
+         <input type="radio" id="selbari" name="part" value="bari" onclick="setvoice(this)">bari
+         <input type="radio" id="selbass" name="part" value="bass" onclick="setvoice(this)">bass
+         <input type="radio" id="selmix" name="part" value="mix" onclick="setvoice(this)">mix
+         <input type="radio" id="selsheet" name="part" value="sheet" onclick="setvoice(this)">sheet
+         <input type="radio" id="selnone" name="part" value="none" onclick="setvoice(this)">none
+        </fieldset>
+        </td>
+     </tr>
+    </tfoot>
+</table>
+
+
+</body></html>
