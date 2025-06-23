@@ -1,6 +1,9 @@
 /*
-    $Id: getqv.js,v 1.1 2021/09/25 17:59:48 dfm Exp $
+    $Id: getqv.js,v 1.2 2025/06/23 23:40:49 dmott Exp $
     $Log: getqv.js,v $
+    Revision 1.2  2025/06/23 23:40:49  dmott
+    support added for param with no value
+
     Revision 1.1  2021/09/25 17:59:48  dfm
     Initial revision
 

@@ -1,6 +1,21 @@
+<!--
+
+    $Id: svgdoily.html,v 1.2 2025/06/23 23:39:12 dmott Exp dmott $
+    $Log: svgdoily.html,v $
+    Revision 1.2  2025/06/23 23:39:12  dmott
+    improve handling of non-prime number of points
+    getqv gives us a list - use first element
+
+    Revision 1.1  2022/06/13 23:13:29  dfm
+    Initial revision
+
+
+    use svg to display an n-point spinning doily
+-->
 <!DOCTYPE html>
 <html><head><title>svg doilies</title>
 <style>
+.hidden { display: none; }
 .spinit { animation: spin 4s linear infinite; }
 
 @keyframes spin {
@@ -10,64 +25,158 @@
 </style>
 <script src="getqv.js"></script>
 <script>
+var animel;
+var x = [], y = []; // x, y coords for all points
+
+// factors function from https://stackoverflow.com/questions/22130043/trying-to-find-factors-of-a-number-in-js
+const factors = number => [...Array(number + 1).keys()].filter(i=>number % i === 0);
+function init() {
+    animel = document.querySelector(".spinit");
+    // the <input>s have default values built in. if the
+    // url gives a value for any of them, replace the 
+    // default value in the <input>
+    let nparg =   getQueryVariable('np', "")[0];
+    let rarg =    getQueryVariable('r', "")[0];
+    let spinarg = getQueryVariable('spin', "")[0];
+
+    if (nparg + rarg + spinarg == "") {
+        // if no url args, unhide the inputs div
+        document.querySelector("#argdiv").classList.remove("hidden");
+        // add mouseenter and mouseleave event listeners to the input elements
+        let inels = document.querySelectorAll("input[type='number']");
+        for (inel of inels) {
+            inel.addEventListener("mouseenter", animpause);
+            inel.addEventListener("mouseleave", animrun);
+        }
+        // need all 3 values when no url args
+        np = +document.querySelector("#numpts").value;
+        r = +document.querySelector("#radius").value;
+        spin = +document.querySelector("#spin").value;
+    } else {
+        // at least one url arg. if not in url, use the value from the <input>
+        if (nparg != "") { document.querySelector("#numpts").value = nparg; }
+        if (rarg != "") { document.querySelector("#radius").value = rarg; }
+        if (spinarg != "") { document.querySelector("#spin").value = spinarg; }
+        np = nparg == "" ? +document.querySelector("#numpts").value : nparg;
+        r = rarg == "" ? +document.querySelector("#radius").value : rarg;
+        spin = spinarg == ""? +document.querySelector("#spin").value : spinarg;
+    }
+    console.log(`np ${np} r ${r} spin ${spin}`);
+    doit();
+}
+function doline(n0, dn, maxdn, np) {
+    // create a polyline, starting with point n0 and advancing by dn.
+    // return the svg for the line as a string.
+
+    let colors = [ 'black', 'green', 'orange', 'firebrick', 'blue', 'deeppink', 'purple',
+    'darkmagenta', 'darkgrey', 'tomato', 'saddlebrown', 'forestgreen', 'red', ];
+
+    let xs = x[n0].toFixed(2), ys = y[n0].toFixed(2);
+    let p = `%3Cpolyline points='${xs},${ys}`;
+
+    let nseg = 0;
+    let n = n0;
+
+    do {
+        // point 0 has been added. set n to the index for the next point coordinates.
+        n = n + dn;
+
+        // when n is np or more, reduce it by np
+        if (n >= np) {
+            n = n - np;
+        }
+
+        // add point n to the polyline, bump seg count.
+        let xs = x[n].toFixed(2), ys = y[n].toFixed(2);
+        p += ` ${xs},${ys}`;
+        nseg++;
+        if (nseg > np) {
+            console.log(`nseg ${nseg} > np ${np}`);
+            return null;
+        }
+    } while ( n != n0 && dn != maxdn);
+    // dn == maxdn only for diameters.
+
+    //  back where we started this line. close out and return the line.
+    let cndx = dn % colors.length;
+    let c = colors[cndx];
+    p += `' stroke='${c}' fill='none' stroke-width='2'/%3E\n`;
+
+    // put vertex number by each point
+    // for (let n = 0; n < np; n++) { p += `%3Ctext x='${x[n]}' y='${y[n]}' class='n0'%3E${n}%3C/text%3E`; }
+    console.log(`doline n0 ${n0} dn ${dn} maxdn ${maxdn} np ${np} color ${c}`);
+
+    return p;
+}
+
 function doit() {
-    var np = +getQueryVariable('np', 17);
-    var r = +getQueryVariable('r', 350);
-    var spin = getQueryVariable('spin', 5);
+    // get current values from each <input>, convert to number.
+    let np = +document.querySelector("#numpts").value;
+    let r = +document.querySelector("#radius").value;
+    let spin = +document.querySelector("#spin").value;
     document.querySelector(".spinit").style.animationDuration = spin + "s";
+    console.log(`doit np ${np}, r ${r}, spin ${spin}`);
 
-    var colors = ['red', 'green', 'blue', 'black', 'orange', 'purple', 'darkgrey'];
+    let a = 0; // angle in radians
+    let da = 2.0 * Math.PI / np; // change in angle between successive points
+    let xc = r, yc = r; // circle center x, y coordinates
+    x = [], y = [];
 
-    var a = 0;
-    var da = 2.0 * Math.PI / np;
-    var xc = r;
-    var yc = r;
+    // factors returns both 1 and np, which we don't want. slice removes them.
+    let fax = factors(np).slice(1, -1);
 
-    var w = r + r;
-    var h = r + r;
-    console.log(`${np} points, radius ${r}`);
+    let maxdn = np / 2;
 
-    var x = [];
-    var y = [];
-    for (let n=0; n<np; n++) {
+    let w = r + r, h = r + r; // svg width, height
+
+    for (let n = 0; n < np; n++) {
         x.push(xc + r * Math.sin(a));
         y.push(yc + r * Math.cos(a));
         a = a + da;
     }
 
-    var dn = 1;
-    var maxdn = np/2;
-    var n = 0;
-
-    var svgtxt = `data:image/svg+xml;utf8,`;
-    svgtxt += `%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='${w}' height='${h}'%3E
+    let svgtxt = `data:image/svg+xml;utf8,
+%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='${w}' height='${h}'%3E
+%3Cstyle%3E .n0 { font: bold 24px serif; fill: red; } %3C/style%3E
 `;
-    let p = `%3Cpolygon points='`;
-    do {
-        n = n + dn;
-        if(n >= np) {
-            n = n - np;
-        }
-        p += x[n].toFixed(3) + "," + y[n].toFixed(3) + " ";
 
-        if(n == 0) {
-            var cndx = dn % colors.length;
-            var c = colors[cndx];
-            p += `' stroke='${c}' fill='none' stroke-width='1'/%3E\n`;
-            svgtxt += p;
-            dn = dn + 1;
-            if (dn > maxdn) {
-                break;
+    for (let dn = 1; dn < maxdn; dn++) {
+        svgtxt += doline(0, dn, maxdn, np);
+    }
+
+    if (fax.length != 0) {
+        // np is not prime (it has at least one factor other than 1 and itself).
+        // if 2 is a factor, we need to do the n/2-point loop beginning at point 1,
+        // and the np/2 diameters.
+        console.log(`non-prime fax ${fax}`);
+        if (fax.includes(2)) {
+            svgtxt += doline(1, 2, maxdn, np);
+            for (let n = 0; n < maxdn; n++) {
+                svgtxt += doline(n, maxdn, maxdn, np);
             }
-            p += `%3Cpolygon points='`;
         }
-    } while (true);
+    } else {
+        //  np is prime, so we're done.
+    };
     svgtxt += "%3C/svg%3E";
     document.querySelector(".spinit").src = svgtxt;
 }
+function animrun() { animel.style.animationPlayState = 'running'; }
+function animpause() { animel.style.animationPlayState = 'paused'; }
 </script>
 </head>
-<body onload="doit()">
+<body onload="init()">
+    <div id="argdiv" class="hidden">
+    <label for="numpts"># Points</label>
+    <input type="number" min="3" max="73" id="numpts" name="numpts" value="7" onchange="doit()"/>
+    <label for="radius">Radius px</label>
+    <input type="number" min="50" max="900" step="25" id="radius" name="radius" value="400" onchange="doit()"/>
+    <label for="spin">Spin secs</label>
+    <input type="number" min="0.0" max="120.0" id="spin" name="spin" value="0.0" onchange="doit()"/>
+    <br>
+    </div>
+    <br/>
+    <br/>
   <img class="spinit" src="delf.svg"/>
 </body>
 </html>
