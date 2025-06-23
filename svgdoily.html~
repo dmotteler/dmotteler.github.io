@@ -8,7 +8,7 @@
   100% { transform: rotate(360deg); }
 }
 </style>
-<script src="getqv.js"></script>
+<script src="musiclib/getqv.js"></script>
 <script>
 function doit() {
     var np = +getQueryVariable('np', 17);
