@@ -1600,7 +1600,7 @@
     <sheet gdid="1HIX7E3uPDRxQI7dDPwJlZPNBB_lEZlzH" sheet="For the Longest Time.pdf" />
   </song>
   <song id="1140" name="Lord's Prayer, The">
-    <category>Old</category>
+    <category>Current</category>
     <arranger>Joe Liles/Tom Gentry</arranger>
     <composer>Albert Hay Malotte</composer>
     <copies>25</copies>
@@ -1611,7 +1611,7 @@
     <source>BHS</source>
     <stockID>8525</stockID>
     <words>Our Father</words>
-    <sheet gdid='0Bxd7i2Hm5BiPN1RkWXR3dGZKcnc' resource_key='0-E0InIp0r5UosU78W1-WLCQ' sheet="Tuners Music/Finale/Lord's Prayer/LordsPrayer.pdf" />
+    <sheet gdid='1VTpyrFUhwOSsQIt6I0kt_W6ebbGNPXMC' sheet="Tuners Music/sheet music/Lord's Prayer - BHS.pdf" />
   </song>
   <song id="1106" name="Lost In The Stars">
     <category>Old</category>
