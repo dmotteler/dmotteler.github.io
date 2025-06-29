@@ -1612,6 +1612,13 @@
     <stockID>8525</stockID>
     <words>Our Father</words>
     <sheet gdid='1VTpyrFUhwOSsQIt6I0kt_W6ebbGNPXMC' sheet="Tuners Music/sheet music/Lord's Prayer - BHS.pdf" />
+    <tracks>
+    <voice gdid="1pI1qcLBOTVPBDkH8yhOG8hIyi07eZpMq" mods="Mix" path="mix/Lord's Prayer - mix piano.mp3" voice="mix" />
+    <voice gdid="1TuvD1Jc36j59XIlpvyTIcC-xqDGuJoqC" mods="Bass predominant" path="bass/Lord's Prayer - bass piano.mp3" voice="bass" />
+    <voice gdid="1cicS9mezzosW26gzQ_v7LZATGcwqnajA" mods="Bari predominant" path="bari/Lord's Prayer - bari piano.mp3" voice="bari" />
+    <voice gdid="1IK6_efYA6RYMiKWywmSdU4hj-HWr0ljQ" mods="Lead predominant" path="lead/Lord's Prayer - lead piano.mp3" voice="lead" />
+    <voice gdid="1JN0JSpo9QQMnb6CPyT0xFhvrf6rnRCeu" mods="Tenor predominant" path="tenor/Lord's Prayer - tenor piano.mp3" voice="tenor" />
+    </tracks>
   </song>
   <song id="1106" name="Lost In The Stars">
     <category>Old</category>
