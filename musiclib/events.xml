@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Colonial" when="July 10, 2025 06:15PM" dtndx="202507101815" songlist="1011 1116 1080 1095 1093 1028 1124 1195 1020 1083 1103 1016 1026 1038" qtetSongs="1093 1083" />
+  <event where="Rehearsal" when="July 08, 2025 06:00PM" dtndx="202507081800" songlist="1102 1055 1020 1011 1116 1080 1095 1028 1124 1195 1103 1016 1026 1038 1035" />
   <event where="Rehearsal" when="July 01, 2025 06:00PM" dtndx="202507011800" songlist="1102 1055 1175 1115 1002 1016 1183 1140 1020 1026 1038 1142 1082 1073 1197 1095 1035" />
   <event where="Rehearsal" when="June 24, 2025 06:00PM" dtndx="202506241800" songlist="1102 1055 1175 1050 1020 1082 1026 1038 1095 1142 1073 1140 1197 1002 1016 1183 1115 1035" />
   <event where="Village Concepts" when="June 19, 2025 06:15PM" dtndx="202506191815" songlist="1143 1080 1195 1007 1093 1116 1100 1124 1020 1083 1103 1028 1120 1184" qtetSongs="1093 1083" />
