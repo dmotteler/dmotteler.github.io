@@ -37,6 +37,8 @@ musiclib.xsl - rudimentary xslt formatter for the library.
 
 newsong.xml - copy and edit for each new song, if desired. has skeleton of all of the fields.
 
+obs.ini - maps obsolete gd ids to new ones for events.py
+
 ps.html     - was picksongs. allows selection of venue, date/time, and song list for an event.
 
 sm.html     - song matrix generator. accepts cat= on url to select categories to list.
