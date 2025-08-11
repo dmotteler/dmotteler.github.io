@@ -2355,6 +2355,14 @@
     <voice gdid="1yF-BiCoVg8IR9mldENGd7kH4CU7f_4sS" mods="mix" path="mix/When Irish Eyes Are Smiling - MIX.mp3" voice="mix" />
     </tracks>
   </song>
+  <song id="1085" name="Silhouettes">
+    <category>Quartet</category>
+    <arranger>Tom Gentry</arranger>
+    <composer>Slay/Crewe</composer>
+    <lyricist>Slay/Crewe</lyricist>
+    <key>G</key>
+    <words>(bass) dm, dm dm dm</words>
+  </song>
   <song id="1153" name="Sunshine of Your Smile, The">
     <category>Old</category>
     <arranger>Tom Gentry</arranger>
