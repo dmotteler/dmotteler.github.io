@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="SWW Fair TTT Chorus" when="August 15, 2025 06:30PM" dtndx="202508151830" songlist="1011 1124 1028 1195 1020 1157 1085 1180 1194 1116 1095 1083 1160 1080 1179 1076 1184" qtetSongs="1157 1085 1083 1160" />
+  <event where="Rehearsal" when="August 12, 2025 06:00PM" dtndx="202508121800" songlist="1102 1197 1020 1124 1028 1011 1195 1180 1194 1116 1095 1080 1179 1076 1184 1035" />
   <event where="Colonial" when="August 07, 2025 06:15PM" dtndx="202508071815" songlist="1011 1116 1080 1095 1117 1028 1124 1195 1020 1032 1103 1016 1026 1038" qtetSongs="1117 1032" />
   <event where="Rehearsal" when="August 05, 2025 06:00PM" dtndx="202508051800" songlist="1102 1055 1011 1116 1080 1095 1028 1124 1195 1020 1103 1016 1026 1038 1035" />
   <event where="Rehearsal" when="July 29, 2025 06:00PM" dtndx="202507291800" songlist="1102 1055 1175 1197 1002 1140 1194 1095 1193 1075 1183 1100 1026 1082 1035" />
