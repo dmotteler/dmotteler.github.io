@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Rehearsal" when="October 14, 2025 06:00PM" dtndx="202510141800" songlist="1174 1068 1156 1088 1202 1231 1219 1214 1122 1213 1077 1207 1216 1218 1211 1089 1217 1180 1179 1194 1100 1124 1032 1229 1075 1181 1076 1196 1103" />
   <event where="Centralia Point" when="October 02, 2025 06:15PM" dtndx="202510021815" songlist="1180 1179 1194 1100 1085 1124 1032 1229 1075 1198 1181 1076 1196 1103" qtetSongs="1085 1198" />
   <event where="Rehearsal" when="September 30, 2025 06:00PM" dtndx="202509301800" songlist="1180 1179 1194 1100 1085 1124 1032 1229 1075 1198 1181 1076 1196 1103" qtetSongs="1085 1198" />
   <event where="Garlic Festival Saturday" when="August 23, 2025 10:45PM" dtndx="202508232245" songlist="1038 1011 1124 1028 1195 1020 1229 1002 1180 1194 1116 1095 1075 1080 1181 1076 1103 1016" qtetSongs="1038 1229 1002 1075" />
