@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
-  <event where="Sharon Care" when="December 04, 2025 06:15PM" dtndx="202512041815" songlist="1174 1202 1231 1219 1170 1214 1122 1213 1077 1169 1207 1216 1208 1218 1164 1088 1211 1089 1217" qtetSongs="1170 1169 1164" />
+  <event where="Sharon Care Rev A" when="December 04, 2025 06:15PM" dtndx="202512041815" songlist="1174 1202 1208 1231 1170 1219 1122 1214 1213 1169 1077 1207 1216 1218 1164 1211 1089 1088 1217" qtetSongs="1170 1169 1164" />
   <event where="Vintage" when="November 06, 2025 06:15PM" dtndx="202511061815" songlist="1180 1179 1194 1100 1157 1124 1032 1229 1075 1198 1181 1076 1103 1016" qtetSongs="1157 1198" />
   <event where="Rehearsal" when="October 14, 2025 06:00PM" dtndx="202510141800" songlist="1174 1068 1156 1088 1202 1231 1219 1214 1122 1213 1077 1207 1216 1218 1211 1089 1217 1180 1179 1194 1100 1124 1032 1229 1075 1181 1076 1196 1103" />
   <event where="Centralia Point" when="October 02, 2025 06:15PM" dtndx="202510021815" songlist="1180 1179 1194 1100 1085 1124 1032 1229 1075 1198 1181 1076 1196 1103" qtetSongs="1085 1198" />
