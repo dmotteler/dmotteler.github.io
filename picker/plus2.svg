@@ -1,0 +1,6 @@
+<svg width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+  <!-- A plus sign in a box with rounded corners -->
+  <style> .bigit { font: bolder 30px serif; fill: black; } </style>
+  <rect x="2" y="2" width="32" height="32" rx="3" ry="3" fill="none" stroke="black" stroke-width="3"/>
+  <text x="10" y="28" class="bigit">+</text>
+</svg>

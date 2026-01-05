@@ -1,0 +1,58 @@
+<html><head><title>user song selection</title>
+<link rel="stylesheet" href="select.css" />
+<script>
+function init() {
+    // present list of songs for selection, to add one or
+    // more to the cheat sheet.
+
+    // build list of song names in order
+    // filter based on currently selected categories.
+    let catboxes = opener.document.querySelectorAll("input[name='cats']");
+    let curcatels = Array.from(catboxes).filter( cat => cat.checked );
+    let curcats = curcatels.map( el => el.value );
+
+    let ml = opener.musiclib;
+    let sl = opener.songlib;
+
+    function hascat(nam) {
+        let rv = false;
+        for (let sid of sl[nam]) {
+            if (ml[sid].hasOwnProperty('aliasfor')) {
+                sid = ml[sid]['aliasfor'];
+            }
+            for (let cat of ml[sid]['category']) {
+                if (curcats.includes(cat)) {
+                    rv = true;
+                    break;
+                }
+            }
+        }
+        return rv;
+    }
+    let songs = Object.keys(sl).filter( nam => hascat(nam) );
+    let sel = document.createElement("select");
+    sel.classList.add("select-css");
+    sel.multiple = true;
+    sel.size = 30;
+
+    for (let nam of songs.sort()) {
+        let opt = document.createElement("option");
+        opt.textContent = nam;
+        opt.value = sl[nam][0];
+        sel.append(opt);
+    }
+    document.querySelector("#ssel").append(sel)
+}
+function ret() {
+    let selected = document.querySelectorAll("option:checked");
+    opener.selectedSids = Array.from(selected).map( opt => opt.value );
+    window.close();
+}
+</script>
+</head>
+<body onload="init()">
+    <h3>Select Song(s)</h3>
+    <button class="select-css" onclick="ret()">Done</button>
+<div id="ssel"></div>
+</body>
+</html>

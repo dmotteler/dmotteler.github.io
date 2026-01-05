@@ -1,0 +1,22 @@
+table { border: 5px solid black; border-spacing: 0px;
+    font-family: Arial; font-size: 18px; font-weight: bold; }
+td { border: 1px solid black; padding: 6px; }
+tr:nth-child(even) { background: #CCC }
+tr:nth-child(odd) { background: #FFF }
+tr.selrow { background-color: yellow !important; }
+.tabletitle { background-color: lightgreen !important; text-align: center; font-size: 24px; border-bottom: solid 5px; }
+.key, .pitch { text-align: center; }
+.hidden { display: none; }
+.qtet { background-color: blue !important; color: white !important; }
+.qtet a { background-color: blue !important; color: white !important; }
+.partsel { text-align: center; background: lightgreen; }
+div.pad { padding 2px 40px; }
+@media print {
+  @page { size: letter portrait; margin: .5in; }
+  body { max-width: 5.5in; }
+  table { font-size: 12px; }
+  td { padding: 4px; }
+  .tabletitle { font-size: 18px; }
+}
+img { width:40px; height:40px; }
+div.pad { padding: 6px 55px; }
