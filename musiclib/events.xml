@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Rehearsal" when="January 06, 2026 06:00PM" dtndx="202601061800" songlist="1102 1055 1175 1115 1002 1182 1183 1163 1084 1026 1192 1142 1120 1073 1185 1095 1035" qtetSongs="" />
   <event where="Light the Night" when="January 03, 2026 05:15PM" dtndx="202601031715" songlist="1229 1075 1076 1103 1181 1080 1109 1011 1180 1179 1194 1124 1032 1158 1116 1028 1195 1184 1007 1016" qtetSongs="1109 1158" />
   <event where="Chehalis West" when="December 22, 2025 01:00PM" dtndx="202512221300" songlist="1174 1202 1208 1231 1170 1219 1122 1214 1213 1169 1077 1207 1218 1164 1216 1211 1089 1088 1217" qtetSongs="1170 1169 1164" />
   <event where="Rehearsal" when="December 16, 2025 06:00PM" dtndx="202512161800" songlist="1180 1179 1194 1100 1124 1032 1229 1075 1181 1076 1196 1103 1080 1192 1183 1178" />
