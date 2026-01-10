@@ -149,6 +149,13 @@
     <ordered>2009-12-15</ordered>
     <stockID>13548</stockID>
     <words>Almost heaven</words>
+    <tracks>
+      <voice gdid="1DyMnOKPHO_AY6wR8W5ZuCEs8jPYSGQWO" mods="tenor" path="Country Roads Tenor Predominant.mp3" voice="tenor" />
+      <voice gdid="1_UCZmq_kbo60Lf3dEbiW9yRtoELtjFdN" mods="lead" path="Country Roads Lead Predominant.mp3" voice="lead" />
+      <voice gdid="1T7YtCjvjeFVWmFK3B8WocmwQbSm5atWN" mods="bari" path="Country Roads Bari Predominant.mp3" voice="bari" />
+      <voice gdid="1yTYCALHeXniJJ3J8jfkEZaVQrxe2_Xlk" mods="bass" path="Country Roads Bass Predominant.mp3" voice="bass" />
+      <voice gdid="1bdYjpS7fNg0jAwVFZPRfdCA-81J1TqnN" mods="mix" path="Country Roads Mix.mp3" voice="mix" />
+    </tracks>
     <sheet gdid='1TUfq8pSnoF-izTEAkEZtnJUUTpiJD8hB' sheet='Tuners Music/CountryRoads.pdf' />
   </song>
   <song id="1201" name="Away In a Manger">
