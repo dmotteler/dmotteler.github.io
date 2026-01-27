@@ -4,6 +4,7 @@ import sys, os
 import xml.etree.ElementTree as ET
 from datetime import datetime
 import re
+import urllib.request
 
 # fn of cheat to add is argv[1]
 fn = sys.argv[1]
@@ -52,15 +53,25 @@ with open(fn, "r") as fo:
 
     newevent = {'when': when, 'where':where, 'songlist':songlist, 'qtetSongs':qtetSongs}
 
-    # get the current list of events from the git repository and parse it
-    evfn = os.path.expanduser("~/gitpages/musiclib/events.xml")
-    # evfn = os.path.expanduser("events.xml")
-    tree = ET.parse(evfn)
+    # get the xml for the current list of events and parse it
+    # use the file in cwd - implies we'll eventually just execute in gitpages/musiclb
+    evfn = "events.xml"
+    with open(evfn, "r") as fo:
+        xml = fo.read()
+
+    # url = "https://dmotteler.github.io/musiclib/events.xml"
+    # req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    # f = urllib.request.urlopen(req)
+    # xml = f.read()
+    # evfn = url
+    # print("\nread {} bytes from {}".format(len(xml), url))
+
+    tree = ET.fromstring(xml)
 
     # make a dict of event dicts, indexed by event yyyymmddhhmm
     eventlist = {}
     repls = []
-    for ev in tree.getroot().findall("event"):
+    for ev in tree.findall("event"):
         d = ev.attrib
         # get the dtndx, removing it from the event dict. parse into datetime.
         dtndx = d.pop('dtndx')
