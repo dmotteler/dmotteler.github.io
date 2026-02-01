@@ -1,0 +1,8 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- A upload icon in a box with rounded corners -->
+  <rect x="0" y="0" width="32" height="32" rx="3" ry="3" fill="none" stroke="black" stroke-width="3"/>
+  <path d="M 7 20 L 7 24 A 3 3 0 0 0 10 27 L 22 27 A 3 3 0 0 0 25 24 L 25 20"
+        fill="none" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M 16 6 L 16 24 M 10 10 L 16 6 L 22 10"
+        fill="none" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+</svg>

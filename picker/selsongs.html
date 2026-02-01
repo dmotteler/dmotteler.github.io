@@ -1,9 +1,28 @@
 <html><head><title>user song selection</title>
-<link rel="stylesheet" href="select.css" />
 <script>
+var sids = [];
+function songsel(el) {
+    let sid = el.value;
+    let nam = opener.musiclib[sid].name;
+    let sel = el.checked;
+    if (sel) {
+        let n = sids.indexOf(sid);
+        if (n == -1) {
+            sids.push(sid);
+        }
+    } else {
+        let n = sids.indexOf(sid);
+        if (n > -1) {
+            sids.splice(n, 1);
+        }
+    }
+    console.log(`${sid} ${nam} ${sids}`);
+}
 function init() {
     // present list of songs for selection, to add one or
     // more to the cheat sheet.
+
+    sids = [...opener.selectedSids];
 
     // build list of song names in order
     // filter based on currently selected categories.
@@ -29,30 +48,43 @@ function init() {
         }
         return rv;
     }
+
+    // build the list of songs in the selected categories
     let songs = Object.keys(sl).filter( nam => hascat(nam) );
-    let sel = document.createElement("select");
-    sel.classList.add("select-css");
-    sel.multiple = true;
-    sel.size = 30;
+    const fldset = document.querySelector("fieldset");
 
     for (let nam of songs.sort()) {
-        let opt = document.createElement("option");
-        opt.textContent = nam;
-        opt.value = sl[nam][0];
-        sel.append(opt);
+        const label = document.createElement('label');
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        let sid = opener.songlib[nam][0];
+        checkbox.value = sid;
+        checkbox.checked = sids.indexOf(sid) >= 0;
+        checkbox.addEventListener("click", ev => songsel(ev.target));
+
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(' ' + nam)); // Add a space for readability
+
+        const br = document.createElement("br");
+        label.appendChild(br);
+
+        // Append the label (containing the checkbox) to the fieldset
+        fldset.appendChild(label);
     }
-    document.querySelector("#ssel").append(sel)
 }
 function ret() {
-    let selected = document.querySelectorAll("option:checked");
-    opener.selectedSids = Array.from(selected).map( opt => opt.value );
+    console.log(`leaving with ${sids}`);
+    let ssel = window.opener.document.querySelector("#ssel");
+    ssel.innerText = sids.join(",");
     window.close();
 }
 </script>
 </head>
 <body onload="init()">
-    <h3>Select Song(s)</h3>
-    <button class="select-css" onclick="ret()">Done</button>
-<div id="ssel"></div>
+<button onclick="ret()">Done</button>
+<fieldset id="songs">
+ <legend>Select song(s)</legend>
+</fieldset>
 </body>
 </html>
