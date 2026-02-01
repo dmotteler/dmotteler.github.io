@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="/musiclib/select.css" />
 <link rel="stylesheet" href="/musiclib/xmlpick.css" />
 <link rel="stylesheet" href="picker.css" />
+<link rel="stylesheet" href="datatitle.css" />
 <style>
 body { width: 1000px; }
 table { width: 90%; }
@@ -90,6 +91,224 @@ function sendm() {
     a.href = href;
     a.classList.remove("disabled");
     a.click();
+}
+function dodl() {
+    // download requested - create the cheat sheet and download it.
+
+    if (!venue || !evndx || songlist.length < 1) {
+        console.log("download request ignored - no event defined.");
+        event.target.classList.add("warn");
+        return;
+    }
+
+    let title = `${venue} - ${evdate}`;
+    document.title = title;
+
+    let cheat = `<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title id="doctitle">${title}</title>
+<style>
+table { border: 5px solid black; border-spacing: 0px;
+    font-family: Arial; font-size: 18px; font-weight: bold; }
+td { border: 1px solid black; padding: 6px; }
+tr:nth-child(even) { background: #CCC }
+tr:nth-child(odd) { background: #FFF }
+.tabletitle { background-color: lightgreen; text-align: center; font-size: 24px; border-bottom: solid 5px; }
+.key, .pitch { text-align: center; }
+.hidden { display: none; }
+.qtet { background-color: blue !important; color: white !important; }
+.qtet a { background-color: blue !important; color: white !important; }
+.partsel { text-align: center; background: lightgreen; }
+@media print {
+  @page { size: letter portrait; margin: .5in; }
+  body { max-width: 5.5in; }
+  table { font-size: 12px; }
+  td { padding: 4px; }
+  .tabletitle { font-size: 18px; }
+}
+</style>
+
+<scr
+ipt>
+var voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none', 'sheet'];
+var showVoice;
+function clickVoice() {
+    // set showVoice, then emulate clicking that voice selection
+    // to get the tracks showing or hidden. this is the init function
+    // when a downloaded cheat is executed.
+
+    showVoice = localStorage.getItem("defaultVoice");
+    if (! showVoice) { showVoice = "mix"; }
+    let buttonId = "#sel" + showVoice;
+    let butt = document.querySelector(buttonId);
+    butt.click();
+}
+function setvoice(el) {
+    let voice = el.value;
+    let clr = "." + voice;
+    // show the class we were called with (i.e., remove "hidden")
+    document.querySelectorAll(clr).forEach(node => { node.classList.remove("hidden") });
+
+    let others = new Set(voices);
+    others.delete(voice);
+    // don't show the rest of the classes
+    for (let v of others) {
+        let cla = "." + v;
+        document.querySelectorAll(cla).forEach(node => { node.classList.add("hidden") });
+    }
+    if (voice != "none" && voice != "sheet") {
+        localStorage.setItem("defaultVoice", voice);
+    }
+}
+</scr
+ipt>
+
+</head>
+<body onload="clickVoice()">
+    <table>
+`;
+    // create the html for the songlist display. 
+    // each row has key, song title, starting words
+    // for all songs from the songlist.
+    // the song title td has a div for each voice, with class "hidden" 
+    // for all except the current voice being displayed.
+
+    showVoice = localStorage.getItem("defaultVoice");
+    if (! showVoice) { showVoice = "mix"; }
+
+    cheat += `<tbody id='main_table'><tr><td colspan='3' class='tabletitle'>${title}</td></tr>`;
+    console.log(`in makelist, songlist ${songlist}`);
+    for (let sid of songlist) {
+        let song = musiclib[sid];
+        let songTitle = song['name']; // songTitle becomes name (notes) [location]
+        if (song.hasOwnProperty("aliasfor")) {
+            let msid = song["aliasfor"];
+            song = musiclib[msid];
+        }
+        let key = song['key'];
+        let keyclass = "key";
+        if (song.hasOwnProperty('pitch')) {
+            let pit = song['pitch'];
+            if (pit != "") {
+                key = 'blow ' + pit;
+                keyclass = "pitch";
+            }
+        }
+        let words = song['words'];
+        if (song.hasOwnProperty("notes")) {
+            songTitle += ` (${song['notes']})`;
+        }
+        if (song.hasOwnProperty("location")) {
+            songTitle += ` [${song['location']}]`;
+        }
+        let picks = "";
+        // if we have any tracks for this song, add a div
+        // for each track to the song title td, with class "hidden"
+        // for all but the active voice
+        let  voices = ['bass', 'bari', 'lead', 'tenor', 'mix', 'none', 'sheet'];
+        for (let voice of voices) {
+            let ancclass = voice == showVoice ? voice : voice + " hidden";
+
+            if (voice == "none") {
+                picks += `<div class='${ancclass}'>${songTitle}</div>\n`;
+
+            } else if (voice == "sheet") {
+                if (song.hasOwnProperty("sheet")) {
+                    // song has a sheet - all sheets have gdid, may have res. key
+                    let anc;
+                    let gdid = song['sheet']['gdid'];
+                    if (song['sheet'].hasOwnProperty('resource_key')) {
+                        let rk = song['sheet']['resource_key'];
+                        anc = `<a href='https://drive.google.com/open?id=${gdid}&resourcekey=${rk}'>${songTitle} [sheet]</a>`;
+                    } else {
+                        anc = `<a href='https://drive.google.com/open?id=${gdid}'>${songTitle} [sheet]</a>`;
+                    }
+                    picks += `<div class='${ancclass}'>${anc}</div>\n`;
+                } else {
+                    // no sheet for this song - sheet entry is just song title
+                    picks += `<div class='${ancclass}'>${songTitle}</div>\n`;
+                }
+            } else {
+                // voice is one that may have tracks
+
+                // choices is a list of tracks for this voice (part or mix)
+                let choices = [];
+
+                if (song.hasOwnProperty("tracks")) {
+                    let v;
+                    if (song['tracks'].hasOwnProperty(voice)) {
+                        v = voice;
+                    } else if (song['tracks'].hasOwnProperty('mix')) {
+                        v = 'mix';
+                    } else {
+                        v = 'notrack';
+                    }
+                    if (song['tracks'].hasOwnProperty(v)) {
+                        for (let vtrk of song['tracks'][v]) {
+                            let gdid = vtrk['gdid'];
+                            let mods = vtrk['mods'];
+                            let anc;
+                            if (vtrk.hasOwnProperty('resource_key')) {
+                                let rk = vtrk['resource_key'];
+                                anc = `<a href='https://drive.google.com/open?id=${gdid}&resourcekey=${rk}'>${songTitle} : ${mods}</a>`;
+                            } else {
+                                anc = `<a href='https://drive.google.com/open?id=${gdid}'>${songTitle} : ${mods}</a>`;
+                            }
+                            choices.push(anc);
+                        }
+                    } else { 
+                        // no tracks for this voice - just show the song title
+                        choices.push(songTitle);
+                    }
+                } else {
+                    // no tracks for this song - just show the song title
+                    choices.push(songTitle);
+                }
+                picks += `<div class='${ancclass}'>` + choices.join("<br/>\n") + "\n</div>";
+            }
+        }
+        if ((! song.hasOwnProperty("tracks") && ! song.hasOwnProperty("sheet"))) {
+            // no tracks or sheet - just display song title
+            picks = songTitle + "\n";
+        }
+
+        let cl = qtetSongs.includes(sid) ? "class='song qtet'" : "class='song'";
+        cheat += `<tr data-sid='${sid}' ${cl}><td class='${keyclass}'>${key}</td><td>${picks}</td><td>${words}</td></tr>\n`;
+    }
+    cheat += `</tbody>\n`;
+
+    cheat += `    <tfoot>
+    <tr>
+        <td colspan="99">
+        <fieldset class="partsel">
+        <legend>Show voice</legend>
+         <input type="radio" id="seltenor" name="part" value="tenor" onclick="setvoice(this)">tenor
+         <input type="radio" id="sellead" name="part" value="lead" onclick="setvoice(this)">lead
+         <input type="radio" id="selbari" name="part" value="bari" onclick="setvoice(this)">bari
+         <input type="radio" id="selbass" name="part" value="bass" onclick="setvoice(this)">bass
+         <input type="radio" id="selmix" name="part" value="mix" onclick="setvoice(this)">mix
+         <input type="radio" id="selsheet" name="part" value="sheet" onclick="setvoice(this)">sheet
+         <input type="radio" id="selnone" name="part" value="none" onclick="setvoice(this)">none
+        </fieldset>
+        </td>
+     </tr>
+    </tfoot>
+</table>
+</body>
+</html>
+`;
+
+    cheat = cheat.replaceAll('scr\nipt', 'script');
+    let yymoda = evndx.substring(2, 8);
+    let dlfn = `${venue}_${yymoda}.html`;
+    let pom = document.createElement('a');
+    pom.style.display = 'none';
+
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(cheat));
+    pom.setAttribute('download', dlfn);
+    document.body.appendChild(pom);
+    pom.click();
+    document.body.removeChild(pom);
 }
 
 function showhelp() {
@@ -343,6 +562,7 @@ function clear_warn() {
 
     if (venue && evndx && songlist.length > 0) {
         document.querySelector("#sendm").classList.remove("warn");
+        document.querySelector("#dodl").classList.remove("warn");
     }
 }
 function makelist() {
@@ -425,7 +645,7 @@ function togqtet(ev) {
 </head>
 <body onload="init()">
 <table border="1" id="tabid">
-<tr id="venue_date_row"><th colspan='3'>
+<tr data-title="enter or select event location and date" id="venue_date_row"><th colspan='99'>
 <label>Songs for:
 <input id="venueel" list="venlist" class="select-css" name="venue"
     placeholder="- venue -" onChange="selvenue(this)"/>
@@ -443,15 +663,15 @@ function togqtet(ev) {
 <label for="eventdate">on</label>
 <input type="datetime-local" class="select-css" value="" id="eventdate" step="900" onblur="timechg(this)">
 </th></tr>
-<tr id="use_row"><th colspan='3'>
+<tr data-title="start with songs from a previous event" id="use_row"><th colspan='99'>
 <label>Use: 
 <select id="prevsel" class="select-css"></select>
 </label>
 </th></tr>
 <tr id="cat_row">
-<td class="svi"> <img src="sendm.svg" id="sendm" onclick="sendm()"/> </td>
+<td class="svi ttwrap" data-title="mail new event to Del"> <img src="sendm.svg" id="sendm" onclick="sendm()"/> </td>
+<td class="svi ttwrap" data-title="download cheat"> <img src="download.svg" id="dodl" onclick="dodl()"/> </td>
 <a class="hidden">send to Del</a>
-<td class="svi"> <img src="help.svg" onclick="showhelp()"/> </td>
 <td id='catboxes'>
  <input type='checkbox' name='cats' checked="1" value="Current">Current</input>
  <input type='checkbox' name='cats' checked="1" value="PoleCat">PoleCat</input>
@@ -460,7 +680,8 @@ function togqtet(ev) {
  <input type='checkbox' name='cats' checked="1" value="Quartet">Quartet</input>
  <input type='checkbox' name='cats' value="Old">Old</input>
 </td>
- <td class="svi"><img src="addsong.svg" class="as" onclick="adds()"/></td>
+ <td class="svi ttwrap" data-title="add/remove songs"><img src="addsong.svg" class="as" onclick="adds()"/></td>
+ <td class="svi ttwrap" data-title="show help"> <img src="help.svg" onclick="showhelp()"/> </td>
 </tr>
 </table>
 <br/>
