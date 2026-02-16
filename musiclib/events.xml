@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Rehearsal " when="February 17, 2026 06:00PM" dtndx="202602171800" songlist="1028 1011 1181 1050 1080 1183 1184 1124 1075 1103 1163 1010 1084 1225 1192 1185" qtetSongs="" />
   <event where="Rehearsal" when="February 10, 2026 06:00PM" dtndx="202602101800" songlist="1102 1055 1163 1084 1010 1053 1192 1078 1183 1185 1229 1026 1002 1224 1036 1120" qtetSongs="" />
   <event where="Rehearsal" when="January 27, 2026 06:00PM" dtndx="202601271800" songlist="1102 1055 1183 1192 1142 1120 1185 1078 1163 1084 1010 1002 1193 1073 1026 1035" qtetSongs="" />
   <event where="South Creek" when="January 22, 2026 03:15PM" dtndx="202601221515" songlist="1075 1229 1076 1103 1083 1080 1028 1124 1182 1085 1184 1181 1007 1016" qtetSongs="1083 1085" />
