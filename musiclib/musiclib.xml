@@ -139,7 +139,7 @@
     <sheet gdid='1k-q-JqkIN4FEAwvEpymETUMP55xZG-Ic' sheet='Tuners Music/Xmas sheets/Away In a Manger (Foreman).pdf' />
   </song>
   <song id="1078" name="Country Roads Take Me Home">
-    <category>Current</category>
+    <category>Old</category>
     <arranger>Steve Jamison</arranger>
     <composer>John Denver</composer>
     <lyricist>John Denver</lyricist>
@@ -157,6 +157,28 @@
       <voice gdid="1bdYjpS7fNg0jAwVFZPRfdCA-81J1TqnN" mods="mix" path="Country Roads Mix.mp3" voice="mix" />
     </tracks>
     <sheet gdid='1TUfq8pSnoF-izTEAkEZtnJUUTpiJD8hB' sheet='Tuners Music/CountryRoads.pdf' />
+  </song>
+  <song id="1079" name="Country Roads Take Me Home">
+    <category>Current</category>
+    <arranger>Tom Bradshaw</arranger>
+    <composer>John Denver</composer>
+    <lyricist>John Denver</lyricist>
+    <copyright>Cherry Lane Music Co</copyright>
+    <crdate>1971</crdate>
+    <key>Ab</key>
+    <words>Almost heaven</words>
+    <tracks>
+    <voice gdid="1j3eCx0GJ8pfyqm6YTH4xipz3-_WQ3FXQ" mods="tenor pred" path="tenor/CountryRoadsTenor" voice="tenor" />
+    <voice gdid="17oKrgxuqguTvUYLPlzHe9zcBApSkWWu0" mods="tenor solo" path="tenor/CountryRoadsTenorSolo.mp3" voice="tenor" />
+    <voice gdid="1dwkxMrG1s9PdjNKpq8bwzAlRMA3sxWym" mods="lead pred" path="lead/CountryRoadsLead.mp3" voice="lead" />
+    <voice gdid="1w8gtpwnLHtlM7dCT6AIF4gpjZmOxCzzn" mods="lead solo" path="lead/CountryRoadsLeadSolo.mp3" voice="lead" />
+    <voice gdid="1oT7fdJx-QhS9cKAIocxavzqIHY8PtOl_" mods="bari pred" path="bari/CountryRoadsBari.mp3" voice="bari" />
+    <voice gdid="1xEw5bw3TxGxBi7u1x62v6wRrt_bKUdjO" mods="bari solo" path="bari/CountryRoadsBariSolo.mp3" voice="bari" />
+    <voice gdid="1Eh3grp5w6K7mnKoGBLEoP7SlHvlRSriz" mods="bass pred" path="bass/CountryRoadsBass.mp3" voice="bass" />
+    <voice gdid="1xZXoaSOifsvoJIh2blxg9SdpL1HDb04b" mods="bass solo" path="bass/CountryRoadsBassSolo.mp3" voice="bass" />
+    <voice gdid="1TgVLbLB8Lr0qMM1szx5Y1RF-e77zBiC2" mods="mix" path="mix/CountryRoadsMix.mp3" voice="mix" />
+    </tracks>
+    <sheet gdid='1z8JY7HXaa3B7IH21fJmcnfGyoBug8WoC' sheet='CountryRoads.pdf' />
   </song>
   <song id="1201" name="Away In a Manger">
     <category>Christmas</category>
