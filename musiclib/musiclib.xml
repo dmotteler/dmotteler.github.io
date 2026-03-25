@@ -2405,6 +2405,22 @@
     <key>G</key>
     <words>(bass) dm, dm dm dm</words>
   </song>
+  <song id="1086" name="America the Beautiful">
+    <category>Current</category>
+    <arranger>BHS</arranger>
+    <composer>Samuel A Ward</composer>
+    <lyricist>Katherine L Bates</lyricist>
+    <key>C</key>
+    <words>O beautiful for spacious skies</words>
+    <sheet gdid="1z0-R07q1O6W9F16rXHW7lpr6aOnp4njO" sheet="ATB.pdf" />
+    <tracks>
+    <voice gdid="1zzSAu2dC65FwdsaxklbwychtbkX3rd8h" mods="tenor" path="tenor/ATB tenor.mp3" voice="tenor" />
+    <voice gdid="1Xvnu7zaueVhjfqU08_WycwkvS8oLSbVd" mods="bari" path="bari/ATB bari.mp3" voice="bari" />
+    <voice gdid="1OwVBLBc1E0yM__NRbu-M-M6xMYsorfhW" mods="bass" path="bass/ATB bass.mp3" voice="bass" />
+    <voice gdid="1uljrovQS45p2W_opHSZce-rawdInz9VG" mods="lead" path="lead/ATB lead.mp3" voice="lead" />
+    <voice gdid="1TVJsd7kfuTwCp2L_cBlSTLhhBwDT0RY5" mods="mix" path="mix/ATB mix.mp3" voice="mix" />
+    </tracks>
+  </song>
   <song id="1153" name="Sunshine of Your Smile, The">
     <category>Old</category>
     <arranger>Tom Gentry</arranger>
