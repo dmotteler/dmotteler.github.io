@@ -34,6 +34,13 @@ function init() {
     let sl = opener.songlib;
 
     function hascat(nam) {
+        // song nam can have multiple versions (with unique sid)
+        // for each sid, the song can belong to multiple cats
+        // our caller (originally the song picker) has declared
+        //  which categories are of interest - the curcats list.
+        //
+        // hascat is true if any of the songs with name nam
+        // belong to at least one category in curcats.
         let rv = false;
         for (let sid of sl[nam]) {
             if (ml[sid].hasOwnProperty('aliasfor')) {
@@ -49,28 +56,56 @@ function init() {
         return rv;
     }
 
+    function sidcat(sid) {
+        // sidcat is true if any of the categories song sid
+        // belongs to is in curcats.
+
+        let rv = false;
+        if (ml[sid].hasOwnProperty('category')) {
+            for (let cat of ml[sid]['category']) {
+                if (curcats.includes(cat)) {
+                    rv = true;
+                    break;
+                }
+            }
+        }
+        return rv;
+    }
+
     // build the list of songs in the selected categories
     let songs = Object.keys(sl).filter( nam => hascat(nam) );
     const fldset = document.querySelector("fieldset");
 
     for (let nam of songs.sort()) {
-        const label = document.createElement('label');
+        // sl[nam] has a list of sids with name nam
+        for (let sid of sl[nam]) {
+            if (sidcat(sid)) {
+                let song = ml[sid];
+                const label = document.createElement('label');
 
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        let sid = opener.songlib[nam][0];
-        checkbox.value = sid;
-        checkbox.checked = sids.indexOf(sid) >= 0;
-        checkbox.addEventListener("click", ev => songsel(ev.target));
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
 
-        label.appendChild(checkbox);
-        label.appendChild(document.createTextNode(' ' + nam)); // Add a space for readability
+                let unam = nam;
+                if (sl[nam].length > 1) {
+                    let song = ml[sid];
+                    // add [category] to name for those appearing more than once
+                    unam = `${nam} [${song['category']}]`;
+                }
+                checkbox.value = sid;
+                checkbox.checked = sids.indexOf(sid) >= 0;
+                checkbox.addEventListener("click", ev => songsel(ev.target));
 
-        const br = document.createElement("br");
-        label.appendChild(br);
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(' ' + unam)); // Add a space for readability
 
-        // Append the label (containing the checkbox) to the fieldset
-        fldset.appendChild(label);
+                const br = document.createElement("br");
+                label.appendChild(br);
+
+                // Append the label (containing the checkbox) to the fieldset
+                fldset.appendChild(label);
+            }
+        }
     }
 }
 function ret() {

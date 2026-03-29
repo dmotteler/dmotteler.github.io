@@ -30,6 +30,8 @@ input::placeholder { font-weight: bold; opacity: 0.5; color: green; }
 <script src="/formatDate.js"></script>
 <script src="/musiclib/getMusicLib.js"></script>
 <script src="/musiclib/getEventList.js"></script>
+<script src="locstorevent.js"></script>
+<script type="text/javascript" src="mailvars.json"></script>
 <script type="text/javascript">
 
 var aliasfor = []; // gives main sid for an alias sid
@@ -71,25 +73,35 @@ function adds() {
 function sendm() {
     // send mail requested - 
 
+    if (document.querySelector("#sendm").closest("td").classList.contains("disabled-td")) {
+        return;
+    }
     if (!venue || !evndx || songlist.length < 1) {
         console.log("sendm ignored - no event defined.");
         event.target.classList.add("warn");
         return;
     }
 
-    let sl = songlist.join(" ");
+    let mat = "@";
+    let href = `mailto:${mailvars['id']}${mat}${mailvars['svr']}`;
+    href += "?subject=Cheat\&body=";
+    let bod = "http://localhost/picker/dodl2.html?";
 
-    let href = `mailto:dmotteler@aol.com?subject='Tuners at ${venue} on ${evdate}'`;
-    href += `&body=event when='${evdate}' where='${venue}' dtndx='${evndx}' songlist='${sl}'`;
+    let sl = songlist.join("");
+    venue = venue.replace(" ", "_");
+    bod += `dndx='${evndx}'&ven='${venue}'&songs='${sl}'`;
+
     if (qtetSongs.length > 0) {
-        let qs = qtetSongs.join(" ");
-        href += ` qtetSongs ='${qs}'`;
+        let qs = qtetSongs.join("");
+        bod += `&qtet='${qs}'`;
     }
 
-    const a = document.querySelector("a");
-    href = href.replaceAll(" ", "%20");
+    // bod += "'";
+    href += encodeURIComponent(bod);
+    console.log(href);
+
+    const a = document.querySelector("a.sendm");
     a.href = href;
-    a.classList.remove("disabled");
     a.click();
 }
 function dodl() {
@@ -100,6 +112,9 @@ function dodl() {
         event.target.classList.add("warn");
         return;
     }
+
+    // save the new event in local storage
+    savelsev();
 
     let title = `${venue} - ${evdate}`;
     document.title = title;
@@ -180,7 +195,7 @@ ipt>
     console.log(`in makelist, songlist ${songlist}`);
     for (let sid of songlist) {
         let song = musiclib[sid];
-        let songTitle = song['name']; // songTitle becomes name (notes) [location]
+        let songTitle = song['name']; // songTitle becomes name (notes) [location] {category}
         if (song.hasOwnProperty("aliasfor")) {
             let msid = song["aliasfor"];
             song = musiclib[msid];
@@ -198,9 +213,15 @@ ipt>
         if (song.hasOwnProperty("notes")) {
             songTitle += ` (${song['notes']})`;
         }
+        let sids = songlib[songTitle];
         if (song.hasOwnProperty("location")) {
             songTitle += ` [${song['location']}]`;
         }
+        /* at least for now, don't add {category} to the cheat
+        if (sids.length > 1) {
+            songTitle += ` {${song['category'][0]}}`;
+        }
+        */
         let picks = "";
         // if we have any tracks for this song, add a div
         // for each track to the song title td, with class "hidden"
@@ -328,10 +349,14 @@ function loads() {
         // musiclib and eventlist loads are complete.
         musiclib = values[0];
         eventlist = values[1];
+
         // get largest (i.e., latest) event index from events.xml
         let latest = Math.max(...Object.keys(eventlist));
 
-        // get the select element
+        // add events from localStorage to eventlist, return new keys
+        let newevs = getlsevs(latest);
+
+        // get the select table element
         let sel = document.getElementById("prevsel");
 
         // sort the eventlist by date, newest first
@@ -365,6 +390,8 @@ function loads() {
             }
         }
 
+        sel.addEventListener("click", useprev);
+
         // build list of all categories in the library,
         // and a songlib dict, indexed by song name,
         // with values being a list of sids for the name
@@ -390,11 +417,12 @@ function loads() {
     });
 }
 
-function useprev(el) {
-    // an event has been selected. el is the select element
+function useprev(ev) {
+    // an event has been selected. ev is the event.
 
-    let opt = el.options[el.selectedIndex];
-    let dtndx = opt.dataset.dtndx;
+    let sel = ev.target;  // the select element
+    let opt = sel.options[sel.selectedIndex];
+    let dtndx = opt.dataset.dtndx; // date index of selected option
 
     let gig = dtndx != "" ? eventlist[dtndx] : null;
 
@@ -485,10 +513,24 @@ function timechg(el) {
 function init() {
     // start the load of the xmls.
     loads();
-    let catsels = document.querySelectorAll("[type='checkbox']");
-    document.querySelector("#prevsel").addEventListener('change', ev => useprev(ev.target));
     // double-click on venue select to clear it so list reappears
     document.querySelector("#venueel").addEventListener('dblclick', ev => { ev.target.value = ""; venue = ""; clear_warn(); });
+    document.querySelector("#prevsel").addEventListener("click", ev => {checkdel(ev)});
+    document.querySelector("#prevsel").addEventListener("dblclick", ev => {delevent(ev)});
+}
+function checkdel(ev) {
+document.querySelectorAll(".thisev").forEach( (el, n) => { el.classList.remove("thisev") });
+    ev.target.classList.add("thisev");
+}
+function delevent(ev) {
+    let dtndx = ev.target.dataset.dtndx;
+    let istemp = ev.target.dataset.istemp;
+    if (istemp == "true") {
+        console.log(`removing ${dtndx} from localStorage!`);
+        localStorage.removeItem(dtndx);
+    } else {
+        console.log(`${dtndx} not temp - ignoring remove from localStorage!`);
+    }
 }
 var selsid; // song id from selected "from"  row, or null
 function fromrow(ev) {
@@ -581,12 +623,17 @@ function makelist() {
 
     console.log(`in makelist, songlist ${songlist}`);
     for (let sid of songlist) {
+        if (sid == "") {
+            console.log(`ignoring empty sid`);
+            continue;
+        }
         let song = musiclib[sid];
-        let songTitle = song['name']; // songTitle becomes name (notes) [location]
         if (song.hasOwnProperty("aliasfor")) {
             let msid = song["aliasfor"];
             song = musiclib[msid];
         }
+        let songTitle = song['name']; // songTitle becomes name (notes) [location] {category}
+        console.log(`sid ${sid}. songTitle ${songTitle}`);
         let key = song['key'];
         let keyclass = "key";
         if (song.hasOwnProperty('pitch')) {
@@ -600,8 +647,13 @@ function makelist() {
         if (song.hasOwnProperty("notes")) {
             songTitle += ` (${song['notes']})`;
         }
+        let sids = songlib[songTitle];
+        console.log(`songTitle ${songTitle}, sids ${sids}`);
         if (song.hasOwnProperty("location")) {
             songTitle += ` [${song['location']}]`;
+        }
+        if (sids.length > 1) {
+            songTitle += ` {${song['category'][0]}}`;
         }
 
         let cl = qtetSongs.includes(sid) ? "class='song qtet'" : "class='song'";
@@ -665,13 +717,13 @@ function togqtet(ev) {
 </th></tr>
 <tr data-title="start with songs from a previous event" id="use_row"><th colspan='99'>
 <label>Use: 
-<select id="prevsel" class="select-css"></select>
+    <select id="prevsel" class="select-css"></select>
 </label>
 </th></tr>
 <tr id="cat_row">
-<td class="svi ttwrap" data-title="mail new event to Del"> <img src="sendm.svg" id="sendm" onclick="sendm()"/> </td>
+<td class="svi ttwrap disabld-td" data-title="mail new event to Del"> <img src="sendm.svg" id="sendm" onclick="sendm()"/> </td>
 <td class="svi ttwrap" data-title="download cheat"> <img src="download.svg" id="dodl" onclick="dodl()"/> </td>
-<a class="hidden">send to Del</a>
+<a class="hidden sendm">send to Del</a>
 <td id='catboxes'>
  <input type='checkbox' name='cats' checked="1" value="Current">Current</input>
  <input type='checkbox' name='cats' checked="1" value="PoleCat">PoleCat</input>
