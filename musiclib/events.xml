@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="eventlist.xsl"?>
 <eventlist name="Tuners Event List">
+  <event where="Rehearsal" when="November 17, 2026 06:00PM" dtndx="202611171800" songlist="1102 1055 1011 1028 1080 1124 1195 1181 1083 1160 1180 1194 1183 1079 1016 1185 1020 1103 1182 1088 1077 1204 1206 1216 1205 1035 1036" qtetSongs="1083 1160" />
   <event where="Rehearsal" when="November 10, 2026 06:00PM" dtndx="202611101800" songlist="1102 1055 1216 1077 1218 1205 1211 1217 1207 1206 1213 1214 1204 1231 1208 1202 1088 1174 1122 1175 1089 1035 1036" qtetSongs="" />
   <event where="Rehearsal" when="November 03, 2026 06:00PM" dtndx="202611031800" songlist="1102 1055 1175 1174 1089 1122 1088 1202 1208 1231 1215 1204 1214 1213 1201 1206 1207 1217 1211 1205 1216 1035 1036" qtetSongs="" />
   <event where="Fieldcrest" when="October 29, 2026 01:15PM" dtndx="202610291315" songlist="1011 1028 1080 1124 1195 1181 1083 1160 1180 1194 1183 1184 1079 1086 1016" qtetSongs="1083 1160" />
