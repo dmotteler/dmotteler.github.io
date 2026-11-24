@@ -34,12 +34,16 @@ for ev in tree.findall("event"):
 
 print(f"read {len(eventlist)} events from {evfn}")
 
-listchgd = False
-oldest = (datetime.now() - timedelta(days=365)).timestamp()
-
 cheatsdir = "../cheats"
-_, _, files = next(os.walk(cheatsdir))
-cheats = [cheat for cheat in files if cheat.endswith(".html") and os.path.getmtime(f"{cheatsdir}/{cheat}") > oldest]
+listchgd = False
+if len(sys.argv) < 2:
+    # no cheats given - do the last year
+    oldest = (datetime.now() - timedelta(days=365)).timestamp()
+
+    _, _, files = next(os.walk(cheatsdir))
+    cheats = [cheat for cheat in files if cheat.endswith(".html") and os.path.getmtime(f"{cheatsdir}/{cheat}") > oldest]
+else:
+    cheats = sys.argv[1:]
 
 for cheat in cheats:
     ch = f"{cheatsdir}/{cheat}"
